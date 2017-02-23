@@ -1,0 +1,119 @@
+#
+# Copyright (c) 2004-2006, Doug Harple.  All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+# 
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 
+# 3. Neither the name of author nor the names of its contributors may be
+#    used to endorse or promote products derived from this software
+#    without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# 
+# $Id: configure.in,v 1.19 2008/04/05 17:17:47 purgedhalo Exp $
+#
+
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ(2.59)
+AC_INIT([detox],[1.2.0],[purgedhalo at users.sourceforge.net])
+AC_CONFIG_SRCDIR([detox.c])
+AC_CONFIG_HEADER([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_LEX
+AC_PROG_YACC
+AC_PROG_INSTALL
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_CHECK_HEADERS([locale.h stdlib.h string.h sys/mount.h sys/param.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_STRUCT_ST_BLOCKS
+AC_SYS_LARGEFILE
+
+# Checks for library functions.
+AC_FUNC_CLOSEDIR_VOID
+AC_FUNC_LSTAT
+AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK
+AC_FUNC_MALLOC
+AC_FUNC_REALLOC
+AC_FUNC_STAT
+AC_CHECK_FUNCS([memset setlocale strdup strerror strncasecmp strrchr strtol getopt_long])
+
+#
+# Checks for libpopt
+#
+AC_MSG_CHECKING(for popt libraries)
+AC_ARG_WITH(popt,
+[  --with-popt[=DIR]     Include popt library support.],
+[
+	if test "$withval" != "no"; then
+		if test "$withval" = "yes"; then
+			if test -f /usr/include/popt.h; then
+				POPT_INCDIR=/usr/include
+				POPT_LIBDIR=/usr/lib
+			else
+				AC_MSG_RESULT(no)
+				AC_MSG_ERROR(Unable to find popt.h)
+			fi
+		else
+			if test -f $withval/include/popt.h; then
+				POPT_INCDIR=$withval/include
+				POPT_LIBDIR=$withval/lib
+			else
+				AC_MSG_RESULT(no)
+				AC_MSG_ERROR(Unable to find popt.h under $withval)
+			fi
+		fi
+
+		if test -n "$POPT_INCDIR"; then 
+			CFLAGS="$CFLAGS -I$POPT_INCDIR"
+			LIBS="$LIBS -L$POPT_LIBDIR -lpopt"
+
+			AC_DEFINE(HAVE_LIBPOPT, [], [Define to 1 if you have the <popt.h> header file.])
+			AC_MSG_RESULT(yes)
+		fi
+
+	else
+		AC_MSG_RESULT(no)
+	fi
+],[
+	AC_MSG_RESULT(no)
+])
+
+if test -z "$POPT_INCDIR" ; then
+	AC_SUBST(option_parser, getopt)
+else
+	AC_SUBST(option_parser, popt)
+fi
+
+#
+# Do output
+#
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

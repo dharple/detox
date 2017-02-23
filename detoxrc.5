@@ -1,0 +1,234 @@
+.\" 
+.\" Copyright (c) 2004-2006, Doug Harple.  All rights reserved.
+.\" 
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions are
+.\" met:
+.\" 
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 
+.\" 3. Neither the name of author nor the names of its contributors may be
+.\"    used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\" 
+.\" THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+.\" "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+.\" LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+.\" A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+.\" OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+.\" SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+.\" LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+.\" DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+.\" THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+.\" OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\" 
+.Dd August 3, 2004
+.Dt DETOXRC 5
+.Os
+.Sh NAME
+.Nm detoxrc
+.Nd configuration file for
+.Xr detox 1
+.Sh OVERVIEW
+detox allows for configuration of its sequences through config files.
+This document describes how these files work.
+.Sh IMPORTANT
+When setting up a new set of rules, the
+.Cm safe
+and
+.Cm wipeup
+filters must always be run after a translating filter (or series
+thereof), such as the
+.Cm utf_8
+or the 
+.Cm uncgi
+filters.  Otherwise, the risk of introducing illegal characters into
+the filename is introduced.
+.Sh SYNTAX
+The format of this configuration file is C-like.  It is based loosely
+off named's configuration files.  Each statement is semicolon
+terminated, and modifiers on a particular statement are generally
+contained within braces.
+.Bl -tag -width 0.25i
+.It Cm sequence Qo Ar name Qc Bro Ar ... Brc ;
+Defines a sequence of filters to run a filename through.  "name"
+specifies how the user will refer to the particular sequence during
+runtime.  Quotes around the sequence name are generally optional, but
+should be used if the sequence name does not start with a letter.
+.Pp
+There is a special sequence, named "default", which is the default
+sequence used by detox.  This can be overridden through the command
+line option -s or the environmental variable 
+.Ev DETOX_SEQUENCE .
+.Pp
+Sequence names are case sensitive and unique throughout all sequences;
+that is, if a system wide file defines
+.Ar normal_seq
+and a user has a sequence with the same name in their 
+.Pa .detoxrc , 
+the users' 
+.Ar normal_seq
+will take precedence.
+.It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
+This translates ISO 8859-1 (aka Latin-1) characters into lower ASCII
+equivalents.  The output is not necessarily safe, and should also be
+run through the
+.Cm safe
+filter.
+.Pp
+Under normal circumstances, the filename syntax is not needed.  Detox
+looks in several locations for a file called 
+.Pa iso8859_1.tbl , 
+which is a set of rules defining how an ISO 8859-1 character should be
+translated.
+.Pp
+In the event this table doesn't exist, you have two options.  You can
+download or create your own, and tell detox the location of it using
+the filename syntax shown above, or you can let detox fall back on its
+internal tables.  The internal tables translate the same as the stock
+translation tables.
+.Pp
+You can chain together multiple iso8859_1 translations, as long as the
+default value of all but the last one is set to nothing.  This is
+explained in
+.Xr detox.tbl 5 .
+.Pp
+This filter is mutually exclusive with the
+.Cm utf_8
+filter.
+.It Cm utf_8 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
+This translates Unicode characters, encoded by the UTF-8 translation
+method, into safe equivalents.
+.Pp
+This operates in a manner similar to 
+.Cm iso8859_1 , 
+except it looks for a translation table called 
+.Pa unicode.tbl .
+.Pp
+The default internal translation for Unicode characters only contains
+the lower 256 characters of Unicode, which is equivalent to the set of
+Basic Latin and Latin-1 characters.
+.It Cm uncgi ;
+This translates CGI escaped strings into their ASCII equivalents. The
+output of this is not necessarily safe, and could contain ISO 8859-1
+chars or potentially UTF-8 characters.
+.It Cm safe Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
+This could also be called "safe for UNIX-like operating systems".  It
+translates characters that are difficult to work with in UNIX
+environments into characters that are not.
+.Pp
+In earlier versions this filter was entirely internal.  Starting with
+1.2.0, this filter is controlled by a translation table.  In the
+absense of the translation table, the previous code will be employed
+for the translation.  Also, prior to 1.2.0, the safe filter removed
+leading dashes to prevent the hassle of dealing with a filename in
+the format
+.Pa -filename .
+This functionality is exclusively handled by the
+.Cm wipeup
+filter now.
+.Pp
+See the
+.Sx SAFE
+section for more details on what this filter translates by default.
+.It Cm wipeup Bro Cm remove_trailing ; Brc ;
+This wipes up any excessive characters.  For instance, multiple
+underscores or dashes will be converted into a single underscore or
+dash.  Any series of dash and underscore (i.e. "_-_") will be
+converted into a single dash.
+.Pp
+The remove trailing option removes a dash or underscore followed
+immediately by a period.
+.Pp
+See the
+.Sx WIPEUP
+section for more details on what this filter translates.
+.It Cm max_length Bro Cm length Ar value ; Brc ;
+This trims a file down to the length specified (or less).  It is
+conscious of extensions and attempts to preserve anything following
+the last period in a filename.
+.Pp
+For instance, given a max length of 12, and a filename of
+"this_is_my_file.txt", the filter would output "this_is_.txt".
+.It Cm lower ;
+This translates uppercase characters into lowercase characters.
+.It Cm # Comments
+Any thing after a # on any line is ignored.
+.El
+.Sh EXAMPLE
+.Bd -literal
+sequence default {
+  uncgi;
+  iso8859_1 {
+    filename "iso8859_1.tbl";
+  };
+# utf_8 {
+#   filename "unicode.tbl";
+# };
+  safe {
+    filename "safe.tbl";
+  };
+  wipeup {
+    remove_trailing;
+  };
+# max_length {
+#   length 128;
+# };
+};
+.Ed
+.Sh SAFE
+The following characters are translated by the stock
+.Cm safe 
+filter.  They can be tuned by updating safe.tbl or creating a copy of
+safe.tbl and updating your rc file.
+.Pp
+.Ss Rules that apply anywhere in the filename:
+.Bl -column -offset indent ".Sy Removed" ".Sy Original"
+.It Sy Safe Ta Sy Original
+.It _and_ Ta &
+.It _ Ta \fIspace\fR ` \&! @ $ * \e | \&: \&; \&" ' < > \&? / 
+.It - Ta \&( \&) \&[ \&] { }
+.El
+.Pp
+.Sh WIPEUP
+The following characters are translated by the
+.Cm wipeup
+filter.
+.Pp
+.Ss Rules that apply anywhere in the filename:
+.Bl -column -offset indent ".Sy Wipeup" ".Sy Original"
+.It Sy Wipeup Ta Sy Original
+.It - Ta -_
+.It - Ta _-
+.It - Ta --
+.It _ Ta __
+.El
+.Pp
+.Ss Rules that apply only at the beginning of a filename:
+Any leading dashes are stripped to prevent programs from interpreting
+these files as command line options.
+.Bl -column -offset indent ".Sy removed" ".Sy Original"
+.It Sy Wipeup Ta Sy Original
+.It \fIremoved\fR Ta - _ #
+.El
+.Ss Rules that apply when remove trailing is enabled:
+.Bl -column -offset indent ".Sy Wipeup" ".Sy Original"
+.It Sy Wipeup Ta Sy Original
+.It . Ta .-
+.It . Ta -.
+.It . Ta ._
+.It . Ta _.
+.El
+.Pp
+.Sh SEE ALSO
+.Xr detox 1 ,
+.Xr detox.tbl 5 .
+.Sh AUTHORS
+detox was written by
+.An "Doug Harple" .

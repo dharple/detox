@@ -1,0 +1,170 @@
+.\" 
+.\" Copyright (c) 2004-2006, Doug Harple.  All rights reserved.
+.\" 
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions are
+.\" met:
+.\" 
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 
+.\" 3. Neither the name of author nor the names of its contributors may be
+.\"    used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\" 
+.\" THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+.\" "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+.\" LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+.\" A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+.\" OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+.\" SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+.\" LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+.\" DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+.\" THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+.\" OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\" 
+.Dd August 3, 2004
+.Dt DETOX 1
+.Os
+.Sh NAME
+.Nm detox
+.Nd clean up filenames
+.Sh SYNOPSIS
+.Nm
+.Op Fl hnLrv
+.Op Fl s sequence
+.Op Fl f configfile
+.Op Fl -dry-run
+.Op Fl -special
+.Ar
+.Sh DESCRIPTION
+The
+.Nm
+utility renames files to make them easier to work with.  It removes
+spaces and other such annoyances.  It'll also translate or cleanup
+Latin-1 (ISO 8859-1) characters encoded in 8-bit ASCII, Unicode
+characters encoded in UTF-8, and CGI escaped characters.
+.Ss Sequences
+.Nm
+is driven by a configurable series of filters, called a sequence.
+Sequences are covered in more detail in
+.Xr detoxrc 5
+and are discoverable with the
+.Fl L
+option.  Some examples of default sequences are
+.Cm iso8859_1
+and
+.Cm utf_8 .
+.Ss Options
+The main options:
+.Bl -tag -width Fl
+.It Fl f Ar configfile
+Use 
+.Ar configfile 
+instead of the default configuration files for loading translation
+sequences.  No other config file will be parsed.
+.It Fl h -help
+Display helpful information.
+.It Fl L
+List the currently available sequences.  When paired with
+.Fl v
+this option shows what filters are used in each sequence and any
+properties applied to the filters.
+.It Fl n -dry-run
+Doesn't actually change anything.  This implies the
+.Fl v
+option.
+.It Fl r
+Recurse into subdirectories.
+.It Fl s Ar sequence
+Use
+.Ar sequence 
+instead of default.
+.It Fl -special
+Works on special files (including links).  Normally 
+.Nm
+ignores these files.
+.It Fl v
+Be verbose about which files are being renamed.
+.It Fl V
+Show the current version of
+.Nm .
+.El
+.Ss Deprecated Options
+Deprecated Options are options that were available in earlier versions
+of
+.Nm
+but have lost their meaning and are being phased out.
+.Bl -tag -width Fl
+.It Fl -remove-trailing
+Removes _ and - after .'s in filenames.  This was first provided in
+the 0.9 series of 
+.Nm .
+After the introduction of sequences, it lost its meaning, as you could
+now determine the properties of wipeup through a particular sequence's
+configuration.  It presently forces all instances of the wipeup filter
+to use remove trailing, regardless of what's actually in the config
+files.
+.El
+.Sh FILES
+.Bl -tag -width iso8859_1.tbl -compact
+.It Pa detoxrc
+The system-wide detoxrc file.
+.It Pa ~/.detoxrc
+A user's personal detoxrc.  Normally it extends the system-wide
+detoxrc, unless
+.Fl f
+has been specified, in which case, it is ignored.
+.It Pa iso8859_1.tbl
+The default ISO 8859-1 translation table.
+.It Pa unicode.tbl
+The default Unicode (UTF-8) translation table.
+.El
+.Sh EXAMPLES
+.Bl -tag -width Fl
+.It Nm Fl s Ar iso8859_1 Fl r Fl v Fl n Pa /tmp/new_files
+Will run the sequence
+.Ar iso8859_1
+recursively, listing any changes, without changing anything, on the
+files of
+.Pa /tmp/new_files .
+.It Nm Fl c Ar my_detoxrc Fl L Fl v
+Will list the sequences within
+.Ar my_detoxrc ,
+showing their filters and options.
+.El
+.Sh SEE ALSO
+.Xr detoxrc 5 ,
+.Xr detox.tbl 5 .
+.Sh HISTORY
+.Nm 
+was originally designed to clean up files that I had received from
+friends which had been created using other operating systems.  It's
+trivial to create a filename with spaces, parenthesis, brackets, and
+ampersands under some operating systems.  These have special meaning
+within FreeBSD and Linux, and cause problems when you go to access
+them.  I created
+.Nm
+to clean up these files.
+.Sh AUTHORS
+.Nm
+was written by
+.An "Doug Harple" .
+.Sh BUGS
+If, after the translation of a filename is finished, a file already
+exists with that same name,
+.Nm
+will not rename the file.  This could cause a problem with the
+.Cm max_length
+filter, if it was imperative that the files be cut down to a certain
+length.
+.Pp
+Long options don't work under Solaris or Darwin.
+.Pp
+An error in the config file will cause a segfault as it's going to
+print the offending word within the config file.

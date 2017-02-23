@@ -1,0 +1,210 @@
+#
+# Copyright (c) 2004-2006, Doug Harple.  All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+# 
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 
+# 3. Neither the name of author nor the names of its contributors may be
+#    used to endorse or promote products derived from this software
+#    without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# 
+# $Id: Makefile.in,v 1.31 2008/04/12 01:02:47 purgedhalo Exp $
+#
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+datarootdir = @datarootdir@
+bindir = @bindir@
+mandir = @mandir@
+sysconfdir = @sysconfdir@
+datadir = @datadir@
+
+CFLAGS = @CFLAGS@
+L_OPT = @LEXLIB@ @LIBS@
+
+CC = @CC@
+LEX = @LEX@
+YACC = @YACC@
+INSTALL = @INSTALL@
+
+.c.o:
+	${CC} -c ${CFLAGS} $<
+
+genericOBJS = clean_string.o table.o parse_table.o \
+	config_file_l.o config_file_y.o config_file_spoof.o config_file_dump.o
+
+detoxOBJS = detox.o file.o ${genericOBJS} \
+	parse_options_@option_parser@.o parse_options_generic.o
+
+inline-detoxOBJS = detox-inline.o file-inline.o ${genericOBJS} \
+	parse_options_@option_parser@-inline.o parse_options_generic-inline.o
+
+detoxSRC = `echo ${detoxOBJS} | sed -e "s/[.]o/.c/g"`
+
+inline-detoxSRC = `echo ${inline-detoxOBJS} | sed -e "s/[.]o/.c/g"`
+
+all: detox inline-detox
+
+#
+# Compile Rules
+#
+
+detox: ${detoxOBJS}
+	${CC} -o detox ${detoxOBJS} ${L_OPT}
+
+inline-detox: ${inline-detoxOBJS}
+	${CC} -o inline-detox ${inline-detoxOBJS} ${L_OPT}
+
+#
+# Special Source Compiles
+#
+
+config_file_l.c: config_file.l config_file_y.h
+	${LEX} config_file.l
+	mv lex.yy.c config_file_l.c
+
+config_file_y.c: config_file.y
+	${YACC} -d config_file.y
+	mv y.tab.c config_file_y.c
+	mv y.tab.h config_file_y.h
+
+# In case some future rule depends on config_file_y.h
+config_file_y.h: config_file_y.c
+
+detox_path.h: config.status
+	> detox_path.h
+	echo "char default_etc_dir[]=\"${sysconfdir}\";" >> detox_path.h
+	echo "char default_data_dir[]=\"${datadir}/detox\";" >> detox_path.h
+
+#
+# Special Object Compiles: Inline Mode
+# 
+
+detox-inline.o: detox.c
+	${CC} -c ${CFLAGS} -DINLINE_MODE $< -o $@
+
+parse_options_generic-inline.o: parse_options_generic.c
+	${CC} -c ${CFLAGS} -DINLINE_MODE $< -o $@
+
+parse_options_@option_parser@-inline.o: parse_options_@option_parser@.c
+	${CC} -c ${CFLAGS} -DINLINE_MODE $< -o $@
+
+# This is done by make dep too
+detox.o: detox.c detox_path.h
+
+#
+# Actions
+#
+
+install: install-base install-safe-config install-sample-config
+
+force-install: install-base install-unsafe-config install-sample-config
+
+install-base: detox inline-detox
+	${INSTALL} -m 755 -d ${DESTDIR}${bindir}
+	${INSTALL} -m 755 -d ${DESTDIR}${mandir}/man1
+	${INSTALL} -m 755 -d ${DESTDIR}${mandir}/man5
+	${INSTALL} -m 755 -d ${DESTDIR}${sysconfdir}
+	${INSTALL} -m 755 -d ${DESTDIR}${datadir}/detox
+	${INSTALL} -m 755 detox ${DESTDIR}${bindir}
+	${INSTALL} -m 755 inline-detox ${DESTDIR}${bindir}
+	${INSTALL} -m 644 detox.1 ${DESTDIR}${mandir}/man1
+	${INSTALL} -m 644 detoxrc.5 detox.tbl.5 ${DESTDIR}${mandir}/man5
+
+install-safe-config:
+	@if [ ! -f ${DESTDIR}${sysconfdir}/detoxrc ]; then \
+		${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}; \
+	else \
+		echo "${DESTDIR}${sysconfdir}/detoxrc exists, skipping"; \
+	fi
+	@if [ ! -f ${DESTDIR}${datadir}/detox/iso8859_1.tbl ]; then \
+		${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox; \
+	else \
+		echo "${DESTDIR}${datadir}/detox/iso8859_1.tbl exists, skipping"; \
+	fi
+	@if [ ! -f ${DESTDIR}${datadir}/detox/unicode.tbl ]; then \
+		${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox; \
+	else \
+		echo "${DESTDIR}${datadir}/detox/unicode.tbl exists, skipping"; \
+	fi
+
+install-unsafe-config:
+	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}
+	${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox
+	${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox
+
+install-sample-config:
+	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}/detoxrc.sample
+	${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox/iso8859_1.tbl.sample
+	${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox/unicode.tbl.sample
+
+uninstall: uninstall-base
+	@echo 'This command doesn''t remove existing configuration'
+	@echo 'files.  Run "make force-uninstall" to remove the'
+	@echo 'live configuration files as well.'
+
+force-uninstall: uninstall-base
+	rm -f ${DESTDIR}${sysconfdir}/detoxrc
+	rm -f ${DESTDIR}${datadir}/detox/iso8859_1.tbl
+	rm -f ${DESTDIR}${datadir}/detox/unicode.tbl
+	@if [ -d ${DESTDIR}${datadir}/detox ]; then \
+		rmdir ${DESTDIR}${datadir}/detox; \
+	fi
+
+uninstall-base:
+	rm -f ${DESTDIR}${bindir}/detox
+	rm -f ${DESTDIR}${bindir}/inline-detox
+	rm -f ${DESTDIR}${mandir}/man1/detox.1*
+	rm -f ${DESTDIR}${mandir}/man5/detoxrc.5*
+	rm -f ${DESTDIR}${mandir}/man5/detox.tbl.5*
+	rm -f ${DESTDIR}${sysconfdir}/detoxrc.sample
+	rm -f ${DESTDIR}${datadir}/detox/iso8859_1.tbl.sample
+	rm -f ${DESTDIR}${datadir}/detox/unicode.tbl.sample
+
+clean:
+	rm -f *.o core *~ a.out *.core
+	rm -f detox
+	rm -f inline-detox
+
+distclean: dist-clean
+
+dist-clean: clean
+	rm -f *.BAK
+	rm -f config.log config.status config.cache
+	rm -f Makefile config.h install.sh
+	rm -f detox_path.h
+	rm -f .depend
+
+maintainer-clean: distclean
+	@echo 'This command is intended for maintainers to use; it'
+	@echo 'deletes files that may need special tools to rebuild.'
+	rm -f config_file_l.c config_file_y.[ch]
+
+distready: config_file_l.c config_file_y.c distclean
+
+dep: depend
+
+depend:
+	mkdep ${CFLAGS} ${detoxSRC} ${inline-detoxSRC}
+
+dummy: 
