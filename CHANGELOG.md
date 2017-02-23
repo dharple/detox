@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.1 (In Progress)
+
+
 ## 1.2.0
 
 - Modified the safe filter to use a translation table.
