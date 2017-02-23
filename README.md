@@ -123,5 +123,5 @@ the help of his Great Wall mix.
 
 # Contact
 
-Doug Harple <dharple.detox@gmail.com>
+Doug Harple <detox.dharple@gmail.com>
 
