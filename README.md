@@ -1,6 +1,4 @@
------------------------------------------------------------------------------
-                                   OVERVIEW
------------------------------------------------------------------------------
+# Overview
 
 detox is a program that renames files to make them easier to work with under
 Unix and related operating systems.  Spaces and various other unsafe
@@ -10,44 +8,44 @@ are contained in the detox.1 man page.
 
 This is a BETA release.  Please watch for falling bits.
 
------------------------------------------------------------------------------
-                           COMPILATION INSTRUCTIONS
------------------------------------------------------------------------------
+# Compilation instructions
 
 Compilation:
+
 	./configure
 	make
 
 Installation:
+
 	make install
 
 Installation that overwrites config files and translation tables:
+
 	make force-install
 
------------------------------------------------------------------------------
-                              COMPILATION NOTES
------------------------------------------------------------------------------
+# Compilation notes
 
 Ensure that the path to lex/yacc (or an equivalent) is in your $PATH
 environmental variable.  For instance, under Solaris, you may need to add
 /usr/ccs/bin to your path to get detox to compile:
+
 	export PATH=${PATH}:/usr/ccs/bin
 
-     -------------------------------------------------------------------
+---
 
 To get detox working with long options on Darwin or Solaris (or any other OS
 without getopt_long in its C library), I've included support for libpopt.
 Install libpopt and configure with the following:
+
 	./configure --with-popt
 
 If you've installed libpopt in a directory other than /usr, which is likely,
 you'll want to specify the base path to libpopt.  So, if popt.h is in
 /usr/local/include, you'll run configure like so:
+
 	./configure --with-popt=/usr/local
 
------------------------------------------------------------------------------
-                                RUNTIME NOTES
------------------------------------------------------------------------------
+# Runtime Notes
 
 The most important option to learn is -n, aka --dry-run.  This will let you
 run detox without actually changing any files, so that you can get an idea
@@ -55,31 +53,28 @@ of what detox is all about.
 
 The simplest way to run detox is to just run it on a directory containing
 files that need work:
+
 	detox xfer_files/
 
 You can also just to specify the filename:
+
 	detox my\ bad\ file.txt
 
 You can also specify recursion (this works best on directories):
+
 	detox -r /music/transferred_from_elsewhere/
 
------------------------------------------------------------------------------
-                                 OTHER NOTES
------------------------------------------------------------------------------
+# Other Notes
 
 This project was initially developed under Linux (RedHat 7.x, 8.x), and is
 presently being maintained under the FreeBSD 5.x series.  If you run into any
 problems with installation or operation please feel free to contact me.
 
------------------------------------------------------------------------------
-                                     BUGS
------------------------------------------------------------------------------
+# Bugs
 
 None known at the moment.
 
------------------------------------------------------------------------------
-	  SPECIAL THANKS (TO CONTRIBUTORS OF CODE AND SUGGESTIONS)
------------------------------------------------------------------------------
+# Special Thanks
 
 Many thanks to Miguel Angelo Rozsas for suggesting UTF-8 support and his
 valuable input following that suggestion.  This change helped introduce
@@ -109,9 +104,7 @@ certain files from being translated.
 rsnemmen from sourceforge.net pointed out a bug in the way directories are
 handled when passed in from the command line.
 
------------------------------------------------------------------------------
-                                    THANKS
------------------------------------------------------------------------------
+# Thanks
 
 Eric S. Raymond for his work on "The Art of UNIX Programming"
 
@@ -128,9 +121,7 @@ with hashes.
 Paul Oakenfold for his unbelievable mixes.  Version 1.0.0 was developed with
 the help of his Great Wall mix.
 
------------------------------------------------------------------------------
-                                   CONTACT
------------------------------------------------------------------------------
+# Contact
 
-Doug Harple <purgedhalo at users.sourceforge.net>
+Doug Harple <dharple.detox at gmail>
 
