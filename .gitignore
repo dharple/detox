@@ -32,6 +32,18 @@
 *.dSYM/
 *.su
 
-# Patches
+# Maintainer files
 *.patch
+autom4te.cache/
+
+# Dist Clean files
+Makefile
+config.h
+config.log
+config.status
+detox_path.h
+
+# Clean files
+detox
+inline-detox
 

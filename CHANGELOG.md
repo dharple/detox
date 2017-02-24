@@ -26,6 +26,7 @@
 - Removed CVS $Id$ tags and updated copyright.
 - Added inline-detox.1, from the Debian package, adapted from detox.1 by
   Patrick Schoenfeld.
+- Updated configure script from GNU Autoconf 2.61 to 2.69.
 
 ## 1.2.0
 
