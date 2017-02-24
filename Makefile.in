@@ -147,6 +147,11 @@ install-safe-config: install-base
 	else \
 		echo "${DESTDIR}${datadir}/detox/unicode.tbl exists, skipping"; \
 	fi
+	@if [ ! -f ${DESTDIR}${datadir}/detox/safe.tbl ]; then \
+		${INSTALL} -m 644 safe.tbl ${DESTDIR}${datadir}/detox; \
+	else \
+		echo "${DESTDIR}${datadir}/detox/safe.tbl exists, skipping"; \
+	fi
 
 install-unsafe-config: install-base
 	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}
