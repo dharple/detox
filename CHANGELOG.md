@@ -6,6 +6,9 @@
   written by Patrick Schoenfeld and updated by Joao Eriberto Mota Filho.  This
   adds additional variables to the Makefile for safe parallel builds and GCC
   hardening.
+- Applied Debian patch 02-fix-wrong-use-of-hyphens-in-manpage.patch, written by
+  Patrick Schoenfeld and updated by Joao Eriberto Mota Filho.  This fixes an
+  errant "-" in the manpage, and corrects a spelling mistake.
 
 ## 1.2.0
 

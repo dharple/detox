@@ -64,7 +64,9 @@ should be used if the sequence name does not start with a letter.
 .Pp
 There is a special sequence, named "default", which is the default
 sequence used by detox.  This can be overridden through the command
-line option -s or the environmental variable 
+line option
+.Fl s
+or the environmental variable 
 .Ev DETOX_SEQUENCE .
 .Pp
 Sequence names are case sensitive and unique throughout all sequences;
@@ -125,7 +127,7 @@ environments into characters that are not.
 .Pp
 In earlier versions this filter was entirely internal.  Starting with
 1.2.0, this filter is controlled by a translation table.  In the
-absense of the translation table, the previous code will be employed
+absence of the translation table, the previous code will be employed
 for the translation.  Also, prior to 1.2.0, the safe filter removed
 leading dashes to prevent the hassle of dealing with a filename in
 the format
