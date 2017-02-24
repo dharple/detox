@@ -27,6 +27,9 @@
 - Added inline-detox.1, from the Debian package, adapted from detox.1 by
   Patrick Schoenfeld.
 - Updated configure script from GNU Autoconf 2.61 to 2.69.
+- Updated config file parsers; flex goes from 5.33 to 6.0, bison goes from 2.3
+  to 3.0.4.
+- Added a minor work around to stop compiler noise regarding yylex().
 
 ## 1.2.0
 

@@ -6,8 +6,6 @@ characters (such as "$") get replaced with "_".  ISO 8859-1 (Latin-1)
 characters can be replaced as well, as can UTF-8 characters.  More details
 are contained in the detox.1 man page.
 
-This is a BETA release.  Please watch for falling bits.
-
 # Runtime Notes
 
 The most important option to learn is -n, aka --dry-run.  This will let you

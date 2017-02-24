@@ -59,6 +59,8 @@ void cf_append_ignore_entry(int token, void *str);
 
 void yyerror (char *s);
 
+int yylex (void);
+
 %}
 
 %union {
