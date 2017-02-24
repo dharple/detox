@@ -13,6 +13,9 @@
   written by Patrick Schoenfeld, in spirit.  I had already converted the README
   to README.md, so it did not apply.  I moved the compilation instructions into
   a new file, BUILD.md, instead.
+- Applied Debian patch 04-change-default-sequence-to-use-utf8-table.patch,
+  written by Teemu Likonen.  This changes the default character set from
+  ISO 8859-1 to UTF-8.
 
 ## 1.2.0
 

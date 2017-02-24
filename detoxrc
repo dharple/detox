@@ -32,10 +32,10 @@
 #
 
 #
-# Basically just ISO8859_1
+# Basically just utf_8
 #
 sequence default {
-	iso8859_1;
+	utf_8;
 	safe;
 	wipeup;
 };
