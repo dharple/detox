@@ -9,6 +9,10 @@
 - Applied Debian patch 02-fix-wrong-use-of-hyphens-in-manpage.patch, written by
   Patrick Schoenfeld and updated by Joao Eriberto Mota Filho.  This fixes an
   errant "-" in the manpage, and corrects a spelling mistake.
+- Applied Debian patch 03-remove-build-instructions-from-upstream-readme.patch,
+  written by Patrick Schoenfeld, in spirit.  I had already converted the README
+  to README.md, so it did not apply.  I moved the compilation instructions into
+  a new file, BUILD.md, instead.
 
 ## 1.2.0
 
