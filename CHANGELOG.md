@@ -16,9 +16,12 @@
 - Applied Debian patch 04-change-default-sequence-to-use-utf8-table.patch,
   written by Teemu Likonen.  This changes the default character set from
   ISO 8859-1 to UTF-8.
-- Applied Debian patch 05-install-missing-file.patch, written by Nelson A. de
-  Oliveira.  This ensures that the safe.tbl file gets installed during
-  make install (make install-safe-config).
+- Applied Debian patch 05-install-missing-file.patch, written by
+  Nelson A.  de Oliveira.  This ensures that the safe.tbl file gets installed
+  during make install (make install-safe-config).
+- Applied Debian patch 06-fix-arguments.patch, written by
+  Joao Eriberto Mota Filho.  This fixes several calls to printf that were
+  causing -Werror=format-security to fail.
 
 ## 1.2.0
 

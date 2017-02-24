@@ -98,9 +98,9 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 #endif
 		switch (optcode) {
 			case 'h':
-				printf(usage_message);
+				printf("%s", usage_message);
 				printf("\n");
-				printf(help_message);
+				printf("%s", help_message);
 				exit(EXIT_SUCCESS);
 
 			case 'f':
@@ -138,7 +138,7 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 				exit(EXIT_SUCCESS);
 
 			case '?':
-				printf(usage_message);
+				printf("%s", usage_message);
 				exit(EXIT_SUCCESS);
 
 			case 0:
@@ -195,7 +195,7 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 	}
 	else {
 #ifndef INLINE_MODE
-		printf(usage_message);
+		printf("%s", usage_message);
 		exit(EXIT_FAILURE);
 #endif
 	}
