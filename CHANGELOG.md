@@ -24,6 +24,8 @@
   Joao Eriberto Mota Filho.  This fixes several calls to printf that were
   causing -Werror=format-security to fail.
 - Removed CVS $Id$ tags and updated copyright.
+- Added inline-detox.1, from the Debian package, adapted from detox.1 by
+  Patrick Schoenfeld.
 
 ## 1.2.0
 
