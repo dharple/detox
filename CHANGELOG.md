@@ -23,6 +23,7 @@
 - Applied Debian patch 06-fix-arguments.patch, written by
   Joao Eriberto Mota Filho.  This fixes several calls to printf that were
   causing -Werror=format-security to fail.
+- Removed CVS $Id$ tags and updated copyright.
 
 ## 1.2.0
 
