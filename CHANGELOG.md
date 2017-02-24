@@ -2,6 +2,10 @@
 
 ## 1.2.1 (In Progress)
 
+- Applied Debian patch 01-make-upstream-makefiles-parallel-build-safe.patch,
+  written by Patrick Schoenfeld and updated by Joao Eriberto Mota Filho.  This
+  adds additional variables to the Makefile for safe parallel builds and GCC
+  hardening.
 
 ## 1.2.0
 

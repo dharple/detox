@@ -48,7 +48,7 @@ YACC = @YACC@
 INSTALL = @INSTALL@
 
 .c.o:
-	${CC} -c ${CFLAGS} $<
+	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
 
 genericOBJS = clean_string.o table.o parse_table.o \
 	config_file_l.o config_file_y.o config_file_spoof.o config_file_dump.o
@@ -70,10 +70,10 @@ all: detox inline-detox
 #
 
 detox: ${detoxOBJS}
-	${CC} -o detox ${detoxOBJS} ${L_OPT}
+	${CC} -o detox ${LDFLAGS} ${CPPFLAGS} ${detoxOBJS} ${L_OPT}
 
 inline-detox: ${inline-detoxOBJS}
-	${CC} -o inline-detox ${inline-detoxOBJS} ${L_OPT}
+	${CC} -o inline-detox ${LDFLAGS} ${CPPFLAGS} ${inline-detoxOBJS} ${L_OPT}
 
 #
 # Special Source Compiles
@@ -101,13 +101,13 @@ detox_path.h: config.status
 # 
 
 detox-inline.o: detox.c
-	${CC} -c ${CFLAGS} -DINLINE_MODE $< -o $@
+	${CC} -c ${CFLAGS} ${CPPFLAGS} -DINLINE_MODE $< -o $@
 
 parse_options_generic-inline.o: parse_options_generic.c
-	${CC} -c ${CFLAGS} -DINLINE_MODE $< -o $@
+	${CC} -c ${CFLAGS} ${CPPFLAGS} -DINLINE_MODE $< -o $@
 
 parse_options_@option_parser@-inline.o: parse_options_@option_parser@.c
-	${CC} -c ${CFLAGS} -DINLINE_MODE $< -o $@
+	${CC} -c ${CFLAGS} ${CPPFLAGS} -DINLINE_MODE $< -o $@
 
 # This is done by make dep too
 detox.o: detox.c detox_path.h
@@ -131,7 +131,7 @@ install-base: detox inline-detox
 	${INSTALL} -m 644 detox.1 ${DESTDIR}${mandir}/man1
 	${INSTALL} -m 644 detoxrc.5 detox.tbl.5 ${DESTDIR}${mandir}/man5
 
-install-safe-config:
+install-safe-config: install-base
 	@if [ ! -f ${DESTDIR}${sysconfdir}/detoxrc ]; then \
 		${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}; \
 	else \
@@ -148,12 +148,12 @@ install-safe-config:
 		echo "${DESTDIR}${datadir}/detox/unicode.tbl exists, skipping"; \
 	fi
 
-install-unsafe-config:
+install-unsafe-config: install-base
 	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}
 	${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox
 	${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox
 
-install-sample-config:
+install-sample-config: install-base
 	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}/detoxrc.sample
 	${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox/iso8859_1.tbl.sample
 	${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox/unicode.tbl.sample
