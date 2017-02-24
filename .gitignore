@@ -32,3 +32,6 @@
 *.dSYM/
 *.su
 
+# Patches
+*.patch
+
