@@ -1,5 +1,5 @@
 # 
-# Copyright (c) 2004-2006, Doug Harple.  All rights reserved.
+# Copyright (c) 2004-2017, Doug Harple.  All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -28,12 +28,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
-# $Id: unicode.tbl,v 1.7 2006/07/03 16:45:54 purgedhalo Exp $
-# 
-# 
-# 
 # Special thanks to: http://www.unicode.org/Public/UNIDATA/UnicodeData.txt 
-#
 #
 # Used for translating Icelandic:
 # http://www.bartleby.com/65/th/Thingval.html

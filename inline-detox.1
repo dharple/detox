@@ -32,23 +32,21 @@
 .Dt DETOX 1
 .Os
 .Sh NAME
-.Nm detox
-.Nd clean up filenames
+.Nm inline-detox
+.Nd clean up filenames (stream-based)
 .Sh SYNOPSIS
 .Nm
 .Op Fl hnLrv
 .Op Fl s sequence
 .Op Fl f configfile
-.Op Fl -dry-run
-.Op Fl -special
 .Ar
 .Sh DESCRIPTION
 The
 .Nm
-utility renames files to make them easier to work with.  It removes
-spaces and other such annoyances.  It'll also translate or cleanup
-Latin-1 (ISO 8859-1) characters encoded in 8-bit ASCII, Unicode
-characters encoded in UTF-8, and CGI escaped characters.
+utility can remove spaces and other such annoyances from streams.
+It'll also translate or cleanup Latin-1 (ISO 8859-1) characters encoded
+in 8-bit ASCII, Unicode characters encoded in UTF-8, and CGI escaped characters.
+Basically it's detox, but does not operate on files.
 .Ss Sequences
 .Nm
 is driven by a configurable series of filters, called a sequence.
@@ -75,20 +73,12 @@ List the currently available sequences.  When paired with
 .Fl v
 this option shows what filters are used in each sequence and any
 properties applied to the filters.
-.It Fl n -dry-run
-Doesn't actually change anything.  This implies the
-.Fl v
-option.
 .It Fl r
 Recurse into subdirectories.
 .It Fl s Ar sequence
 Use
 .Ar sequence 
 instead of default.
-.It Fl -special
-Works on special files (including links).  Normally 
-.Nm
-ignores these files.
 .It Fl v
 Be verbose about which files are being renamed.
 .It Fl V
@@ -127,23 +117,17 @@ The default Unicode (UTF-8) translation table.
 .El
 .Sh EXAMPLES
 .Bl -tag -width Fl
-.It Nm Fl s Ar iso8859_1 Fl r Fl v Fl n Pa /tmp/new_files
+.It echo "Foo Bar" | Nm Fl s Ar iso8859_1 Fl v
 Will run the sequence
 .Ar iso8859_1
-recursively, listing any changes, without changing anything, on the
-files of
-.Pa /tmp/new_files .
-.It Nm Fl c Ar my_detoxrc Fl L Fl v
-Will list the sequences within
-.Ar my_detoxrc ,
-showing their filters and options.
+listing any changes and returning the result to STDOUT.
 .El
 .Sh SEE ALSO
-.Xr inline-detox 1 ,
+.Xr detox 1 ,
 .Xr detoxrc 5 ,
 .Xr detox.tbl 5 .
 .Sh HISTORY
-.Nm 
+detox 
 was originally designed to clean up files that I had received from
 friends which had been created using other operating systems.  It's
 trivial to create a filename with spaces, parenthesis, brackets, and
@@ -157,13 +141,6 @@ to clean up these files.
 was written by
 .An "Doug Harple" .
 .Sh BUGS
-If, after the translation of a filename is finished, a file already
-exists with that same name,
-.Nm
-will not rename the file.  This could cause a problem with the
-.Cm max_length
-filter, if it was imperative that the files be cut down to a certain
-length.
 .Pp
 Long options don't work under Solaris or Darwin.
 .Pp

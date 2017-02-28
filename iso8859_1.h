@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2006, Doug Harple.  All rights reserved.
+ * Copyright (c) 2004-2017, Doug Harple.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,10 +27,6 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * $Id: iso8859_1.h,v 1.5 2006/07/03 16:45:54 purgedhalo Exp $
- *
- *
  *
  * Special thanks to: http://www.bbsinc.com/iso8859.html
  *

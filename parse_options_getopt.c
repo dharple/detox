@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2006, Doug Harple.  All rights reserved.
+ * Copyright (c) 2005-2017, Doug Harple.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,8 +27,6 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * $Id: parse_options_getopt.c,v 1.8 2006/07/03 16:45:54 purgedhalo Exp $
  *
  */
 
@@ -98,9 +96,9 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 #endif
 		switch (optcode) {
 			case 'h':
-				printf(usage_message);
+				printf("%s", usage_message);
 				printf("\n");
-				printf(help_message);
+				printf("%s", help_message);
 				exit(EXIT_SUCCESS);
 
 			case 'f':
@@ -138,7 +136,7 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 				exit(EXIT_SUCCESS);
 
 			case '?':
-				printf(usage_message);
+				printf("%s", usage_message);
 				exit(EXIT_SUCCESS);
 
 			case 0:
@@ -195,7 +193,7 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 	}
 	else {
 #ifndef INLINE_MODE
-		printf(usage_message);
+		printf("%s", usage_message);
 		exit(EXIT_FAILURE);
 #endif
 	}

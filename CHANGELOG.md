@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 1.2.1 (In Progress)
+
+- Migrated documents to Markdown for better presentation on github.
+- Applied Debian patch 01-make-upstream-makefiles-parallel-build-safe.patch,
+  written by Patrick Schoenfeld and updated by Joao Eriberto Mota Filho.  This
+  adds additional variables to the Makefile for safe parallel builds and GCC
+  hardening.
+- Applied Debian patch 02-fix-wrong-use-of-hyphens-in-manpage.patch, written by
+  Patrick Schoenfeld and updated by Joao Eriberto Mota Filho.  This fixes an
+  errant "-" in the manpage, and corrects a spelling mistake.
+- Applied Debian patch 03-remove-build-instructions-from-upstream-readme.patch,
+  written by Patrick Schoenfeld, in spirit.  I had already converted the README
+  to README.md, so it did not apply.  I moved the compilation instructions into
+  a new file, BUILD.md, instead.
+- Applied Debian patch 04-change-default-sequence-to-use-utf8-table.patch,
+  written by Teemu Likonen.  This changes the default character set from
+  ISO 8859-1 to UTF-8.
+- Applied Debian patch 05-install-missing-file.patch, written by
+  Nelson A.  de Oliveira.  This ensures that the safe.tbl file gets installed
+  during make install (make install-safe-config).
+- Applied Debian patch 06-fix-arguments.patch, written by
+  Joao Eriberto Mota Filho.  This fixes several calls to printf that were
+  causing -Werror=format-security to fail.
+- Removed CVS $Id$ tags and updated copyright.
+- Added inline-detox.1, from the Debian package, adapted from detox.1 by
+  Patrick Schoenfeld.
+- Updated configure script from GNU Autoconf 2.61 to 2.69.
+- Updated config file parsers; flex goes from 5.33 to 6.0, bison goes from 2.3
+  to 3.0.4.
+- Added a minor work around to stop compiler noise regarding yylex().
+
 ## 1.2.0
 
 - Modified the safe filter to use a translation table.
