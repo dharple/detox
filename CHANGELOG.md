@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.2.1 (In Progress)
+## 1.2.1 (2017-02-27)
 
 - Migrated documents to Markdown for better presentation on github.
 - Applied Debian patch 01-make-upstream-makefiles-parallel-build-safe.patch,
