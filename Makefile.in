@@ -126,7 +126,7 @@ install-base: detox inline-detox
 	${INSTALL} -m 755 -d ${DESTDIR}${datadir}/detox
 	${INSTALL} -m 755 detox ${DESTDIR}${bindir}
 	${INSTALL} -m 755 inline-detox ${DESTDIR}${bindir}
-	${INSTALL} -m 644 detox.1 ${DESTDIR}${mandir}/man1
+	${INSTALL} -m 644 detox.1 inline-detox.1 ${DESTDIR}${mandir}/man1
 	${INSTALL} -m 644 detoxrc.5 detox.tbl.5 ${DESTDIR}${mandir}/man5
 
 install-safe-config: install-base
@@ -178,6 +178,7 @@ uninstall-base:
 	rm -f ${DESTDIR}${bindir}/detox
 	rm -f ${DESTDIR}${bindir}/inline-detox
 	rm -f ${DESTDIR}${mandir}/man1/detox.1*
+	rm -f ${DESTDIR}${mandir}/man1/inline-detox.1*
 	rm -f ${DESTDIR}${mandir}/man5/detoxrc.5*
 	rm -f ${DESTDIR}${mandir}/man5/detox.tbl.5*
 	rm -f ${DESTDIR}${sysconfdir}/detoxrc.sample

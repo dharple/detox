@@ -35,6 +35,7 @@
 # Maintainer files
 *.patch
 autom4te.cache/
+*~
 
 # Dist Clean files
 Makefile
