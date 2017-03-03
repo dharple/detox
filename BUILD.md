@@ -35,3 +35,10 @@ you'll want to specify the base path to libpopt.  So, if popt.h is in
 
 	./configure --with-popt=/usr/local
 
+---
+
+	aclocal
+	autoconf
+	automake --add-missing --copy
+	./configure
+	make
