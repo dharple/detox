@@ -58,7 +58,7 @@ void cf_append_sequence_entry(void *ptr, void *opts);
 void cf_append_ignore_entry(int token, void *str);
 
 void yyerror (char *s);
-
+ 
 int yylex (void);
 
 %}

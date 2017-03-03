@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "config_file.y" /* yacc.c:339  */
+#line 1 "config_file_yacc.y" /* yacc.c:339  */
 
 /*
  * Copyright (c) 2004-2017, Doug Harple.  All rights reserved.
@@ -123,11 +123,11 @@ void cf_append_sequence_entry(void *ptr, void *opts);
 void cf_append_ignore_entry(int token, void *str);
 
 void yyerror (char *s);
-
+ 
 int yylex (void);
 
 
-#line 131 "y.tab.c" /* yacc.c:339  */
+#line 131 "config_file_yacc.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -147,8 +147,8 @@ int yylex (void);
 
 /* In a future release of Bison, this section will be replaced
    by #include "y.tab.h".  */
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_CONFIG_FILE_YACC_H_INCLUDED
+# define YY_YY_CONFIG_FILE_YACC_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -207,14 +207,14 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 66 "config_file.y" /* yacc.c:355  */
+#line 66 "config_file_yacc.y" /* yacc.c:355  */
 
     char	*string;	/* string buffer */
     int		cmd;		/* command value */
     struct detox_sequence_entry *seq;	/* sequence */
     int		nvalue;		/* nvalue */
 
-#line 218 "y.tab.c" /* yacc.c:355  */
+#line 218 "config_file_yacc.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -227,11 +227,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_CONFIG_FILE_YACC_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 235 "y.tab.c" /* yacc.c:358  */
+#line 235 "config_file_yacc.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1352,43 +1352,43 @@ yyreduce:
   switch (yyn)
     {
         case 7:
-#line 98 "config_file.y" /* yacc.c:1646  */
+#line 98 "config_file_yacc.y" /* yacc.c:1646  */
     { current_name = (yyvsp[-1].string); }
-#line 1358 "y.tab.c" /* yacc.c:1646  */
+#line 1358 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 101 "config_file.y" /* yacc.c:1646  */
+#line 101 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_list(); }
-#line 1364 "y.tab.c" /* yacc.c:1646  */
+#line 1364 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 108 "config_file.y" /* yacc.c:1646  */
+#line 108 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_uncgi, NULL); }
-#line 1370 "y.tab.c" /* yacc.c:1646  */
+#line 1370 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 110 "config_file.y" /* yacc.c:1646  */
+#line 110 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_lower, NULL); }
-#line 1376 "y.tab.c" /* yacc.c:1646  */
+#line 1376 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 123 "config_file.y" /* yacc.c:1646  */
+#line 123 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
-#line 1382 "y.tab.c" /* yacc.c:1646  */
+#line 1382 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 125 "config_file.y" /* yacc.c:1646  */
+#line 125 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
-#line 1388 "y.tab.c" /* yacc.c:1646  */
+#line 1388 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 127 "config_file.y" /* yacc.c:1646  */
+#line 127 "config_file_yacc.y" /* yacc.c:1646  */
     { 
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1396,23 +1396,23 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_iso8859_1, csopts);
 	}
-#line 1400 "y.tab.c" /* yacc.c:1646  */
+#line 1400 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 136 "config_file.y" /* yacc.c:1646  */
+#line 136 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_utf_8, NULL); }
-#line 1406 "y.tab.c" /* yacc.c:1646  */
+#line 1406 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 138 "config_file.y" /* yacc.c:1646  */
+#line 138 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_utf_8, NULL); }
-#line 1412 "y.tab.c" /* yacc.c:1646  */
+#line 1412 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 140 "config_file.y" /* yacc.c:1646  */
+#line 140 "config_file_yacc.y" /* yacc.c:1646  */
     { 
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1420,23 +1420,23 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_utf_8, csopts);
 	}
-#line 1424 "y.tab.c" /* yacc.c:1646  */
+#line 1424 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 149 "config_file.y" /* yacc.c:1646  */
+#line 149 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_safe, NULL); }
-#line 1430 "y.tab.c" /* yacc.c:1646  */
+#line 1430 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 151 "config_file.y" /* yacc.c:1646  */
+#line 151 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_safe, NULL); }
-#line 1436 "y.tab.c" /* yacc.c:1646  */
+#line 1436 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 153 "config_file.y" /* yacc.c:1646  */
+#line 153 "config_file_yacc.y" /* yacc.c:1646  */
     { 
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1444,11 +1444,11 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_safe, csopts);
 	}
-#line 1448 "y.tab.c" /* yacc.c:1646  */
+#line 1448 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 162 "config_file.y" /* yacc.c:1646  */
+#line 162 "config_file_yacc.y" /* yacc.c:1646  */
     { 
 		if (current_options->remove_trailing) {
 			csopts = malloc(sizeof(struct clean_string_options));
@@ -1461,11 +1461,11 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_wipeup, csopts);
 	}
-#line 1465 "y.tab.c" /* yacc.c:1646  */
+#line 1465 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 175 "config_file.y" /* yacc.c:1646  */
+#line 175 "config_file_yacc.y" /* yacc.c:1646  */
     { 
 		if (current_options->remove_trailing) {
 			csopts = malloc(sizeof(struct clean_string_options));
@@ -1478,11 +1478,11 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_wipeup, csopts);
 	}
-#line 1482 "y.tab.c" /* yacc.c:1646  */
+#line 1482 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 188 "config_file.y" /* yacc.c:1646  */
+#line 188 "config_file_yacc.y" /* yacc.c:1646  */
     {
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1490,23 +1490,23 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_wipeup, csopts);
 	}
-#line 1494 "y.tab.c" /* yacc.c:1646  */
+#line 1494 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 197 "config_file.y" /* yacc.c:1646  */
+#line 197 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1500 "y.tab.c" /* yacc.c:1646  */
+#line 1500 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 199 "config_file.y" /* yacc.c:1646  */
+#line 199 "config_file_yacc.y" /* yacc.c:1646  */
     { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1506 "y.tab.c" /* yacc.c:1646  */
+#line 1506 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 201 "config_file.y" /* yacc.c:1646  */
+#line 201 "config_file_yacc.y" /* yacc.c:1646  */
     {
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1514,31 +1514,31 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_max_length, csopts);
 	}
-#line 1518 "y.tab.c" /* yacc.c:1646  */
+#line 1518 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 223 "config_file.y" /* yacc.c:1646  */
+#line 223 "config_file_yacc.y" /* yacc.c:1646  */
     {
 		cf_append_ignore_entry(FILENAME, (yyvsp[-1].string));
 	}
-#line 1526 "y.tab.c" /* yacc.c:1646  */
+#line 1526 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 228 "config_file.y" /* yacc.c:1646  */
+#line 228 "config_file_yacc.y" /* yacc.c:1646  */
     { (yyval.string) = (yyvsp[0].string); }
-#line 1532 "y.tab.c" /* yacc.c:1646  */
+#line 1532 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 230 "config_file.y" /* yacc.c:1646  */
+#line 230 "config_file_yacc.y" /* yacc.c:1646  */
     { (yyval.string) = (yyvsp[0].string); }
-#line 1538 "y.tab.c" /* yacc.c:1646  */
+#line 1538 "config_file_yacc.c" /* yacc.c:1646  */
     break;
 
 
-#line 1542 "y.tab.c" /* yacc.c:1646  */
+#line 1542 "config_file_yacc.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1766,7 +1766,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 233 "config_file.y" /* yacc.c:1906  */
+#line 233 "config_file_yacc.y" /* yacc.c:1906  */
 
 
 extern FILE *yyin;

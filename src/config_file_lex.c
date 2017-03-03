@@ -1,5 +1,5 @@
 
-#line 3 "lex.yy.c"
+#line 3 "config_file_lex.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -341,6 +341,9 @@ void yyfree (void *  );
 
 /* Begin user sect3 */
 
+#define yywrap() (/*CONSTCOND*/1)
+#define YY_SKIP_YYWRAP
+
 typedef unsigned char YY_CHAR;
 
 FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
@@ -530,8 +533,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "config_file.l"
-#line 2 "config_file.l"
+#line 1 "config_file_lex.l"
+#line 2 "config_file_lex.l"
 /*
  * Copyright (c) 2004-2017, Doug Harple.  All rights reserved.
  * 
@@ -569,11 +572,11 @@ char *yytext;
 #include <string.h>
 #include <stdlib.h>
 
-#include "config_file_y.h"
+#include "config_file_yacc.h"
 
 int config_file_lineno = 1;
 
-#line 577 "lex.yy.c"
+#line 580 "config_file_lex.c"
 
 #define INITIAL 0
 
@@ -791,10 +794,10 @@ YY_DECL
 		}
 
 	{
-#line 45 "config_file.l"
+#line 47 "config_file_lex.l"
 
 
-#line 798 "lex.yy.c"
+#line 801 "config_file_lex.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -853,94 +856,94 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 47 "config_file.l"
+#line 49 "config_file_lex.l"
 { /* ignore whitespace */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 49 "config_file.l"
+#line 51 "config_file_lex.l"
 { /* ignore comments */ }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 51 "config_file.l"
+#line 53 "config_file_lex.l"
 { config_file_lineno++; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 53 "config_file.l"
+#line 55 "config_file_lex.l"
 { return SEQUENCE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 55 "config_file.l"
+#line 57 "config_file_lex.l"
 { return IGNORE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 57 "config_file.l"
+#line 59 "config_file_lex.l"
 { return UNCGI; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 59 "config_file.l"
+#line 61 "config_file_lex.l"
 { return ISO8859_1; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 61 "config_file.l"
+#line 63 "config_file_lex.l"
 { return UTF_8; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 63 "config_file.l"
+#line 65 "config_file_lex.l"
 { return SAFE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 65 "config_file.l"
+#line 67 "config_file_lex.l"
 { return WIPEUP; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 67 "config_file.l"
+#line 69 "config_file_lex.l"
 { return MAX_LENGTH; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 69 "config_file.l"
+#line 71 "config_file_lex.l"
 { return LOWER; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 71 "config_file.l"
+#line 73 "config_file_lex.l"
 { return LENGTH; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 73 "config_file.l"
+#line 75 "config_file_lex.l"
 { return FILENAME; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 75 "config_file.l"
+#line 77 "config_file_lex.l"
 { return REMOVE_TRAILING; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 77 "config_file.l"
+#line 79 "config_file_lex.l"
 { return OPEN; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 78 "config_file.l"
+#line 80 "config_file_lex.l"
 { return CLOSE; }
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 80 "config_file.l"
+#line 82 "config_file_lex.l"
 { 
 		  yylval.string = strdup(yytext+1);
 		  if (yylval.string[yyleng-2] != '"') {
@@ -954,7 +957,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 91 "config_file.l"
+#line 93 "config_file_lex.l"
 { 
 		  yylval.string = strdup(yytext); 
 		  return ID; 
@@ -962,7 +965,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 96 "config_file.l"
+#line 98 "config_file_lex.l"
 { 
 		  yylval.nvalue = atoi(yytext); 
 		  return NVALUE; 
@@ -970,15 +973,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 103 "config_file.l"
+#line 105 "config_file_lex.l"
 { return EOL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 105 "config_file.l"
+#line 107 "config_file_lex.l"
 ECHO;
 	YY_BREAK
-#line 982 "lex.yy.c"
+#line 985 "config_file_lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1979,7 +1982,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 105 "config_file.l"
+#line 107 "config_file_lex.l"
 
 
 

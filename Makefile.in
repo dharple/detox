@@ -14,36 +14,6 @@
 
 @SET_MAKE@
 
-#
-# Copyright (c) 2004-2017, Doug Harple.  All rights reserved.
-# 
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are
-# met:
-# 
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in the
-#    documentation and/or other materials provided with the distribution.
-# 
-# 3. Neither the name of author nor the names of its contributors may be
-#    used to endorse or promote products derived from this software
-#    without specific prior written permission.
-# 
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-# 
 VPATH = @srcdir@
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
@@ -122,7 +92,7 @@ am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
-	$(am__configure_deps) $(am__DIST_COMMON)
+	$(am__configure_deps) $(dist_doc_DATA) $(am__DIST_COMMON)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
@@ -143,11 +113,56 @@ am__v_at_0 = @
 am__v_at_1 = 
 SOURCES =
 DIST_SOURCES =
+RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
+	ctags-recursive dvi-recursive html-recursive info-recursive \
+	install-data-recursive install-dvi-recursive \
+	install-exec-recursive install-html-recursive \
+	install-info-recursive install-pdf-recursive \
+	install-ps-recursive install-recursive installcheck-recursive \
+	installdirs-recursive pdf-recursive ps-recursive \
+	tags-recursive uninstall-recursive
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
+am__install_max = 40
+am__nobase_strip_setup = \
+  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
+am__nobase_strip = \
+  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
+am__nobase_list = $(am__nobase_strip_setup); \
+  for p in $$list; do echo "$$p $$p"; done | \
+  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
+  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
+    if (++n[$$2] == $(am__install_max)) \
+      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
+    END { for (dir in files) print dir, files[dir] }'
+am__base_list = \
+  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
+  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
+am__uninstall_files_from_dir = { \
+  test -z "$$files" \
+    || { test ! -d "$$dir" && test ! -f "$$dir" && test ! -r "$$dir"; } \
+    || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
+         $(am__cd) "$$dir" && rm -f $$files; }; \
+  }
+am__installdirs = "$(DESTDIR)$(docdir)"
+DATA = $(dist_doc_DATA)
+RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
+  distclean-recursive maintainer-clean-recursive
+am__recursive_targets = \
+  $(RECURSIVE_TARGETS) \
+  $(RECURSIVE_CLEAN_TARGETS) \
+  $(am__extra_recursive_targets)
+AM_RECURSIVE_TARGETS = $(am__recursive_targets:-recursive=) TAGS CTAGS \
+	cscope distdir dist dist-all distcheck
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) \
 	$(LISP)config.h.in
 # Read a list of newline-separated strings from the standard input,
@@ -169,10 +184,9 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
-AM_RECURSIVE_TARGETS = cscope
-am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in AUTHORS \
-	COPYING ChangeLog INSTALL NEWS README compile install-sh \
-	missing
+DIST_SUBDIRS = $(SUBDIRS)
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in compile \
+	depcomp install-sh missing ylwrap
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -183,6 +197,31 @@ am__remove_distdir = \
       || { sleep 5 && rm -rf "$(distdir)"; }; \
   else :; fi
 am__post_remove_distdir = $(am__remove_distdir)
+am__relativize = \
+  dir0=`pwd`; \
+  sed_first='s,^\([^/]*\)/.*$$,\1,'; \
+  sed_rest='s,^[^/]*/*,,'; \
+  sed_last='s,^.*/\([^/]*\)$$,\1,'; \
+  sed_butlast='s,/*[^/]*$$,,'; \
+  while test -n "$$dir1"; do \
+    first=`echo "$$dir1" | sed -e "$$sed_first"`; \
+    if test "$$first" != "."; then \
+      if test "$$first" = ".."; then \
+        dir2=`echo "$$dir0" | sed -e "$$sed_last"`/"$$dir2"; \
+        dir0=`echo "$$dir0" | sed -e "$$sed_butlast"`; \
+      else \
+        first2=`echo "$$dir2" | sed -e "$$sed_first"`; \
+        if test "$$first2" = "$$first"; then \
+          dir2=`echo "$$dir2" | sed -e "$$sed_rest"`; \
+        else \
+          dir2="../$$dir2"; \
+        fi; \
+        dir0="$$dir0"/"$$first"; \
+      fi; \
+    fi; \
+    dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
+  done; \
+  reldir="$$dir2"
 DIST_ARCHIVES = $(distdir).tar.gz
 GZIP_ENV = --best
 DIST_TARGETS = dist-gzip
@@ -200,7 +239,6 @@ AWK = @AWK@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
-CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
@@ -208,9 +246,7 @@ DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-EGREP = @EGREP@
 EXEEXT = @EXEEXT@
-GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -270,7 +306,6 @@ localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
-option_parser = @option_parser@
 pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
@@ -284,38 +319,27 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-L_OPT = @LEXLIB@ @LIBS@
-genericOBJS = clean_string.o table.o parse_table.o \
-	config_file_l.o config_file_y.o config_file_spoof.o config_file_dump.o
-
-detoxOBJS = detox.o file.o ${genericOBJS} \
-	parse_options_@option_parser@.o parse_options_generic.o
-
-inline_detoxOBJS = detox-inline.o file-inline.o ${genericOBJS} \
-	parse_options_@option_parser@-inline.o parse_options_generic-inline.o
-
-detoxSRC = `echo ${detoxOBJS} | sed -e "s/[.]o/.c/g"`
-inline_detoxSRC = `echo ${inline_detoxOBJS} | sed -e "s/[.]o/.c/g"`
+SUBDIRS = src
+dist_doc_DATA = README.md
 all: config.h
-	$(MAKE) $(AM_MAKEFLAGS) all-am
+	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
 .SUFFIXES:
-.SUFFIXES: .c .o
 am--refresh: Makefile
 	@:
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
-	      echo ' cd $(srcdir) && $(AUTOMAKE) --gnu'; \
-	      $(am__cd) $(srcdir) && $(AUTOMAKE) --gnu \
+	      echo ' cd $(srcdir) && $(AUTOMAKE) --foreign'; \
+	      $(am__cd) $(srcdir) && $(AUTOMAKE) --foreign \
 		&& exit 0; \
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu Makefile
+	  $(AUTOMAKE) --foreign Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
@@ -349,15 +373,83 @@ $(srcdir)/config.h.in:  $(am__configure_deps)
 
 distclean-hdr:
 	-rm -f config.h stamp-h1
+install-dist_docDATA: $(dist_doc_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(dist_doc_DATA)'; test -n "$(docdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(docdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(docdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(docdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(docdir)" || exit $$?; \
+	done
+
+uninstall-dist_docDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_doc_DATA)'; test -n "$(docdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(docdir)'; $(am__uninstall_files_from_dir)
+
+# This directory's subdirectories are mostly independent; you can cd
+# into them and run 'make' without going through this Makefile.
+# To change the values of 'make' variables: instead of editing Makefiles,
+# (1) if the variable is set in 'config.status', edit 'config.status'
+#     (which will cause the Makefiles to be regenerated when you run 'make');
+# (2) otherwise, pass the desired values on the 'make' command line.
+$(am__recursive_targets):
+	@fail=; \
+	if $(am__make_keepgoing); then \
+	  failcom='fail=yes'; \
+	else \
+	  failcom='exit 1'; \
+	fi; \
+	dot_seen=no; \
+	target=`echo $@ | sed s/-recursive//`; \
+	case "$@" in \
+	  distclean-* | maintainer-clean-*) list='$(DIST_SUBDIRS)' ;; \
+	  *) list='$(SUBDIRS)' ;; \
+	esac; \
+	for subdir in $$list; do \
+	  echo "Making $$target in $$subdir"; \
+	  if test "$$subdir" = "."; then \
+	    dot_seen=yes; \
+	    local_target="$$target-am"; \
+	  else \
+	    local_target="$$target"; \
+	  fi; \
+	  ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	  || eval $$failcom; \
+	done; \
+	if test "$$dot_seen" = "no"; then \
+	  $(MAKE) $(AM_MAKEFLAGS) "$$target-am" || exit 1; \
+	fi; test -z "$$fail"
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
-tags: tags-am
+tags: tags-recursive
 TAGS: tags
 
 tags-am: $(TAGS_DEPENDENCIES) $(am__tagged_files)
 	set x; \
 	here=`pwd`; \
+	if ($(ETAGS) --etags-include --version) >/dev/null 2>&1; then \
+	  include_option=--etags-include; \
+	  empty_fix=.; \
+	else \
+	  include_option=--include; \
+	  empty_fix=; \
+	fi; \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  if test "$$subdir" = .; then :; else \
+	    test ! -f $$subdir/TAGS || \
+	      set "$$@" "$$include_option=$$here/$$subdir/TAGS"; \
+	  fi; \
+	done; \
 	$(am__define_uniq_tagged_files); \
 	shift; \
 	if test -z "$(ETAGS_ARGS)$$*$$unique"; then :; else \
@@ -370,7 +462,7 @@ tags-am: $(TAGS_DEPENDENCIES) $(am__tagged_files)
 	      $$unique; \
 	  fi; \
 	fi
-ctags: ctags-am
+ctags: ctags-recursive
 
 CTAGS: ctags
 ctags-am: $(TAGS_DEPENDENCIES) $(am__tagged_files)
@@ -389,7 +481,7 @@ cscope: cscope.files
 clean-cscope:
 	-rm -f cscope.files
 cscope.files: clean-cscope cscopelist
-cscopelist: cscopelist-am
+cscopelist: cscopelist-recursive
 
 cscopelist-am: $(am__tagged_files)
 	list='$(am__tagged_files)'; \
@@ -439,6 +531,31 @@ distdir: $(DISTFILES)
 	    test -f "$(distdir)/$$file" \
 	    || cp -p $$d/$$file "$(distdir)/$$file" \
 	    || exit 1; \
+	  fi; \
+	done
+	@list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
+	  if test "$$subdir" = .; then :; else \
+	    $(am__make_dryrun) \
+	      || test -d "$(distdir)/$$subdir" \
+	      || $(MKDIR_P) "$(distdir)/$$subdir" \
+	      || exit 1; \
+	    dir1=$$subdir; dir2="$(distdir)/$$subdir"; \
+	    $(am__relativize); \
+	    new_distdir=$$reldir; \
+	    dir1=$$subdir; dir2="$(top_distdir)"; \
+	    $(am__relativize); \
+	    new_top_distdir=$$reldir; \
+	    echo " (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) top_distdir="$$new_top_distdir" distdir="$$new_distdir" \\"; \
+	    echo "     am__remove_distdir=: am__skip_length_check=: am__skip_mode_fix=: distdir)"; \
+	    ($(am__cd) $$subdir && \
+	      $(MAKE) $(AM_MAKEFLAGS) \
+	        top_distdir="$$new_top_distdir" \
+	        distdir="$$new_distdir" \
+		am__remove_distdir=: \
+		am__skip_length_check=: \
+		am__skip_mode_fix=: \
+	        distdir) \
+	      || exit 1; \
 	  fi; \
 	done
 	-test -n "$(am__skip_mode_fix)" \
@@ -573,16 +690,22 @@ distcleancheck: distclean
 	       $(distcleancheck_listfiles) ; \
 	       exit 1; } >&2
 check-am: all-am
-check: check-am
-all-am: Makefile config.h
-installdirs:
-install-exec: install-exec-am
-install-data: install-data-am
+check: check-recursive
+all-am: Makefile $(DATA) config.h
+installdirs: installdirs-recursive
+installdirs-am:
+	for dir in "$(DESTDIR)$(docdir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
+install: install-recursive
+install-exec: install-exec-recursive
+install-data: install-data-recursive
+uninstall: uninstall-recursive
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 
-installcheck: installcheck-am
+installcheck: installcheck-recursive
 install-strip:
 	if test -z '$(STRIP)'; then \
 	  $(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
@@ -604,240 +727,95 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+clean: clean-recursive
+
 clean-am: clean-generic mostlyclean-am
 
+distclean: distclean-recursive
+	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -f Makefile
 distclean-am: clean-am distclean-generic distclean-hdr distclean-tags
 
-dvi: dvi-am
+dvi: dvi-recursive
 
 dvi-am:
 
-html: html-am
+html: html-recursive
 
 html-am:
 
-info: info-am
+info: info-recursive
 
 info-am:
 
-install-data-am:
+install-data-am: install-dist_docDATA
 
-install-dvi: install-dvi-am
+install-dvi: install-dvi-recursive
 
 install-dvi-am:
 
 install-exec-am:
 
-install-html: install-html-am
+install-html: install-html-recursive
 
 install-html-am:
 
-install-info: install-info-am
+install-info: install-info-recursive
 
 install-info-am:
 
 install-man:
 
-install-pdf: install-pdf-am
+install-pdf: install-pdf-recursive
 
 install-pdf-am:
 
-install-ps: install-ps-am
+install-ps: install-ps-recursive
 
 install-ps-am:
 
 installcheck-am:
 
+maintainer-clean: maintainer-clean-recursive
+	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -rf $(top_srcdir)/autom4te.cache
+	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
-mostlyclean: mostlyclean-am
+mostlyclean: mostlyclean-recursive
 
 mostlyclean-am: mostlyclean-generic
 
-pdf: pdf-am
+pdf: pdf-recursive
 
 pdf-am:
 
-ps: ps-am
+ps: ps-recursive
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-dist_docDATA
 
-.MAKE: all install-am install-strip
+.MAKE: $(am__recursive_targets) all install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am am--refresh check check-am clean \
-	clean-cscope clean-generic cscope cscopelist-am ctags ctags-am \
-	dist dist-all dist-bzip2 dist-gzip dist-lzip dist-shar \
-	dist-tarZ dist-xz dist-zip distcheck distclean \
-	distclean-generic distclean-hdr distclean-tags distcleancheck \
-	distdir distuninstallcheck dvi dvi-am html html-am info \
-	info-am install install-am install-data install-data-am \
-	install-dvi install-dvi-am install-exec install-exec-am \
-	install-html install-html-am install-info install-info-am \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
+.PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
+	am--refresh check check-am clean clean-cscope clean-generic \
+	cscope cscopelist-am ctags ctags-am dist dist-all dist-bzip2 \
+	dist-gzip dist-lzip dist-shar dist-tarZ dist-xz dist-zip \
+	distcheck distclean distclean-generic distclean-hdr \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dist_docDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
-	tags-am uninstall uninstall-am
+	tags-am uninstall uninstall-am uninstall-dist_docDATA
 
 .PRECIOUS: Makefile
 
-
-.c.o:
-	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
-
-all: detox inline-detox
-
-#
-# Compile Rules
-#
-
-detox: ${detoxOBJS}
-	${CC} -o detox ${LDFLAGS} ${CPPFLAGS} ${detoxOBJS} ${L_OPT}
-
-inline-detox: ${inline_detoxOBJS}
-	${CC} -o inline-detox ${LDFLAGS} ${CPPFLAGS} ${inline_detoxOBJS} ${L_OPT}
-
-#
-# Special Source Compiles
-#
-
-config_file_l.c: config_file.l config_file_y.h
-	${LEX} config_file.l
-	mv lex.yy.c config_file_l.c
-
-config_file_y.c: config_file.y
-	${YACC} -d config_file.y
-	mv y.tab.c config_file_y.c
-	mv y.tab.h config_file_y.h
-
-# In case some future rule depends on config_file_y.h
-config_file_y.h: config_file_y.c
-
-detox_path.h: config.status
-	> detox_path.h
-	echo "char default_etc_dir[]=\"${sysconfdir}\";" >> detox_path.h
-	echo "char default_data_dir[]=\"${datadir}/detox\";" >> detox_path.h
-
-#
-# Special Object Compiles: Inline Mode
-# 
-
-detox-inline.o: detox.c
-	${CC} -c ${CFLAGS} ${CPPFLAGS} -DINLINE_MODE $< -o $@
-
-parse_options_generic-inline.o: parse_options_generic.c
-	${CC} -c ${CFLAGS} ${CPPFLAGS} -DINLINE_MODE $< -o $@
-
-parse_options_@option_parser@-inline.o: parse_options_@option_parser@.c
-	${CC} -c ${CFLAGS} ${CPPFLAGS} -DINLINE_MODE $< -o $@
-
-# This is done by make dep too
-detox.o: detox.c detox_path.h
-
-#
-# Actions
-#
-
-install: install-base install-safe-config install-sample-config
-
-force-install: install-base install-unsafe-config install-sample-config
-
-install-base: detox inline-detox
-	${INSTALL} -m 755 -d ${DESTDIR}${bindir}
-	${INSTALL} -m 755 -d ${DESTDIR}${mandir}/man1
-	${INSTALL} -m 755 -d ${DESTDIR}${mandir}/man5
-	${INSTALL} -m 755 -d ${DESTDIR}${sysconfdir}
-	${INSTALL} -m 755 -d ${DESTDIR}${datadir}/detox
-	${INSTALL} -m 755 detox ${DESTDIR}${bindir}
-	${INSTALL} -m 755 inline-detox ${DESTDIR}${bindir}
-	${INSTALL} -m 644 detox.1 inline-detox.1 ${DESTDIR}${mandir}/man1
-	${INSTALL} -m 644 detoxrc.5 detox.tbl.5 ${DESTDIR}${mandir}/man5
-
-install-safe-config: install-base
-	@if [ ! -f ${DESTDIR}${sysconfdir}/detoxrc ]; then \
-		${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}; \
-	else \
-		echo "${DESTDIR}${sysconfdir}/detoxrc exists, skipping"; \
-	fi
-	@if [ ! -f ${DESTDIR}${datadir}/detox/iso8859_1.tbl ]; then \
-		${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox; \
-	else \
-		echo "${DESTDIR}${datadir}/detox/iso8859_1.tbl exists, skipping"; \
-	fi
-	@if [ ! -f ${DESTDIR}${datadir}/detox/unicode.tbl ]; then \
-		${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox; \
-	else \
-		echo "${DESTDIR}${datadir}/detox/unicode.tbl exists, skipping"; \
-	fi
-	@if [ ! -f ${DESTDIR}${datadir}/detox/safe.tbl ]; then \
-		${INSTALL} -m 644 safe.tbl ${DESTDIR}${datadir}/detox; \
-	else \
-		echo "${DESTDIR}${datadir}/detox/safe.tbl exists, skipping"; \
-	fi
-
-install-unsafe-config: install-base
-	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}
-	${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox
-	${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox
-
-install-sample-config: install-base
-	${INSTALL} -m 644 detoxrc ${DESTDIR}${sysconfdir}/detoxrc.sample
-	${INSTALL} -m 644 iso8859_1.tbl ${DESTDIR}${datadir}/detox/iso8859_1.tbl.sample
-	${INSTALL} -m 644 unicode.tbl ${DESTDIR}${datadir}/detox/unicode.tbl.sample
-
-uninstall: uninstall-base
-	@echo 'This command doesn''t remove existing configuration'
-	@echo 'files.  Run "make force-uninstall" to remove the'
-	@echo 'live configuration files as well.'
-
-force-uninstall: uninstall-base
-	rm -f ${DESTDIR}${sysconfdir}/detoxrc
-	rm -f ${DESTDIR}${datadir}/detox/iso8859_1.tbl
-	rm -f ${DESTDIR}${datadir}/detox/unicode.tbl
-	@if [ -d ${DESTDIR}${datadir}/detox ]; then \
-		rmdir ${DESTDIR}${datadir}/detox; \
-	fi
-
-uninstall-base:
-	rm -f ${DESTDIR}${bindir}/detox
-	rm -f ${DESTDIR}${bindir}/inline-detox
-	rm -f ${DESTDIR}${mandir}/man1/detox.1*
-	rm -f ${DESTDIR}${mandir}/man1/inline-detox.1*
-	rm -f ${DESTDIR}${mandir}/man5/detoxrc.5*
-	rm -f ${DESTDIR}${mandir}/man5/detox.tbl.5*
-	rm -f ${DESTDIR}${sysconfdir}/detoxrc.sample
-	rm -f ${DESTDIR}${datadir}/detox/iso8859_1.tbl.sample
-	rm -f ${DESTDIR}${datadir}/detox/unicode.tbl.sample
-
-clean:
-	rm -f *.o core *~ a.out *.core
-	rm -f detox
-	rm -f inline-detox
-
-distclean: dist-clean
-
-dist-clean: clean
-	rm -f *.BAK
-	rm -f config.log config.status config.cache
-	rm -f Makefile config.h install.sh
-	rm -f detox_path.h
-	rm -f .depend
-
-maintainer-clean: distclean
-	@echo 'This command is intended for maintainers to use; it'
-	@echo 'deletes files that may need special tools to rebuild.'
-	rm -f config_file_l.c config_file_y.[ch]
-
-distready: config_file_l.c config_file_y.c distclean
-
-dep: depend
-
-depend:
-	mkdep ${CFLAGS} ${detoxSRC} ${inline_detoxSRC}
-
-dummy: 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

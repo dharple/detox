@@ -36,11 +36,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "config_file_y.h"
+#include "config_file_yacc.h"
 
 int config_file_lineno = 1;
 
 %}
+
+%option noyywrap
 
 %%
 

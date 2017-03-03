@@ -42,9 +42,10 @@ Makefile
 config.h
 config.log
 config.status
-detox_path.h
 
 # Clean files
 detox
 inline-detox
+.deps/
+stamp-h1
 

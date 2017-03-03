@@ -42,7 +42,6 @@
 
 #include "detox.h"
 #include "clean_string.h"
-#include "detox_path.h"
 
 #ifndef INLINE_MODE
 #include "file.h"
@@ -107,9 +106,11 @@ int main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
-		err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detoxrc", default_etc_dir);
+#ifdef SYSCONFDIR
+		err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detoxrc", SYSCONFDIR);
 		if (err < MAX_PATH_LEN)
 			parse_results = parse_config_file(check_config_file, NULL, main_options);
+#endif
 
 		if (parse_results == NULL) {
 			parse_results = parse_config_file("/etc/detoxrc", NULL, main_options);
@@ -259,9 +260,11 @@ int main(int argc, char **argv)
 					exit(EXIT_FAILURE);
 				}
 
-				err = snprintf(check_config_file, MAX_PATH_LEN, "%s/%s", default_data_dir, check_filename);
+#ifdef DATADIR
+				err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detox/%s", DATADIR, check_filename);
 				if (err < MAX_PATH_LEN)
 					table = parse_table(check_config_file);
+#endif
 
 				if (table == NULL) {
 					err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/share/detox/%s", check_filename);

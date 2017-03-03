@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_CONFIG_FILE_YACC_H_INCLUDED
+# define YY_YY_CONFIG_FILE_YACC_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -90,14 +90,14 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 66 "config_file.y" /* yacc.c:1909  */
+#line 66 "config_file_yacc.y" /* yacc.c:1909  */
 
     char	*string;	/* string buffer */
     int		cmd;		/* command value */
     struct detox_sequence_entry *seq;	/* sequence */
     int		nvalue;		/* nvalue */
 
-#line 101 "y.tab.h" /* yacc.c:1909  */
+#line 101 "config_file_yacc.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -110,4 +110,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_CONFIG_FILE_YACC_H_INCLUDED  */
