@@ -1,5 +1,5 @@
 language: c
 
 script:
-  - automake --add-missing --foreign && ./configure && make
+  - ./configure && make
 
