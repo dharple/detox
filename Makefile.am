@@ -54,12 +54,12 @@ genericOBJS = clean_string.o table.o parse_table.o \
 detoxOBJS = detox.o file.o ${genericOBJS} \
 	parse_options_@option_parser@.o parse_options_generic.o
 
-inline-detoxOBJS = detox-inline.o file-inline.o ${genericOBJS} \
+inline_detoxOBJS = detox-inline.o file-inline.o ${genericOBJS} \
 	parse_options_@option_parser@-inline.o parse_options_generic-inline.o
 
 detoxSRC = `echo ${detoxOBJS} | sed -e "s/[.]o/.c/g"`
 
-inline-detoxSRC = `echo ${inline-detoxOBJS} | sed -e "s/[.]o/.c/g"`
+inline_detoxSRC = `echo ${inline_detoxOBJS} | sed -e "s/[.]o/.c/g"`
 
 all: detox inline-detox
 
@@ -70,8 +70,8 @@ all: detox inline-detox
 detox: ${detoxOBJS}
 	${CC} -o detox ${LDFLAGS} ${CPPFLAGS} ${detoxOBJS} ${L_OPT}
 
-inline-detox: ${inline-detoxOBJS}
-	${CC} -o inline-detox ${LDFLAGS} ${CPPFLAGS} ${inline-detoxOBJS} ${L_OPT}
+inline-detox: ${inline_detoxOBJS}
+	${CC} -o inline-detox ${LDFLAGS} ${CPPFLAGS} ${inline_detoxOBJS} ${L_OPT}
 
 #
 # Special Source Compiles
@@ -209,6 +209,6 @@ distready: config_file_l.c config_file_y.c distclean
 dep: depend
 
 depend:
-	mkdep ${CFLAGS} ${detoxSRC} ${inline-detoxSRC}
+	mkdep ${CFLAGS} ${detoxSRC} ${inline_detoxSRC}
 
 dummy: 

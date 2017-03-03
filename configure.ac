@@ -30,10 +30,11 @@
 # 
 
 # Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.59)
 AC_INIT([detox],[1.2.1],[detox.dharple at gmail.com])
+AM_INIT_AUTOMAKE()
 AC_CONFIG_SRCDIR([detox.c])
 AC_CONFIG_HEADER([config.h])
+AC_PACKAGE_URL([https://github.com/dharple/detox])
 
 # Checks for programs.
 AC_PROG_CC
