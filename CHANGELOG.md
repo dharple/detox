@@ -3,6 +3,8 @@
 ## 1.3.0 (In Progress)
 
 - Migrated from configure.in and Makefile.in to the full autoconf suite. [#1]
+- WARNING: The default translation tables, iso8859_1.tbl, safe.tbl, and
+  utf-8.tbl all install fresh with every call to make install. [#1]
 - Removed libpopt support. [#2]
 
 ## 1.2.1 (2017-02-27)
