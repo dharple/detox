@@ -49,8 +49,7 @@
 #include "config_file_spoof.h"
 #include "config_file_dump.h"
 #include "parse_table.h"
-
-#include "parse_options_getopt.h"
+#include "parse_options.h"
 
 #define MAX_PATH_LEN 256
 

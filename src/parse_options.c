@@ -36,13 +36,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 #include <unistd.h>
+#include <errno.h>
 #include <libgen.h>
 
 #include "detox.h"
 #include "config.h"
-#include "parse_options_generic.h"
+#include "parse_options.h"
 
 #ifdef HAVE_GETOPT_LONG
 #include <getopt.h>
@@ -68,6 +68,7 @@ static struct option longopts[] = {
 	{"dry-run", no_argument, 0, 'n'},
 
 	/* long options without */
+	{"inline", no_argument, &long_option, LONG_OPTION_INLINE},
 	{"special", no_argument, &long_option, LONG_OPTION_SPECIAL},
 
 	/* deprecated long opts without */
@@ -78,6 +79,91 @@ static struct option longopts[] = {
 };
 
 #endif
+
+/* *INDENT-OFF* */
+
+char usage_message[] = {
+	"usage: detox [-hLnrvV] [-f configfile] [-s sequence]"
+#ifdef HAVE_GETOPT_LONG
+	" [--dry-run] [--inline] [--special]"
+	"\n\t "
+#endif
+	" file [file ...]\n"
+};
+
+char help_message[] = {
+	"	-f configfile	choose which config file to use\n"
+#ifdef HAVE_GETOPT_LONG
+	"	-h --help	this message\n"
+#else
+	"	-h 		this message\n"
+#endif
+#ifdef HAVE_GETOPT_LONG
+	"	--inline	run inline mode\n"
+#endif
+	"	-L		list available sequences and exit\n"
+	"			with -v ... dump sequence contents\n"
+#ifdef HAVE_GETOPT_LONG
+	"	-n --dry-run	do a dry run (don't actually do anything)\n"
+#else
+	"	-n 		do a dry run (don't actually do anything)\n"
+#endif
+	"	-r 		be recursive (descend into subdirectories)\n"
+#ifdef HAVE_GETOPT_LONG
+	"	--remove-trailing (deprecated)\n"
+	"			remove trailing _ and - before a period\n"
+#endif
+	"	-s sequence	choose which sequence to detox with\n"
+#ifdef HAVE_GETOPT_LONG
+	"	--special	work on links and special files\n"
+#endif
+	"	-v 		be verbose\n"
+	"	-V 		show the current version\n"
+};
+
+char usage_message_inline[] = {
+	"usage: inline-detox [-hLvV] [-f configfile] [-s sequence] [file]\n"
+};
+
+char help_message_inline[] = {
+	"	-f configfile	choose which config file to use\n"
+#ifdef HAVE_GETOPT_LONG
+	"	-h --help	this message\n"
+#else
+	"	-h 		this message\n"
+#endif
+	"	-L		list available sequences and exit\n"
+	"			with -v ... dump sequence contents\n"
+#ifdef HAVE_GETOPT_LONG
+	"	--remove-trailing (deprecated)\n"
+	"			remove trailing _ and - before a period\n"
+#endif
+	"	-s sequence	choose which sequence to detox with\n"
+	"	-v 		be verbose\n"
+	"	-V 		show the current version\n"
+};
+
+/* *INDENT-ON* */
+
+struct detox_options *initialize_main_options(void)
+{
+	struct detox_options *main_options;
+
+	main_options = malloc(sizeof(struct detox_options));
+	if (main_options == NULL) {
+		fprintf(stderr, "out of memory: %s\n", strerror(errno));
+		return NULL;
+	}
+
+	memset(main_options, 0, sizeof(struct detox_options));
+
+	/*
+	 * XXX - handle blank strings better
+	 */
+	main_options->sequence_name = getenv("DETOX_SEQUENCE");
+
+	return main_options;
+}
 
 struct detox_options *parse_options_getopt(int argc, char **argv)
 {
