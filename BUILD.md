@@ -2,6 +2,7 @@
 
 Compilation:
 
+	autoreconf --install
 	./configure
 	make
 

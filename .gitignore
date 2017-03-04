@@ -36,9 +36,15 @@
 *.patch
 autom4te.cache/
 *~
+aclocal.m4
+compile
+depcomp
+install-sh
+missing
 
 # Dist Clean files
 Makefile
+Makefile.in
 config.h
 config.log
 config.status
