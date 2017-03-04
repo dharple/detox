@@ -41,6 +41,7 @@ compile
 depcomp
 install-sh
 missing
+ylwrap
 
 # Dist Clean files
 Makefile
