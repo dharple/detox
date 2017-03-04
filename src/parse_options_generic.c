@@ -43,10 +43,6 @@
 
 #undef HAVE_LONG_OPTIONS
 
-#ifdef HAVE_LIBPOPT
-#define HAVE_LONG_OPTIONS
-#endif
-
 #ifdef HAVE_GETOPT_LONG
 #define HAVE_LONG_OPTIONS
 #endif

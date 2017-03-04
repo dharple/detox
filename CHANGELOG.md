@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.0 (In Progress)
+
+- Migrated from configure.in and Makefile.in to the full autoconf suite. [#1]
+- Removed libpopt support. [#2]
+
 ## 1.2.1 (2017-02-27)
 
 - Migrated documents to Markdown for better presentation on github.

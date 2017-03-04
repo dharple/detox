@@ -54,11 +54,7 @@
 #include "config_file_dump.h"
 #include "parse_table.h"
 
-#ifndef HAVE_LIBPOPT
 #include "parse_options_getopt.h"
-#else
-#include "parse_options_popt.h"
-#endif
 
 #define MAX_PATH_LEN 256
 
@@ -77,11 +73,7 @@ int main(int argc, char **argv)
 	char *file_work = NULL;
 	char **file_walk;
 
-#ifndef HAVE_LIBPOPT
 	main_options = parse_options_getopt(argc, argv);
-#else
-	main_options = parse_options_popt(argc, argv);
-#endif
 
 	if (main_options == NULL) {
 		fprintf(stderr, "detox: an error occurred while parsing command line arguments\n");
