@@ -1,6 +1,5 @@
 Master: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=master)](https://travis-ci.org/dharple/detox)
 Develop: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=develop)](https://travis-ci.org/dharple/detox)
-PHP Rewrite: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=feature/php-rewrite)](https://travis-ci.org/dharple/detox)
 
 # Overview
 
