@@ -6,7 +6,9 @@ AC_PROG_CC
 AM_PROG_LEX
 AC_PROG_YACC
 
-AC_CONFIG_HEADER([config.h])
+AC_CHECK_FUNCS([getopt_long])
+
+AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_FILES([
  Makefile
  src/Makefile
