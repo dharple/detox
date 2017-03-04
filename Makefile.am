@@ -9,4 +9,15 @@ dist_sysconf_DATA = etc/detoxrc.sample
 dist_pkgdata_DATA = table/*
 
 install-data-hook:
-	cp -an $(DESTDIR)$(sysconfdir)/detoxrc.sample $(DESTDIR)$(sysconfdir)/detoxrc
+	cp -an $(DESTDIR)$(sysconfdir)/detoxrc.sample $(DESTDIR)$(sysconfdir)/detoxrc && \
+	cp -an $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl.sample $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl && \
+	cp -an $(DESTDIR)$(pkgdatadir)/safe.tbl.sample $(DESTDIR)$(pkgdatadir)/safe.tbl && \
+	cp -an $(DESTDIR)$(pkgdatadir)/unicode.tbl.sample $(DESTDIR)$(pkgdatadir)/unicode.tbl
+
+.PHONY: force-install
+force-install: install
+	cp -a $(DESTDIR)$(sysconfdir)/detoxrc.sample $(DESTDIR)$(sysconfdir)/detoxrc && \
+	cp -a $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl.sample $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl && \
+	cp -a $(DESTDIR)$(pkgdatadir)/safe.tbl.sample $(DESTDIR)$(pkgdatadir)/safe.tbl && \
+	cp -a $(DESTDIR)$(pkgdatadir)/unicode.tbl.sample $(DESTDIR)$(pkgdatadir)/unicode.tbl
+

@@ -56,3 +56,5 @@ inline-detox
 .deps/
 stamp-h1
 
+# Testing files
+lab/
