@@ -1,5 +1,8 @@
 language: c
 
+install:
+  - autoreconf --install
+
 script:
   - ./configure && make
 
