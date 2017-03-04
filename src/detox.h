@@ -80,12 +80,14 @@ struct detox_parse_results {
  * Holds command line options
  */
 struct detox_options {
-	int verbose;
-	int recurse;
 	int dry_run;
+	int is_inline_bin;
+	int is_inline_mode;
+	int list_sequences;
+	int recurse;
 	int remove_trailing;
 	int special;
-	int list_sequences;
+	int verbose;
 
 	struct detox_sequence_entry *sequence_to_use;
 	struct detox_ignore_entry *files_to_ignore;

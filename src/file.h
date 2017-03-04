@@ -41,4 +41,6 @@ extern void parse_dir(unsigned char *indir, struct detox_options *options);
 
 extern void parse_special(unsigned char *in, struct detox_options *options);
 
+extern void parse_inline(unsigned char *filename, struct detox_options *options);
+
 #endif				/* __FILE_H */

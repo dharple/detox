@@ -50,6 +50,8 @@ static char badfiles[3][30] = {
 	""
 };
 
+#define BUF_SIZE 1024
+
 /*
  * Internal function declarations
  */
@@ -364,4 +366,74 @@ static int ignore_file(unsigned char *filename, struct detox_options *options)
 	}
 
 	return 0;
+}
+
+/*
+ * Renames file to a safe filename.
+ */
+void parse_inline(unsigned char *filename, struct detox_options *options)
+{
+	struct detox_sequence_entry *sequence;
+	FILE *fp;
+	unsigned char *base, *work, *hold;
+	int err;
+	size_t len;
+	size_t buf_size;
+
+	if (filename != NULL) {
+		if (!(fp = fopen(filename, "r"))) {
+			fprintf(stderr, "%s: %s\n", filename, strerror(errno));
+			return;
+		}
+	}
+	else {
+		fp = stdin;
+	}
+
+	buf_size = BUF_SIZE;
+	base = malloc(buf_size);
+	if (base == NULL) {
+		fprintf(stderr, "out of memory: %s\n", strerror(errno));
+		return;
+	}
+
+	while (fgets(base, buf_size, fp)) {
+		while (strrchr(base, '\n') == NULL) {
+			work = realloc(base, buf_size + BUF_SIZE - 1);
+			if (!fgets(work + buf_size - 1, BUF_SIZE, fp)) {
+				base = work;
+				break;
+			}
+			base = work;
+			buf_size += BUF_SIZE - 1;
+		}
+
+		hold = strrchr(base, '\n');
+		if (hold == NULL) {
+			fprintf(stderr, "Unable to parse input\n");
+			exit(EXIT_FAILURE);
+		}
+		*hold = '\0';
+
+		work = strdup(base);
+
+		sequence = options->sequence_to_use;
+
+		while (sequence != NULL && work != NULL) {
+			hold = sequence->cleaner(work, sequence->options);
+			if (work != NULL) {
+				free(work);
+			}
+			work = hold;
+
+			sequence = sequence->next;
+		}
+
+		if (work != NULL) {
+			printf("%s\n", work);
+		}
+		else {
+			printf("\n");
+		}
+	}
 }

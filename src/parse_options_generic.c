@@ -49,12 +49,10 @@
 
 /* *INDENT-OFF* */
 
-#ifndef INLINE_MODE
-
 char usage_message[] = {
 	"usage: detox [-hLnrvV] [-f configfile] [-s sequence]"
 #ifdef HAVE_LONG_OPTIONS
-	" [--dry-run] [--special]"
+	" [--dry-run] [--inline] [--special]"
 	"\n\t "
 #endif
 	" file [file ...]\n"
@@ -66,6 +64,9 @@ char help_message[] = {
 	"	-h --help	this message\n"
 #else
 	"	-h 		this message\n"
+#endif
+#ifdef HAVE_LONG_OPTIONS
+	"	--inline	run inline mode\n"
 #endif
 	"	-L		list available sequences and exit\n"
 	"			with -v ... dump sequence contents\n"
@@ -87,13 +88,11 @@ char help_message[] = {
 	"	-V 		show the current version\n"
 };
 
-#else /* INLINE_MODE */
-
-char usage_message[] = {
+char usage_message_inline[] = {
 	"usage: inline-detox [-hLvV] [-f configfile] [-s sequence] [file]\n"
 };
 
-char help_message[] = {
+char help_message_inline[] = {
 	"	-f configfile	choose which config file to use\n"
 #ifdef HAVE_LONG_OPTIONS
 	"	-h --help	this message\n"
@@ -110,8 +109,6 @@ char help_message[] = {
 	"	-v 		be verbose\n"
 	"	-V 		show the current version\n"
 };
-
-#endif
 
 /* *INDENT-ON* */
 

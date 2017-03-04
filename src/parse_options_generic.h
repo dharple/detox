@@ -36,6 +36,9 @@
 extern char usage_message[];
 extern char help_message[];
 
+extern char usage_message_inline[];
+extern char help_message_inline[];
+
 extern struct detox_options *initialize_main_options(void);
 
 #endif				/* __PARSE_OPTIONS_GENERIC_H */

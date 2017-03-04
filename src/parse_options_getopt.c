@@ -38,6 +38,7 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+#include <libgen.h>
 
 #include "detox.h"
 #include "config.h"
@@ -49,9 +50,12 @@
 
 enum {
 	LONG_OPTION_DRY_RUN = 1,
+	LONG_OPTION_INLINE,
 	LONG_OPTION_REMOVE_TRAILING,
 	LONG_OPTION_SPECIAL
 };
+
+#define INLINE_DETOX_BIN "inline-detox"
 
 /* expect this to be overwritten! */
 static int long_option = 0;
@@ -83,11 +87,16 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 
 	int i;
 	int max = 10;
+	char *binname;
 
 	main_options = initialize_main_options();
 	if (main_options == NULL) {
 		return NULL;
 	}
+
+	binname = basename(argv[0]);
+	main_options->is_inline_bin = main_options->is_inline_mode =
+		(strcmp(binname, INLINE_DETOX_BIN) == 0);
 
 #ifdef HAVE_GETOPT_LONG
 	while ((optcode = getopt_long(argc, argv, "hrvV?Ls:f:n", longopts, NULL)) != -1) {
@@ -96,9 +105,11 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 #endif
 		switch (optcode) {
 			case 'h':
-				printf("%s", usage_message);
+				printf("%s", !main_options->is_inline_bin ? usage_message :
+					usage_message_inline);
 				printf("\n");
-				printf("%s", help_message);
+				printf("%s", !main_options->is_inline_bin ? help_message :
+					help_message_inline);
 				exit(EXIT_SUCCESS);
 
 			case 'f':
@@ -136,11 +147,16 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 				exit(EXIT_SUCCESS);
 
 			case '?':
-				printf("%s", usage_message);
+				printf("%s", !main_options->is_inline_bin ? usage_message :
+					usage_message_inline);
 				exit(EXIT_SUCCESS);
 
 			case 0:
 				switch (long_option) {
+					case LONG_OPTION_INLINE:
+						main_options->is_inline_mode = 1;
+						break;
+
 					case LONG_OPTION_REMOVE_TRAILING:
 						main_options->remove_trailing = 1;
 						break;
@@ -191,11 +207,10 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 
 		main_options->files[i] = NULL;
 	}
-	else {
-#ifndef INLINE_MODE
-		printf("%s", usage_message);
+	else if (!main_options->is_inline_mode) {
+		printf("%s", !main_options->is_inline_bin ? usage_message :
+			usage_message_inline);
 		exit(EXIT_FAILURE);
-#endif
 	}
 
 	return main_options;

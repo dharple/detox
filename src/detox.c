@@ -43,11 +43,7 @@
 #include "detox.h"
 #include "clean_string.h"
 
-#ifndef INLINE_MODE
 #include "file.h"
-#else
-#include "file-inline.h"
-#endif
 
 #include "config_file.h"
 #include "config_file_spoof.h"
@@ -328,59 +324,57 @@ int main(int argc, char **argv)
 	 * Do some actual work
 	 */
 
-#ifndef INLINE_MODE
-	file_walk = main_options->files;
-	while (*file_walk) {
-		if (main_options->verbose) {
-			printf("Scanning: %s\n", *file_walk);
-		}
-
-		err = lstat(*file_walk, &stat_info);
-		if (err == -1) {
-			fprintf(stderr, "%s: %s\n", *file_walk, strerror(errno));
-		}
-		else {
-			if (S_ISDIR(stat_info.st_mode)) {
-				file_work = parse_file(*file_walk, main_options);
-				parse_dir(file_work, main_options);
-				free(file_work);
-			}
-			else if (S_ISREG(stat_info.st_mode)) {
-				parse_file(*file_walk, main_options);
-			}
-			else if (main_options->special) {
-				parse_special(*file_walk, main_options);
-			}
-		}
-
-		file_walk++;
-	}
-#else
-
-	if (main_options->files[0] != NULL) {
+	if (!main_options->is_inline_mode) {
 		file_walk = main_options->files;
 		while (*file_walk) {
+			if (main_options->verbose) {
+				printf("Scanning: %s\n", *file_walk);
+			}
+
 			err = lstat(*file_walk, &stat_info);
 			if (err == -1) {
 				fprintf(stderr, "%s: %s\n", *file_walk, strerror(errno));
 			}
 			else {
 				if (S_ISDIR(stat_info.st_mode)) {
-					fprintf(stderr, "%s: is a directory\n", *file_walk);
+					file_work = parse_file(*file_walk, main_options);
+					parse_dir(file_work, main_options);
+					free(file_work);
 				}
-				else {
-					parse_inline(*file_walk, main_options);
+				else if (S_ISREG(stat_info.st_mode)) {
+					parse_file(*file_walk, main_options);
+				}
+				else if (main_options->special) {
+					parse_special(*file_walk, main_options);
 				}
 			}
 
 			file_walk++;
 		}
-	}
-	else {
-		parse_inline(NULL, main_options);
-	}
+	} else {
+		if (main_options->files[0] != NULL) {
+			file_walk = main_options->files;
+			while (*file_walk) {
+				err = lstat(*file_walk, &stat_info);
+				if (err == -1) {
+					fprintf(stderr, "%s: %s\n", *file_walk, strerror(errno));
+				}
+				else {
+					if (S_ISDIR(stat_info.st_mode)) {
+						fprintf(stderr, "%s: is a directory\n", *file_walk);
+					}
+					else {
+						parse_inline(*file_walk, main_options);
+					}
+				}
 
-#endif
+				file_walk++;
+			}
+		}
+		else {
+			parse_inline(NULL, main_options);
+		}
+	}
 
 	return 0;
 }
