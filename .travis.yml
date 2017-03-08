@@ -1,5 +1,9 @@
 language: c
 
+env:
+  global:
+    - MAKEFLAGS="-j 2"
+
 install:
   - autoreconf --install
 
