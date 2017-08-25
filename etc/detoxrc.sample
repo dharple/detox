@@ -87,6 +87,20 @@ sequence "lower-only" {
 	lower;
 };
 
+# Mikros custom sequences
+
+sequence mikros_lower {
+ 	safe {filename "/s/prods/00-mil_storage/db/utilities/file_mgmt/detox/miSanitize.tbl";};
+	lower;
+	utf_8;
+	wipeup;
+};
+
+sequence mikros {
+ 	safe {filename "/s/prods/00-mil_storage/db/utilities/file_mgmt/detox/miSanitize.tbl";};
+	utf_8;
+	wipeup;
+};
 
 #
 # Files to ignore (detox only)
