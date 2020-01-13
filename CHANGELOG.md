@@ -121,10 +121,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/dharple/detox/compare/1.3.0...develop
-[1.3.0]: https://github.com/dharple/detox/compare/1.2.1...1.3.0
-[1.2.1]: https://github.com/dharple/detox/compare/1.2.0...1.2.1
-[1.2.0]: https://github.com/dharple/detox/releases/tag/1.2.0
+[Unreleased]: https://github.com/dharple/detox/compare/v1.3.0...develop
+[1.3.0]: https://github.com/dharple/detox/compare/v1.2.1...v1.3.0
+[1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2
