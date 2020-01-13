@@ -5,6 +5,12 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Merged fix for Debian #861537 from [mikrosimage/detox], written by Quentin
+  Guittard. This addresses an issue with detox generating malformed UTF-8 when
+  no default set has been set. [#14]
+
 ## [1.3.0] - 2017-03-04
 
 - Migrated from `configure.in` and `Makefile.in` to the full autoconf suite. [#1]
@@ -126,6 +132,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#14]: https://github.com/dharple/detox/issues/14
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2
 [#1]: https://github.com/dharple/detox/issues/1
+
+[mikrosimage/detox]: https://github.com/mikrosimage/detox
