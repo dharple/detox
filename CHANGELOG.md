@@ -1,6 +1,11 @@
 # CHANGELOG
+All notable changes to this project will be documented in this file.
 
-## 1.3.0 (2017-03-04)
+For releases after 1.3.0, the format is based on
+[Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
+adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.3.0] - 2017-03-04
 
 - Migrated from `configure.in` and `Makefile.in` to the full autoconf suite. [#1]
 - Remove `detox_path.h`, in favor of command line defines. [#1]
@@ -10,7 +15,7 @@
 - Added `--inline` as an option to `detox`, to enable inline mode on the main
   binary. [#6]
 
-## 1.2.1 (2017-02-27)
+## [1.2.1] - 2017-02-27
 
 - Migrated documents to Markdown for better presentation on github.
 - Applied Debian patch `01-make-upstream-makefiles-parallel-build-safe.patch`,
@@ -41,7 +46,7 @@
   2.3 to 3.0.4.
 - Added a minor work around to stop compiler noise regarding `yylex()`.
 
-## 1.2.0 (2008-04-12)
+## [1.2.0] - 2008-04-12
 
 - Modified the safe filter to use a translation table.
 - Modified the safe filter fallback (previous functionality) to operate without
@@ -64,7 +69,7 @@
   #1509493]
 - Added inline-detox for stream based detoxification.
 
-## 1.1.1 (2005-03-13)
+## 1.1.1 - 2005-03-13
 
 - Modified `Makefile` to support parallel builds.
 - Added `${DESTDIR}` to install paths, for Gentoo package builds.
@@ -74,14 +79,14 @@
   as `".sample"` as well as the working version, for all users, but in
   particular, to make patching the `Makefile` easier for the FreeBSD port.
 
-## 1.1.0 (2005-03-05)
+## 1.1.0 - 2005-03-05
 
 - Added lowercase filter.
 - Added `libpopt` support to facilitate long options on Darwin or Solaris.
 - Fixed some compiler gripes with `lex`/`yacc`.
 - Replaced the hardcoded `-ll` in `Makefile.in` with `@LEXLIB@`.
 
-## 1.0.0 (2004-08-08)
+## 1.0.0 - 2004-08-08
 
 - Added a new filter for translating UTF-8 encoded Unicode characters.
 - Added handling of configuration files for controlling what sequence filters
@@ -105,14 +110,22 @@
 - Added `.depend` generation to the `Makefile`.
 - Created more man pages (`detoxrc.5` and `detox.tbl.5`).
 
-## 0.9.1 (2004-07-15)
+## 0.9.1 - 2004-07-15
 
 - Added `-d` flag to install
 - Broke installation out into a script to handle differences between Solaris
   and BSD/Linux.
 - Added function check for `getopt_long`.
 
-## 0.9.0 (2004-02-16)
+## 0.9.0 - 2004-02-16
 
 - Initial release
 
+[Unreleased]: https://github.com/dharple/detox/compare/1.3.0...develop
+[1.3.0]: https://github.com/dharple/detox/compare/1.2.1...1.3.0
+[1.2.1]: https://github.com/dharple/detox/compare/1.2.0...1.2.1
+[1.2.0]: https://github.com/dharple/detox/releases/tag/1.2.0
+
+[#6]: https://github.com/dharple/detox/issues/6
+[#2]: https://github.com/dharple/detox/issues/2
+[#1]: https://github.com/dharple/detox/issues/1
