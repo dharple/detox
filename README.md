@@ -1,7 +1,5 @@
-# Abandoned
-
-This project is now abandoned.  If you wish to become the maintainer, please
-contact me through [github].
+Master: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=master)](https://travis-ci.org/dharple/detox)
+Develop: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=develop)](https://travis-ci.org/dharple/detox)
 
 # Overview
 
@@ -30,4 +28,7 @@ You can also specify recursion (this works best on directories):
 
 	detox -r /music/transferred_from_elsewhere/
 
-[github]: https://github.com/dharple/
+# Contact
+
+Doug Harple <detox.dharple@gmail.com>
+
