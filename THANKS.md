@@ -26,11 +26,13 @@ a result.
 Jon Amundsen pointed out that the lowercase converting sequence was only
 really working on case-insensitive filesystems.
 
-zero_dogg from sourceforget.net suggested adding the ability to prevent
+zero_dogg from sourceforge.net suggested adding the ability to prevent
 certain files from being translated.
 
 rsnemmen from sourceforge.net pointed out a bug in the way directories are
 handled when passed in from the command line.
+
+sanjaymsh on github.com added PowerPC to the Travis tests.
 
 # Additional Thanks
 
