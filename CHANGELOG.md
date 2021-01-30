@@ -7,9 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Fixed
-- Merged fix for Debian #861537 from [mikrosimage/detox], written by Quentin
-  Guittard. This addresses an issue with detox generating malformed UTF-8 when
-  no default set has been set. [#14]
+- Merged fix for Debian #861537, written by Vasily Kolobkov, passed on by
+  Zenaan Harkness, Quentin Guittard, and Joao Eriberto Mota Filho. This
+  addresses an issue with detox generating malformed characters during
+  translation. [#14]
 
 ## [1.3.0] - 2017-03-04
 
