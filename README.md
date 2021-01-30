@@ -1,6 +1,12 @@
 Master: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=master)](https://travis-ci.org/dharple/detox)
 Develop: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=develop)](https://travis-ci.org/dharple/detox)
 
+# Warning
+
+I am not actively developing this version.  [Version 2] is under development,
+but is not ready for release.  I've created a separate repository because it's
+a total rewrite in a new language.
+
 # Overview
 
 detox is a program that renames files to make them easier to work with under
@@ -32,3 +38,4 @@ You can also specify recursion (this works best on directories):
 
 Doug Harple <detox.dharple@gmail.com>
 
+[Version 2]: https://github.com/dharple/detox-php
