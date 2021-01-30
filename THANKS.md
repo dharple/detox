@@ -1,5 +1,8 @@
 # Thanks
 
+Thank you to Quentin Guittard for fixing an issue with detox generating invalid
+UTF-8 characters when no default mapping table is set.
+
 Special thanks to Patrick Schoenfeld and Joao Eriberto Mota Filho, for
 maintaining the Debian version.  Release v1.2.1 is almost entirely comprised of
 their patches.

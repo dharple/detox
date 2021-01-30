@@ -131,16 +131,15 @@ unsigned char *clean_iso8859_1(unsigned char *s, void *opts)
 					 * Null translation == leave it alone
 					 */
 					*output_walk++ = *input_walk++;
+					continue;
 				}
 				else {
 					replace_walk = table->default_translation;
 				}
 			}
 
-			if (replace_walk != NULL) {
-				while (*replace_walk != '\0') {
-					*output_walk++ = *replace_walk++;
-				}
+			while (*replace_walk != '\0') {
+				*output_walk++ = *replace_walk++;
 			}
 
 			input_walk++;
@@ -161,16 +160,7 @@ unsigned char *clean_iso8859_1(unsigned char *s, void *opts)
  *
  * The rules are:
  *   Leave alone:
- *     - # ~ % ^ _ , . + =
- *
- *   Translate:
- *     &  into  _and_
- *
- *   Replace with _:
- *     ` ! @ $ * \ | : ; " ' < ? /
- *
- *   Replace with -:
- *     ( ) [ ] { }
+ *     - # ~ % ^ _ , . + = & ` ! @ $ * \ | : ; " ' < ? / ( ) [ ] { }
  *
  */
 unsigned char *clean_safe_basic(unsigned char *s, void *opts)
@@ -207,17 +197,12 @@ unsigned char *clean_safe_basic(unsigned char *s, void *opts)
 			case '.':
 			case '+':
 			case '=':
-				*output_walk++ = *input_walk;
-				break;
-
-			case '&':
-				*output_walk++ = '_';
-				*output_walk++ = 'a';
-				*output_walk++ = 'n';
-				*output_walk++ = 'd';
-				*output_walk++ = '_';
-				break;
-
+			case '(':
+			case ')':
+			case '[':
+			case ']':
+			case '{':
+			case '}':
 			case ' ':
 			case '`':
 			case '!':
@@ -234,17 +219,10 @@ unsigned char *clean_safe_basic(unsigned char *s, void *opts)
 			case '>':
 			case '?':
 			case '/':
-				*output_walk++ = '_';
+			case '&':
+				*output_walk++ = *input_walk;
 				break;
 
-			case '(':
-			case ')':
-			case '[':
-			case ']':
-			case '{':
-			case '}':
-				*output_walk++ = '-';
-				break;
 		}
 
 		input_walk++;
@@ -296,16 +274,15 @@ unsigned char *clean_safe(unsigned char *s, void *opts)
 				 * Null translation == leave it alone
 				 */
 				*output_walk++ = *input_walk++;
+				continue;
 			}
 			else {
 				replace_walk = table->default_translation;
 			}
 		}
 
-		if (replace_walk != NULL) {
-			while (*replace_walk != '\0') {
-				*output_walk++ = *replace_walk++;
-			}
+		while (*replace_walk != '\0') {
+			*output_walk++ = *replace_walk++;
 		}
 
 		input_walk++;

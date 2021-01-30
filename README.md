@@ -17,7 +17,7 @@ are contained in the detox.1 man page.
 
 # Runtime Notes
 
-The most important option to learn is -n, aka --dry-run.  This will let you
+The most important option to learn is `-n`, aka `--dry-run`.  This will let you
 run detox without actually changing any files, so that you can get an idea
 of what detox is all about.
 
