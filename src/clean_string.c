@@ -563,7 +563,7 @@ unsigned char *clean_utf_8_basic(unsigned char *s, void *opts)
 
 /*
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
- * Unicode and then lower ASCII characters.
+ * Unicode and then runs the translation table.
  */
 unsigned char *clean_utf_8(unsigned char *s, void *opts)
 {
@@ -597,11 +597,6 @@ unsigned char *clean_utf_8(unsigned char *s, void *opts)
 	output_walk = output;
 
 	while (*input_walk != '\0') {
-		if ((*input_walk & UTF_8_ENCODED) == 0) {
-			*output_walk++ = *input_walk++;
-			continue;
-		}
-
 		new_value = 0;
 		expected_chars = 0;
 		characters_eaten = 0;
@@ -641,9 +636,14 @@ unsigned char *clean_utf_8(unsigned char *s, void *opts)
 			expected_chars = 1;
 			characters_eaten = 2;
 		}
+		else if ((*input_walk & UTF_8_ENCODED) == UTF_8_ENCODED) {
+			fprintf(stderr, "unsupported unicode length\n");
+			exit(EXIT_FAILURE);
+		}
 		else {
-			input_walk++;
-			continue;
+			new_value = *input_walk;
+			expected_chars = 0;
+			characters_eaten = 1;
 		}
 
 		while (expected_chars > 0) {
@@ -665,6 +665,7 @@ unsigned char *clean_utf_8(unsigned char *s, void *opts)
 
 			expected_chars--;
 		}
+		input_walk++;
 
 		if (new_value == -1) {
 			continue;
@@ -681,9 +682,9 @@ unsigned char *clean_utf_8(unsigned char *s, void *opts)
 			/*
 			 * Null translation == leave it alone
 			 */
-			*input_walk -= characters_eaten;
+			input_walk -= characters_eaten;
 
-			while (characters_eaten) {
+			while (characters_eaten > 0) {
 				*output_walk++ = *input_walk++;
 				characters_eaten--;
 			}
