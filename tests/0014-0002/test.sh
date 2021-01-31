@@ -2,6 +2,7 @@
 
 INPUT="mÉ Æ.txt"
 OUTPUT="mE_AE.txt"
+TABLE="test.tbl"
 
 if [ -z $1 ] ; then
 	echo missing detox path
@@ -12,9 +13,13 @@ WORK=/tmp/detoxtest/$(basename `pwd`)-$RANDOM/
 
 mkdir -p $WORK
 
+cp $TABLE $WORK
+
 cat << DONE > $WORK/detoxrc
 sequence gnu {
-	utf_8;
+	utf_8 {
+		filename "$WORK/test.tbl";
+	};
 };
 DONE
 
