@@ -12,4 +12,4 @@ install:
 
 script:
   - ./configure && make
-  - tests/test.sh 
+  - tests/test.sh src/detox
