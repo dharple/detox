@@ -1,4 +1,4 @@
-Master: [![Build Status](https://travis-ci.org/dharple/detox.svg?branch=master)](https://travis-ci.org/dharple/detox)
+[![Build Status](https://travis-ci.com/dharple/detox.svg?branch=master)](https://travis-ci.com/dharple/detox)
 
 # Warning
 
