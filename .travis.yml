@@ -1,17 +1,19 @@
 language: c
-arch:
-  - amd64
-  - ppc64le
-
-compiler:
-  - gcc
-  - clang
 
 os: linux
 
-dist:
-  - xenial
-  - bionic
+dist: bionic
+
+jobs:
+  include:
+    - arch: amd64
+      compiler: gcc
+    - arch: ppc64le
+      compiler: gcc
+    - arch: arm64
+      compiler: gcc
+    - arch: amd64
+      compiler: clang
 
 env:
   global:
