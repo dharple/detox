@@ -157,6 +157,24 @@ function test_sequence ()
 				DONE
 				;;
 
+			safe-basic )
+				cat <<- DONE >> $RC
+					safe;
+				DONE
+				;;
+
+			utf_8-basic )
+				cat <<- DONE >> $RC
+					utf_8;
+				DONE
+				;;
+
+			iso8859_1-basic )
+				cat <<- DONE >> $RC
+					iso8859_1;
+				DONE
+				;;
+
 			*)
 				echo "Unknown method $1";
 				return 1;
