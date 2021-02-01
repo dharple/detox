@@ -16,13 +16,13 @@ fi
 
 cd $(dirname $0)
 
-. ./test-functions
+export TESTBASE=$(pwd)
 
 SUCCESS=1
 
-for DIR in 0* ; do
+for DIR in tests/* ; do
 	echo "------------------------------------------------------"
-	echo running test $DIR
+	echo running test $(basename $DIR)
 	cd $DIR
 	./test.sh $DETOX
 	if [ $? -ne 0 ] ; then

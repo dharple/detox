@@ -21,11 +21,11 @@ function test_single_table ()
 		return 1
 	fi
 
-	DETOX=$1
-	INPUT=$2
-	OUTPUT=$3
-	METHOD=$4
-	TABLE=$5
+	local DETOX=$1
+	local INPUT=$2
+	local OUTPUT=$3
+	local METHOD=$4
+	local TABLE=$5
 
 	if [ ! -x "$DETOX" ] ; then
 		echo $DETOX is not executable
@@ -37,17 +37,17 @@ function test_single_table ()
 		return 1
 	fi
 
-	BASE=/tmp/detoxtest/
+	local BASE=/tmp/detoxtest/
 	if [ ! -d $BASE ] ; then
 		mkdir $BASE
 	fi
-	WORK=$(realpath $(mktemp -d $BASE/test-XXXXXX))
+	local WORK=$(realpath $(mktemp -d $BASE/test-XXXXXX))
 
-	TMPTABLE=$WORK/test.tbl
+	local TMPTABLE=$WORK/test.tbl
 	cp $TABLE $TMPTABLE
 
-	SEQUENCE=unittest
-	RC=$WORK/detoxrc
+	local SEQUENCE=unittest
+	local RC=$WORK/detoxrc
 
 	cat <<- DONE > $RC
 	sequence $SEQUENCE {
@@ -66,5 +66,5 @@ function test_single_table ()
 		return 1
 	fi
 
-	return 0	
+	return 0
 }
