@@ -3,6 +3,16 @@ arch:
   - amd64
   - ppc64le
 
+compiler:
+  - gcc
+  - clang
+
+os: linux
+
+dist:
+  - xenial
+  - bionic
+
 env:
   global:
     - MAKEFLAGS="-j 2"
