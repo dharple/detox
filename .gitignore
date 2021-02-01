@@ -34,9 +34,10 @@
 
 # Maintainer files
 *.patch
-autom4te.cache/
 *~
+.idea
 aclocal.m4
+autom4te.cache/
 compile
 depcomp
 install-sh

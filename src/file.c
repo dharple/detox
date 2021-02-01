@@ -323,6 +323,7 @@ void parse_special(unsigned char *in, struct detox_options *options)
 			fprintf(stderr, "Unable to read symbolic link %s\n", in);
 			free(work);
 			free(new_file);
+			return;
 		}
 
 		err = lstat(work, &stat_info);
@@ -376,8 +377,6 @@ void parse_inline(unsigned char *filename, struct detox_options *options)
 	struct detox_sequence_entry *sequence;
 	FILE *fp;
 	unsigned char *base, *work, *hold;
-	int err;
-	size_t len;
 	size_t buf_size;
 
 	if (filename != NULL) {
