@@ -536,7 +536,7 @@ char *yytext;
 #line 1 "config_file_lex.l"
 #line 2 "config_file_lex.l"
 /*
- * Copyright (c) 2004-2017, Doug Harple.  All rights reserved.
+ * Copyright (c) Doug Harple.  All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
