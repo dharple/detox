@@ -68,3 +68,116 @@ function test_single_table ()
 
 	return 0
 }
+
+##
+# Executes a single test against one or more functions in a sequence, using the
+# stock tables when applicable, from source control.
+#
+# @param $1 Detox Executable
+# @param $2 Input Filename
+# @param $3 Output Filename
+# @param $4 Path to Stock Tables
+# @param $5 First method (utf_8, safe, etc)
+# @param ... Additional methods
+#
+# @return int 0 for success, 1 for failure
+#
+function test_sequence ()
+{
+	if [ -z "$1" -o -z "$2" -o -z "$3" -o -z "$4" -o -z "$5" ] ; then
+		echo missing parameters
+		return 1
+	fi
+
+	local DETOX=$1
+	local INPUT=$2
+	local OUTPUT=$3
+	local TABLEPATH=$4
+	shift 4
+
+	if [ ! -x "$DETOX" ] ; then
+		echo $DETOX is not executable
+		return 1
+	fi
+
+	if [ ! -d "$TABLEPATH" ] ; then
+		echo $TABLEPATH is not a file
+		return 1
+	fi
+
+	local BASE=/tmp/detoxtest/
+	if [ ! -d $BASE ] ; then
+		mkdir $BASE
+	fi
+	local WORK=$(realpath $(mktemp -d $BASE/test-XXXXXX))
+
+	local SEQUENCE=unittest
+	local RC=$WORK/detoxrc
+
+	cat <<- DONE > $RC
+	sequence $SEQUENCE {
+	DONE
+
+	while [ -n "$1" ] ; do
+
+		case $1 in
+			safe | iso8859_1 | utf_8 )
+				local TABLE=$1.tbl
+				if [ $1 = "utf_8" ] ; then
+					TABLE="unicode.tbl"
+				fi
+				cp $TABLEPATH/$TABLE.sample $WORK/$TABLE
+
+				cat <<- DONE >> $RC
+					$1 {
+						filename "$WORK/$TABLE";
+					};
+				DONE
+				;;
+
+			lower | uncgi | wipeup )
+				cat <<- DONE >> $RC
+					$1;
+				DONE
+				;;
+
+			wipeup-remove-trailing )
+				cat <<- DONE >> $RC
+					wipeup {
+						remove_trailing;
+					};
+				DONE
+				;;
+
+			max-length-32 )
+				cat <<- DONE >> $RC
+					max_length {
+						length 32;
+					};
+				DONE
+				;;
+
+			*)
+				echo "Unknown method $1";
+				return 1;
+				;;
+		esac
+
+		shift
+	done
+
+	cat <<- DONE >> $RC
+	};
+	DONE
+
+	cd $WORK
+
+	touch "$INPUT"
+	$DETOX -v -s $SEQUENCE -f $RC "$INPUT"
+	if [ ! -f "$OUTPUT" ] ; then
+		echo expected output not found
+		return 1
+	fi
+
+	return 0
+}

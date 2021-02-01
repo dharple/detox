@@ -29,7 +29,7 @@ for DIR in tests/* ; do
 		SUCCESS=0
 		echo FAILED
 	fi
-	cd ..
+	cd $TESTBASE
 done
 
 echo "------------------------------------------------------"
