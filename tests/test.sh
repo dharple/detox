@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Executes all unit tests
+#
 
 if [ -z $1 ] ; then
 	echo missing detox path
@@ -12,6 +15,8 @@ if [ ! -x $DETOX ] ; then
 fi
 
 cd $(dirname $0)
+
+. ./test-functions
 
 SUCCESS=1
 

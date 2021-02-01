@@ -1,33 +1,20 @@
 #!/bin/bash -e
+#
+# Test to confirm GitHub issue #14 is resolved
+#
+# https://github.com/dharple/detox/issues/14
+#
 
+BASE=$(dirname $(dirname $(realpath $0)))
+. $BASE/test-functions
+
+# Run the test based on data from 
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861537
+
+DETOX=$1
 INPUT="mÉ Æ.txt"
 OUTPUT="mÉ_Æ.txt"
+METHOD="utf_8"
 TABLE="test.tbl"
 
-if [ -z $1 ] ; then
-	echo missing detox path
-	exit 1
-fi
-
-WORK=/tmp/detoxtest/$(basename `pwd`)-$RANDOM/
-
-mkdir -p $WORK
-
-cp $TABLE $WORK
-
-cat << DONE > $WORK/detoxrc
-sequence gnu {
-	utf_8 {
-		filename "$WORK/test.tbl";
-	};
-};
-DONE
-
-cd $WORK
-
-touch "mÉ Æ.txt"
-$1 -v -s gnu -f $WORK/detoxrc *txt
-if [ ! -f $OUTPUT ] ; then
-	echo expected output not found
-	exit 1
-fi
+test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
