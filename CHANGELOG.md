@@ -7,7 +7,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Added
-- Rudimentary regression testing.  Added two tests for issue [#14].
+- Regression tests for basic functionality, based on old custom scripts.
+- Regression tests confirming fixes for issues: [#14], [#19].
+
+### Changed
+- Regenerated config file parser.
 
 ## [1.3.2] - 2020-01-31
 ### Fixed
@@ -144,6 +148,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
 [#14]: https://github.com/dharple/detox/issues/14
+[#19]: https://github.com/dharple/detox/issues/19
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2
 [#1]: https://github.com/dharple/detox/issues/1
