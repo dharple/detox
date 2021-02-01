@@ -166,7 +166,7 @@ unsigned char *clean_iso8859_1(unsigned char *s, void *opts)
  *     &  into  _and_
  *
  *   Replace with _:
- *     ` ! @ $ * \ | : ; " ' < ? /
+ *     ` ! @ $ * \ | : ; " ' < ? / '\n' '\r'
  *
  *   Replace with -:
  *     ( ) [ ] { }
@@ -233,6 +233,8 @@ unsigned char *clean_safe_basic(unsigned char *s, void *opts)
 			case '>':
 			case '?':
 			case '/':
+			case '\n':
+			case '\r':
 				*output_walk++ = '_';
 				break;
 

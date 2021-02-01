@@ -12,6 +12,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 - Regenerated config file parser.
+- Updated the safe filter to translatie new lines and carriage returns into
+  underscores.  [#17]
 
 ## [1.3.2] - 2020-01-31
 ### Fixed
@@ -147,8 +149,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
-[#14]: https://github.com/dharple/detox/issues/14
 [#19]: https://github.com/dharple/detox/issues/19
+[#17]: https://github.com/dharple/detox/issues/17
+[#14]: https://github.com/dharple/detox/issues/14
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2
 [#1]: https://github.com/dharple/detox/issues/1

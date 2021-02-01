@@ -120,6 +120,8 @@ start
 # Chars to translate to _
 #
 
+0x0A		_	# new line
+0x0D		_	# carriage return
 0x20		_	# space
 0x21		_	# !
 0x22		_	# "
