@@ -21,7 +21,6 @@ OUTPUT="mÉ_Æ.txt"
 METHOD="utf_8"
 TABLE="test.tbl"
 
-echo custom table
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 
 # ---------------------------------------------------------------------------
@@ -31,5 +30,4 @@ test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 OUTPUT="mE_AE.txt"
 TABLE=$(dirname $TESTBASE)/table/unicode.tbl.sample
 
-echo standard table
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
