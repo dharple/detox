@@ -8,12 +8,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 ### Added
 - Regression tests for basic functionality, based on old custom scripts.
-- Regression tests confirming fixes for issues: [#14], [#19].
+- Regression tests confirming fixes for previously fixed issues: [#14], [#19].
 
 ### Changed
 - Regenerated config file parser.
 - Updated the safe filter to translate new lines, carriage returns, and tabs
-  into underscores.  [#17] [#9]
+  into underscores. [#9] [#11] [#17]
 
 ## [1.3.2] - 2020-01-31
 ### Fixed
@@ -152,6 +152,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
 [#14]: https://github.com/dharple/detox/issues/14
+[#11]: https://github.com/dharple/detox/issues/11
 [#9]: https://github.com/dharple/detox/issues/9
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2

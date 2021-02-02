@@ -59,9 +59,18 @@ function test_single_table ()
 
 	cd $WORK
 
-	touch "$INPUT"
-	$DETOX -s $SEQUENCE -f $RC "$INPUT"
-	if [ ! -f "$OUTPUT" ] ; then
+	local ACTION="touch"
+	local OPERATOR="-f"
+	local CMDINPUT="$INPUT"
+	if [ "${INPUT: -1}" = "/" ] ; then
+		ACTION="mkdir"
+		OPERATOR="-d"
+		CMDINPUT="${INPUT:0: -1}"
+	fi
+
+	$ACTION "$CMDINPUT"
+	$DETOX -s $SEQUENCE -f $RC "$CMDINPUT"
+	if [ ! $OPERATOR "$OUTPUT" ] ; then
 		echo renaming "$INPUT" to "$OUTPUT" failed
 		return 1
 	fi
@@ -190,9 +199,18 @@ function test_sequence ()
 
 	cd $WORK
 
-	touch "$INPUT"
-	$DETOX -s $SEQUENCE -f $RC "$INPUT"
-	if [ ! -f "$OUTPUT" ] ; then
+	local ACTION="touch"
+	local OPERATOR="-f"
+	local CMDINPUT="$INPUT"
+	if [ "${INPUT: -1}" = "/" ] ; then
+		ACTION="mkdir"
+		OPERATOR="-d"
+		CMDINPUT="${INPUT:0: -1}"
+	fi
+
+	$ACTION "$CMDINPUT"
+	$DETOX -s $SEQUENCE -f $RC "$CMDINPUT"
+	if [ ! $OPERATOR "$OUTPUT" ] ; then
 		echo renaming "$INPUT" to "$OUTPUT" failed
 		return 1
 	fi
