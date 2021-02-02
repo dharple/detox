@@ -207,43 +207,6 @@ void parse_dir(unsigned char *indir, struct detox_options *options)
 	}
 
 	/*
-	 * Check to see if the directory is supposed to be ignored
-	 */
-
-	strcpy(new_file, indir);
-
-	work = strrchr(new_file, '/');
-	if (work != NULL) {
-		work++;
-		if (*work == '\0') {
-
-			/*
-			 * String ends with /, trim it off
-			 */
-			work--;
-			*work = '\0';
-
-			work = strrchr(new_file, '/');
-
-			if (work != NULL) {
-				work++;
-			}
-			else {
-				work = new_file;
-			}
-		}
-	}
-	else {
-		work = new_file;
-	}
-
-	if (ignore_file(work, options)) {
-		free(new_file);
-		return;
-	}
-	work = NULL;
-
-	/*
 	 * Parse directory
 	 */
 

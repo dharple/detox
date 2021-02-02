@@ -11,6 +11,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Regression tests confirming fixes for previously fixed issues: [#14], [#19].
 
 ### Changed
+- Removed one check for `.` and `..` when traversing a directory tree. [#12]
 - Regenerated config file parser.
 - Updated the safe filter to translate new lines, carriage returns, and tabs
   into underscores. [#9] [#11] [#17]
@@ -152,6 +153,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
 [#14]: https://github.com/dharple/detox/issues/14
+[#12]: https://github.com/dharple/detox/issues/12
 [#11]: https://github.com/dharple/detox/issues/11
 [#9]: https://github.com/dharple/detox/issues/9
 [#6]: https://github.com/dharple/detox/issues/6
