@@ -32,3 +32,19 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 METHOD1=safe-basic
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
+
+# ---------------------------------------------------------------------------
+
+OUTPUT="$INPUT"
+METHOD1=uncgi
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
+
+# ---------------------------------------------------------------------------
+
+OUTPUT="song_name_by_band_"
+METHOD1=uncgi
+METHOD2=safe
+METHOD3=wipeup
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
