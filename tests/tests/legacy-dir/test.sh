@@ -58,7 +58,7 @@ cd $WORK
 
 EXPECTED="1/and_ampersand 2/bar 3/colon 4/,comma 5/octothorpe %percent +plus semi_colon"
 
-for OUTPUT in $EXPECTED ; do 
+for OUTPUT in $EXPECTED ; do
 	if [ ! -f "$OUTPUT" ] ; then
 		echo expected "$OUTPUT" not found
 		exit 1

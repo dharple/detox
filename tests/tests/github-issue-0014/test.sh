@@ -12,7 +12,7 @@ fi
 
 . $TESTBASE/test-functions
 
-# Run the test based on data from 
+# Run the test based on data from
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861537
 
 DETOX=$1

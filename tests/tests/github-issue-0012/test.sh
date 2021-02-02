@@ -28,7 +28,7 @@ EXPECTED="hi_there another_test wow"
 
 $DETOX -r .
 
-for OUTPUT in $EXPECTED ; do 
+for OUTPUT in $EXPECTED ; do
 	if [ ! -f "$OUTPUT" ] ; then
 		echo expected "$OUTPUT" not found
 		exit 1
@@ -45,7 +45,7 @@ cd $TESTBASE
 $DETOX -r $WORK
 cd $WORK
 
-for OUTPUT in $EXPECTED ; do 
+for OUTPUT in $EXPECTED ; do
 	if [ ! -f "$OUTPUT" ] ; then
 		echo expected "$OUTPUT" not found
 		exit 1
@@ -64,7 +64,7 @@ cd $TESTBASE
 $DETOX -r $WORK/confirm.3/..
 cd $WORK/3
 
-for OUTPUT in $EXPECTED ; do 
+for OUTPUT in $EXPECTED ; do
 	if [ ! -f "$OUTPUT" ] ; then
 		echo expected "$OUTPUT" not found
 		exit 1
