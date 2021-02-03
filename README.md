@@ -1,10 +1,11 @@
 [![Build Status](https://travis-ci.com/dharple/detox.svg?branch=master)](https://travis-ci.com/dharple/detox)
 
-# Warning
+# Notice
 
-I am not actively developing this version.  [Version 2] is under development,
-but is not ready for release.  I've created a separate repository because it's
-a total rewrite in a new language.
+I renaming the `master` branch to `main` on or after February 15th, 2021.  If 
+you have a checkout, you can update your checkout to point at the new branch 
+using [these steps](https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9).
+Alternatively, you can check out a fresh copy of the repo.
 
 # Overview
 
@@ -36,5 +37,3 @@ You can also specify recursion (this works best on directories):
 # Contact
 
 Doug Harple <detox.dharple@gmail.com>
-
-[Version 2]: https://github.com/dharple/detox-php
