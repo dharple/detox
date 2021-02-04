@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([detox], [1.3.0], [detox.dharple at gmail.com], [], [https://github.com/dharple/detox])
+AC_INIT([detox], [1.3.2], [detox.dharple at gmail.com], [], [https://github.com/dharple/detox])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
 AC_PROG_CC
