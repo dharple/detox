@@ -16,7 +16,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated the safe filter to translate new lines, carriage returns, and tabs
   into underscores. [#9] [#11] [#17]
 
-## [1.3.3] - 2020-02-23
+## [1.3.3] - 2020-02-03
+### Fixed
 - Fix version identifier in `detox` binary.
 
 ## [1.3.2] - 2020-01-31
@@ -146,7 +147,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/dharple/detox/compare/v1.3.2...master
+[Unreleased]: https://github.com/dharple/detox/compare/v1.3.3...master
+[1.3.3]: https://github.com/dharple/detox/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/dharple/detox/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/dharple/detox/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/dharple/detox/compare/v1.2.1...v1.3.0
