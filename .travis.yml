@@ -24,4 +24,5 @@ install:
 
 script:
   - ./configure && make
+  - src/detox -V
   - tests/test.sh src/detox
