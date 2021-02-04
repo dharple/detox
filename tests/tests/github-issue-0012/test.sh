@@ -14,6 +14,8 @@ fi
 
 DETOX=$1
 
+CONFIGPATH=$(dirname $TESTBASE)/etc
+
 BASE=/tmp/detoxtest/
 if [ ! -d $BASE ] ; then
 	mkdir $BASE
@@ -70,3 +72,19 @@ for OUTPUT in $EXPECTED ; do
 		exit 1
 	fi
 done
+
+# -----
+
+INPUT="4/.gnome/ignore me"
+OUTPUT="$INPUT"
+
+cd $WORK
+mkdir -p 4/.gnome
+touch "$INPUT"
+
+$DETOX -f $CONFIGPATH/detoxrc.sample -r 4/
+
+if [ ! -f "$OUTPUT" ] ; then
+	echo expected "$OUTPUT" not found
+	exit 1
+fi
