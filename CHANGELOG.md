@@ -16,6 +16,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated the safe filter to translate new lines, carriage returns, and tabs
   into underscores. [#9] [#11] [#17]
 
+## [1.3.3] - 2020-02-23
+- Fix version identifier in `detox` binary.
+
 ## [1.3.2] - 2020-01-31
 ### Fixed
 - Table based UTF-8 translation no longer mangles characters. [#14]
