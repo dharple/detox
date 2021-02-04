@@ -1,37 +1,11 @@
 #
-# Copyright (c) Doug Harple.  All rights reserved.
-# 
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are
-# met:
-# 
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in the
-#    documentation and/or other materials provided with the distribution.
-# 
-# 3. Neither the name of author nor the names of its contributors may be
-#    used to endorse or promote products derived from this software
-#    without specific prior written permission.
-# 
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# config file for detox(1)
 # 
 
 #
-# Basically just utf_8
+# Default sequence
 #
+
 sequence default {
 	utf_8;
 	safe;
@@ -42,24 +16,28 @@ sequence default {
 # Sequences meant primarily for detox
 #
 
+# transliterates ISO8859-1 into ASCII
 sequence "iso8859_1" {
 	iso8859_1;
 	safe;
 	wipeup;
 };
 
+# transliterates UTF-8 into ASCII
 sequence "utf_8" {
 	utf_8;
 	safe;
 	wipeup;
 };
 
+# decodes CGI escaped characters
 sequence "uncgi" {
 	uncgi;
 	safe;
 	wipeup;
 };
 
+# converts files to lower case
 sequence "lower" {
 	iso8859_1;
 	safe;
@@ -71,18 +49,22 @@ sequence "lower" {
 # Sequences meant primarily for inline-detox
 #
 
+# transliterates ISO8859-1 to ASCII
 sequence "iso8859_1-only" {
 	iso8859_1;
 };
 
+# transliterates UTF-8 to ASCII
 sequence "utf_8-only" {
 	utf_8;
 };
 
+# decodes CGI escaped characters
 sequence "uncgi-only" {
 	uncgi;
 };
 
+# converts files to lower case
 sequence "lower-only" {
 	lower;
 };
@@ -100,4 +82,3 @@ ignore {
 	filename ".themes";
 	filename "{arch}";
 };
-
