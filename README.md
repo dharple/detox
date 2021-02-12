@@ -36,10 +36,10 @@ You can also specify recursion (this works best on directories):
 
 # Build
 
-To build `detox` from source, run:
+To build a stable copy of `detox` from source, run:
 
 ```
-git clone https://github.com/dharple/detox.git
+git clone -b 1.x https://github.com/dharple/detox.git
 cd detox
 autoreconf --install
 ./configure
