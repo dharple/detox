@@ -1,7 +1,18 @@
 # Thanks
 
-Thank you to Quentin Guittard for fixing an issue with detox generating invalid
-UTF-8 characters when no default mapping table is set.
+*If I missed you, please let me know!*
+
+Daniel Hauck for letting me know that passing `.` as an argument was not
+working.
+
+Kanliot and Tyler Adams for reporting on issues with newlines and spaces
+causing problems.
+
+Thank you to Vasily Kolobkov, Zenaan Harkness, Quentin Guittard, Joao Eriberto
+Mota Filho, and Andrew Berezovskyi for the fix addressing the issue with detox
+generating malformed characters during a translation.
+
+Sanjaymsh added the PowerPC architecture to the Travis tests.
 
 Special thanks to Patrick Schoenfeld and Joao Eriberto Mota Filho, for
 maintaining the Debian version.  Release v1.2.1 is almost entirely comprised of
@@ -19,7 +30,7 @@ Lou Alfonso for suggesting that the safe filter be controlled through a
 table so that it can be tuned easily.
 
 Christoph Wegscheider noticed that the install script was installing
-everything 755, for pointing out that not everyone has lex or yacc, and for
+everything 0755, for pointing out that not everyone has lex or yacc, and for
 his input on how umlauts should be converted.
 
 Gerg Thor informed me that characters on the PowerPC platform are unsigned
@@ -34,8 +45,6 @@ certain files from being translated.
 
 rsnemmen from sourceforge.net pointed out a bug in the way directories are
 handled when passed in from the command line.
-
-sanjaymsh on github.com added PowerPC to the Travis tests.
 
 # Additional Thanks
 
