@@ -42,7 +42,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Remove `detox_path.h`, in favor of command line defines. [#1]
 - Removed `libpopt` support. [#2]
 - Fixed the way `inline-detox` is generated. [#6]
-- Merged `parse_option_*.[ch]` and `file*.[ch]`. [#1, #2, #6]
+- Merged `parse_option_*.[ch]` and `file*.[ch]`. [#1], [#2], [#6]
 - Added `--inline` as an option to `detox`, to enable inline mode on the main
   binary. [#6]
 
@@ -160,6 +160,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#30]: https://github.com/dharple/detox/issues/30
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
 [#14]: https://github.com/dharple/detox/issues/14
