@@ -2,6 +2,8 @@
 
 *If I missed you, please let me know!*
 
+Mplx let me know that `detox.1` had a typo in the examples.
+
 Daniel Hauck for letting me know that passing `.` as an argument was not
 working.
 

@@ -16,6 +16,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated the safe filter to translate new lines, carriage returns, and tabs
   into underscores. [#9] [#11] [#17]
 
+### Fixed
+- The examples in `detox.1` no longer say `-c` when they mean `-f`. [#30]
+- The command synopsis in `detox.1` and `inline-detox.1` no longer adds a dash
+  before the `sequence` and `configfile`. [#30]
+
 ## [1.3.3] - 2020-02-03
 ### Fixed
 - Fix version identifier in `detox` binary.

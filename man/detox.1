@@ -15,8 +15,8 @@
 .Sh SYNOPSIS
 .Nm
 .Op Fl hnLrv
-.Op Fl s sequence
-.Op Fl f configfile
+.Op Fl s Ar sequence
+.Op Fl f Ar configfile
 .Op Fl -dry-run
 .Op Fl -special
 .Ar
@@ -111,7 +111,7 @@ Will run the sequence
 recursively, listing any changes, without changing anything, on the
 files of
 .Pa /tmp/new_files .
-.It Nm Fl c Ar my_detoxrc Fl L Fl v
+.It Nm Fl f Ar my_detoxrc Fl L Fl v
 Will list the sequences within
 .Ar my_detoxrc ,
 showing their filters and options.
