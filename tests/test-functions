@@ -110,7 +110,7 @@ function test_sequence ()
 	fi
 
 	if [ ! -d "$TABLEPATH" ] ; then
-		echo $TABLEPATH is not a file
+		echo $TABLEPATH is not a dir
 		return 1
 	fi
 
