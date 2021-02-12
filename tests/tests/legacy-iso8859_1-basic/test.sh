@@ -12,8 +12,8 @@ fi
 
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
-METHOD1=iso8859_1
-METHOD2=safe
+METHOD1=iso8859_1-basic
+METHOD2=safe-basic
 METHOD3=wipeup
 
 # ---------------------------------------------------------------------------
