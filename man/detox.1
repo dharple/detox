@@ -6,7 +6,7 @@
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
 .\" 
-.Dd February 11, 2021
+.Dd February 12, 2021
 .Dt DETOX 1
 .Os
 .Sh NAME
@@ -14,12 +14,21 @@
 .Nd clean up filenames
 .Sh SYNOPSIS
 .Nm
-.Op Fl hnLrv
-.Op Fl s Ar sequence
 .Op Fl f Ar configfile
-.Op Fl -dry-run
+.Op Fl n | -dry-run
+.Op Fl r
+.Op Fl s Ar sequence
 .Op Fl -special
+.Op Fl v
 .Ar
+.Nm
+.Op Fl L
+.Op Fl f Ar configfile
+.Op Fl v
+.Nm
+.Op Fl h | -help
+.Nm
+.Op Fl V
 .Sh DESCRIPTION
 The
 .Nm
@@ -46,14 +55,14 @@ Use
 .Ar configfile 
 instead of the default configuration files for loading translation
 sequences.  No other config file will be parsed.
-.It Fl h -help
+.It Fl h , -help
 Display helpful information.
 .It Fl L
 List the currently available sequences.  When paired with
 .Fl v
 this option shows what filters are used in each sequence and any
 properties applied to the filters.
-.It Fl n -dry-run
+.It Fl n , -dry-run
 Doesn't actually change anything.  This implies the
 .Fl v
 option.
@@ -121,7 +130,7 @@ showing their filters and options.
 .Xr detoxrc 5 ,
 .Xr detox.tbl 5 .
 .Sh HISTORY
-.Nm 
+.Nm
 was originally designed to clean up files that I had received from
 friends which had been created using other operating systems.  It's
 trivial to create a filename with spaces, parenthesis, brackets, and
@@ -133,7 +142,7 @@ to clean up these files.
 .Sh AUTHORS
 .Nm
 was written by
-.An "Doug Harple" .
+.An Doug Harple .
 .Sh BUGS
 If, after the translation of a filename is finished, a file already
 exists with that same name,
