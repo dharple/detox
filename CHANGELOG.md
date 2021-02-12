@@ -5,7 +5,7 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.4.0]
+## [1.4.0] - 2021-02-11
 ### Added
 - Regression tests for basic functionality, based on old custom scripts.
 - Regression tests confirming fixes for previously fixed issues: [#14], [#19].
@@ -21,11 +21,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The command synopsis in `detox.1` and `inline-detox.1` no longer adds a dash
   before the `sequence` and `configfile`. [#30]
 
-## [1.3.3] - 2020-02-03
+## [1.3.3] - 2021-02-03
 ### Fixed
 - Fix version identifier in `detox` binary.
 
-## [1.3.2] - 2020-01-31
+## [1.3.2] - 2021-01-31
 ### Fixed
 - Table based UTF-8 translation no longer mangles characters. [#14]
 
