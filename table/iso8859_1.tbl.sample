@@ -9,6 +9,12 @@
 # Special thanks to: http://www.bbsinc.com/iso8859.html
 # 
 
+#
+# This file transliterates upper 8-bit characters encoded in ISO8859-1 into
+# ASCII.  It's meant to be used with the iso8859_1 filter, which selects for
+# characters between 0x80 and 0xFF.
+#
+
 default		_
 start
 
@@ -128,4 +134,3 @@ start		de
 0xFC		ue	# LATIN SMALL LETTER U WITH UMLAUT 
 
 end
-

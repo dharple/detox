@@ -1,13 +1,14 @@
 #
 # config file for detox(1)
+#
+# Remove problematic characters.
 # 
 
 #
-# Default sequence
+# Default sequence.
 #
 
 sequence default {
-	utf_8;
 	safe;
 	wipeup;
 };
@@ -39,7 +40,6 @@ sequence "uncgi" {
 
 # converts files to lower case
 sequence "lower" {
-	iso8859_1;
 	safe;
 	lower;
 	wipeup;

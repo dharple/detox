@@ -7,6 +7,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Changed
+- BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
+  the old behavior, use `detox -s utf_8`. [#21]
 - Converted unsigned char strings to char strings, which broken iso8859-1
   processing.  Updated iso8859-1 processing so that it works as before.
   Updated CFLAGS to catch any issues that arise in the future. [#31]
@@ -186,6 +188,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30
 [#24]: https://github.com/dharple/detox/issues/24
+[#21]: https://github.com/dharple/detox/issues/21
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
 [#14]: https://github.com/dharple/detox/issues/14

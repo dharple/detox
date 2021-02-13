@@ -49,10 +49,10 @@ struct detox_parse_results *spoof_config_file(struct detox_options *main_options
 	memset(sequences, 0, sizeof(struct detox_sequence_list));
 
 	sequences->name = strdup("default");
-	sequences->source_filename = strdup("inside the beast");
+	sequences->source_filename = strdup("built-in config file");
 
 	/*
-	 * Step 1 - ISO8859_1
+	 * Step 1 - Safe
 	 */
 
 	sequences->head = malloc(sizeof(struct detox_sequence_entry));
@@ -64,25 +64,10 @@ struct detox_parse_results *spoof_config_file(struct detox_options *main_options
 	work = sequences->head;
 	memset(work, 0, sizeof(struct detox_sequence_entry));
 
-	work->cleaner = &clean_iso8859_1;
-
-	/*
-	 * Step 2 - Safe
-	 */
-
-	work->next = malloc(sizeof(struct detox_sequence_entry));
-	if (work->next == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
-
-	work = work->next;
-	memset(work, 0, sizeof(struct detox_sequence_entry));
-
 	work->cleaner = &clean_safe;
 
 	/*
-	 * Step 3 - Wipe Up
+	 * Step 2 - Wipe Up
 	 */
 
 	work->next = malloc(sizeof(struct detox_sequence_entry));

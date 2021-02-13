@@ -144,9 +144,6 @@ char *clean_iso8859_1(char *s, void *opts)
  * Cleans up any unsafe characters.
  *
  * The rules are:
- *   Leave alone:
- *     - # ~ % ^ _ , . + =
- *
  *   Translate:
  *     &  into  _and_
  *
@@ -156,6 +153,7 @@ char *clean_iso8859_1(char *s, void *opts)
  *   Replace with -:
  *     ( ) [ ] { }
  *
+ * All other characters are left alone.
  */
 char *clean_safe_basic(char *s, void *opts)
 {
@@ -175,25 +173,7 @@ char *clean_safe_basic(char *s, void *opts)
 	output_walk = output;
 
 	while (*input_walk != '\0') {
-		if (isalnum(*input_walk)) {
-			*output_walk++ = *input_walk++;
-			continue;
-		}
-
 		switch (*input_walk) {
-			case '-':
-			case '#':
-			case '~':
-			case '%':
-			case '^':
-			case '_':
-			case ',':
-			case '.':
-			case '+':
-			case '=':
-				*output_walk++ = *input_walk;
-				break;
-
 			case '&':
 				*output_walk++ = '_';
 				*output_walk++ = 'a';
@@ -232,6 +212,10 @@ char *clean_safe_basic(char *s, void *opts)
 			case '}':
 				*output_walk++ = '-';
 				break;
+
+			default:
+				*output_walk++ = *input_walk;
+				break;
 		}
 
 		input_walk++;
@@ -244,7 +228,7 @@ char *clean_safe_basic(char *s, void *opts)
 
 
 /*
- * Translates unsafe characters
+ * Translates unsafe characters using a translation table.
  */
 char *clean_safe(char *s, void *opts)
 {
