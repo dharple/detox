@@ -1,10 +1,9 @@
+#
 # References and reasons for compiler flags:
 #
 # https://github.com/dharple/detox/issues/31
 # https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html
-# https://www.keil.com/support/man/docs/armclang_ref/armclang_ref_cjh1548250046139.htm
-# https://developers.redhat.com/blog/2020/05/22/stack-clash-mitigation-in-gcc-part-3/
-# https://gcc.gnu.org/onlinedocs/gccint/LTO-Overview.html
+# https://access.redhat.com/blogs/766093/posts/1976213
 #
 
 AM_CFLAGS = \
@@ -14,10 +13,11 @@ AM_CFLAGS = \
 	-DYY_NO_UNPUT \
 	-D_FORTIFY_SOURCE=2 \
 	-Wall \
-	-Werror=return-type \
-	-flto=auto \
-	-fstack-clash-protection \
-	-fstack-protector-strong
+	-Werror
+
+#
+#
+#
 
 AM_YFLAGS = -d
 

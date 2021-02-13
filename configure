@@ -3789,6 +3789,122 @@ fi
 done
 
 
+#
+# References and reasons for compiler flags:
+#
+# https://github.com/klange/prboom/blob/master/autotools/ac_c_compile_flags.m4
+# https://github.com/dharple/detox/issues/31
+# https://www.keil.com/support/man/docs/armclang_ref/armclang_ref_cjh1548250046139.htm
+# https://developers.redhat.com/blog/2020/05/22/stack-clash-mitigation-in-gcc-part-3/
+# https://gcc.gnu.org/onlinedocs/gccint/LTO-Overview.html
+#
+
+
+
+
+	HOLD="$CFLAGS"
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports -flto=auto" >&5
+$as_echo_n "checking whether compiler supports -flto=auto... " >&6; }
+	CFLAGS="$HOLD -flto=auto"
+	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+
+			HOLD="$CFLAGS"
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+else
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+	CFLAGS="$HOLD"
+
+
+	HOLD="$CFLAGS"
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports -fstack-clash-protection" >&5
+$as_echo_n "checking whether compiler supports -fstack-clash-protection... " >&6; }
+	CFLAGS="$HOLD -fstack-clash-protection"
+	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+
+			HOLD="$CFLAGS"
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+else
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+	CFLAGS="$HOLD"
+
+
+	HOLD="$CFLAGS"
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether compiler supports -fstack-protector-strong" >&5
+$as_echo_n "checking whether compiler supports -fstack-protector-strong... " >&6; }
+	CFLAGS="$HOLD -fstack-protector-strong"
+	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+
+			HOLD="$CFLAGS"
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+else
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+	CFLAGS="$HOLD"
+
+
+#
+#
+#
+
 ac_config_headers="$ac_config_headers src/config.h"
 
 ac_config_files="$ac_config_files Makefile src/Makefile"
