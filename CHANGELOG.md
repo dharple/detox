@@ -16,6 +16,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - src/Makefile.am no longer deletes src/config_file.h when `make
   maintainer-clean` is run.
 
+### Security
+- Added additional compiler protection flags, based on the openSUSE build from
+  [#31].
+
 ## [1.4.0] - 2021-02-11
 ### Added
 - Regression tests for basic functionality, based on old custom scripts.

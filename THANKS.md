@@ -2,6 +2,10 @@
 
 *If I missed you, please let me know!*
 
+Hans-Peter Jansen gave me the impetus I needed to finally fix the char /
+unsigned char differences throughout the code.  Also, he provided a list of
+security-based compiler flags.
+
 Mplx let me know that `detox.1` had a typo in the examples.
 
 Daniel Hauck for letting me know that passing `.` as an argument was not

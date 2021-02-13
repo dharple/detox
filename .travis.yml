@@ -2,18 +2,32 @@ language: c
 
 os: linux
 
-dist: bionic
-
 jobs:
   include:
     - arch: amd64
       compiler: gcc
+      dist: bionic
     - arch: ppc64le
       compiler: gcc
+      dist: bionic
     - arch: arm64
       compiler: gcc
+      dist: bionic
     - arch: amd64
       compiler: clang
+      dist: bionic
+    - arch: amd64
+      compiler: gcc
+      dist: focal
+    - arch: amd64
+      compiler: gcc
+      dist: xenial
+    - arch: amd64
+      compiler: gcc
+      dist: trusty
+    - arch: amd64
+      compiler: gcc
+      dist: precise
 
 env:
   global:
