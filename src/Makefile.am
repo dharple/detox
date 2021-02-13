@@ -26,11 +26,11 @@ bin_PROGRAMS = \
 	inline-detox
 
 detox_SOURCES = \
+	config_file_yacc.y \
+	config_file_lex.l \
 	clean_string.c \
 	config_file_dump.c \
-	config_file_lex.l \
 	config_file_spoof.c \
-	config_file_yacc.y \
 	detox.c \
 	file.c \
 	parse_options.c \
