@@ -13,6 +13,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   Updated CFLAGS to catch any issues that arise in the future. [#31]
 
 ### Fixed
+- Minor issues discovered by `cppcheck` and `sparse`.
 - src/Makefile.am no longer deletes src/config_file.h when `make
   maintainer-clean` is run.
 
