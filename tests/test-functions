@@ -4,6 +4,18 @@
 #
 
 ##
+# Realpath polyfill for systems where it doesn't exist
+#
+# @param $1 Path to examine
+#
+if [ ! -x "$(command -v realpath)" ] ; then
+	function realpath()
+	{
+		readlink -f $1
+	}
+fi
+
+##
 # Executes a single test against a single function using a single table.
 #
 # @param $1 Detox Executable

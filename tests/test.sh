@@ -8,8 +8,10 @@ if [ -z $1 ] ; then
 	exit 1
 fi
 
+. $(dirname $0)/test-functions
+
 DETOX=$(realpath $1)
-if [ ! -x $DETOX ] ; then
+if [ ! -x "$DETOX" ] ; then
 	echo cannot find detox at $1
 	exit 1
 fi
