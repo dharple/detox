@@ -80,12 +80,15 @@ struct translation_table *parse_table(char *filename)
 	work = malloc(1024);
 	if (work == NULL) {
 		fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
+		fclose(ttable_file);
 		return NULL;
 	}
 
 	parsed = malloc(1024);
 	if (parsed == NULL) {
 		fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
+		fclose(ttable_file);
+		free(work);
 		return NULL;
 	}
 
