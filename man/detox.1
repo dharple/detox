@@ -6,7 +6,7 @@
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
 .\" 
-.Dd February 12, 2021
+.Dd February 13, 2021
 .Dt DETOX 1
 .Os
 .Sh NAME
@@ -143,7 +143,7 @@ to clean up these files.
 .Nm
 was written by
 .An Doug Harple .
-.Sh BUGS
+.Sh CAVEATS
 If, after the translation of a filename is finished, a file already
 exists with that same name,
 .Nm
@@ -151,8 +151,3 @@ will not rename the file.  This could cause a problem with the
 .Cm max_length
 filter, if it was imperative that the files be cut down to a certain
 length.
-.Pp
-Long options don't work under Solaris or Darwin.
-.Pp
-An error in the config file will cause a segfault as it's going to
-print the offending word within the config file.

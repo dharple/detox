@@ -11,6 +11,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Converted unsigned char strings to char strings, which broken iso8859-1
   processing.  Updated iso8859-1 processing so that it works as before.
   Updated CFLAGS to catch any issues that arise in the future. [#31]
+- Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
+  [#37]
 
 ### Fixed
 - Minor issues discovered by `cppcheck` and `sparse`.
@@ -177,6 +179,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#37]: https://github.com/dharple/detox/issues/37
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30
 [#19]: https://github.com/dharple/detox/issues/19
