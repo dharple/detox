@@ -33,7 +33,9 @@
 *.su
 
 # Maintainer files
+*.orig
 *.patch
+*.rej
 *~
 .idea
 aclocal.m4
