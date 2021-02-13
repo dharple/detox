@@ -28,7 +28,6 @@
 enum {
 	LONG_OPTION_DRY_RUN = 1,
 	LONG_OPTION_INLINE,
-	LONG_OPTION_REMOVE_TRAILING,
 	LONG_OPTION_SPECIAL
 };
 
@@ -47,9 +46,6 @@ static struct option longopts[] = {
 	/* long options without */
 	{"inline", no_argument, &long_option, LONG_OPTION_INLINE},
 	{"special", no_argument, &long_option, LONG_OPTION_SPECIAL},
-
-	/* deprecated long opts without */
-	{"remove-trailing", no_argument, &long_option, LONG_OPTION_REMOVE_TRAILING},
 
 	/* done */
 	{NULL, 0, NULL, 0}
@@ -86,10 +82,6 @@ char help_message[] = {
 	"	-n 		do a dry run (don't actually do anything)\n"
 #endif
 	"	-r 		be recursive (descend into subdirectories)\n"
-#ifdef HAVE_GETOPT_LONG
-	"	--remove-trailing (deprecated)\n"
-	"			remove trailing _ and - before a period\n"
-#endif
 	"	-s sequence	choose which sequence to detox with\n"
 #ifdef HAVE_GETOPT_LONG
 	"	--special	work on links and special files\n"
@@ -111,10 +103,6 @@ char help_message_inline[] = {
 #endif
 	"	-L		list available sequences and exit\n"
 	"			with -v ... dump sequence contents\n"
-#ifdef HAVE_GETOPT_LONG
-	"	--remove-trailing (deprecated)\n"
-	"			remove trailing _ and - before a period\n"
-#endif
 	"	-s sequence	choose which sequence to detox with\n"
 	"	-v 		be verbose\n"
 	"	-V 		show the current version\n"
@@ -218,10 +206,6 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
 				switch (long_option) {
 					case LONG_OPTION_INLINE:
 						main_options->is_inline_mode = 1;
-						break;
-
-					case LONG_OPTION_REMOVE_TRAILING:
-						main_options->remove_trailing = 1;
 						break;
 
 					case LONG_OPTION_SPECIAL:

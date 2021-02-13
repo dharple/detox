@@ -137,29 +137,11 @@ safe: SAFE { cf_append_sequence_entry(&clean_safe, NULL); }
 	;
 
 wipeup:	WIPEUP { 
-		if (current_options->remove_trailing) {
-			csopts = malloc(sizeof(struct clean_string_options));
-			memset(csopts, 0, sizeof(struct clean_string_options));
-			csopts->remove_trailing = 1;
-		}
-		else {
-			csopts = NULL;
-		}
-
-		cf_append_sequence_entry(&clean_wipeup, csopts);
+		cf_append_sequence_entry(&clean_wipeup, NULL);
 	}
 	|
 	WIPEUP OPEN CLOSE { 
-		if (current_options->remove_trailing) {
-			csopts = malloc(sizeof(struct clean_string_options));
-			memset(csopts, 0, sizeof(struct clean_string_options));
-			csopts->remove_trailing = 1;
-		}
-		else {
-			csopts = NULL;
-		}
-
-		cf_append_sequence_entry(&clean_wipeup, csopts);
+		cf_append_sequence_entry(&clean_wipeup, NULL);
 	}
 	|
 	WIPEUP OPEN REMOVE_TRAILING EOL CLOSE {

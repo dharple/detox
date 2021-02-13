@@ -82,22 +82,6 @@ Be verbose about which files are being renamed.
 Show the current version of
 .Nm .
 .El
-.Ss Deprecated Options
-Deprecated Options are options that were available in earlier versions
-of
-.Nm
-but have lost their meaning and are being phased out.
-.Bl -tag -width Fl
-.It Fl -remove-trailing
-Removes _ and - after .'s in filenames.  This was first provided in
-the 0.9 series of 
-.Nm .
-After the introduction of sequences, it lost its meaning, as you could
-now determine the properties of wipeup through a particular sequence's
-configuration.  It presently forces all instances of the wipeup filter
-to use remove trailing, regardless of what's actually in the config
-files.
-.El
 .Sh FILES
 .Bl -tag -width iso8859_1.tbl -compact
 .It Pa detoxrc

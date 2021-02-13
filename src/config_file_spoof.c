@@ -97,24 +97,6 @@ struct detox_parse_results *spoof_config_file(struct detox_options *main_options
 	work->cleaner = &clean_wipeup;
 
 	/*
-	 * Deprecated
-	 */
-	if (main_options->remove_trailing) {
-		static struct clean_string_options *csopts;
-
-		csopts = malloc(sizeof(struct clean_string_options));
-		if (csopts == NULL) {
-			fprintf(stderr, "out of memory: %s\n", strerror(errno));
-			exit(EXIT_FAILURE);
-		}
-
-		memset(csopts, 0, sizeof(struct clean_string_options));
-		csopts->remove_trailing = 1;
-
-		work->options = csopts;
-	}
-
-	/*
 	 *
 	 */
 

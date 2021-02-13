@@ -586,9 +586,9 @@ static const yytype_uint8 yyrline[] =
 {
        0,    62,    62,    64,    67,    69,    72,    75,    78,    81,
       82,    85,    87,    89,    91,    93,    95,    97,   100,   102,
-     104,   113,   115,   117,   126,   128,   130,   139,   152,   165,
-     174,   176,   178,   187,   190,   193,   196,   197,   200,   205,
-     207
+     104,   113,   115,   117,   126,   128,   130,   139,   143,   147,
+     156,   158,   160,   169,   172,   175,   178,   179,   182,   187,
+     189
 };
 #endif
 
@@ -1523,39 +1523,21 @@ yyreduce:
   case 27:
 #line 139 "config_file_yacc.y"
                { 
-		if (current_options->remove_trailing) {
-			csopts = malloc(sizeof(struct clean_string_options));
-			memset(csopts, 0, sizeof(struct clean_string_options));
-			csopts->remove_trailing = 1;
-		}
-		else {
-			csopts = NULL;
-		}
-
-		cf_append_sequence_entry(&clean_wipeup, csopts);
+		cf_append_sequence_entry(&clean_wipeup, NULL);
 	}
-#line 1538 "config_file_yacc.c"
+#line 1529 "config_file_yacc.c"
     break;
 
   case 28:
-#line 152 "config_file_yacc.y"
+#line 143 "config_file_yacc.y"
                           { 
-		if (current_options->remove_trailing) {
-			csopts = malloc(sizeof(struct clean_string_options));
-			memset(csopts, 0, sizeof(struct clean_string_options));
-			csopts->remove_trailing = 1;
-		}
-		else {
-			csopts = NULL;
-		}
-
-		cf_append_sequence_entry(&clean_wipeup, csopts);
+		cf_append_sequence_entry(&clean_wipeup, NULL);
 	}
-#line 1555 "config_file_yacc.c"
+#line 1537 "config_file_yacc.c"
     break;
 
   case 29:
-#line 165 "config_file_yacc.y"
+#line 147 "config_file_yacc.y"
                                               {
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1563,23 +1545,23 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_wipeup, csopts);
 	}
-#line 1567 "config_file_yacc.c"
+#line 1549 "config_file_yacc.c"
     break;
 
   case 30:
-#line 174 "config_file_yacc.y"
+#line 156 "config_file_yacc.y"
                         { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1573 "config_file_yacc.c"
+#line 1555 "config_file_yacc.c"
     break;
 
   case 31:
-#line 176 "config_file_yacc.y"
+#line 158 "config_file_yacc.y"
                               { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1579 "config_file_yacc.c"
+#line 1561 "config_file_yacc.c"
     break;
 
   case 32:
-#line 178 "config_file_yacc.y"
+#line 160 "config_file_yacc.y"
                                                 {
 		csopts = malloc(sizeof(struct clean_string_options));
 		memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1587,31 +1569,31 @@ yyreduce:
 
 		cf_append_sequence_entry(&clean_max_length, csopts);
 	}
-#line 1591 "config_file_yacc.c"
+#line 1573 "config_file_yacc.c"
     break;
 
   case 38:
-#line 200 "config_file_yacc.y"
+#line 182 "config_file_yacc.y"
                                      {
 		cf_append_ignore_entry(FILENAME, (yyvsp[-1].string));
 	}
-#line 1599 "config_file_yacc.c"
+#line 1581 "config_file_yacc.c"
     break;
 
   case 39:
-#line 205 "config_file_yacc.y"
+#line 187 "config_file_yacc.y"
                                 { (yyval.string) = (yyvsp[0].string); }
-#line 1605 "config_file_yacc.c"
+#line 1587 "config_file_yacc.c"
     break;
 
   case 40:
-#line 207 "config_file_yacc.y"
+#line 189 "config_file_yacc.y"
                                 { (yyval.string) = (yyvsp[0].string); }
-#line 1611 "config_file_yacc.c"
+#line 1593 "config_file_yacc.c"
     break;
 
 
-#line 1615 "config_file_yacc.c"
+#line 1597 "config_file_yacc.c"
 
       default: break;
     }
@@ -1843,7 +1825,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 210 "config_file_yacc.y"
+#line 192 "config_file_yacc.y"
 
 
 extern FILE *yyin;

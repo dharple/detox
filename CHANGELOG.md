@@ -6,13 +6,16 @@ For releases after 1.3.0, the format is based on
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
 ### Changed
 - Converted unsigned char strings to char strings, which broken iso8859-1
   processing.  Updated iso8859-1 processing so that it works as before.
   Updated CFLAGS to catch any issues that arise in the future. [#31]
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
+
+## Removed
+- The command line option `--remove-trailing` is now removed.  Use the sequence
+  `wipeup { remove_trailing; };` instead. [#24]
 
 ### Fixed
 - Minor issues discovered by `cppcheck` and `sparse`.
@@ -182,6 +185,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#37]: https://github.com/dharple/detox/issues/37
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30
+[#24]: https://github.com/dharple/detox/issues/24
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
 [#14]: https://github.com/dharple/detox/issues/14

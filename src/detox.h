@@ -62,7 +62,6 @@ struct detox_options {
 	int is_inline_mode;
 	int list_sequences;
 	int recurse;
-	int remove_trailing;
 	int special;
 	int verbose;
 
