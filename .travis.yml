@@ -2,32 +2,30 @@ language: c
 
 os: linux
 
+dist: focal
+
 jobs:
   include:
+    # test gcc across architectures on file default (focal)
     - arch: amd64
       compiler: gcc
-      dist: bionic
     - arch: ppc64le
       compiler: gcc
-      dist: bionic
     - arch: arm64
       compiler: gcc
-      dist: bionic
+    # test clang on amd6 on file default (focal)
     - arch: amd64
       compiler: clang
-      dist: bionic
+    # test gcc on amd64 acrosss older versions
     - arch: amd64
       compiler: gcc
-      dist: focal
+      dist: bionic
     - arch: amd64
       compiler: gcc
       dist: xenial
     - arch: amd64
       compiler: gcc
       dist: trusty
-    - arch: amd64
-      compiler: gcc
-      dist: precise
 
 env:
   global:
