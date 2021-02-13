@@ -2,6 +2,9 @@
 
 *If I missed you, please let me know!*
 
+K Lange's awesome AC_C_COMPILE_FLAGS macro helped me write my own, updated
+version of the same feature.
+
 Hans-Peter Jansen gave me the impetus I needed to finally fix the char /
 unsigned char differences throughout the code.  Also, he provided a list of
 security-based compiler flags.
