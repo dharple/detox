@@ -32,15 +32,15 @@ static char badfiles[3][30] = {
 /*
  * Internal function declarations
  */
-static int ignore_file(unsigned char *filename, struct detox_options *options);
+static int ignore_file(char *filename, struct detox_options *options);
 
 /*
  * Renames file to a safe filename.
  */
-unsigned char *parse_file(unsigned char *filename, struct detox_options *options)
+char *parse_file(char *filename, struct detox_options *options)
 {
-	unsigned char *old_filename, *old_filename_ptr, *new_filename;
-	unsigned char *work, *hold;
+	char *old_filename, *old_filename_ptr, *new_filename;
+	char *work, *hold;
 
 	struct stat stat_info_old;
 	struct stat stat_info_new;
@@ -157,9 +157,9 @@ unsigned char *parse_file(unsigned char *filename, struct detox_options *options
 /*
  * Handles directory.
  */
-void parse_dir(unsigned char *indir, struct detox_options *options)
+void parse_dir(char *indir, struct detox_options *options)
 {
-	unsigned char *new_file, *work;
+	char *new_file, *work;
 	DIR *dir_handle;
 	struct dirent *dir_entry;
 	struct stat stat_info;
@@ -177,7 +177,7 @@ void parse_dir(unsigned char *indir, struct detox_options *options)
 	}
 
 	new_file_length = strlen(indir) + 1024;
-	new_file = (char *)malloc(new_file_length);
+	new_file = malloc(new_file_length);
 	if (new_file == NULL) {
 		fprintf(stderr, "out of memory: %s\n", strerror(errno));
 		return;
@@ -230,7 +230,7 @@ void parse_dir(unsigned char *indir, struct detox_options *options)
 /*
  * Handles a special file.
  */
-void parse_special(unsigned char *in, struct detox_options *options)
+void parse_special(char *in, struct detox_options *options)
 {
 	struct stat stat_info;
 	char *new_file, *work;
@@ -287,7 +287,7 @@ void parse_special(unsigned char *in, struct detox_options *options)
 /*
  * Determines if the file should be ignored
  */
-static int ignore_file(unsigned char *filename, struct detox_options *options)
+static int ignore_file(char *filename, struct detox_options *options)
 {
 	struct detox_ignore_entry *ignore_walk;
 	int x;
@@ -312,11 +312,11 @@ static int ignore_file(unsigned char *filename, struct detox_options *options)
 /*
  * Renames file to a safe filename.
  */
-void parse_inline(unsigned char *filename, struct detox_options *options)
+void parse_inline(char *filename, struct detox_options *options)
 {
 	struct detox_sequence_entry *sequence;
 	FILE *fp;
-	unsigned char *base, *work, *hold;
+	char *base, *work, *hold;
 	size_t buf_size;
 
 	if (filename != NULL) {

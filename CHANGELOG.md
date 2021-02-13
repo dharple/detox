@@ -7,6 +7,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+- Converted unsigned char strings to char strings, which broken iso8859-1
+  processing.  Updated iso8859-1 processing so that it works as before.
+  Updated CFLAGS to catch any issues that arise in the future. [#31]
+
+### Fixed
+- src/Makefile.am no longer deletes src/config_file.h when `make
+  maintainer-clean` is run.
+
 ## [1.4.0] - 2021-02-11
 ### Added
 - Regression tests for basic functionality, based on old custom scripts.
@@ -163,6 +172,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17

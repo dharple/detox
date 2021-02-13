@@ -19,15 +19,15 @@ struct clean_string_options {
 	void *translation_table;
 };
 
-extern unsigned char *clean_iso8859_1_basic(unsigned char *s, void *options);
-extern unsigned char *clean_iso8859_1(unsigned char *s, void *options);
-extern unsigned char *clean_safe_basic(unsigned char *s, void *options);
-extern unsigned char *clean_safe(unsigned char *s, void *options);
-extern unsigned char *clean_uncgi(unsigned char *s, void *options);
-extern unsigned char *clean_wipeup(unsigned char *s, void *options);
-extern unsigned char *clean_utf_8_basic(unsigned char *s, void *options);
-extern unsigned char *clean_utf_8(unsigned char *s, void *options);
-extern unsigned char *clean_max_length(unsigned char *s, void *opts);
-extern unsigned char *clean_lower(unsigned char *s, void *opts);
+extern char *clean_iso8859_1_basic(char *s, void *options);
+extern char *clean_iso8859_1(char *s, void *options);
+extern char *clean_safe_basic(char *s, void *options);
+extern char *clean_safe(char *s, void *options);
+extern char *clean_uncgi(char *s, void *options);
+extern char *clean_wipeup(char *s, void *options);
+extern char *clean_utf_8_basic(char *s, void *options);
+extern char *clean_utf_8(char *s, void *options);
+extern char *clean_max_length(char *s, void *opts);
+extern char *clean_lower(char *s, void *opts);
 
 #endif				/* __CLEAN_STRING_H */

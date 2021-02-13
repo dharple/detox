@@ -12,12 +12,12 @@
 
 #include "detox.h"
 
-extern unsigned char *parse_file(unsigned char *filename, struct detox_options *options);
+extern char *parse_file(char *filename, struct detox_options *options);
 
-extern void parse_dir(unsigned char *indir, struct detox_options *options);
+extern void parse_dir(char *indir, struct detox_options *options);
 
-extern void parse_special(unsigned char *in, struct detox_options *options);
+extern void parse_special(char *in, struct detox_options *options);
 
-extern void parse_inline(unsigned char *filename, struct detox_options *options);
+extern void parse_inline(char *filename, struct detox_options *options);
 
 #endif				/* __FILE_H */

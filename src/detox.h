@@ -32,7 +32,7 @@ struct detox_sequence_list {
 struct detox_sequence_entry {
 	struct detox_sequence_entry *next;
 
-	unsigned char *(*cleaner) (unsigned char *str, void *options);
+	char *(*cleaner) (char *str, void *options);
 	void *options;
 };
 
@@ -42,7 +42,7 @@ struct detox_sequence_entry {
 struct detox_ignore_entry {
 	struct detox_ignore_entry *next;
 
-	unsigned char *filename;
+	char *filename;
 };
 
 /*

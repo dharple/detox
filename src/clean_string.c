@@ -26,14 +26,16 @@
 #include "parse_table.h"
 #include "table.h"
 
+#define ISO8859_1_UPPER_BIT 0x80
+#define ISO8859_LOWER_BITS  0x7f
 
 /*
  * Translates ISO8859.1 characters (Latin-1) into lower ASCII characters.
  */
-unsigned char *clean_iso8859_1_basic(unsigned char *s, void *opts)
+char *clean_iso8859_1_basic(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk, *replace_walk;
-	int replace_pos;
+	char *output, *input_walk, *output_walk, *replace_walk;
+	int new_value;
 
 	if (s == NULL) {
 		return NULL;
@@ -49,18 +51,20 @@ unsigned char *clean_iso8859_1_basic(unsigned char *s, void *opts)
 	output_walk = output;
 
 	while (*input_walk != '\0') {
-		if (*input_walk >= ISO8859_1_OFFSET) {
-			replace_pos = *input_walk - ISO8859_1_OFFSET;
-			replace_walk = (unsigned char *)&iso8859_1_trans[replace_pos];
-
-			while (*replace_walk != '\0') {
-				*output_walk++ = *replace_walk++;
-			}
-			input_walk++;
-		}
-		else {
+		if ((*input_walk & ISO8859_1_UPPER_BIT) == 0) {
 			*output_walk++ = *input_walk++;
+			continue;
 		}
+
+		new_value = *input_walk & ISO8859_LOWER_BITS;
+
+		replace_walk = (char *)&iso8859_1_trans[new_value];
+
+		while (*replace_walk != '\0') {
+			*output_walk++ = *replace_walk++;
+		}
+
+		input_walk++;
 	}
 
 	*output_walk = '\0';
@@ -71,9 +75,10 @@ unsigned char *clean_iso8859_1_basic(unsigned char *s, void *opts)
 /*
  * Translates ISO8859.1 characters (Latin-1) into lower ASCII characters.
  */
-unsigned char *clean_iso8859_1(unsigned char *s, void *opts)
+char *clean_iso8859_1(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk, *replace_walk;
+	char *output, *input_walk, *output_walk, *replace_walk;
+	int new_value;
 
 	struct translation_table *table = NULL;
 	struct clean_string_options *options = NULL;
@@ -100,30 +105,33 @@ unsigned char *clean_iso8859_1(unsigned char *s, void *opts)
 	output_walk = output;
 
 	while (*input_walk != '\0') {
-		if (*input_walk >= ISO8859_1_OFFSET) {
-			replace_walk = table_get(table, *input_walk);
-			if (replace_walk == NULL) {
-				if (table->default_translation == NULL) {
-					/*
-					 * Null translation == leave it alone
-					 */
-					*output_walk++ = *input_walk++;
-					continue;
-				}
-				else {
-					replace_walk = table->default_translation;
-				}
-			}
-
-			while (*replace_walk != '\0') {
-				*output_walk++ = *replace_walk++;
-			}
-
-			input_walk++;
-		}
-		else {
+		if ((*input_walk & ISO8859_1_UPPER_BIT) == 0) {
 			*output_walk++ = *input_walk++;
+			continue;
 		}
+
+		new_value = (unsigned char) *input_walk;
+
+		replace_walk = table_get(table, new_value);
+
+		if (replace_walk == NULL) {
+			if (table->default_translation == NULL) {
+				/*
+				 * Null translation == leave it alone
+				 */
+				*output_walk++ = *input_walk++;
+				continue;
+			}
+			else {
+				replace_walk = table->default_translation;
+			}
+		}
+
+		while (*replace_walk != '\0') {
+			*output_walk++ = *replace_walk++;
+		}
+
+		input_walk++;
 	}
 
 	*output_walk = '\0';
@@ -149,9 +157,9 @@ unsigned char *clean_iso8859_1(unsigned char *s, void *opts)
  *     ( ) [ ] { }
  *
  */
-unsigned char *clean_safe_basic(unsigned char *s, void *opts)
+char *clean_safe_basic(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk;
+	char *output, *input_walk, *output_walk;
 
 	if (s == NULL) {
 		return NULL;
@@ -238,9 +246,9 @@ unsigned char *clean_safe_basic(unsigned char *s, void *opts)
 /*
  * Translates unsafe characters
  */
-unsigned char *clean_safe(unsigned char *s, void *opts)
+char *clean_safe(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk, *replace_walk;
+	char *output, *input_walk, *output_walk, *replace_walk;
 
 	struct translation_table *table = NULL;
 	struct clean_string_options *options = NULL;
@@ -300,10 +308,10 @@ unsigned char *clean_safe(unsigned char *s, void *opts)
  * Cleans up any CGI encoded characters, in the form "%" followed by 2 hex
  * digits.
  */
-unsigned char *clean_uncgi(unsigned char *s, void *opts)
+char *clean_uncgi(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk;
-	unsigned char conv[3];
+	char *output, *input_walk, *output_walk;
+	char conv[3];
 
 	if (s == NULL) {
 		return NULL;
@@ -323,7 +331,7 @@ unsigned char *clean_uncgi(unsigned char *s, void *opts)
 			conv[0] = input_walk[1];
 			conv[1] = input_walk[2];
 			conv[2] = 0;
-			*output_walk++ = (unsigned char)strtol(conv, NULL, 16);
+			*output_walk++ = (char) strtol(conv, NULL, 16);
 			input_walk += 3;
 		}
 		else {
@@ -348,9 +356,9 @@ unsigned char *clean_uncgi(unsigned char *s, void *opts)
  * Strips any "-", "_" or "#" from the beginning of a string.
  *
  */
-unsigned char *clean_wipeup(unsigned char *s, void *opts)
+char *clean_wipeup(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk;
+	char *output, *input_walk, *output_walk;
 	int matched;
 	int remove_trailing;
 
@@ -436,9 +444,9 @@ unsigned char *clean_wipeup(unsigned char *s, void *opts)
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
  * Unicode and then lower ASCII characters.
  */
-unsigned char *clean_utf_8_basic(unsigned char *s, void *opts)
+char *clean_utf_8_basic(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk, *replace_walk;
+	char *output, *input_walk, *output_walk, *replace_walk;
 	int new_value, expected_chars;
 
 	if (s == NULL) {
@@ -529,7 +537,7 @@ unsigned char *clean_utf_8_basic(unsigned char *s, void *opts)
 			continue;
 		}
 
-		replace_walk = (unsigned char *)&unicode_trans[new_value];
+		replace_walk = (char *)&unicode_trans[new_value];
 
 		while (*replace_walk != '\0') {
 			*output_walk++ = *replace_walk++;
@@ -545,9 +553,9 @@ unsigned char *clean_utf_8_basic(unsigned char *s, void *opts)
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
  * Unicode and then runs the translation table.
  */
-unsigned char *clean_utf_8(unsigned char *s, void *opts)
+char *clean_utf_8(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk, *replace_walk;
+	char *output, *input_walk, *output_walk, *replace_walk;
 	int new_value, expected_chars;
 
 	struct translation_table *table = NULL;
@@ -687,9 +695,9 @@ unsigned char *clean_utf_8(unsigned char *s, void *opts)
 /*
  * Trims a file down to specified length.
  */
-unsigned char *clean_max_length(unsigned char *s, void *opts)
+char *clean_max_length(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk;
+	char *output, *input_walk, *output_walk;
 	size_t max_length;
 	size_t s_length;
 	size_t ext_length;
@@ -741,9 +749,9 @@ unsigned char *clean_max_length(unsigned char *s, void *opts)
 /*
  * Converts all characters to lowercase.
  */
-unsigned char *clean_lower(unsigned char *s, void *opts)
+char *clean_lower(char *s, void *opts)
 {
-	unsigned char *output, *input_walk, *output_walk;
+	char *output, *input_walk, *output_walk;
 
 	if (s == NULL) {
 		return NULL;
