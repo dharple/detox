@@ -41,8 +41,8 @@ static int long_option = 0;
 static struct option longopts[] = {
 
 	/* long options with equivalents */
-	{"help", no_argument, 0, 'h'},
-	{"dry-run", no_argument, 0, 'n'},
+	{"help", no_argument, NULL, 'h'},
+	{"dry-run", no_argument, NULL, 'n'},
 
 	/* long options without */
 	{"inline", no_argument, &long_option, LONG_OPTION_INLINE},
@@ -52,7 +52,7 @@ static struct option longopts[] = {
 	{"remove-trailing", no_argument, &long_option, LONG_OPTION_REMOVE_TRAILING},
 
 	/* done */
-	{0, 0, 0, 0}
+	{NULL, 0, NULL, 0}
 };
 
 #endif

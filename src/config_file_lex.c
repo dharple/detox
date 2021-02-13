@@ -526,11 +526,12 @@ char *yytext;
 #include <stdlib.h>
 
 #include "config_file_yacc.h"
+#include "config_file.h"
 
 int config_file_lineno = 1;
 
-#line 533 "config_file_lex.c"
 #line 534 "config_file_lex.c"
+#line 535 "config_file_lex.c"
 
 #define INITIAL 0
 
@@ -747,10 +748,10 @@ YY_DECL
 		}
 
 	{
-#line 24 "config_file_lex.l"
+#line 25 "config_file_lex.l"
 
 
-#line 754 "config_file_lex.c"
+#line 755 "config_file_lex.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -809,94 +810,94 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 26 "config_file_lex.l"
+#line 27 "config_file_lex.l"
 { /* ignore whitespace */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 28 "config_file_lex.l"
+#line 29 "config_file_lex.l"
 { /* ignore comments */ }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 30 "config_file_lex.l"
+#line 31 "config_file_lex.l"
 { config_file_lineno++; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 32 "config_file_lex.l"
+#line 33 "config_file_lex.l"
 { return SEQUENCE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "config_file_lex.l"
+#line 35 "config_file_lex.l"
 { return IGNORE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 36 "config_file_lex.l"
+#line 37 "config_file_lex.l"
 { return UNCGI; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 38 "config_file_lex.l"
+#line 39 "config_file_lex.l"
 { return ISO8859_1; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 40 "config_file_lex.l"
+#line 41 "config_file_lex.l"
 { return UTF_8; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 42 "config_file_lex.l"
+#line 43 "config_file_lex.l"
 { return SAFE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 44 "config_file_lex.l"
+#line 45 "config_file_lex.l"
 { return WIPEUP; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 46 "config_file_lex.l"
+#line 47 "config_file_lex.l"
 { return MAX_LENGTH; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 48 "config_file_lex.l"
+#line 49 "config_file_lex.l"
 { return LOWER; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 50 "config_file_lex.l"
+#line 51 "config_file_lex.l"
 { return LENGTH; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 52 "config_file_lex.l"
+#line 53 "config_file_lex.l"
 { return FILENAME; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 54 "config_file_lex.l"
+#line 55 "config_file_lex.l"
 { return REMOVE_TRAILING; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 56 "config_file_lex.l"
+#line 57 "config_file_lex.l"
 { return OPEN; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 57 "config_file_lex.l"
+#line 58 "config_file_lex.l"
 { return CLOSE; }
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 59 "config_file_lex.l"
+#line 60 "config_file_lex.l"
 { 
 		  yylval.string = strdup(yytext+1);
 		  if (yylval.string[yyleng-2] != '"') {
@@ -910,7 +911,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 70 "config_file_lex.l"
+#line 71 "config_file_lex.l"
 { 
 		  yylval.string = strdup(yytext); 
 		  return ID; 
@@ -918,7 +919,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 75 "config_file_lex.l"
+#line 76 "config_file_lex.l"
 { 
 		  yylval.nvalue = atoi(yytext); 
 		  return NVALUE; 
@@ -926,15 +927,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 82 "config_file_lex.l"
+#line 83 "config_file_lex.l"
 { return EOL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 84 "config_file_lex.l"
+#line 85 "config_file_lex.l"
 ECHO;
 	YY_BREAK
-#line 938 "config_file_lex.c"
+#line 939 "config_file_lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1939,7 +1940,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 84 "config_file_lex.l"
+#line 85 "config_file_lex.l"
 
 
 

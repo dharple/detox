@@ -14,6 +14,7 @@
 #include <stdlib.h>
 
 #include "config_file_yacc.h"
+#include "config_file.h"
 
 int config_file_lineno = 1;
 
