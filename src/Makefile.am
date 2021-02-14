@@ -25,6 +25,9 @@ bin_PROGRAMS = \
 	detox \
 	inline-detox
 
+noinst_PROGRAMS = \
+	table2header
+
 detox_SOURCES = \
 	config_file_yacc.y \
 	config_file_lex.l \
@@ -38,4 +41,10 @@ detox_SOURCES = \
 	table.c
 
 inline_detox_SOURCES = $(detox_SOURCES)
+
+table2header_SOURCES = \
+	clean_string.c \
+	parse_table.c \
+	table.c \
+	table2header.c
 

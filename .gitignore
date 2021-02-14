@@ -54,10 +54,11 @@ config.log
 config.status
 
 # Clean files
+.deps/
 detox
 inline-detox
-.deps/
 stamp-h1
+table2header
 
 # Testing files
 lab/
