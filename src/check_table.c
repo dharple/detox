@@ -28,7 +28,7 @@ enum {
 	INSIDE_STATE
 };
 
-struct translation_table *check_table(char *filename, int use_hash)
+static struct translation_table *check_table(char *filename, int use_hash)
 {
 	FILE *ttable_file;
 	char *work;

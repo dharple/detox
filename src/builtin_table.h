@@ -13,8 +13,8 @@
 
 #include "table.h"
 
-extern struct translation_table * load_builtin_safe_table();
-extern struct translation_table * load_builtin_iso8859_1_table();
-extern struct translation_table * load_builtin_unicode_table();
+extern struct translation_table *load_builtin_safe_table();
+extern struct translation_table *load_builtin_iso8859_1_table();
+extern struct translation_table *load_builtin_unicode_table();
 
 #endif /* __BUILTIN_TABLE_H */

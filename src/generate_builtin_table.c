@@ -26,7 +26,7 @@
 
 #define MULTIPLE 256
 
-void generate_loader(char *filename)
+static void generate_loader(char *filename)
 {
 	struct translation_table *table;
 	int i;
@@ -104,7 +104,7 @@ void generate_loader(char *filename)
 	//
 
 	printf(
-		"struct translation_table * load_builtin_NEW_table()\n"
+		"struct translation_table *load_builtin_NEW_table()\n"
 		"{\n"
 		"\treturn table_resize(&builtin_NEW_table, %d);\n"
 		"}\n",
