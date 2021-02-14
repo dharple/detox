@@ -55,6 +55,7 @@ config.status
 
 # Clean files
 .deps/
+check-table
 detox
 inline-detox
 stamp-h1

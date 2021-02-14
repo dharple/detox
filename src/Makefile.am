@@ -26,6 +26,7 @@ bin_PROGRAMS = \
 	inline-detox
 
 noinst_PROGRAMS = \
+	check-table \
 	table2header
 
 detox_SOURCES = \
@@ -41,6 +42,13 @@ detox_SOURCES = \
 	table.c
 
 inline_detox_SOURCES = $(detox_SOURCES)
+
+check_table_SOURCES = \
+	check_table.c \
+	clean_string.c \
+	parse_table.c \
+	table.c \
+	table_dump.c
 
 table2header_SOURCES = \
 	clean_string.c \
