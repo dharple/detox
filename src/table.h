@@ -25,7 +25,12 @@ struct translation_table {
 
 	struct translation_table_row *rows;
 
-	int hits, misses, overwrites;
+	int hits;
+	int misses;
+	int overwrites;
+
+	int use_hash;
+	int builtin;
 };
 
 extern struct translation_table *table_init(int max_rows);

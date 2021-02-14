@@ -57,9 +57,9 @@ config.status
 .deps/
 check-table
 detox
+generate-builtin-table
 inline-detox
 stamp-h1
-table2header
 
 # Testing files
 lab/

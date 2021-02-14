@@ -12,6 +12,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Converted unsigned char strings to char strings, which broken iso8859-1
   processing.  Updated iso8859-1 processing so that it works as before.
   Updated CFLAGS to catch any issues that arise in the future. [#31]
+- Internal filters now run using compiled-in translation tables.  This removes
+  all `clean_*_basic()` functions, and allows for consistent behavior between
+  detox without translation tables and detox with the stock ones. [#21], [#29].
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
 
@@ -21,6 +24,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 - Minor issues discovered by `cppcheck` and `sparse`.
+- Potential infinite loops in `table_put()` and `table_get()`. [#21]
 - src/Makefile.am no longer deletes src/config_file.h when `make
   maintainer-clean` is run.
 
@@ -187,6 +191,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#37]: https://github.com/dharple/detox/issues/37
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30
+[#29]: https://github.com/dharple/detox/issues/29
 [#24]: https://github.com/dharple/detox/issues/24
 [#21]: https://github.com/dharple/detox/issues/21
 [#19]: https://github.com/dharple/detox/issues/19

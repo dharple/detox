@@ -19,14 +19,11 @@ struct clean_string_options {
 	void *translation_table;
 };
 
-extern char *clean_iso8859_1_basic(char *s, void *options);
-extern char *clean_iso8859_1(char *s, void *options);
-extern char *clean_safe_basic(char *s, void *options);
-extern char *clean_safe(char *s, void *options);
-extern char *clean_uncgi(char *s, void *options);
-extern char *clean_wipeup(char *s, void *options);
-extern char *clean_utf_8_basic(char *s, void *options);
-extern char *clean_utf_8(char *s, void *options);
+extern char *clean_iso8859_1(char *s, void *opts);
+extern char *clean_safe(char *s, void *opts);
+extern char *clean_uncgi(char *s, void *opts);
+extern char *clean_wipeup(char *s, void *opts);
+extern char *clean_utf_8(char *s, void *opts);
 extern char *clean_max_length(char *s, void *opts);
 extern char *clean_lower(char *s, void *opts);
 

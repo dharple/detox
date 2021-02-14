@@ -12,7 +12,8 @@
 
 #include "table.h"
 
-extern void table_dump(struct translation_table *table, int just_stats);
+extern void table_dump(struct translation_table *table, int verbose);
+extern void table_stats(struct translation_table *table);
 
 #endif /*  __TABLE_DUMP_H */
 

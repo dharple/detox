@@ -203,7 +203,15 @@ struct translation_table *parse_table(char *filename)
 			sscanf(work + offset, "%s", parsed);
 		}
 
-		table_put(table, code, parsed);
+		ret = table_put(table, code, parsed);
+		if (ret == -1) {
+			fprintf(stderr, "Failed to add row 0x%04x \"%s\" to translation table\n", code, parsed);
+			table_free(table);
+			fclose(ttable_file);
+			free(work);
+			free(parsed);
+			return NULL;
+		}
 
 		if (strlen(parsed) > max_data_length) {
 			max_data_length = strlen(parsed);

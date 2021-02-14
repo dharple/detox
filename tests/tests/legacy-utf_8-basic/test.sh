@@ -50,3 +50,18 @@ INPUT=$(printf "\\u00DE capital thorn")
 OUTPUT="TH_capital_thorn"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+
+# ---------------------------------------------------------------------------
+
+INPUT=$(printf "\\u014A capital ENG")
+OUTPUT="NG_capital_ENG"
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+
+# ---------------------------------------------------------------------------
+
+INPUT=$(printf "\\u0172 capital U with Ogonek")
+OUTPUT="U_capital_U_with_Ogonek"
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+

@@ -22,6 +22,7 @@
 
 #include "file.h"
 
+#include "builtin_table.h"
 #include "config_file.h"
 #include "config_file_spoof.h"
 #include "config_file_dump.h"
@@ -242,41 +243,34 @@ int main(int argc, char **argv)
 						table = parse_table(check_config_file);
 				}
 
+				// load builtin translation tables
 				if (table == NULL) {
-
-					/*
-					 * Fall back to the non-file based
-					 * cleaner
-					 */
 					if (work->cleaner == &clean_iso8859_1) {
-						work->cleaner = &clean_iso8859_1_basic;
+						table = load_builtin_iso8859_1_table();
 					}
 					else if (work->cleaner == &clean_utf_8) {
-						work->cleaner = &clean_utf_8_basic;
+						table = load_builtin_unicode_table();
 					}
 					else if (work->cleaner == &clean_safe) {
-						work->cleaner = &clean_safe_basic;
-					}
-					else {
-						fprintf(stderr, "detox: unable to locate translation table or fall back\n");
-						exit(EXIT_FAILURE);
+						table = load_builtin_safe_table();
 					}
 				}
-				else {
 
-					/*
-					 * Allocate an options
-					 */
-					opts = malloc(sizeof(struct clean_string_options));
-					if (opts == NULL) {
-						fprintf(stderr, "out of memory: %s\n", strerror(errno));
-						exit(EXIT_FAILURE);
-					}
-					memset(opts, 0, sizeof(struct clean_string_options));
-
-					opts->translation_table = table;
-					work->options = opts;
+				if (table == NULL) {
+					fprintf(stderr, "detox: unable to locate translation table or fall back\n");
+					exit(EXIT_FAILURE);
 				}
+
+				// Allocate an options struct
+				opts = malloc(sizeof(struct clean_string_options));
+				if (opts == NULL) {
+					fprintf(stderr, "out of memory: %s\n", strerror(errno));
+					exit(EXIT_FAILURE);
+				}
+				memset(opts, 0, sizeof(struct clean_string_options));
+
+				opts->translation_table = table;
+				work->options = opts;
 
 				free(check_config_file);
 			}

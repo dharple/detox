@@ -27,9 +27,10 @@ bin_PROGRAMS = \
 
 noinst_PROGRAMS = \
 	check-table \
-	table2header
+	generate-builtin-table
 
 detox_SOURCES = \
+	builtin_table.c \
 	config_file_yacc.y \
 	config_file_lex.l \
 	clean_string.c \
@@ -45,14 +46,11 @@ inline_detox_SOURCES = $(detox_SOURCES)
 
 check_table_SOURCES = \
 	check_table.c \
-	clean_string.c \
-	parse_table.c \
 	table.c \
 	table_dump.c
 
-table2header_SOURCES = \
-	clean_string.c \
+generate_builtin_table_SOURCES = \
 	parse_table.c \
 	table.c \
-	table2header.c
+	generate_builtin_table.c
 

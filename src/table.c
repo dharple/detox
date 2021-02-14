@@ -50,6 +50,7 @@ struct translation_table *table_init(int max_rows)
 	memset(ret->rows, 0, row_length);
 
 	ret->length = max_rows;
+	ret->use_hash = 1;
 
 	return ret;
 }
@@ -67,6 +68,12 @@ struct translation_table *table_resize(struct translation_table *table, int rows
 	if (table == NULL)
 		return ret;
 
+	if (table->default_translation != NULL) {
+		ret->default_translation = strdup(table->default_translation);
+	}
+
+	ret->max_data_length = table->max_data_length;
+
 	for (i = 0; i < table->length; i++) {
 		if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
 			table_put(ret, table->rows[i].key, table->rows[i].data);
@@ -80,8 +87,9 @@ void table_free(struct translation_table *table)
 {
 	int i;
 
-	if (table == NULL)
+	if (table == NULL || table->builtin == 1) {
 		return;
+	}
 
 	for (i = 0; i < table->length; i++) {
 		if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
@@ -100,78 +108,128 @@ static int table_hash1(int table_length, unsigned int key)
 
 static int table_hash2(int table_length, unsigned int key)
 {
-	return (key >> 8) % table_length;
+	int i;
+	i = (key >> 8) % table_length;
+	return (i == 0) ? 1 : i;
 }
 
-/*
- * 0 is an invalid key (sorry)
+/**
+ * Puts a row on the table.
+ *
+ * Key cannot be zero.
+ *
+ * @param struct translation_table * table The table to use.
+ * @param unsigned int               key   The key for the table.
+ * @param char *                     data  The data to store for the key.
+ *
+ * @return int The stored location, or -1 if an error occurred.
  */
 int table_put(struct translation_table *table, unsigned int key, char *data)
 {
-	int hashed;
-	int hashed2;
+	int offset;
+	int seek;
 	int i;
+
+	if (table == NULL || key == 0) {
+		return -1;
+	}
 
 	if (table->length == table->used) {
 		return -1;
 	}
 
-	hashed = table_hash1(table->length, key);
+	if (!table->use_hash) {
+		offset = -1;
 
-	if (table->rows[hashed].key != 0 && table->rows[hashed].key != key) {
-		hashed2 = table_hash2(table->length, key);
-		i = 0;
-		while (table->rows[hashed].key != 0 && table->rows[hashed].key != key) {
-			hashed += i + hashed2;
-			hashed %= table->length;
+		for (i = 0 ; i < table->length ; i++) {
+			if (table->rows[i].key == 0 || table->rows[i].key == key) {
+				offset = i;
+				break;
+			}
+		}
+
+		if (offset == -1) {
+			return -1;
+		}
+	} else {
+		offset = table_hash1(table->length, key);
+
+		if (table->rows[offset].key != 0 && table->rows[offset].key != key) {
+			seek = table_hash2(table->length, key);
+			while (table->rows[offset].key != 0 && table->rows[offset].key != key) {
+				offset += seek;
+				offset %= table->length;
+			}
 		}
 	}
 
-	if (table->rows[hashed].key == key) {
+	if (table->rows[offset].key == key) {
 		table->overwrites++;
 	}
 
-	table->rows[hashed].key = key;
-	table->rows[hashed].data = strdup(data);
+	table->rows[offset].key = key;
+	table->rows[offset].data = strdup(data);
 	table->used++;
-	return hashed;
+
+	return offset;
 }
 
-/*
- * 0 is an invalid key (sorry)
+/**
+ * Gets a row from the table.
+ *
+ * Key cannot be zero.
+ *
+ * @param struct translation_table * table The table to use.
+ * @param unsigned int               key   The key for the table.
+ *
+ * @return char * The value from the table, or NULL if it could not be found.
  */
 char *table_get(struct translation_table *table, unsigned int key)
 {
-	int hashed;
-	int hashed2;
+	int offset;
+	int seek;
 	int i;
 
-	if (table == NULL) {
+	if (table == NULL || key == 0) {
 		return NULL;
 	}
 
-	hashed = table_hash1(table->length, key);
+	if (!table->use_hash) {
+		offset = -1;
 
-	if (table->rows[hashed].key == 0) {
-		return NULL;
-	}
-
-	if (table->rows[hashed].key != key) {
-		hashed2 = table_hash2(table->length, key);
-		i = 0;
-		while (table->rows[hashed].key != key && table->rows[hashed].key != 0) {
-			table->misses++;
-
-			hashed += i + hashed2;
-			hashed %= table->length;
+		for (i = 0 ; i < table->length ; i++) {
+			if (table->rows[i].key == key) {
+				offset = i;
+				break;
+			}
 		}
-	}
 
-	if (table->rows[hashed].key == 0) {
-		return NULL;
+		if (offset == -1) {
+			return NULL;
+		}
+	} else {
+		offset = table_hash1(table->length, key);
+
+		if (table->rows[offset].key == 0) {
+			return NULL;
+		}
+
+		if (table->rows[offset].key != key) {
+			seek = table_hash2(table->length, key);
+			while (table->rows[offset].key != key && table->rows[offset].key != 0) {
+				table->misses++;
+
+				offset += seek;
+				offset %= table->length;
+			}
+		}
+
+		if (table->rows[offset].key == 0) {
+			return NULL;
+		}
 	}
 
 	table->hits++;
 
-	return table->rows[hashed].data;
+	return table->rows[offset].data;
 }

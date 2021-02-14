@@ -28,7 +28,8 @@ enum {
 	INSIDE_STATE
 };
 
-void check_table(char *filename, int dump) {
+struct translation_table *check_table(char *filename, int use_hash)
+{
 	FILE *ttable_file;
 	char *work;
 	int code;
@@ -40,17 +41,15 @@ void check_table(char *filename, int dump) {
 	int ret;
 	int state;
 	int last;
+	char *check;
 
 	struct translation_table *table;
 
 	struct stat ttable_stat;
 
-	printf("checking: %s\n", filename);
-
 	err = stat(filename, &ttable_stat);
 	if (err == -1) {
-//		fprintf(stderr, "Unable to stat translation table: %s\n", strerror(errno));
-		return;
+		return NULL;
 	}
 
 	if (ttable_stat.st_size > 0) {
@@ -68,25 +67,30 @@ void check_table(char *filename, int dump) {
 
 	table = table_init(size);
 	if (table == NULL) {
-		return;
+		return NULL;
 	}
+
+	table->use_hash = use_hash;
 
 	ttable_file = fopen(filename, "r");
 	if (ttable_file == NULL) {
 		fprintf(stderr, "Unable to open translation table: %s\n", strerror(errno));
-		return;
+		return NULL;
 	}
 
 	work = malloc(1024);
 	if (work == NULL) {
 		fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-		return;
+		fclose(ttable_file);
+		return NULL;
 	}
 
 	parsed = malloc(1024);
 	if (parsed == NULL) {
 		fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-		return;
+		fclose(ttable_file);
+		free(work);
+		return NULL;
 	}
 
 	last = 0;
@@ -94,12 +98,12 @@ void check_table(char *filename, int dump) {
 	max_data_length = 1;
 	state = BASE_STATE;
 
-	while(fgets(work, 1024, ttable_file) != NULL) {
-		// printf(work);
+	while (fgets(work, 1024, ttable_file) != NULL) {
 		if (*work == '#') {
-			// 
-			// Don't even bother
-			//
+
+			/*
+			 * Don't even bother
+			 */
 			continue;
 		}
 
@@ -113,7 +117,28 @@ void check_table(char *filename, int dump) {
 			}
 
 			if (strncasecmp(parsed, "start", 5) == 0) {
+				last = 0;
+
+				if (work[offset] == '\0') {
+					// All languages
+					state = INSIDE_STATE;
+					continue;
+				}
+
+				if (work[offset] == '"') {
+					sscanf(work + offset + 1, "%[^\"]", parsed);
+				}
+				else if (work[offset] == '\'') {
+					sscanf(work + offset + 1, "%[^']", parsed);
+				}
+				else {
+					sscanf(work + offset, "%s", parsed);
+				}
+
+				printf("reviewing language subsection for %s\n", parsed);
+
 				state = INSIDE_STATE;
+
 				continue;
 			}
 
@@ -146,18 +171,19 @@ void check_table(char *filename, int dump) {
 			continue;
 		}
 
-		//
-		// Inside state
-		//
+		/*
+		 * Inside state
+		 */
 
 		code = -1;
 
 		ret = sscanf(work, "%i %n", &code, &offset);
 
 		if (ret == 0 || code < 0 || offset < 0) {
-			//
-			// Check for end
-			//
+
+			/*
+			 * Check for end
+			 */
 			ret = sscanf(work, " %s %n", parsed, &offset);
 
 			if (ret > 0 && strncasecmp(parsed, "end", 5) == 0) {
@@ -181,8 +207,25 @@ void check_table(char *filename, int dump) {
 			sscanf(work + offset, "%s", parsed);
 		}
 
+		ret = table_put(table, code, parsed);
+		if (ret == -1) {
+			fprintf(stderr, "Failed to add row 0x%04x \"%s\" to translation table\n", code, parsed);
+			table_free(table);
+			fclose(ttable_file);
+			free(work);
+			free(parsed);
+			return NULL;
+		}
 
-		table_put(table, code, parsed);
+		check = table_get(table, code);
+		if (check == NULL || strcmp(parsed, check) != 0) {
+			fprintf(stderr, "Failed to retrieve row 0x%04x \"%s\" to translation table\n", code, parsed);
+			table_free(table);
+			fclose(ttable_file);
+			free(work);
+			free(parsed);
+			return NULL;
+		}
 
 		if (strlen(parsed) > max_data_length) {
 			max_data_length = strlen(parsed);
@@ -203,25 +246,34 @@ void check_table(char *filename, int dump) {
 	free(parsed);
 	fclose(ttable_file);
 
-	table_dump(table, !dump);
-
-	return;
+	return table;
 }
 
-
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
+	struct translation_table *table;
 	int optcode;
 	int dump = 0;
+	int use_hash = 1;
+	int verbose = 0;
 
-	while ((optcode = getopt(argc, argv, "d")) != -1) {
+	while ((optcode = getopt(argc, argv, "dlhv")) != -1) {
 		switch (optcode) {
 			case 'd':
 				dump = 1;
 				break;
 
 			case 'h':
-				printf("check_table [-d] filename.tbl\n");
+				printf("check-table [-dlhv] filename.tbl\n");
 				return 0;
+
+			case 'l': // linear
+				use_hash = 0;
+				break;
+
+			case 'v':
+				verbose = 1;
+				break;
 
 			default:
 				fprintf(stderr, "unknown option: %c\n", optcode);
@@ -230,7 +282,14 @@ int main(int argc, char **argv) {
 	}
 
 	if (optind < argc) {
-		check_table(argv[optind], dump);
+		printf("checking: %s\n", argv[optind]);
+		table = check_table(argv[optind], use_hash);
+		if (table) {
+			if (dump) {
+				table_dump(table, verbose);
+			}
+			table_stats(table);
+		}
 	}
 	else {
 		printf("please specify a file to operate on\n");
