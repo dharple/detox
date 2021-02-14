@@ -27,7 +27,8 @@ bin_PROGRAMS = \
 
 noinst_PROGRAMS = \
 	check-table \
-	generate-builtin-table
+	generate-builtin-table \
+	true-regress
 
 detox_SOURCES = \
 	builtin_table.c \
@@ -53,6 +54,11 @@ generate_builtin_table_SOURCES = \
 	parse_table.c \
 	table.c \
 	generate_builtin_table.c
+
+true_regress_SOURCES = \
+	parse_table.c \
+	table.c \
+	true_regress.c
 
 builtin_table.c: generate-builtin-table builtin_table.c.in ../table/*.sample
 	cp builtin_table.c.in builtin_table.c
