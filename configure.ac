@@ -8,6 +8,8 @@ AC_PROG_YACC
 
 AC_CHECK_FUNCS([getopt_long])
 
+AC_SEARCH_LIBS([ceil], [m])
+
 #
 # References and reasons for compiler flags:
 #
