@@ -285,6 +285,8 @@ char *clean_wipeup(char *s, void *opts)
 #define UTF_8_ENCODED_3_CHARS 0xe0
 #define UTF_8_ENCODED_2_CHARS 0xc0
 
+#define NULL_REPLACEMENT "_hidden_null_"
+
 /*
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
  * Unicode and then runs the translation table.
@@ -395,7 +397,17 @@ char *clean_utf_8(char *s, void *opts)
 			continue;
 		}
 
+		// fprintf(stderr, "unicode character 0x%04x\n", new_value);
+
 		replace_walk = table_get(table, new_value);
+
+		//
+		// Never allow a NULL encoded into 2+ byte UTF-8 to persist.
+		//
+
+		if (replace_walk == NULL && new_value == 0) {
+			replace_walk = NULL_REPLACEMENT;
+		}
 
 		if (replace_walk == NULL) {
 			replace_walk = table->default_translation;

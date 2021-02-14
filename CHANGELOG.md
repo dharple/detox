@@ -17,6 +17,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   detox without translation tables and detox with the stock ones. [#21], [#29].
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
+- The UTF-8 filter no longer behaves like the safe filter.  All characters
+  between 0x20 and 0x7E are preserved. [#40]
 
 ## Removed
 - The command line option `--remove-trailing` is now removed.  Use the sequence
@@ -36,6 +38,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Security
 - Added additional compiler protection flags, based on the openSUSE build from
   [#31].
+- UTF-8 encoded NULL values are converted to `_hidden_null` to make them
+  obvious. [#40]
 
 ## [1.4.0] - 2021-02-11
 ### Added
@@ -194,6 +198,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
 [#41]: https://github.com/dharple/detox/issues/41
+[#40]: https://github.com/dharple/detox/issues/40
 [#37]: https://github.com/dharple/detox/issues/37
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30

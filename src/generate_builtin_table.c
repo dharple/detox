@@ -29,6 +29,7 @@
 static void generate_loader(char *filename)
 {
 	struct translation_table *table;
+	int escape;
 	int i;
 
 	table = parse_table(filename);
@@ -53,12 +54,17 @@ static void generate_loader(char *filename)
 			continue;
 		}
 
+		escape =
+			(strcmp(table->rows[i].data, "\"") == 0) ||
+			(strcmp(table->rows[i].data, "\\") == 0);
+
 		printf(
 			"\t{ "
 			".key  = 0x%04x, "
-			".data = \"%s\" "
+			".data = \"%s%s\" "
 			"},\n",
 			table->rows[i].key,
+			escape ? "\\" : "",
 			table->rows[i].data
 		);
 	}
