@@ -108,7 +108,7 @@ void generate_loader(char *filename)
 		"{\n"
 		"\treturn table_resize(&builtin_NEW_table, %d);\n"
 		"}\n",
-		((int) ceil(table->used / MULTIPLE) + 1) * MULTIPLE
+		((int) round(table->used / MULTIPLE) + 1) * MULTIPLE
 	);
 
 	return;
