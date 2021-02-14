@@ -54,3 +54,8 @@ generate_builtin_table_SOURCES = \
 	table.c \
 	generate_builtin_table.c
 
+builtin_table.c: generate-builtin-table builtin_table.c.in ../table/*.sample
+	cp builtin_table.c.in builtin_table.c
+	./generate-builtin-table ../table/safe.tbl.sample | sed -e's/NEW/safe/' >> builtin_table.c
+	./generate-builtin-table ../table/iso8859_1.tbl.sample | sed -e's/NEW/iso8859_1/' >> builtin_table.c
+	./generate-builtin-table ../table/unicode.tbl.sample | sed -e's/NEW/unicode/' >> builtin_table.c

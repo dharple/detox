@@ -15,10 +15,38 @@
  * Generated from safe.tbl.sample
  */
 
-static struct translation_table_row builtin_safe_rows[26] = {
+static struct translation_table_row builtin_safe_rows[54] = {
+	{ .key  = 0x0001, .data = "_" },
+	{ .key  = 0x0002, .data = "_" },
+	{ .key  = 0x0003, .data = "_" },
+	{ .key  = 0x0004, .data = "_" },
+	{ .key  = 0x0005, .data = "_" },
+	{ .key  = 0x0006, .data = "_" },
+	{ .key  = 0x0007, .data = "_" },
+	{ .key  = 0x0008, .data = "_" },
 	{ .key  = 0x0009, .data = "_" },
 	{ .key  = 0x000a, .data = "_" },
+	{ .key  = 0x000b, .data = "_" },
+	{ .key  = 0x000c, .data = "_" },
 	{ .key  = 0x000d, .data = "_" },
+	{ .key  = 0x000e, .data = "_" },
+	{ .key  = 0x000f, .data = "_" },
+	{ .key  = 0x0010, .data = "_" },
+	{ .key  = 0x0011, .data = "_" },
+	{ .key  = 0x0012, .data = "_" },
+	{ .key  = 0x0013, .data = "_" },
+	{ .key  = 0x0014, .data = "_" },
+	{ .key  = 0x0015, .data = "_" },
+	{ .key  = 0x0016, .data = "_" },
+	{ .key  = 0x0017, .data = "_" },
+	{ .key  = 0x0018, .data = "_" },
+	{ .key  = 0x0019, .data = "_" },
+	{ .key  = 0x001a, .data = "_" },
+	{ .key  = 0x001b, .data = "_" },
+	{ .key  = 0x001c, .data = "_" },
+	{ .key  = 0x001d, .data = "_" },
+	{ .key  = 0x001e, .data = "_" },
+	{ .key  = 0x001f, .data = "_" },
 	{ .key  = 0x0020, .data = "_" },
 	{ .key  = 0x0021, .data = "_" },
 	{ .key  = 0x0022, .data = "_" },
@@ -45,8 +73,8 @@ static struct translation_table_row builtin_safe_rows[26] = {
 };
 
 static struct translation_table builtin_safe_table = {
-	.length              = 26,
-	.used                = 26,
+	.length              = 54,
+	.used                = 54,
 	.max_data_length     = 5,
 	.hits                = 0,
 	.misses              = 0,
