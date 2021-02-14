@@ -31,6 +31,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   characters (0x80 though 0xFF) [#21], [#29]
 - Updated table-based safe filter to convert all control characters (0x01
   though 0x20) to `_`. [#21], [#29]
+- Updated both safe filters to convert 0x7F (DEL) into `_`. [#29]
 
 ### Security
 - Added additional compiler protection flags, based on the openSUSE build from

@@ -15,7 +15,7 @@
  * Generated from safe.tbl.sample
  */
 
-static struct translation_table_row builtin_safe_rows[54] = {
+static struct translation_table_row builtin_safe_rows[55] = {
 	{ .key  = 0x0001, .data = "_" },
 	{ .key  = 0x0002, .data = "_" },
 	{ .key  = 0x0003, .data = "_" },
@@ -70,11 +70,12 @@ static struct translation_table_row builtin_safe_rows[54] = {
 	{ .key  = 0x007b, .data = "-" },
 	{ .key  = 0x007c, .data = "_" },
 	{ .key  = 0x007d, .data = "-" },
+	{ .key  = 0x007f, .data = "_" },
 };
 
 static struct translation_table builtin_safe_table = {
-	.length              = 54,
-	.used                = 54,
+	.length              = 55,
+	.used                = 55,
 	.max_data_length     = 5,
 	.hits                = 0,
 	.misses              = 0,

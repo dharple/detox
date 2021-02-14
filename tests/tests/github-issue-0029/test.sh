@@ -76,4 +76,16 @@ for METHOD1 in safe safe-basic ; do
 
 	# ---------------------------------------------------------------------------
 
+	INPUT=$(printf "\\x7e tilde")
+	OUTPUT="~_tilde"
+
+	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
+
+	# ---------------------------------------------------------------------------
+
+	INPUT=$(printf "\\x7f delete")
+	OUTPUT="delete"
+
+	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
+
 done
