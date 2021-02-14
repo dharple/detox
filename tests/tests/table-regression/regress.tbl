@@ -1,54 +1,7 @@
-# 
-# Copyright (c) 2004-2005, Doug Harple.  All rights reserved.
-# 
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are
-# met:
-# 
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in the
-#    documentation and/or other materials provided with the distribution.
-# 
-# 3. Neither the name of author nor the names of its contributors may be
-#    used to endorse or promote products derived from this software
-#    without specific prior written permission.
-# 
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-# 
-# $Id: true_regress-1.tbl,v 1.1 2005/08/28 07:33:50 purgedhalo Exp $
-# 
-# 
-# 
-# Special thanks to: http://www.unicode.org/Public/UNIDATA/UnicodeData.txt 
 #
+# Tests table regression.
 #
-# Used for translating Icelandic:
-# http://www.bartleby.com/65/th/Thingval.html
-# http://www.wordiq.com/definition/Thorn_%28letter%29
-# http://www.wordiq.com/definition/Edh
-#
-# Greenlandic:
-# http://std.dkuug.dk/cultreg/registrations/narrative/da_DK,_4.3.html
-#
-# Sami:
-# http://www.wordiq.com/definition/Sami_languages
-#
-# Germanic:
-# http://www.wordiq.com/definition/%DF
-# 
+# Old copy of the unicode table with extras.
 # 
 
 default		_
@@ -60,6 +13,7 @@ start
 # characters removed.
 #
 
+0x0020		space	# SPACE
 0x0023		#	# NUMBER SIGN
 0x0025		%	# PERCENT SIGN
 0x0026		_and_	# AMPERSAND
@@ -398,9 +352,9 @@ start
 # REGRESSION TESTING SECTION
 #
 
-0xBABE		babe	# Junk in the trunk
-0xDEAD		dead	# Junk in the trunk
-0xC0DE		code	# Seriously...
+0xC0DE		code	# testing value
+0xCAFE		cafe	# testing value
+0xFACE		face	# testing value
 
 #
 # REGRESSION TESTING SECTION

@@ -60,7 +60,7 @@ detox
 generate-builtin-table
 inline-detox
 stamp-h1
-true-regress
+test-table-regression
 
 # Testing files
 lab/
