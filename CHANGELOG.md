@@ -24,7 +24,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 - Minor issues discovered by `cppcheck` and `sparse`.
-- Potential infinite loops in `table_put()` and `table_get()`. [#21]
+- Potential infinite loops in `table_put()` and `table_get()`. [#21] [#41]
 - src/Makefile.am no longer deletes src/config_file.h when `make
   maintainer-clean` is run.
 - Updated interal safe filter to ignore all upper ISO8859-1 and UTF-8
@@ -193,6 +193,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#41]: https://github.com/dharple/detox/issues/41
 [#37]: https://github.com/dharple/detox/issues/37
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30

@@ -106,7 +106,7 @@ static void generate_loader(char *filename)
 	printf(
 		"struct translation_table *load_builtin_NEW_table()\n"
 		"{\n"
-		"\treturn table_resize(&builtin_NEW_table, %d);\n"
+		"\treturn table_resize(&builtin_NEW_table, %d, 1);\n"
 		"}\n",
 		((int) ceil(table->used / MULTIPLE) + 1) * MULTIPLE
 	);

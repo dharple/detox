@@ -58,6 +58,7 @@ generate_builtin_table_SOURCES = \
 test_table_regression_SOURCES = \
 	parse_table.c \
 	table.c \
+	table_dump.c \
 	test_table_regression.c
 
 builtin_table.c: generate-builtin-table builtin_table.c.in ../table/*.sample

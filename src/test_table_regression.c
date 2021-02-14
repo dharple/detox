@@ -15,6 +15,7 @@
 
 #include "clean_string.h"
 #include "parse_table.h"
+#include "table_dump.h"
 
 struct test_definition {
 	int pass;
@@ -53,56 +54,65 @@ int regress_parse_table(int verbose)
 	char *check;
 	int i, j;
 	int size;
+	int use_hash;
 
 	if (verbose) {
 		printf("loading table\n");
 	}
 
-	table = parse_table("regress.tbl");
+	for (use_hash = 0; use_hash <= 1; use_hash++) {
+		table = parse_table("regress.tbl");
 
-	for (i = 0; tests[i].pass != -1; i++) {
-		if (verbose) {
-			printf("%s: pass %d\n", __FUNCTION__, tests[i].pass);
-		}
-
-		if (tests[i].size > 0) {
+		for (i = 0; tests[i].pass != -1; i++) {
 			if (verbose) {
-				printf("resizing table to size %d\n", tests[i].size);
+				printf("%s: pass = %d, use_hash = %d\n", __FUNCTION__, tests[i].pass, use_hash);
 			}
-			table = table_resize(table, tests[i].size);
-		} else if (tests[i].multiple > 0) {
-			if (verbose) {
-				printf("resizing table to multiple of %d\n", tests[i].multiple);
-			}
-			size = ((int) ceil(table->used/tests[i].multiple) + 1) * tests[i].multiple;
-			if (verbose) {
-				printf("resizing table to size %d\n", size);
-			}
-			table = table_resize(table, size);
-		}
 
-		if (verbose) {
-			printf("table length: %d\n", table->length);
-			printf("table used: %d\n", table->used);
-		}
-
-		for (j = 0; values[j].value != 0; j++) {
-			check = table_get(table, values[j].value);
-			if (values[j].expected != NULL) {
-				if (check == NULL || strcmp(check, values[j].expected) != 0) {
-					fprintf(stderr, "ERROR: Unable to pull 0x%04x.  Expected %s.\n", values[j].value, values[j].expected);
-					exit(1);
-				}
+			if (tests[i].size > 0) {
 				if (verbose) {
-					printf("\t0x%04x -> \"%s\"\n", values[j].value, check);
+					printf("resizing table to size %d\n", tests[i].size);
 				}
-			} else {
-				if (check != NULL) {
-					fprintf(stderr, "ERROR: Pulled non-existant 0x%04x.\n", values[j].value);
-					exit(1);
-				}
+				table = table_resize(table, tests[i].size, use_hash);
+			} else if (tests[i].multiple > 0) {
 				if (verbose) {
-					printf("\t0x%04x -> NULL\n", values[j].value);
+					printf("resizing table to multiple of %d\n", tests[i].multiple);
+				}
+				size = ((int) ceil(table->used/tests[i].multiple) + 1) * tests[i].multiple;
+				if (verbose) {
+					printf("resizing table to size %d\n", size);
+				}
+				table = table_resize(table, size, use_hash);
+			}
+
+			if (verbose) {
+				printf("table length: %d\n", table->length);
+				printf("table used: %d\n", table->used);
+			}
+
+			for (j = 0; values[j].value != 0; j++) {
+				check = table_get(table, values[j].value);
+				if (values[j].expected != NULL) {
+					if (check == NULL || strcmp(check, values[j].expected) != 0) {
+						if (verbose) {
+							table_dump(table, 0);
+						}
+						fprintf(stderr, "ERROR: Unable to pull 0x%04x.  Expected %s.\n", values[j].value, values[j].expected);
+						exit(1);
+					}
+					if (verbose) {
+						printf("\t0x%04x -> \"%s\"\n", values[j].value, check);
+					}
+				} else {
+					if (check != NULL) {
+						if (verbose) {
+							table_dump(table, 0);
+						}
+						fprintf(stderr, "ERROR: Pulled non-existant 0x%04x.\n", values[j].value);
+						exit(1);
+					}
+					if (verbose) {
+						printf("\t0x%04x -> NULL\n", values[j].value);
+					}
 				}
 			}
 		}

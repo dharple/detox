@@ -20,8 +20,7 @@
 /*
  * Internal function declarations
  */
-static int table_hash1(int table_length, unsigned int key);
-static int table_hash2(int table_length, unsigned int key);
+static int table_hash(int table_length, unsigned int key);
 
 struct translation_table *table_init(int max_rows)
 {
@@ -55,7 +54,7 @@ struct translation_table *table_init(int max_rows)
 	return ret;
 }
 
-struct translation_table *table_resize(struct translation_table *table, int rows)
+struct translation_table *table_resize(struct translation_table *table, int rows, int use_hash)
 {
 	struct translation_table *ret;
 	int i;
@@ -64,6 +63,8 @@ struct translation_table *table_resize(struct translation_table *table, int rows
 
 	if (ret == NULL)
 		return table;
+
+	ret->use_hash = use_hash;
 
 	if (table == NULL)
 		return ret;
@@ -101,16 +102,9 @@ void table_free(struct translation_table *table)
 	free(table);
 }
 
-static int table_hash1(int table_length, unsigned int key)
+static int table_hash(int table_length, unsigned int key)
 {
 	return key % table_length;
-}
-
-static int table_hash2(int table_length, unsigned int key)
-{
-	int i;
-	i = (key >> 8) % table_length;
-	return (i == 0) ? 1 : i;
 }
 
 /**
@@ -138,9 +132,17 @@ int table_put(struct translation_table *table, unsigned int key, char *data)
 		return -1;
 	}
 
-	if (!table->use_hash) {
-		offset = -1;
+	offset = -1;
 
+	if (table->use_hash) {
+		seek = table_hash(table->length, key);
+
+		if (table->rows[seek].key == 0 || table->rows[seek].key == key) {
+			offset = seek;
+		}
+	}
+
+	if (offset == -1) {
 		for (i = 0 ; i < table->length ; i++) {
 			if (table->rows[i].key == 0 || table->rows[i].key == key) {
 				offset = i;
@@ -150,16 +152,6 @@ int table_put(struct translation_table *table, unsigned int key, char *data)
 
 		if (offset == -1) {
 			return -1;
-		}
-	} else {
-		offset = table_hash1(table->length, key);
-
-		if (table->rows[offset].key != 0 && table->rows[offset].key != key) {
-			seek = table_hash2(table->length, key);
-			while (table->rows[offset].key != 0 && table->rows[offset].key != key) {
-				offset += seek;
-				offset %= table->length;
-			}
 		}
 	}
 
@@ -194,9 +186,17 @@ char *table_get(struct translation_table *table, unsigned int key)
 		return NULL;
 	}
 
-	if (!table->use_hash) {
-		offset = -1;
+	offset = -1;
 
+	if (table->use_hash) {
+		seek = table_hash(table->length, key);
+
+		if (table->rows[seek].key == key) {
+			offset = seek;
+		}
+	}
+
+	if (offset == -1) {
 		for (i = 0 ; i < table->length ; i++) {
 			if (table->rows[i].key == key) {
 				offset = i;
@@ -205,26 +205,7 @@ char *table_get(struct translation_table *table, unsigned int key)
 		}
 
 		if (offset == -1) {
-			return NULL;
-		}
-	} else {
-		offset = table_hash1(table->length, key);
-
-		if (table->rows[offset].key == 0) {
-			return NULL;
-		}
-
-		if (table->rows[offset].key != key) {
-			seek = table_hash2(table->length, key);
-			while (table->rows[offset].key != key && table->rows[offset].key != 0) {
-				table->misses++;
-
-				offset += seek;
-				offset %= table->length;
-			}
-		}
-
-		if (table->rows[offset].key == 0) {
+			table->misses++;
 			return NULL;
 		}
 	}

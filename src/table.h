@@ -34,7 +34,7 @@ struct translation_table {
 };
 
 extern struct translation_table *table_init(int max_rows);
-extern struct translation_table *table_resize(struct translation_table *table, int rows);
+extern struct translation_table *table_resize(struct translation_table *table, int rows, int use_hash);
 extern void table_free(struct translation_table *table);
 extern int table_put(struct translation_table *table, unsigned int key, char *data);
 extern char *table_get(struct translation_table *table, unsigned int key);
