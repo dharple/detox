@@ -14,7 +14,7 @@
 .Nd clean up filenames
 .Sh SYNOPSIS
 .Nm
-.Op Fl f Ar configfile
+.Op Fl f Pa configfile
 .Op Fl n | -dry-run
 .Op Fl r
 .Op Fl s Ar sequence
@@ -23,7 +23,7 @@
 .Ar
 .Nm
 .Op Fl L
-.Op Fl f Ar configfile
+.Op Fl f Pa configfile
 .Op Fl v
 .Nm
 .Op Fl h | -help
@@ -35,7 +35,7 @@ The
 utility renames files to make them easier to work with under Unix and Unix-like
 operating systems.  It replaces characters that make it hard to type out a
 filename with dashes and underscores.  It also provides transliteration-based
-filters, converting ISO8859-1 or UTF-8 to 7-bit ASCII, in part or in whole.  An
+filters, converting ISO 8859-1 or UTF-8 to ASCII, in part or in whole.  An
 additional filter unescapes CGI-escaped filenames.
 .Ss Sequences
 .Nm
@@ -45,17 +45,17 @@ Sequences are covered in more detail in
 and are discoverable with the
 .Fl L
 option.  The default sequence will run the
-.Cm safe
+.Ar safe
 and
-.Cm wipeup
+.Ar wipeup
 filters.  Other examples of pre-configured sequences are
-.Cm iso8859_1
+.Ar iso8859_1
 and
-.Cm utf_8 ,
+.Ar utf_8 ,
 which both provide transliteration to ASCII and then finish with the
-.Cm safe
+.Ar safe
 and
-.Cm wipeup
+.Ar wipeup
 filters.
 .Ss Options
 .Bl -tag -width Fl
@@ -98,7 +98,8 @@ Show the current version of
 The system-wide detoxrc file.
 .It Pa ~/.detoxrc
 A user's personal detoxrc.  Normally it extends the system-wide
-detoxrc, unless
+.Pa detoxrc ,
+unless
 .Fl f
 has been specified, in which case, it is ignored.
 .It Pa /usr/share/detox/safe.tbl
@@ -116,15 +117,19 @@ Will run the sequence
 recursively, listing any changes, without changing anything, on the
 files of
 .Pa /tmp/new_files .
-.It Nm Fl f Ar my_detoxrc Fl L Fl v
+.It Nm Fl f Pa my_detoxrc Fl L Fl v
 Will list the sequences within
-.Ar my_detoxrc ,
+.Pa my_detoxrc ,
 showing their filters and options.
 .El
 .Sh SEE ALSO
 .Xr inline-detox 1 ,
 .Xr detoxrc 5 ,
-.Xr detox.tbl 5 .
+.Xr detox.tbl 5 ,
+.Xr ascii 7 ,
+.Xr iso_8859-1 7 ,
+.Xr unicode 7 ,
+.Xr utf-8 7 .
 .Sh HISTORY
 .Nm
 was originally designed to clean up files that I had received from
@@ -146,10 +151,9 @@ and pointless.
 was written by
 .An Doug Harple .
 .Sh CAVEATS
-If, after the translation of a filename is finished, a file already
-exists with that same name,
+If, after the translation of a filename is finished, a file already exists with
+that same name,
 .Nm
 will not rename the file.  This could cause a problem with the
-.Cm max_length
-filter, if it was imperative that the files be cut down to a certain
-length.
+.Ar max_length
+filter, if it was imperative that the files be cut down to a certain length.

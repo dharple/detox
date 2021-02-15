@@ -17,7 +17,7 @@ sequence default {
 # Sequences meant primarily for detox
 #
 
-# transliterates ISO8859-1 into ASCII
+# transliterates ISO 8859-1 into ASCII
 sequence "iso8859_1" {
 	iso8859_1;
 	safe;
@@ -31,7 +31,7 @@ sequence "utf_8" {
 	wipeup;
 };
 
-# decodes CGI escaped characters
+# decodes CGI-escaped characters
 sequence "uncgi" {
 	uncgi;
 	safe;
@@ -49,7 +49,7 @@ sequence "lower" {
 # Sequences meant primarily for inline-detox
 #
 
-# transliterates ISO8859-1 to ASCII
+# transliterates ISO 8859-1 to ASCII
 sequence "iso8859_1-only" {
 	iso8859_1;
 };
@@ -59,7 +59,7 @@ sequence "utf_8-only" {
 	utf_8;
 };
 
-# decodes CGI escaped characters
+# decodes CGI-escaped characters
 sequence "uncgi-only" {
 	uncgi;
 };

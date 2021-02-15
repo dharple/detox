@@ -15,7 +15,7 @@
 .Xr detox 1
 .Sh OVERVIEW
 .Cm detox
-allows for configuration of how the safe, ISO8859-1, and UTF-8 (Unicode)
+allows for configuration of how the safe, ISO 8859-1, and UTF-8 (Unicode)
 filters operate.  Through text-based translation tables, it is possible to tune
 how these character sets are interpreted.
 .Sh SYNTAX
@@ -43,7 +43,7 @@ double quotes.
 .El
 .Sh EXAMPLE
 The following example shows a portion of a
-.Cm safe
+.Ar safe
 table, with only a few character replacements specified.
 .Bd -literal
 #
@@ -84,7 +84,7 @@ end
 .Ed
 .Pp
 You could then enable this table in your
-.Ar ~/.detoxrc ,
+.Pa ~/.detoxrc ,
 in conjunction with other filters.
 .Bd -literal
 # Sample detoxrc
@@ -100,11 +100,12 @@ sequence default {
 # EOF
 .Ed
 .Pp
-When detox is run, it will run the custom safe filter first, then run the
-default
-.Cm safe
+When
+.Cm detox
+is run, it will run the custom safe filter first, then run the default
+.Ar safe
 filter, and the finally the
-.Cm wipeup
+.Ar wipeup
 filter.  See
 .Xr detoxrc 5
 for more details on the various filter types.
@@ -112,7 +113,6 @@ for more details on the various filter types.
 .Xr detox 1 ,
 .Xr detoxrc 5 ,
 .Xr ascii 7 ,
-.Xr cp1252 7 ,
 .Xr iso_8859-1 7 ,
 .Xr unicode 7 ,
 .Xr utf-8 7 .

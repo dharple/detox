@@ -40,7 +40,7 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte utf-8 encoded \x00 (null)
+	# 2 byte UTF-8 encoded \x00 (null)
 
 	INPUT=$(printf "\\xc0\\x80 null")
 	OUTPUT="_hidden_null_ null"
@@ -49,7 +49,7 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte utf-8 encoded \x20 (space)
+	# 2 byte UTF-8 encoded \x20 (space)
 
 	INPUT=$(printf "\\xc0\\xa0 space")
 	OUTPUT="  space"
@@ -58,7 +58,7 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte utf-8 encoded \x30 (zero)
+	# 2 byte UTF-8 encoded \x30 (zero)
 
 	INPUT=$(printf "\\xc0\\xb0 zero")
 	OUTPUT="0 zero"
@@ -67,7 +67,7 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte utf-8 encoded \x7e (tilde)
+	# 2 byte UTF-8 encoded \x7e (tilde)
 
 	INPUT=$(printf "\\xc1\\xbe tilde")
 	OUTPUT="~ tilde"
@@ -76,7 +76,7 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte utf-8 encoded \x7f (delete)
+	# 2 byte UTF-8 encoded \x7f (delete)
 
 	INPUT=$(printf "\\xc1\\xbf delete")
 	OUTPUT="_ delete"

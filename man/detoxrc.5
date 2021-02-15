@@ -19,14 +19,14 @@ allows for configuration of its sequences through config files.  This document
 describes how these files work.
 .Sh IMPORTANT
 When setting up a new set of rules, the
-.Cm safe
+.Ar safe
 and
-.Cm wipeup
+.Ar wipeup
 filters should always be run after a translating filter (or series thereof),
 such as the
-.Cm utf_8
+.Ar utf_8
 or the
-.Cm uncgi
+.Ar uncgi
 filters.  Otherwise, the risk of introducing difficult characters into the
 filename is introduced.
 .Sh SYNTAX
@@ -62,23 +62,20 @@ the users'
 will replace the system-wide version.
 .It Cm iso8859_1 ;
 .It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This transliterates
-.Ar ISO 8859-1
-characters between 0xA0 and 0xFF into lower
-.Ar ASCII
-equivalents.  The output is not necessarily safe, and should also be run
+This transliterates ISO 8859-1 characters between 0xA0 and 0xFF into lower
+ASCII equivalents.  The output is not necessarily safe, and should also be run
 through the
-.Cm safe
+.Ar safe
 filter.  The default version of this filter also includes transliterations for
-CP-1252 for characters between 0x80 and 0x9F.
+.Ar CP-1252
+for characters between 0x80 and 0x9F.
 .Pp
 Under normal circumstances, the filename syntax is not needed.
 .Cm detox
 looks in several locations for a file called
 .Pa iso8859_1.tbl ,
-which is a set of rules defining how an
-.Ar ISO 8859-1
-character should be translated.  If
+which is a set of rules defining how an ISO 8859-1 character should be
+translated.  If
 .Cm detox
 can't find the translation table, it will fall back on its internal translation
 table, based on the stock one.
@@ -94,18 +91,15 @@ is explained in
 .Xr detox.tbl 5 .
 .Pp
 This filter is mutually exclusive with the
-.Cm utf_8
+.Ar utf_8
 filter.
 .It Cm utf_8 ;
 .It Cm utf_8 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This transliterations
-.Ar Unicode
-characters, encoded using
-.Ar UTF-8 ,
-into lower ASCII equivalents.
+This transliterations Unicode characters, encoded using UTF-8, into lower
+ASCII equivalents.
 .Pp
 This operates in a manner similar to
-.Cm iso8859_1 ,
+.Ar iso8859_1 ,
 except it looks for a translation table called
 .Pa unicode.tbl .
 .Pp
@@ -113,11 +107,8 @@ Similar to the
 .Ar iso8859_1
 filter, an internal table exists, based on the stock translation table.
 .It Cm uncgi ;
-This translates
-.Ar CGI
-escaped strings into their
-.Ar ASCII
-equivalents. The output of this is not necessarily safe, and should be run through the
+This translates CGI-escaped strings into their ASCII equivalents. The output of
+this is not necessarily safe, and should be run through the
 .Ar safe
 filter, at the least.
 .It Cm safe ;
@@ -129,7 +120,7 @@ characters that are not.
 Similar to the
 .Ar iso8859_1
 and
-.Ar utf8_1
+.Ar utf_8
 filters, this can be controlled using a translation table.  This filter also
 has an internal version of the translation table based on the stock version.
 .Pp
@@ -160,9 +151,7 @@ the filter would output
 .Pa this_is_.txt .
 .It Cm lower ;
 This translates uppercase characters into lowercase characters.  It only works
-on
-.Ar ASCII
-characters.
+on ASCII characters.
 .It Cm # comments
 Any thing after a # on any line is ignored.
 .El
@@ -189,13 +178,13 @@ sequence default {
 .Ed
 .Sh SAFE
 The following characters are translated by the stock
-.Cm safe
+.Ar safe
 filter.  They can be tuned by updating
 .Pa safe.tbl
 or creating a copy of
 .Pa safe.tbl
 and updating your
-.Ar detoxrc
+.Pa detoxrc
 file.
 .Pp
 .Ss Rules that apply anywhere in the filename:
@@ -208,7 +197,7 @@ file.
 .Pp
 .Sh WIPEUP
 The following characters are translated by the
-.Cm wipeup
+.Ar wipeup
 filter.
 .Pp
 .Ss Rules that apply anywhere in the filename:

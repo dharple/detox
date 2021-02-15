@@ -14,17 +14,17 @@
 .Nd clean up filenames (stream-based)
 .Sh SYNOPSIS
 .Nm
-.Op Fl f Ar configfile
+.Op Fl f Pa configfile
 .Op Fl s Ar sequence
 .Op Fl v
 .Nm
-.Op Fl f Ar configfile
+.Op Fl f Pa configfile
 .Op Fl s Ar sequence
 .Op Fl v
 .Ar
 .Nm
 .Op Fl L
-.Op Fl f Ar configfile
+.Op Fl f Pa configfile
 .Op Fl v
 .Nm
 .Op Fl h | -help
@@ -36,8 +36,8 @@ The
 utility generates new filenames to make them easier to work with under Unix and
 Unix-like operating systems.  It replaces characters that make it hard to type
 out a filename with dashes and underscores.  It also provides
-transliteration-based filters, converting ISO8859-1 or UTF-8 to 7-bit ASCII, in
-part or in whole.  An additional filter unescapes CGI-escaped filenames.
+transliteration-based filters, converting ISO 8859-1 or UTF-8 to ASCII, in part
+or in whole.  An additional filter unescapes CGI-escaped filenames.
 .Pp
 .Nm
 reads filename(s) from stdin and writes the updated filename(s) to stdout.
@@ -45,7 +45,6 @@ reads filename(s) from stdin and writes the updated filename(s) to stdout.
 If a filename is passed on the command line,
 .Nm
 reads this file and processes each line before writing it to stdout.
-.Pp
 .Ss Sequences
 .Nm
 is driven by a configurable series of filters, called a sequence.
@@ -54,23 +53,23 @@ Sequences are covered in more detail in
 and are discoverable with the
 .Fl L
 option.  The default sequence will run the
-.Cm safe
+.Ar safe
 and
-.Cm wipeup
+.Ar wipeup
 filters.  Other examples of pre-configured sequences are
-.Cm iso8859_1
+.Ar iso8859_1
 and
-.Cm utf_8 ,
+.Ar utf_8 ,
 which both provide transliteration to ASCII and then finish with the
-.Cm safe
+.Ar safe
 and
-.Cm wipeup
+.Ar wipeup
 filters.
 .Ss Options
 .Bl -tag -width Fl
-.It Fl f Ar configfile
+.It Fl f Pa configfile
 Use
-.Ar configfile
+.Pa configfile
 instead of the default configuration files for loading translation
 sequences.  No other config file will be parsed.
 .It Fl h , -help
@@ -97,7 +96,8 @@ Show the current version of
 The system-wide detoxrc file.
 .It Pa ~/.detoxrc
 A user's personal detoxrc.  Normally it extends the system-wide
-detoxrc, unless
+.Pa detoxrc ,
+unless
 .Fl f
 has been specified, in which case, it is ignored.
 .It Pa /usr/share/detox/safe.tbl
@@ -117,7 +117,11 @@ listing any changes and returning the result to STDOUT.
 .Sh SEE ALSO
 .Xr detox 1 ,
 .Xr detoxrc 5 ,
-.Xr detox.tbl 5 .
+.Xr detox.tbl 5 ,
+.Xr ascii 7 ,
+.Xr iso_8859-1 7 ,
+.Xr unicode 7 ,
+.Xr utf-8 7 .
 .Sh HISTORY
 .Nm
 was originally designed to clean up files that I had received from

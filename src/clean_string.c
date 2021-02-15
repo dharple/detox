@@ -22,7 +22,7 @@
 #define ISO8859_1_UPPER_BIT 0x80
 
 /*
- * Translates ISO8859.1 characters (Latin-1) into lower ASCII characters.
+ * Translates ISO 8859-1 characters (Latin-1) into lower ASCII characters.
  */
 char *clean_iso8859_1(char *s, void *opts)
 {

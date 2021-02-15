@@ -10,7 +10,7 @@
 # 
 
 #
-# This file transliterates upper 8-bit characters encoded in ISO8859-1 into
+# This file transliterates upper 8-bit characters encoded in ISO 8859-1 into
 # ASCII.  It's meant to be used with the iso8859_1 filter, which selects for
 # characters between 0x80 and 0xFF.
 #

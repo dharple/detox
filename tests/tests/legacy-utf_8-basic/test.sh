@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Subset of legacy regression tests: utf8
+# Subset of legacy regression tests: UTF-8
 #
 
 if [ -z "$TESTBASE" ] ; then
