@@ -207,6 +207,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#30]: https://github.com/dharple/detox/issues/30
 [#29]: https://github.com/dharple/detox/issues/29
 [#24]: https://github.com/dharple/detox/issues/24
+[#22]: https://github.com/dharple/detox/issues/22
 [#21]: https://github.com/dharple/detox/issues/21
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
