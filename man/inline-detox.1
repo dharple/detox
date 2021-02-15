@@ -40,11 +40,12 @@ transliteration-based filters, converting ISO 8859-1 or UTF-8 to ASCII, in part
 or in whole.  An additional filter unescapes CGI-escaped filenames.
 .Pp
 .Nm
-reads filename(s) from stdin and writes the updated filename(s) to stdout.
+reads filename(s) from the input stream and writes the updated filename(s) to
+the output stream.
 .Pp
 If a filename is passed on the command line,
 .Nm
-reads this file and processes each line before writing it to stdout.
+reads this file and processes each line before writing it to the output stream.
 .Ss Sequences
 .Nm
 is driven by a configurable series of filters, called a sequence.
@@ -109,10 +110,10 @@ The default Unicode transliteration table, used by the UTF-8 filter.
 .El
 .Sh EXAMPLES
 .Bl -tag -width Fl
-.It echo "Foo Bar" | Nm Fl s Ar iso8859_1 Fl v
+.It echo "Foo Bar" | Nm Fl s Ar lower Fl v
 Will run the sequence
-.Ar iso8859_1
-listing any changes and returning the result to STDOUT.
+.Ar lower ,
+listing any changes and returning the result to the output stream.
 .El
 .Sh SEE ALSO
 .Xr detox 1 ,
