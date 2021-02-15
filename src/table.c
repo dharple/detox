@@ -145,7 +145,7 @@ int table_put(struct translation_table *table, unsigned int key, char *data)
     }
 
     if (offset == -1) {
-        for (i = 0 ; i < table->length ; i++) {
+        for (i = 0; i < table->length; i++) {
             if (table->rows[i].key == 0 || table->rows[i].key == key) {
                 offset = i;
                 break;
@@ -199,7 +199,7 @@ char *table_get(struct translation_table *table, unsigned int key)
     }
 
     if (offset == -1) {
-        for (i = 0 ; i < table->length ; i++) {
+        for (i = 0; i < table->length; i++) {
             if (table->rows[i].key == key) {
                 offset = i;
                 break;

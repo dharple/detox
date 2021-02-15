@@ -41,7 +41,7 @@ char *clean_iso8859_1(char *s, void *opts)
         exit(EXIT_FAILURE);
     }
 
-    options = (struct clean_string_options *)opts;
+    options = (struct clean_string_options *) opts;
     table = options->translation_table;
 
     output = malloc((strlen(s) * table->max_data_length) + 1);
@@ -106,7 +106,7 @@ char *clean_safe(char *s, void *opts)
         exit(EXIT_FAILURE);
     }
 
-    options = (struct clean_string_options *)opts;
+    options = (struct clean_string_options *) opts;
     table = options->translation_table;
 
     output = malloc((strlen(s) * table->max_data_length) + 1);
@@ -144,7 +144,6 @@ char *clean_safe(char *s, void *opts)
 
     return output;
 }
-
 
 
 /*
@@ -210,7 +209,7 @@ char *clean_wipeup(char *s, void *opts)
 
     remove_trailing = 0;
     if (opts != NULL) {
-        remove_trailing = ((struct clean_string_options *)opts)->remove_trailing;
+        remove_trailing = ((struct clean_string_options *) opts)->remove_trailing;
     }
 
     /* remove any -, _, or # at beginning of string */
@@ -307,7 +306,7 @@ char *clean_utf_8(char *s, void *opts)
         exit(EXIT_FAILURE);
     }
 
-    options = (struct clean_string_options *)opts;
+    options = (struct clean_string_options *) opts;
     table = options->translation_table;
 
     output = malloc((strlen(s) * table->max_data_length) + 1);
@@ -430,7 +429,6 @@ char *clean_utf_8(char *s, void *opts)
 }
 
 
-
 /*
  * Trims a file down to specified length.
  */
@@ -447,7 +445,7 @@ char *clean_max_length(char *s, void *opts)
 
     max_length = 256;
     if (opts != NULL) {
-        max_length = ((struct clean_string_options *)opts)->max_length;
+        max_length = ((struct clean_string_options *) opts)->max_length;
     }
 
     s_length = strlen(s);

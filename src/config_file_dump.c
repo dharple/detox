@@ -77,7 +77,7 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
                     printf("\tcleaner: max length\n");
                     if (work->options != NULL) {
                         struct clean_string_options *opts = work->options;
-                        printf("\t\tlength: %d\n", (unsigned int)opts->max_length);
+                        printf("\t\tlength: %d\n", (unsigned int) opts->max_length);
                     }
                 }
                 if (work->cleaner == &clean_lower) {
