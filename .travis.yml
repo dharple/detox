@@ -16,7 +16,7 @@ jobs:
     # test clang on amd6 on file default (focal)
     - arch: amd64
       compiler: clang
-    # test gcc on amd64 acrosss older versions
+    # test gcc on amd64 across older versions
     - arch: amd64
       compiler: gcc
       dist: bionic

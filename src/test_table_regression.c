@@ -23,7 +23,7 @@ struct test_definition {
 	int multiple;
 };
 
-struct test_definition tests[5] = {
+static struct test_definition tests[5] = {
 	{ .pass = 1, .size = 0 },
 	{ .pass = 2, .size = 10000 },
 	{ .pass = 3, .size = 1000000 },
@@ -36,7 +36,7 @@ struct test_value {
 	char *expected;
 };
 
-struct test_value values[9] = {
+static struct test_value values[9] = {
 	{ .value = 0x0020, .expected = "space" },
 	{ .value = 0x00A3, .expected = "_pound_" },
 	{ .value = 0x014B, .expected = "ng" },
@@ -48,7 +48,7 @@ struct test_value values[9] = {
 	{ .value = 0 }
 };
 
-int regress_parse_table(int verbose)
+static int regress_parse_table(int verbose)
 {
 	struct translation_table *table;
 	char *check;
@@ -107,7 +107,7 @@ int regress_parse_table(int verbose)
 						if (verbose) {
 							table_dump(table, 0);
 						}
-						fprintf(stderr, "ERROR: Pulled non-existant 0x%04x.\n", values[j].value);
+						fprintf(stderr, "ERROR: Pulled non-existent 0x%04x.\n", values[j].value);
 						exit(1);
 					}
 					if (verbose) {
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
 	while ((optcode = getopt(argc, argv, "v")) != -1) {
 		switch (optcode) {
 			case 'h':
-				printf("test-table-regrssion [-v]\n");
+				printf("test-table-regression [-v]\n");
 				return 0;
 
 			case 'v':

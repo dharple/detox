@@ -9,7 +9,7 @@
 # This file replaces 7-bit characters that are special to shells with "_" or
 # "-".  The exception is ampersand, which gets translated to "_and_".
 #
-# The absense of a "default" option means that if a character is not specified
+# The absence of a "default" option means that if a character is not specified
 # here, it will not be altered.
 #
 

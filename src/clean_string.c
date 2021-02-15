@@ -397,8 +397,6 @@ char *clean_utf_8(char *s, void *opts)
 			continue;
 		}
 
-		// fprintf(stderr, "unicode character 0x%04x\n", new_value);
-
 		replace_walk = table_get(table, new_value);
 
 		//

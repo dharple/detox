@@ -30,7 +30,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Potential infinite loops in `table_put()` and `table_get()`. [#21] [#41]
 - src/Makefile.am no longer deletes src/config_file.h when `make
   maintainer-clean` is run.
-- Updated interal safe filter to ignore all upper ISO8859-1 and UTF-8
+- Updated internal safe filter to ignore all upper ISO8859-1 and UTF-8
   characters (0x80 though 0xFF) [#21], [#29]
 - Updated table-based safe filter to convert all control characters (0x01
   though 0x20) to `_`. [#21], [#29]

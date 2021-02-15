@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "table.h"
+#include "builtin_table.h"
 
 /**
  * Generated from safe.tbl.sample
