@@ -16,6 +16,10 @@ Installation that overwrites config files and translation tables:
 
 # Release Instructions
 
+## Generating Docs
+
+Install `mandoc` to generate fresh PDFs.
+
 ## Testing
 
 1. Run static analysis tools. (sparse, cppcheck)

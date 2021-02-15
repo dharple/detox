@@ -8,6 +8,9 @@ AC_PROG_YACC
 
 AC_CHECK_FUNCS([getopt_long])
 
+AC_CHECK_PROGS([MANDOC], [mandoc])
+AM_CONDITIONAL([MANDOC_INSTALLED], [test -n "$MANDOC"])
+
 AC_SEARCH_LIBS([ceil], [m])
 
 #
