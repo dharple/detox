@@ -1,0 +1,11 @@
+# Sample detoxrc
+
+sequence default {
+	safe {
+		filename "safe-manpage.tbl";
+	};
+	safe;
+	wipeup;
+};
+
+# EOF

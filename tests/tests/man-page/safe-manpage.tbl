@@ -1,0 +1,35 @@
+#
+# This is a simple example of a "safe" table.  It only translates 4 characters.
+#
+# The default is commented out, so any character that is not in this table will
+# be ignored.
+#
+
+# default   _
+
+#
+# This is the main replacement block.  Each line specifies a character and a
+# string to replace it with.
+#
+
+start
+0x09	_tab_		# comments work on lines, too
+0x24	_dollar_	# $$$
+0x26	_and_		# ampersand
+end
+
+#
+# Starts an optional, language-specific translation block.  detox will read
+# your locale and load the block if the word after start matches the language
+# portion of your locale.
+#
+# In the example here, the character $ will be replaced with "_money_" if the
+# user is working in English.  If the user is using a different language, $
+# will be replaced with the value configured in the previous block, "_dollar_".
+#
+
+start en
+0x24	_money_		# money money
+end
+
+# EOF

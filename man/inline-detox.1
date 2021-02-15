@@ -6,13 +6,17 @@
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
 .\" 
-.Dd February 13, 2021
+.Dd February 15, 2021
 .Dt INLINE-DETOX 1
 .Os
 .Sh NAME
 .Nm inline-detox
 .Nd clean up filenames (stream-based)
 .Sh SYNOPSIS
+.Nm
+.Op Fl f Ar configfile
+.Op Fl s Ar sequence
+.Op Fl v
 .Nm
 .Op Fl f Ar configfile
 .Op Fl s Ar sequence
@@ -29,10 +33,19 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility can remove spaces and other such annoyances from streams.
-It'll also translate or cleanup Latin-1 (ISO 8859-1) characters encoded
-in 8-bit ASCII, Unicode characters encoded in UTF-8, and CGI escaped characters.
-Basically it's detox, but does not operate on files.
+utility generates new filenames to make them easier to work with under Unix and
+Unix-like opertating systems.  It replaces characters that make it hard to type
+out a filename with dashes and underscores.  It also provides
+transliteration-based filters, converting ISO8859-1 or UTF-8 to 7-bit ASCII, in
+part or in whole.  An additional filter unescapes CGI-escaped filenames.
+.Pp
+.Nm
+reads filename(s) from stdin and writes the updated filename(s) to stdout.
+.Pp
+If a filename is passed on the command line,
+.Nm
+reads this file and processes each line before writing it to stdout.
+.Pp
 .Ss Sequences
 .Nm
 is driven by a configurable series of filters, called a sequence.
@@ -40,19 +53,27 @@ Sequences are covered in more detail in
 .Xr detoxrc 5
 and are discoverable with the
 .Fl L
-option.  Some examples of default sequences are
+option.  The default sequence will run the
+.Cm safe
+and
+.Cm wipeup
+filters.  Other examples of pre-configured sequences are
 .Cm iso8859_1
 and
-.Cm utf_8 .
+.Cm utf_8 ,
+which both provide transliteration to ASCII and then finish with the 
+.Cm safe
+and
+.Cm wipeup
+filters.
 .Ss Options
-The main options:
 .Bl -tag -width Fl
 .It Fl f Ar configfile
 Use 
 .Ar configfile 
 instead of the default configuration files for loading translation
 sequences.  No other config file will be parsed.
-.It Fl h, -help
+.It Fl h , -help
 Display helpful information.
 .It Fl L
 List the currently available sequences.  When paired with
@@ -62,7 +83,8 @@ properties applied to the filters.
 .It Fl s Ar sequence
 Use
 .Ar sequence 
-instead of default.
+instead of
+.Cm default .
 .It Fl v
 Be verbose about which files are being renamed.
 .It Fl V
@@ -70,18 +92,20 @@ Show the current version of
 .Nm .
 .El
 .Sh FILES
-.Bl -tag -width iso8859_1.tbl -compact
-.It Pa detoxrc
+.Bl -tag -width Fl
+.It Pa /etc/detoxrc
 The system-wide detoxrc file.
 .It Pa ~/.detoxrc
 A user's personal detoxrc.  Normally it extends the system-wide
 detoxrc, unless
 .Fl f
 has been specified, in which case, it is ignored.
-.It Pa iso8859_1.tbl
-The default ISO 8859-1 translation table.
-.It Pa unicode.tbl
-The default Unicode (UTF-8) translation table.
+.It Pa /usr/share/detox/safe.tbl
+The default safe character translation table.
+.It Pa /usr/share/detox/iso8859_1.tbl
+The default ISO 8859-1 transliteration table.
+.It Pa /usr/share/detox/unicode.tbl
+The default Unicode transliteration table, used by the UTF-8 filter.
 .El
 .Sh EXAMPLES
 .Bl -tag -width Fl
@@ -104,6 +128,12 @@ within FreeBSD and Linux, and cause problems when you go to access
 them.  I created
 .Nm
 to clean up these files.
+.Pp
+Version 2.0 stepped back from transliteration out of the box, instead focusing
+on ease of use.  The primary motivations for this were user-provided feedback,
+and the fact that many modern Unix-like OSs use UTF-8 as their primary
+character set.  Transliterating from UTF-8 to ASCII in this scenario is lossy
+and pointless.
 .Sh AUTHORS
 .Nm
 was written by

@@ -9,6 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
   the old behavior, use `detox -s utf_8`. [#21]
+- Cleaned up man pages. [#22]
 - Internal filters now run using compiled-in translation tables.  This removes
   all `clean_*_basic()` functions, and allows for consistent behavior between
   detox without translation tables and detox with the stock ones. [#21], [#29].
