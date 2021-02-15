@@ -50,7 +50,8 @@ AC_CHECK_CFLAG([[-fstack-protector-strong]])
 
 AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_FILES([
- Makefile
- src/Makefile
+	Makefile
+	src/Makefile
+	man/Makefile
 ])
 AC_OUTPUT

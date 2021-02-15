@@ -1,0 +1,9 @@
+sequence name: default (*)
+	source file: detoxrc.manpage
+	cleaner: uncgi
+	cleaner: iso8859_1
+		translation table: iso8859_1.tbl
+	cleaner: safe
+		translation table: safe.tbl
+	cleaner: wipeup
+		remove trailing: yes

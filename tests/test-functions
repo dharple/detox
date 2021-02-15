@@ -256,10 +256,11 @@ function test_sequence ()
 				DONE
 				;;
 
-			max-length-32 )
+			max-length-* )
+				LENGTH=${1:11}
 				cat <<- DONE >> $RC
 					max_length {
-						length 32;
+						length $LENGTH;
 					};
 				DONE
 				;;

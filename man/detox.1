@@ -1,11 +1,11 @@
-.\" 
+.\"
 .\" This file is part of the Detox package.
 .\"
 .\" Copyright (c) Doug Harple <detox.dharple@gmail.com>
 .\"
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
-.\" 
+.\"
 .Dd February 15, 2021
 .Dt DETOX 1
 .Os
@@ -52,7 +52,7 @@ filters.  Other examples of pre-configured sequences are
 .Cm iso8859_1
 and
 .Cm utf_8 ,
-which both provide transliteration to ASCII and then finish with the 
+which both provide transliteration to ASCII and then finish with the
 .Cm safe
 and
 .Cm wipeup
@@ -60,8 +60,8 @@ filters.
 .Ss Options
 .Bl -tag -width Fl
 .It Fl f Ar configfile
-Use 
-.Ar configfile 
+Use
+.Ar configfile
 instead of the default configuration files for loading translation
 sequences.  No other config file will be parsed.
 .It Fl h , -help
@@ -79,11 +79,11 @@ option.
 Recurse into subdirectories.
 .It Fl s Ar sequence
 Use
-.Ar sequence 
+.Ar sequence
 instead of
 .Cm default .
 .It Fl -special
-Works on special files (including links).  Normally 
+Works on special files (including links).  Normally
 .Nm
 ignores these files.
 .It Fl v

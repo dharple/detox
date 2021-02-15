@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# Run legacy table regression testing
+# Confirm that the language selection from the detox.tbl.5 man page works as
+# described.
 #
 
 if [ -z "$TESTBASE" ] ; then

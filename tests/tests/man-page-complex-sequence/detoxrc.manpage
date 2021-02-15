@@ -1,0 +1,18 @@
+sequence default {
+  uncgi;
+  iso8859_1 {
+    filename "iso8859_1.tbl";
+  };
+# utf_8 {
+#   filename "unicode.tbl";
+# };
+  safe {
+    filename "safe.tbl";
+  };
+  wipeup {
+    remove_trailing;
+  };
+# max_length {
+#   length 128;
+# };
+};

@@ -1,12 +1,12 @@
-.\" 
+.\"
 .\" This file is part of the Detox package.
 .\"
 .\" Copyright (c) Doug Harple <detox.dharple@gmail.com>
 .\"
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
-.\" 
-.Dd August 3, 2004
+.\"
+.Dd February 15, 2021
 .Dt DETOXRC 5
 .Os
 .Sh NAME
@@ -14,131 +14,156 @@
 .Nd configuration file for
 .Xr detox 1
 .Sh OVERVIEW
-detox allows for configuration of its sequences through config files.
-This document describes how these files work.
+.Cm detox
+allows for configuration of its sequences through config files.  This document
+describes how these files work.
 .Sh IMPORTANT
 When setting up a new set of rules, the
 .Cm safe
 and
 .Cm wipeup
-filters must always be run after a translating filter (or series
-thereof), such as the
+filters should always be run after a translating filter (or series thereof),
+such as the
 .Cm utf_8
-or the 
+or the
 .Cm uncgi
-filters.  Otherwise, the risk of introducing illegal characters into
-the filename is introduced.
+filters.  Otherwise, the risk of introducing difficult characters into the
+filename is introduced.
 .Sh SYNTAX
-The format of this configuration file is C-like.  It is based loosely
-off named's configuration files.  Each statement is semicolon
-terminated, and modifiers on a particular statement are generally
-contained within braces.
+The format of this configuration file is C-like.  It is based loosely off the
+configuration files used by
+.Cm named .
+Each statement is semicolon terminated, and modifiers on a particular statement
+are generally contained within braces.
 .Bl -tag -width 0.25i
 .It Cm sequence Qo Ar name Qc Bro Ar ... Brc ;
-Defines a sequence of filters to run a filename through.  "name"
-specifies how the user will refer to the particular sequence during
-runtime.  Quotes around the sequence name are generally optional, but
-should be used if the sequence name does not start with a letter.
+Defines a sequence of filters to run a filename through.
+.Ar name
+specifies how the user will refer to the particular sequence during runtime.
+Quotes around the sequence name are generally optional, but should be used if
+the sequence name does not start with a letter.
 .Pp
-There is a special sequence, named "default", which is the default
-sequence used by detox.  This can be overridden through the command
-line option
+There is a special sequence, named
+.Ar default ,
+which is the default sequence used by
+.Cm detox .
+This can be overridden through the command line option
 .Fl s
-or the environmental variable 
+or the environmental variable
 .Ev DETOX_SEQUENCE .
 .Pp
 Sequence names are case sensitive and unique throughout all sequences;
-that is, if a system wide file defines
+that is, if a system-wide file defines
 .Ar normal_seq
-and a user has a sequence with the same name in their 
-.Pa .detoxrc , 
-the users' 
+and a user has a sequence with the same name in their
+.Pa .detoxrc ,
+the users'
 .Ar normal_seq
-will take precedence.
+will replace the system-wide version.
+.It Cm iso8859_1 ;
 .It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This translates ISO 8859-1 (aka Latin-1) characters into lower ASCII
-equivalents.  The output is not necessarily safe, and should also be
-run through the
+This transliterates
+.Ar ISO 8859-1
+characters between 0xA0 and 0xFF into lower
+.Ar ASCII
+equivalents.  The output is not necessarily safe, and should also be run
+through the
 .Cm safe
-filter.
+filter.  The default version of this filter also includes transliterations for
+CP-1252 for characters between 0x80 and 0x9F.
 .Pp
-Under normal circumstances, the filename syntax is not needed.  Detox
-looks in several locations for a file called 
-.Pa iso8859_1.tbl , 
-which is a set of rules defining how an ISO 8859-1 character should be
-translated.
+Under normal circumstances, the filename syntax is not needed.
+.Cm detox
+looks in several locations for a file called
+.Pa iso8859_1.tbl ,
+which is a set of rules defining how an
+.Ar ISO 8859-1
+character should be translated.  If
+.Cm detox
+can't find the translation table, it will fall back on its internal translation
+table, based on the stock one.
 .Pp
-In the event this table doesn't exist, you have two options.  You can
-download or create your own, and tell detox the location of it using
-the filename syntax shown above, or you can let detox fall back on its
-internal tables.  The internal tables translate the same as the stock
-translation tables.
+You can also download or create your own, and tell
+.Cm detox
+the location of it using the filename syntax shown above.
 .Pp
-You can chain together multiple iso8859_1 translations, as long as the
-default value of all but the last one is set to nothing.  This is
-explained in
+You can chain together multiple
+.Ar iso8859_1
+filters, as long as the default value of all but the last one it empty.  This
+is explained in
 .Xr detox.tbl 5 .
 .Pp
 This filter is mutually exclusive with the
 .Cm utf_8
 filter.
+.It Cm utf_8 ;
 .It Cm utf_8 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This translates Unicode characters, encoded by the UTF-8 translation
-method, into safe equivalents.
+This transliterations
+.Ar Unicode
+characters, encoded using
+.Ar UTF-8 ,
+into lower ASCII equivalents.
 .Pp
-This operates in a manner similar to 
-.Cm iso8859_1 , 
-except it looks for a translation table called 
+This operates in a manner similar to
+.Cm iso8859_1 ,
+except it looks for a translation table called
 .Pa unicode.tbl .
 .Pp
-The default internal translation for Unicode characters only contains
-the lower 256 characters of Unicode, which is equivalent to the set of
-Basic Latin and Latin-1 characters.
+Similar to the
+.Ar iso8859_1
+filter, an internal table exists, based on the stock translation table.
 .It Cm uncgi ;
-This translates CGI escaped strings into their ASCII equivalents. The
-output of this is not necessarily safe, and could contain ISO 8859-1
-chars or potentially UTF-8 characters.
+This translates
+.Ar CGI
+escaped strings into their
+.Ar ASCII
+equivalents. The output of this is not necessarily safe, and should be run through the
+.Ar safe
+filter, at the least.
+.It Cm safe ;
 .It Cm safe Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
 This could also be called "safe for UNIX-like operating systems".  It
-translates characters that are difficult to work with in UNIX
-environments into characters that are not.
+translates characters that are difficult to work with in UNIX environments into
+characters that are not.
 .Pp
-In earlier versions this filter was entirely internal.  Starting with
-1.2.0, this filter is controlled by a translation table.  In the
-absence of the translation table, the previous code will be employed
-for the translation.  Also, prior to 1.2.0, the safe filter removed
-leading dashes to prevent the hassle of dealing with a filename in
-the format
-.Pa -filename .
-This functionality is exclusively handled by the
-.Cm wipeup
-filter now.
+Similar to the
+.Ar iso8859_1
+and
+.Ar utf8_1
+filters, this can be controlled using a translation table.  This filter also
+has an internal version of the translation table based on the stock version.
 .Pp
 See the
 .Sx SAFE
 section for more details on what this filter translates by default.
+.It Cm wipeup ;
 .It Cm wipeup Bro Cm remove_trailing ; Brc ;
-This wipes up any excessive characters.  For instance, multiple
-underscores or dashes will be converted into a single underscore or
-dash.  Any series of dash and underscore (i.e. "_-_") will be
-converted into a single dash.
+This condenses sequences of dashes and underscores into a single dash, and
+removes leading dashes, underscores, and octothorpes (A.K.A. pound signs or
+hash tags).
 .Pp
-The remove trailing option removes a dash or underscore followed
-immediately by a period.
+The
+.Ar remove_trailing
+option removes a dash or underscore followed immediately by a period.
 .Pp
 See the
 .Sx WIPEUP
 section for more details on what this filter translates.
 .It Cm max_length Bro Cm length Ar value ; Brc ;
-This trims a file down to the length specified (or less).  It is
-conscious of extensions and attempts to preserve anything following
-the last period in a filename.
+This trims a filename down to the length specified (or less).  It is conscious
+of extensions and attempts to preserve anything following the last period in a
+filename.
 .Pp
 For instance, given a max length of 12, and a filename of
-"this_is_my_file.txt", the filter would output "this_is_.txt".
+.Pa this_is_my_file.txt ,
+the filter would output
+.Pa this_is_.txt .
 .It Cm lower ;
-This translates uppercase characters into lowercase characters.
-.It Cm # Comments
+This translates uppercase characters into lowercase characters.  It only works
+on
+.Ar ASCII
+characters.
+.It Cm # comments
 Any thing after a # on any line is ignored.
 .El
 .Sh EXAMPLE
@@ -164,15 +189,20 @@ sequence default {
 .Ed
 .Sh SAFE
 The following characters are translated by the stock
-.Cm safe 
-filter.  They can be tuned by updating safe.tbl or creating a copy of
-safe.tbl and updating your rc file.
+.Cm safe
+filter.  They can be tuned by updating
+.Pa safe.tbl
+or creating a copy of
+.Pa safe.tbl
+and updating your
+.Ar detoxrc
+file.
 .Pp
 .Ss Rules that apply anywhere in the filename:
 .Bl -column -offset indent ".Sy Removed" ".Sy Original"
 .It Sy Safe Ta Sy Original
 .It _and_ Ta &
-.It _ Ta \fIspace\fR ` \&! @ $ * \e | \&: \&; \&" ' < > \&? / 
+.It _ Ta \fIspace\fR ` \&! @ $ * \e | \&: \&; \&" ' < > \&? /
 .It - Ta \&( \&) \&[ \&] { }
 .El
 .Pp
@@ -208,7 +238,13 @@ these files as command line options.
 .Pp
 .Sh SEE ALSO
 .Xr detox 1 ,
-.Xr detox.tbl 5 .
+.Xr inline-detox 1 ,
+.Xr detox.tbl 5 ,
+.Xr ascii 7 ,
+.Xr cp1252 7 ,
+.Xr iso_8859-1 7 ,
+.Xr unicode 7 ,
+.Xr utf-8 7 .
 .Sh AUTHORS
 detox was written by
 .An "Doug Harple" .

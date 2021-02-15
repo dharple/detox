@@ -1,4 +1,4 @@
-SUBDIRS = src
+SUBDIRS = src man
 dist_doc_DATA = README.md
 
 dist_man1_MANS = man/*.1
