@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.com/dharple/detox.svg?branch=master)](https://travis-ci.com/dharple/detox)
+[![Build Status](https://travis-ci.com/dharple/detox.svg?branch=main)](https://travis-ci.com/dharple/detox)
 
 # Notice
 
-I renaming the `master` branch to `main` on or after February 15th, 2021.  If 
-you have a checkout, you can update your checkout to point at the new branch 
-using [these steps](https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9).
-Alternatively, you can check out a fresh copy of the repo.
+I have renamed the `master` branch to `main`.  If you have a copy of detox
+checked out, you can update your code to point at the new branch using
+[these steps](https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9).
+Alternatively, you can clone a fresh copy of the repo.
 
 # Overview
 
