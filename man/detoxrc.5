@@ -155,7 +155,7 @@ on ASCII characters.
 .It Cm # comments
 Any thing after a # on any line is ignored.
 .El
-.Sh EXAMPLE
+.Sh EXAMPLES
 .Bd -literal
 sequence default {
   uncgi;
@@ -186,7 +186,6 @@ or creating a copy of
 and updating your
 .Pa detoxrc
 file.
-.Pp
 .Ss Rules that apply anywhere in the filename:
 .Bl -column -offset indent ".Sy Removed" ".Sy Original"
 .It Sy Safe Ta Sy Original
@@ -194,12 +193,10 @@ file.
 .It _ Ta \fIspace\fR ` \&! @ $ * \e | \&: \&; \&" ' < > \&? /
 .It - Ta \&( \&) \&[ \&] { }
 .El
-.Pp
 .Sh WIPEUP
 The following characters are translated by the
 .Ar wipeup
 filter.
-.Pp
 .Ss Rules that apply anywhere in the filename:
 .Bl -column -offset indent ".Sy Wipeup" ".Sy Original"
 .It Sy Wipeup Ta Sy Original
@@ -208,7 +205,6 @@ filter.
 .It - Ta --
 .It _ Ta __
 .El
-.Pp
 .Ss Rules that apply only at the beginning of a filename:
 Any leading dashes are stripped to prevent programs from interpreting
 these files as command line options.
@@ -224,7 +220,6 @@ these files as command line options.
 .It . Ta ._
 .It . Ta _.
 .El
-.Pp
 .Sh SEE ALSO
 .Xr detox 1 ,
 .Xr inline-detox 1 ,
@@ -233,7 +228,7 @@ these files as command line options.
 .Xr cp1252 7 ,
 .Xr iso_8859-1 7 ,
 .Xr unicode 7 ,
-.Xr utf-8 7 .
+.Xr utf-8 7
 .Sh AUTHORS
 detox was written by
 .An "Doug Harple" .
