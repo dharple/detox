@@ -389,6 +389,12 @@ start
 
 0x2122		_tm_	# TRADE MARK SIGN
 
+#
+# Mostly for testing
+#
+
+0x10348		hu	# HWAIR
+
 end
 
 #

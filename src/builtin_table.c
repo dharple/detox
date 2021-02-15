@@ -204,7 +204,7 @@ struct translation_table *load_builtin_iso8859_1_table(void)
  * Generated from unicode.tbl.sample
  */
 
-static struct translation_table_row builtin_unicode_rows[315] = {
+static struct translation_table_row builtin_unicode_rows[316] = {
     { .key  = 0x0020, .data = " " },
     { .key  = 0x0021, .data = "!" },
     { .key  = 0x0022, .data = "\"" },
@@ -520,11 +520,12 @@ static struct translation_table_row builtin_unicode_rows[315] = {
     { .key  = 0x2015, .data = "-" },
     { .key  = 0x2026, .data = "..." },
     { .key  = 0x2122, .data = "_tm_" },
+    { .key  = 0x10348, .data = "hu" },
 };
 
 static struct translation_table builtin_unicode_table = {
-    .length              = 315,
-    .used                = 315,
+    .length              = 316,
+    .used                = 316,
     .max_data_length     = 7,
     .hits                = 0,
     .misses              = 0,
