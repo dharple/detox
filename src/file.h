@@ -20,4 +20,4 @@ extern void parse_special(char *in, struct detox_options *options);
 
 extern void parse_inline(char *filename, struct detox_options *options);
 
-#endif				/* __FILE_H */
+#endif /* __FILE_H */

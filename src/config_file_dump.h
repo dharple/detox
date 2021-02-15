@@ -14,4 +14,4 @@
 
 extern void dump_config_file(struct detox_parse_results *parse_results, struct detox_options *main_options);
 
-#endif				/* __CONFIG_FILE_DUMP_H */
+#endif /* __CONFIG_FILE_DUMP_H */

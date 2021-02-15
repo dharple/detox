@@ -9,6 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
   the old behavior, use `detox -s utf_8`. [#21]
+- Code uses spaces instead of tabs. [#44]
 - Cleaned up man pages. [#22]
 - Internal filters now run using compiled-in translation tables.  This removes
   all `clean_*_basic()` functions, and allows for consistent behavior between
@@ -164,10 +165,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added a new filter for trimming based on the max length.
 - Added command line options:
 
-		-f	set config file
-		-L	list sequences
-		-n	the same as --dry-run
-		-s	set sequence
+        -f    set config file
+        -L    list sequences
+        -n    the same as --dry-run
+        -s    set sequence
 
 - Added handling for an environmental variable `DETOX_SEQUENCE`, which sets the
   default sequence name.
@@ -198,6 +199,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#44]: https://github.com/dharple/detox/issues/44
 [#41]: https://github.com/dharple/detox/issues/41
 [#40]: https://github.com/dharple/detox/issues/40
 [#37]: https://github.com/dharple/detox/issues/37

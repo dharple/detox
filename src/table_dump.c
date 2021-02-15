@@ -21,31 +21,30 @@
 
 void table_dump(struct translation_table *table, int verbose)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < table->length; i++) {
-		if (!verbose && table->rows[i].key == 0) {
-			continue;
-		}
+    for (i = 0; i < table->length; i++) {
+        if (!verbose && table->rows[i].key == 0) {
+            continue;
+        }
 
-		printf("index: %d, ", i);
+        printf("index: %d, ", i);
 
-		if (table->rows[i].key == 0) {
-			printf("empty\n");
-		}
-		else {
-			printf("key: 0x%04x, data: %s\n", table->rows[i].key, table->rows[i].data);
-		}
-	}
+        if (table->rows[i].key == 0) {
+            printf("empty\n");
+        } else {
+            printf("key: 0x%04x, data: %s\n", table->rows[i].key, table->rows[i].data);
+        }
+    }
 }
 
 void table_stats(struct translation_table *table)
 {
-	printf("used: %d\n", table->used);
-	printf("max: %d\n", table->length);
-	printf("used percent: %0.2f\n", table->used*100.0/table->length);
+    printf("used: %d\n", table->used);
+    printf("max: %d\n", table->length);
+    printf("used percent: %0.2f\n", table->used*100.0/table->length);
 
-	printf("hits: %d\n", table->hits);
-	printf("misses: %d\n", table->misses);
-	printf("overwrites: %d\n", table->overwrites);
+    printf("hits: %d\n", table->hits);
+    printf("misses: %d\n", table->misses);
+    printf("overwrites: %d\n", table->overwrites);
 }

@@ -11,12 +11,12 @@
 #define __CLEAN_STRING_H
 
 struct clean_string_options {
-	char *filename;
-	int remove_trailing;
-	size_t max_length;
+    char *filename;
+    int remove_trailing;
+    size_t max_length;
 
-	void *misc;
-	void *translation_table;
+    void *misc;
+    void *translation_table;
 };
 
 extern char *clean_iso8859_1(char *s, void *opts);
@@ -27,4 +27,4 @@ extern char *clean_utf_8(char *s, void *opts);
 extern char *clean_max_length(char *s, void *opts);
 extern char *clean_lower(char *s, void *opts);
 
-#endif				/* __CLEAN_STRING_H */
+#endif /* __CLEAN_STRING_H */

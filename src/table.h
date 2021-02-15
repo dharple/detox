@@ -11,26 +11,26 @@
 #define __TABLE_H
 
 struct translation_table_row {
-	unsigned int key;
-	char *data;
+    unsigned int key;
+    char *data;
 };
 
 struct translation_table {
-	int length;
-	int used;
+    int length;
+    int used;
 
-	int max_data_length;
+    int max_data_length;
 
-	char *default_translation;
+    char *default_translation;
 
-	struct translation_table_row *rows;
+    struct translation_table_row *rows;
 
-	int hits;
-	int misses;
-	int overwrites;
+    int hits;
+    int misses;
+    int overwrites;
 
-	int use_hash;
-	int builtin;
+    int use_hash;
+    int builtin;
 };
 
 extern struct translation_table *table_init(int max_rows);
@@ -39,4 +39,4 @@ extern void table_free(struct translation_table *table);
 extern int table_put(struct translation_table *table, unsigned int key, char *data);
 extern char *table_get(struct translation_table *table, unsigned int key);
 
-#endif				/* __TABLE_H */
+#endif /* __TABLE_H */

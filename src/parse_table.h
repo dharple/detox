@@ -15,4 +15,4 @@
 
 extern struct translation_table *parse_table(char *filename);
 
-#endif				/* __PARSE_TABLE_H */
+#endif /* __PARSE_TABLE_H */

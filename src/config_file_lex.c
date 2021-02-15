@@ -898,41 +898,41 @@ case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
 #line 60 "config_file_lex.l"
-{ 
-		  yylval.string = strdup(yytext+1);
-		  if (yylval.string[yyleng-2] != '"') {
-		    printf("Unterminated character string\n");
-		  }
-		  else {
-		    yylval.string[yyleng-2] = '\0';
-		  }
-		  return QSTRING;
-		}
+{
+    yylval.string = strdup(yytext+1);
+    if (yylval.string[yyleng-2] != '"') {
+        printf("Unterminated character string\n");
+    }
+    else {
+        yylval.string[yyleng-2] = '\0';
+    }
+    return QSTRING;
+}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 71 "config_file_lex.l"
-{ 
-		  yylval.string = strdup(yytext); 
-		  return ID; 
-		}
+{
+    yylval.string = strdup(yytext);
+    return ID;
+}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 76 "config_file_lex.l"
-{ 
-		  yylval.nvalue = atoi(yytext); 
-		  return NVALUE; 
-		}
+{
+    yylval.nvalue = atoi(yytext);
+    return NVALUE;
+}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 83 "config_file_lex.l"
+#line 81 "config_file_lex.l"
 { return EOL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 85 "config_file_lex.l"
+#line 83 "config_file_lex.l"
 ECHO;
 	YY_BREAK
 #line 939 "config_file_lex.c"
@@ -1940,8 +1940,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 85 "config_file_lex.l"
-
-
+#line 83 "config_file_lex.l"
 
 

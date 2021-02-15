@@ -26,9 +26,9 @@
 #endif
 
 enum {
-	LONG_OPTION_DRY_RUN = 1,
-	LONG_OPTION_INLINE,
-	LONG_OPTION_SPECIAL
+    LONG_OPTION_DRY_RUN = 1,
+    LONG_OPTION_INLINE,
+    LONG_OPTION_SPECIAL
 };
 
 #define INLINE_DETOX_BIN "inline-detox"
@@ -39,16 +39,16 @@ static int long_option = 0;
 #ifdef HAVE_GETOPT_LONG
 static struct option longopts[] = {
 
-	/* long options with equivalents */
-	{"help", no_argument, NULL, 'h'},
-	{"dry-run", no_argument, NULL, 'n'},
+    /* long options with equivalents */
+    {"help", no_argument, NULL, 'h'},
+    {"dry-run", no_argument, NULL, 'n'},
 
-	/* long options without */
-	{"inline", no_argument, &long_option, LONG_OPTION_INLINE},
-	{"special", no_argument, &long_option, LONG_OPTION_SPECIAL},
+    /* long options without */
+    {"inline", no_argument, &long_option, LONG_OPTION_INLINE},
+    {"special", no_argument, &long_option, LONG_OPTION_SPECIAL},
 
-	/* done */
-	{NULL, 0, NULL, 0}
+    /* done */
+    {NULL, 0, NULL, 0}
 };
 
 #endif
@@ -56,209 +56,208 @@ static struct option longopts[] = {
 /* *INDENT-OFF* */
 
 char usage_message[] = {
-	"usage: detox [-hLnrvV] [-f configfile] [-s sequence]"
+     "usage: detox [-hLnrvV] [-f configfile] [-s sequence]"
 #ifdef HAVE_GETOPT_LONG
-	" [--dry-run] [--inline] [--special]"
-	"\n\t "
+     " [--dry-run] [--inline] [--special]"
+     "\n\t "
 #endif
-	" file [file ...]\n"
+     " file [file ...]\n"
 };
 
 char help_message[] = {
-	"	-f configfile	choose which config file to use\n"
+     "	-f configfile	choose which config file to use\n"
 #ifdef HAVE_GETOPT_LONG
-	"	-h --help	this message\n"
+    "	-h --help	this message\n"
 #else
-	"	-h 		this message\n"
+    "	-h 		this message\n"
 #endif
 #ifdef HAVE_GETOPT_LONG
-	"	--inline	run inline mode\n"
+    "	--inline	run inline mode\n"
 #endif
-	"	-L		list available sequences and exit\n"
-	"			with -v ... dump sequence contents\n"
+    "	-L		list available sequences and exit\n"
+    "			with -v ... dump sequence contents\n"
 #ifdef HAVE_GETOPT_LONG
-	"	-n --dry-run	do a dry run (don't actually do anything)\n"
+    "	-n --dry-run	do a dry run (don't actually do anything)\n"
 #else
-	"	-n 		do a dry run (don't actually do anything)\n"
+    "	-n 		do a dry run (don't actually do anything)\n"
 #endif
-	"	-r 		be recursive (descend into subdirectories)\n"
-	"	-s sequence	choose which sequence to detox with\n"
+    "	-r 		be recursive (descend into subdirectories)\n"
+    "	-s sequence	choose which sequence to detox with\n"
 #ifdef HAVE_GETOPT_LONG
-	"	--special	work on links and special files\n"
+    "	--special	work on links and special files\n"
 #endif
-	"	-v 		be verbose\n"
-	"	-V 		show the current version\n"
+    "	-v 		be verbose\n"
+    "	-V 		show the current version\n"
 };
 
 char usage_message_inline[] = {
-	"usage: inline-detox [-hLvV] [-f configfile] [-s sequence] [file]\n"
+    "usage: inline-detox [-hLvV] [-f configfile] [-s sequence] [file]\n"
 };
 
 char help_message_inline[] = {
-	"	-f configfile	choose which config file to use\n"
+    "	-f configfile	choose which config file to use\n"
 #ifdef HAVE_GETOPT_LONG
-	"	-h --help	this message\n"
+    "	-h --help	this message\n"
 #else
-	"	-h 		this message\n"
+    "	-h 		this message\n"
 #endif
-	"	-L		list available sequences and exit\n"
-	"			with -v ... dump sequence contents\n"
-	"	-s sequence	choose which sequence to detox with\n"
-	"	-v 		be verbose\n"
-	"	-V 		show the current version\n"
+    "	-L		list available sequences and exit\n"
+    "			with -v ... dump sequence contents\n"
+    "	-s sequence	choose which sequence to detox with\n"
+    "	-v 		be verbose\n"
+    "	-V 		show the current version\n"
 };
 
 /* *INDENT-ON* */
 
 struct detox_options *initialize_main_options(void)
 {
-	struct detox_options *main_options;
+    struct detox_options *main_options;
 
-	main_options = malloc(sizeof(struct detox_options));
-	if (main_options == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		return NULL;
-	}
+    main_options = malloc(sizeof(struct detox_options));
+    if (main_options == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        return NULL;
+    }
 
-	memset(main_options, 0, sizeof(struct detox_options));
+    memset(main_options, 0, sizeof(struct detox_options));
 
-	/*
-	 * XXX - handle blank strings better
-	 */
-	main_options->sequence_name = getenv("DETOX_SEQUENCE");
+    /*
+     * XXX - handle blank strings better
+     */
+    main_options->sequence_name = getenv("DETOX_SEQUENCE");
 
-	return main_options;
+    return main_options;
 }
 
 struct detox_options *parse_options_getopt(int argc, char **argv)
 {
-	int optcode;
+    int optcode;
 
-	struct detox_options *main_options;
+    struct detox_options *main_options;
 
-	int i;
-	int max = 10;
-	char *binname;
+    int i;
+    int max = 10;
+    char *binname;
 
-	main_options = initialize_main_options();
-	if (main_options == NULL) {
-		return NULL;
-	}
+    main_options = initialize_main_options();
+    if (main_options == NULL) {
+        return NULL;
+    }
 
-	binname = basename(argv[0]);
-	main_options->is_inline_bin = main_options->is_inline_mode =
-		(strcmp(binname, INLINE_DETOX_BIN) == 0);
+    binname = basename(argv[0]);
+    main_options->is_inline_bin = main_options->is_inline_mode =
+                                      (strcmp(binname, INLINE_DETOX_BIN) == 0);
 
 #ifdef HAVE_GETOPT_LONG
-	while ((optcode = getopt_long(argc, argv, "hrvV?Ls:f:n", longopts, NULL)) != -1) {
+    while ((optcode = getopt_long(argc, argv, "hrvV?Ls:f:n", longopts, NULL)) != -1) {
 #else
-	while ((optcode = getopt(argc, argv, "hrvV?Ls:f:n")) != -1) {
+    while ((optcode = getopt(argc, argv, "hrvV?Ls:f:n")) != -1) {
 #endif
-		switch (optcode) {
-			case 'h':
-				printf("%s", !main_options->is_inline_bin ? usage_message :
-					usage_message_inline);
-				printf("\n");
-				printf("%s", !main_options->is_inline_bin ? help_message :
-					help_message_inline);
-				exit(EXIT_SUCCESS);
+        switch (optcode) {
+            case 'h':
+                printf("%s", !main_options->is_inline_bin ? usage_message :
+                       usage_message_inline);
+                printf("\n");
+                printf("%s", !main_options->is_inline_bin ? help_message :
+                       help_message_inline);
+                exit(EXIT_SUCCESS);
 
-			case 'f':
-				/*
-				 * XXX - free multiple check_config_files
-				 */
-				main_options->check_config_file = strdup(optarg);
-				break;
+            case 'f':
+                /*
+                 * XXX - free multiple check_config_files
+                 */
+                main_options->check_config_file = strdup(optarg);
+                break;
 
-			case 'L':
-				main_options->list_sequences = 1;
-				break;
+            case 'L':
+                main_options->list_sequences = 1;
+                break;
 
-			case 'n':
-				main_options->dry_run = 1;
-				break;
+            case 'n':
+                main_options->dry_run = 1;
+                break;
 
-			case 'r':
-				main_options->recurse = 1;
-				break;
+            case 'r':
+                main_options->recurse = 1;
+                break;
 
-			case 's':
-				/*
-				 * XXX - free multiple sequence name opts
-				 */
-				main_options->sequence_name = strdup(optarg);
-				break;
+            case 's':
+                /*
+                 * XXX - free multiple sequence name opts
+                 */
+                main_options->sequence_name = strdup(optarg);
+                break;
 
-			case 'v':
-				main_options->verbose++;
-				break;
+            case 'v':
+                main_options->verbose++;
+                break;
 
-			case 'V':
-				printf("%s\n", PACKAGE_STRING);
-				exit(EXIT_SUCCESS);
+            case 'V':
+                printf("%s\n", PACKAGE_STRING);
+                exit(EXIT_SUCCESS);
 
-			case '?':
-				printf("%s", !main_options->is_inline_bin ? usage_message :
-					usage_message_inline);
-				exit(EXIT_SUCCESS);
+            case '?':
+                printf("%s", !main_options->is_inline_bin ? usage_message :
+                       usage_message_inline);
+                exit(EXIT_SUCCESS);
 
-			case 0:
-				switch (long_option) {
-					case LONG_OPTION_INLINE:
-						main_options->is_inline_mode = 1;
-						break;
+            case 0:
+                switch (long_option) {
+                    case LONG_OPTION_INLINE:
+                        main_options->is_inline_mode = 1;
+                        break;
 
-					case LONG_OPTION_SPECIAL:
-						main_options->special = 1;
-						break;
+                    case LONG_OPTION_SPECIAL:
+                        main_options->special = 1;
+                        break;
 
-					default:
-						/*
-						 * getopt_long shouldn't let us get here...
-						 * verify?
-						 */
-						printf("unknown option: %s\n", optarg);
-						break;
-				}
-				long_option = 0;	/* clean up! */
-				break;
+                    default:
+                        /*
+                         * getopt_long shouldn't let us get here...
+                         * verify?
+                         */
+                        printf("unknown option: %s\n", optarg);
+                        break;
+                }
+                long_option = 0; /* clean up! */
+                break;
 
-			default:
-				fprintf(stderr, "unknown option: %c\n", optcode);
-				exit(EXIT_FAILURE);
-		}
-	}
+            default:
+                fprintf(stderr, "unknown option: %c\n", optcode);
+                exit(EXIT_FAILURE);
+        }
+    }
 
-	if (main_options->list_sequences) {
-		/*
-		 * Early Retirement
-		 */
-		return main_options;
-	}
+    if (main_options->list_sequences) {
+        /*
+         * Early Retirement
+         */
+        return main_options;
+    }
 
-	main_options->files = malloc(sizeof(char *) * 10);
+    main_options->files = malloc(sizeof(char *) * 10);
 
-	i = 0;
-	max = 0;
+    i = 0;
+    max = 0;
 
-	if (optind < argc) {
-		while (optind < argc) {
-			main_options->files[i++] = strdup(argv[optind]);
-			if (i > max) {
-				main_options->files = realloc(main_options->files, sizeof(char *) * (10 + max));
-				max += 10;
-			}
+    if (optind < argc) {
+        while (optind < argc) {
+            main_options->files[i++] = strdup(argv[optind]);
+            if (i > max) {
+                main_options->files = realloc(main_options->files, sizeof(char *) * (10 + max));
+                max += 10;
+            }
 
-			optind++;
-		}
+            optind++;
+        }
 
-		main_options->files[i] = NULL;
-	}
-	else if (!main_options->is_inline_mode) {
-		printf("%s", !main_options->is_inline_bin ? usage_message :
-			usage_message_inline);
-		exit(EXIT_FAILURE);
-	}
+        main_options->files[i] = NULL;
+    } else if (!main_options->is_inline_mode) {
+        printf("%s", !main_options->is_inline_bin ? usage_message :
+               usage_message_inline);
+        exit(EXIT_FAILURE);
+    }
 
-	return main_options;
+    return main_options;
 }

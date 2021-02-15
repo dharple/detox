@@ -14,4 +14,4 @@
 
 extern struct detox_parse_results *spoof_config_file(struct detox_options *main_options);
 
-#endif				/* __CONFIG_FILE_SPOOF_H */
+#endif /* __CONFIG_FILE_SPOOF_H */

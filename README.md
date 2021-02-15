@@ -24,15 +24,21 @@ of what `detox` is all about.
 The simplest way to run `detox` is to just run it on a directory containing
 files that need work:
 
-	detox xfer_files/
+```
+detox xfer_files/
+```
 
 You can also just to specify the filename:
 
-	detox my\ bad\ file.txt
+```
+detox my\ bad\ file.txt
+```
 
 You can also specify recursion (this works best on directories):
 
-	detox -r /music/transferred_from_elsewhere/
+```
+detox -r /music/transferred_from_elsewhere/
+```
 
 # Build
 

@@ -22,9 +22,9 @@
 #include "detox.h"
 
 static char badfiles[3][30] = {
-	".",
-	"..",
-	""
+    ".",
+    "..",
+    ""
 };
 
 #define BUF_SIZE 1024
@@ -39,119 +39,117 @@ static int ignore_file(char *filename, struct detox_options *options);
  */
 char *parse_file(char *filename, struct detox_options *options)
 {
-	char *old_filename, *old_filename_ptr, *new_filename;
-	char *work, *hold;
+    char *old_filename, *old_filename_ptr, *new_filename;
+    char *work, *hold;
 
-	struct stat stat_info_old;
-	struct stat stat_info_new;
-	int err;
-	size_t len;
+    struct stat stat_info_old;
+    struct stat stat_info_new;
+    int err;
+    size_t len;
 
-	struct detox_sequence_entry *sequence;
+    struct detox_sequence_entry *sequence;
 
-	len = strlen(filename) + 1;
-	old_filename = malloc(len);
-	if (old_filename == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		return NULL;
-	}
-	memcpy(old_filename, filename, len);
+    len = strlen(filename) + 1;
+    old_filename = malloc(len);
+    if (old_filename == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        return NULL;
+    }
+    memcpy(old_filename, filename, len);
 
-	old_filename_ptr = strrchr(old_filename, '/');
-	if (old_filename_ptr != NULL) {
-		old_filename_ptr++;
-	}
-	else {
-		old_filename_ptr = old_filename;
-	}
+    old_filename_ptr = strrchr(old_filename, '/');
+    if (old_filename_ptr != NULL) {
+        old_filename_ptr++;
+    } else {
+        old_filename_ptr = old_filename;
+    }
 
-	/*
-	 * Check for files that need to be ignored
-	 */
+    /*
+     * Check for files that need to be ignored
+     */
 
-	if (ignore_file(old_filename_ptr, options)) {
-		return old_filename;
-	}
+    if (ignore_file(old_filename_ptr, options)) {
+        return old_filename;
+    }
 
-	/*
-	 * Do the actual filename cleaning
-	 */
+    /*
+     * Do the actual filename cleaning
+     */
 
-	sequence = options->sequence_to_use;
+    sequence = options->sequence_to_use;
 
-	work = strdup(old_filename_ptr);
+    work = strdup(old_filename_ptr);
 
-	while (sequence != NULL && work != NULL) {
-		hold = sequence->cleaner(work, sequence->options);
-		if (work != NULL) {
-			free(work);
-		}
-		work = hold;
+    while (sequence != NULL && work != NULL) {
+        hold = sequence->cleaner(work, sequence->options);
+        if (work != NULL) {
+            free(work);
+        }
+        work = hold;
 
-		sequence = sequence->next;
-	}
+        sequence = sequence->next;
+    }
 
-	if (work == NULL) {
-		return old_filename;
-	}
+    if (work == NULL) {
+        return old_filename;
+    }
 
-	/* check to see if nothing changed */
-	if (strcmp(old_filename_ptr, work) == 0) {
-		return old_filename;
-	}
+    /* check to see if nothing changed */
+    if (strcmp(old_filename_ptr, work) == 0) {
+        return old_filename;
+    }
 
-	len = (old_filename_ptr - old_filename);
-	new_filename = malloc(len + strlen(work) + 1);
-	if (new_filename == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		free(work);
-		free(old_filename);
-		return NULL;
-	}
+    len = (old_filename_ptr - old_filename);
+    new_filename = malloc(len + strlen(work) + 1);
+    if (new_filename == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        free(work);
+        free(old_filename);
+        return NULL;
+    }
 
-	strncpy(new_filename, old_filename, len);
-	strcpy(new_filename + len, work);
+    strncpy(new_filename, old_filename, len);
+    strcpy(new_filename + len, work);
 
-	free(work);
+    free(work);
 
-	err = lstat(old_filename, &stat_info_old);
-	if (err == -1) {
-		free(new_filename);
-		return old_filename;
-	}
+    err = lstat(old_filename, &stat_info_old);
+    if (err == -1) {
+        free(new_filename);
+        return old_filename;
+    }
 
-	err = lstat(new_filename, &stat_info_new);
-	if (err != -1) {	// New file exists
-		if (stat_info_old.st_dev != stat_info_new.st_dev ||	// Different device
-		    stat_info_old.st_ino != stat_info_new.st_ino ||	// Different inode
-		    stat_info_old.st_nlink > 1)	// More than one hard link
-		{
-			fprintf(stderr, "Cannot rename %s to %s: file already exists\n", old_filename, new_filename);
+    err = lstat(new_filename, &stat_info_new);
+    if (err != -1) { // New file exists
+        if (stat_info_old.st_dev != stat_info_new.st_dev || // Different device
+                stat_info_old.st_ino != stat_info_new.st_ino || // Different inode
+                stat_info_old.st_nlink > 1) { // More than one hard link
+            fprintf(stderr, "Cannot rename %s to %s: file already exists\n", old_filename, new_filename);
 
-			free(new_filename);
-			return old_filename;
-		}
-	}
+            free(new_filename);
+            return old_filename;
+        }
+    }
 
-	if (options->verbose || options->dry_run) {
-		printf("%s -> %s\n", old_filename, new_filename);
-	}
+    if (options->verbose || options->dry_run) {
+        printf("%s -> %s\n", old_filename, new_filename);
+    }
 
-	if (options->dry_run) {
-		free(new_filename);
-		return old_filename;
-	}
+    if (options->dry_run) {
+        free(new_filename);
+        return old_filename;
+    }
 
-	err = rename(old_filename, new_filename);
-	if (err == -1) {
-		fprintf(stderr, "Cannot rename %s to %s: %s\n", old_filename, new_filename, strerror(errno));
-		free(new_filename);
-		return old_filename;
-	}
+    err = rename(old_filename, new_filename);
+    if (err == -1) {
+        fprintf(stderr, "Cannot rename %s to %s: %s\n", old_filename, new_filename, strerror(errno));
+        free(new_filename);
+        return old_filename;
+    }
 
-	free(old_filename);
+    free(old_filename);
 
-	return new_filename;
+    return new_filename;
 }
 
 /*
@@ -159,72 +157,70 @@ char *parse_file(char *filename, struct detox_options *options)
  */
 void parse_dir(char *indir, struct detox_options *options)
 {
-	char *new_file, *work;
-	DIR *dir_handle;
-	struct dirent *dir_entry;
-	struct stat stat_info;
-	int check_file;
-	int err;
-	size_t new_file_length;
+    char *new_file, *work;
+    DIR *dir_handle;
+    struct dirent *dir_entry;
+    struct stat stat_info;
+    int check_file;
+    int err;
+    size_t new_file_length;
 
-	err = lstat(indir, &stat_info);
-	if (err == -1) {
-		return;
-	}
+    err = lstat(indir, &stat_info);
+    if (err == -1) {
+        return;
+    }
 
-	if (!S_ISDIR(stat_info.st_mode)) {
-		return;
-	}
+    if (!S_ISDIR(stat_info.st_mode)) {
+        return;
+    }
 
-	new_file_length = strlen(indir) + 1024;
-	new_file = malloc(new_file_length);
-	if (new_file == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		return;
-	}
+    new_file_length = strlen(indir) + 1024;
+    new_file = malloc(new_file_length);
+    if (new_file == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        return;
+    }
 
-	/*
-	 * Parse directory
-	 */
+    /*
+     * Parse directory
+     */
 
-	dir_handle = opendir(indir);
-	if (dir_handle == NULL) {
-		fprintf(stderr, "unable to parse: %s\n", strerror(errno));
-		free(new_file);
-		return;
-	}
+    dir_handle = opendir(indir);
+    if (dir_handle == NULL) {
+        fprintf(stderr, "unable to parse: %s\n", strerror(errno));
+        free(new_file);
+        return;
+    }
 
-	dir_entry = readdir(dir_handle);
+    dir_entry = readdir(dir_handle);
 
-	while (dir_entry != NULL) {
+    while (dir_entry != NULL) {
 
-		/* 
-		 * Check for files that need to be ignored
-		 */
-		check_file = !ignore_file(dir_entry->d_name, options);
+        /*
+         * Check for files that need to be ignored
+         */
+        check_file = !ignore_file(dir_entry->d_name, options);
 
-		if (check_file) {
-			snprintf(new_file, new_file_length, "%s/%s", indir, dir_entry->d_name);
+        if (check_file) {
+            snprintf(new_file, new_file_length, "%s/%s", indir, dir_entry->d_name);
 
-			lstat(new_file, &stat_info);
-			if (S_ISDIR(stat_info.st_mode)) {
-				work = parse_file(new_file, options);
-				if (options->recurse) {
-					parse_dir(work, options);
-				}
-				free(work);
-			}
-			else if (S_ISREG(stat_info.st_mode)) {
-				work = parse_file(new_file, options);
-				free(work);
-			}
-			else if (options->special) {
-				parse_special(new_file, options);
-			}
-		}
-		dir_entry = readdir(dir_handle);
-	}
-	closedir(dir_handle);
+            lstat(new_file, &stat_info);
+            if (S_ISDIR(stat_info.st_mode)) {
+                work = parse_file(new_file, options);
+                if (options->recurse) {
+                    parse_dir(work, options);
+                }
+                free(work);
+            } else if (S_ISREG(stat_info.st_mode)) {
+                work = parse_file(new_file, options);
+                free(work);
+            } else if (options->special) {
+                parse_special(new_file, options);
+            }
+        }
+        dir_entry = readdir(dir_handle);
+    }
+    closedir(dir_handle);
 }
 
 /*
@@ -232,55 +228,55 @@ void parse_dir(char *indir, struct detox_options *options)
  */
 void parse_special(char *in, struct detox_options *options)
 {
-	struct stat stat_info;
-	char *new_file, *work;
-	int err;
+    struct stat stat_info;
+    char *new_file, *work;
+    int err;
 
-	/* detox, then parse_dir if a symlink to a dir */
-	new_file = parse_file(in, options);
-	if (!new_file) {
-		return;
-	}
+    /* detox, then parse_dir if a symlink to a dir */
+    new_file = parse_file(in, options);
+    if (!new_file) {
+        return;
+    }
 
-	err = lstat(new_file, &stat_info);
-	if (err == -1) {
-		fprintf(stderr, "Unable to stat %s\n", in);
-		free(new_file);
-		return;
-	}
+    err = lstat(new_file, &stat_info);
+    if (err == -1) {
+        fprintf(stderr, "Unable to stat %s\n", in);
+        free(new_file);
+        return;
+    }
 
-	if (options->recurse && S_ISLNK(stat_info.st_mode)) {
-		work = malloc(1024);
-		if (!work) {
-			fprintf(stderr, "out of memory: %s\n", strerror(errno));
-			free(new_file);
-			return;
-		}
+    if (options->recurse && S_ISLNK(stat_info.st_mode)) {
+        work = malloc(1024);
+        if (!work) {
+            fprintf(stderr, "out of memory: %s\n", strerror(errno));
+            free(new_file);
+            return;
+        }
 
-		memset(work, 0, 1024);
-		err = readlink(new_file, work, 1023);
-		if (err == -1) {
-			fprintf(stderr, "Unable to read symbolic link %s\n", in);
-			free(work);
-			free(new_file);
-			return;
-		}
+        memset(work, 0, 1024);
+        err = readlink(new_file, work, 1023);
+        if (err == -1) {
+            fprintf(stderr, "Unable to read symbolic link %s\n", in);
+            free(work);
+            free(new_file);
+            return;
+        }
 
-		err = lstat(work, &stat_info);
-		if (err == -1) {
-			fprintf(stderr, "Unable to follow symbolic link %s\n", in);
-			free(work);
-			free(new_file);
-			return;
-		}
+        err = lstat(work, &stat_info);
+        if (err == -1) {
+            fprintf(stderr, "Unable to follow symbolic link %s\n", in);
+            free(work);
+            free(new_file);
+            return;
+        }
 
-		if (S_ISDIR(stat_info.st_mode)) {
-			parse_dir(work, options);
-		}
+        if (S_ISDIR(stat_info.st_mode)) {
+            parse_dir(work, options);
+        }
 
-		free(work);
-	}
-	free(new_file);
+        free(work);
+    }
+    free(new_file);
 
 }
 
@@ -289,24 +285,24 @@ void parse_special(char *in, struct detox_options *options)
  */
 static int ignore_file(char *filename, struct detox_options *options)
 {
-	struct detox_ignore_entry *ignore_walk;
-	int x;
+    struct detox_ignore_entry *ignore_walk;
+    int x;
 
-	for (x = 0; badfiles[x][0] != 0; x++) {
-		if (strcmp(filename, badfiles[x]) == 0) {
-			return 1;
-		}
-	}
+    for (x = 0; badfiles[x][0] != 0; x++) {
+        if (strcmp(filename, badfiles[x]) == 0) {
+            return 1;
+        }
+    }
 
-	ignore_walk = options->files_to_ignore;
-	while (ignore_walk != NULL) {
-		if (strcmp(filename, ignore_walk->filename) == 0) {
-			return 1;
-		}
-		ignore_walk = ignore_walk->next;
-	}
+    ignore_walk = options->files_to_ignore;
+    while (ignore_walk != NULL) {
+        if (strcmp(filename, ignore_walk->filename) == 0) {
+            return 1;
+        }
+        ignore_walk = ignore_walk->next;
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
@@ -314,65 +310,63 @@ static int ignore_file(char *filename, struct detox_options *options)
  */
 void parse_inline(char *filename, struct detox_options *options)
 {
-	struct detox_sequence_entry *sequence;
-	FILE *fp;
-	char *base, *work, *hold;
-	size_t buf_size;
+    struct detox_sequence_entry *sequence;
+    FILE *fp;
+    char *base, *work, *hold;
+    size_t buf_size;
 
-	if (filename != NULL) {
-		if (!(fp = fopen(filename, "r"))) {
-			fprintf(stderr, "%s: %s\n", filename, strerror(errno));
-			return;
-		}
-	}
-	else {
-		fp = stdin;
-	}
+    if (filename != NULL) {
+        if (!(fp = fopen(filename, "r"))) {
+            fprintf(stderr, "%s: %s\n", filename, strerror(errno));
+            return;
+        }
+    } else {
+        fp = stdin;
+    }
 
-	buf_size = BUF_SIZE;
-	base = malloc(buf_size);
-	if (base == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		return;
-	}
+    buf_size = BUF_SIZE;
+    base = malloc(buf_size);
+    if (base == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        return;
+    }
 
-	while (fgets(base, buf_size, fp)) {
-		while (strrchr(base, '\n') == NULL) {
-			work = realloc(base, buf_size + BUF_SIZE - 1);
-			if (!fgets(work + buf_size - 1, BUF_SIZE, fp)) {
-				base = work;
-				break;
-			}
-			base = work;
-			buf_size += BUF_SIZE - 1;
-		}
+    while (fgets(base, buf_size, fp)) {
+        while (strrchr(base, '\n') == NULL) {
+            work = realloc(base, buf_size + BUF_SIZE - 1);
+            if (!fgets(work + buf_size - 1, BUF_SIZE, fp)) {
+                base = work;
+                break;
+            }
+            base = work;
+            buf_size += BUF_SIZE - 1;
+        }
 
-		hold = strrchr(base, '\n');
-		if (hold == NULL) {
-			fprintf(stderr, "Unable to parse input\n");
-			exit(EXIT_FAILURE);
-		}
-		*hold = '\0';
+        hold = strrchr(base, '\n');
+        if (hold == NULL) {
+            fprintf(stderr, "Unable to parse input\n");
+            exit(EXIT_FAILURE);
+        }
+        *hold = '\0';
 
-		work = strdup(base);
+        work = strdup(base);
 
-		sequence = options->sequence_to_use;
+        sequence = options->sequence_to_use;
 
-		while (sequence != NULL && work != NULL) {
-			hold = sequence->cleaner(work, sequence->options);
-			if (work != NULL) {
-				free(work);
-			}
-			work = hold;
+        while (sequence != NULL && work != NULL) {
+            hold = sequence->cleaner(work, sequence->options);
+            if (work != NULL) {
+                free(work);
+            }
+            work = hold;
 
-			sequence = sequence->next;
-		}
+            sequence = sequence->next;
+        }
 
-		if (work != NULL) {
-			printf("%s\n", work);
-		}
-		else {
-			printf("\n");
-		}
-	}
+        if (work != NULL) {
+            printf("%s\n", work);
+        } else {
+            printf("\n");
+        }
+    }
 }

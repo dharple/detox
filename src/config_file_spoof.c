@@ -20,72 +20,72 @@
 
 struct detox_parse_results *spoof_config_file(struct detox_options *main_options)
 {
-	struct detox_parse_results *ret = NULL;
-	struct detox_sequence_list *sequences = NULL;
-	struct detox_sequence_entry *work = NULL;
+    struct detox_parse_results *ret = NULL;
+    struct detox_sequence_list *sequences = NULL;
+    struct detox_sequence_entry *work = NULL;
 
-	/*
-	 * Initialize return
-	 */
+    /*
+     * Initialize return
+     */
 
-	ret = malloc(sizeof(struct detox_parse_results));
-	if (ret == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
+    ret = malloc(sizeof(struct detox_parse_results));
+    if (ret == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 
-	memset(ret, 0, sizeof(struct detox_parse_results));
+    memset(ret, 0, sizeof(struct detox_parse_results));
 
-	/*
-	 * Head of sequence
-	 */
+    /*
+     * Head of sequence
+     */
 
-	sequences = malloc(sizeof(struct detox_sequence_list));
-	if (sequences == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
+    sequences = malloc(sizeof(struct detox_sequence_list));
+    if (sequences == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 
-	memset(sequences, 0, sizeof(struct detox_sequence_list));
+    memset(sequences, 0, sizeof(struct detox_sequence_list));
 
-	sequences->name = strdup("default");
-	sequences->source_filename = strdup("built-in config file");
+    sequences->name = strdup("default");
+    sequences->source_filename = strdup("built-in config file");
 
-	/*
-	 * Step 1 - Safe
-	 */
+    /*
+     * Step 1 - Safe
+     */
 
-	sequences->head = malloc(sizeof(struct detox_sequence_entry));
-	if (sequences->head == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
+    sequences->head = malloc(sizeof(struct detox_sequence_entry));
+    if (sequences->head == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 
-	work = sequences->head;
-	memset(work, 0, sizeof(struct detox_sequence_entry));
+    work = sequences->head;
+    memset(work, 0, sizeof(struct detox_sequence_entry));
 
-	work->cleaner = &clean_safe;
+    work->cleaner = &clean_safe;
 
-	/*
-	 * Step 2 - Wipe Up
-	 */
+    /*
+     * Step 2 - Wipe Up
+     */
 
-	work->next = malloc(sizeof(struct detox_sequence_entry));
-	if (work->next == NULL) {
-		fprintf(stderr, "out of memory: %s\n", strerror(errno));
-		exit(EXIT_FAILURE);
-	}
+    work->next = malloc(sizeof(struct detox_sequence_entry));
+    if (work->next == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 
-	work = work->next;
-	memset(work, 0, sizeof(struct detox_sequence_entry));
+    work = work->next;
+    memset(work, 0, sizeof(struct detox_sequence_entry));
 
-	work->cleaner = &clean_wipeup;
+    work->cleaner = &clean_wipeup;
 
-	/*
-	 *
-	 */
+    /*
+     *
+     */
 
-	ret->sequences = sequences;
+    ret->sequences = sequences;
 
-	return ret;
+    return ret;
 }

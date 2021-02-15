@@ -16,4 +16,4 @@ extern int config_file_lineno;
 
 extern struct detox_parse_results *parse_config_file(char *filename, struct detox_parse_results *previous_list, struct detox_options *main_options);
 
-#endif				/* __CONFIG_FILE_H */
+#endif /* __CONFIG_FILE_H */

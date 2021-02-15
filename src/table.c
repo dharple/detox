@@ -24,87 +24,87 @@ static int table_hash(int table_length, unsigned int key);
 
 struct translation_table *table_init(int max_rows)
 {
-	struct translation_table *ret;
-	size_t row_length;
+    struct translation_table *ret;
+    size_t row_length;
 
-	if (max_rows <= 0) {
-		max_rows = 500;
-	}
+    if (max_rows <= 0) {
+        max_rows = 500;
+    }
 
-	row_length = max_rows * sizeof(struct translation_table_row);
+    row_length = max_rows * sizeof(struct translation_table_row);
 
-	ret = malloc(sizeof(struct translation_table));
-	if (ret == NULL) {
-		return NULL;
-	}
+    ret = malloc(sizeof(struct translation_table));
+    if (ret == NULL) {
+        return NULL;
+    }
 
-	memset(ret, 0, sizeof(struct translation_table));
+    memset(ret, 0, sizeof(struct translation_table));
 
-	ret->rows = malloc(row_length);
-	if (ret->rows == NULL) {
-		free(ret);
-		return NULL;
-	}
+    ret->rows = malloc(row_length);
+    if (ret->rows == NULL) {
+        free(ret);
+        return NULL;
+    }
 
-	memset(ret->rows, 0, row_length);
+    memset(ret->rows, 0, row_length);
 
-	ret->length = max_rows;
-	ret->use_hash = 1;
+    ret->length = max_rows;
+    ret->use_hash = 1;
 
-	return ret;
+    return ret;
 }
 
 struct translation_table *table_resize(struct translation_table *table, int rows, int use_hash)
 {
-	struct translation_table *ret;
-	int i;
+    struct translation_table *ret;
+    int i;
 
-	ret = table_init(rows);
+    ret = table_init(rows);
 
-	if (ret == NULL)
-		return table;
+    if (ret == NULL)
+        return table;
 
-	ret->use_hash = use_hash;
+    ret->use_hash = use_hash;
 
-	if (table == NULL)
-		return ret;
+    if (table == NULL)
+        return ret;
 
-	if (table->default_translation != NULL) {
-		ret->default_translation = strdup(table->default_translation);
-	}
+    if (table->default_translation != NULL) {
+        ret->default_translation = strdup(table->default_translation);
+    }
 
-	ret->max_data_length = table->max_data_length;
+    ret->max_data_length = table->max_data_length;
 
-	for (i = 0; i < table->length; i++) {
-		if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
-			table_put(ret, table->rows[i].key, table->rows[i].data);
-		}
-	}
+    for (i = 0; i < table->length; i++) {
+        if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
+            table_put(ret, table->rows[i].key, table->rows[i].data);
+        }
+    }
 
-	return ret;
+    return ret;
 }
 
 void table_free(struct translation_table *table)
 {
-	int i;
+    int i;
 
-	if (table == NULL || table->builtin == 1) {
-		return;
-	}
+    if (table == NULL || table->builtin == 1) {
+        return;
+    }
 
-	for (i = 0; i < table->length; i++) {
-		if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
-			free(table->rows[i].data);
-		}
-	}
+    for (i = 0; i < table->length; i++) {
+        if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
+            free(table->rows[i].data);
+        }
+    }
 
-	free(table->rows);
-	free(table);
+    free(table->rows);
+    free(table);
 }
 
 static int table_hash(int table_length, unsigned int key)
 {
-	return key % table_length;
+    return key % table_length;
 }
 
 /**
@@ -120,50 +120,50 @@ static int table_hash(int table_length, unsigned int key)
  */
 int table_put(struct translation_table *table, unsigned int key, char *data)
 {
-	int offset;
-	int seek;
-	int i;
+    int offset;
+    int seek;
+    int i;
 
-	if (table == NULL || key == 0) {
-		return -1;
-	}
+    if (table == NULL || key == 0) {
+        return -1;
+    }
 
-	if (table->length == table->used) {
-		return -1;
-	}
+    if (table->length == table->used) {
+        return -1;
+    }
 
-	offset = -1;
+    offset = -1;
 
-	if (table->use_hash) {
-		seek = table_hash(table->length, key);
+    if (table->use_hash) {
+        seek = table_hash(table->length, key);
 
-		if (table->rows[seek].key == 0 || table->rows[seek].key == key) {
-			offset = seek;
-		}
-	}
+        if (table->rows[seek].key == 0 || table->rows[seek].key == key) {
+            offset = seek;
+        }
+    }
 
-	if (offset == -1) {
-		for (i = 0 ; i < table->length ; i++) {
-			if (table->rows[i].key == 0 || table->rows[i].key == key) {
-				offset = i;
-				break;
-			}
-		}
+    if (offset == -1) {
+        for (i = 0 ; i < table->length ; i++) {
+            if (table->rows[i].key == 0 || table->rows[i].key == key) {
+                offset = i;
+                break;
+            }
+        }
 
-		if (offset == -1) {
-			return -1;
-		}
-	}
+        if (offset == -1) {
+            return -1;
+        }
+    }
 
-	if (table->rows[offset].key == key) {
-		table->overwrites++;
-	}
+    if (table->rows[offset].key == key) {
+        table->overwrites++;
+    }
 
-	table->rows[offset].key = key;
-	table->rows[offset].data = strdup(data);
-	table->used++;
+    table->rows[offset].key = key;
+    table->rows[offset].data = strdup(data);
+    table->used++;
 
-	return offset;
+    return offset;
 }
 
 /**
@@ -178,39 +178,39 @@ int table_put(struct translation_table *table, unsigned int key, char *data)
  */
 char *table_get(struct translation_table *table, unsigned int key)
 {
-	int offset;
-	int seek;
-	int i;
+    int offset;
+    int seek;
+    int i;
 
-	if (table == NULL || key == 0) {
-		return NULL;
-	}
+    if (table == NULL || key == 0) {
+        return NULL;
+    }
 
-	offset = -1;
+    offset = -1;
 
-	if (table->use_hash) {
-		seek = table_hash(table->length, key);
+    if (table->use_hash) {
+        seek = table_hash(table->length, key);
 
-		if (table->rows[seek].key == key) {
-			offset = seek;
-		}
-	}
+        if (table->rows[seek].key == key) {
+            offset = seek;
+        }
+    }
 
-	if (offset == -1) {
-		for (i = 0 ; i < table->length ; i++) {
-			if (table->rows[i].key == key) {
-				offset = i;
-				break;
-			}
-		}
+    if (offset == -1) {
+        for (i = 0 ; i < table->length ; i++) {
+            if (table->rows[i].key == key) {
+                offset = i;
+                break;
+            }
+        }
 
-		if (offset == -1) {
-			table->misses++;
-			return NULL;
-		}
-	}
+        if (offset == -1) {
+            table->misses++;
+            return NULL;
+        }
+    }
 
-	table->hits++;
+    table->hits++;
 
-	return table->rows[offset].data;
+    return table->rows[offset].data;
 }

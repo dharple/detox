@@ -24,64 +24,60 @@ int config_file_lineno = 1;
 
 %%
 
-[\t ]+		{ /* ignore whitespace */ }
+[\t ]+  { /* ignore whitespace */ }
 
-#.*		{ /* ignore comments */ }
+#.*     { /* ignore comments */ }
 
-\n		{ config_file_lineno++; }
+\n      { config_file_lineno++; }
 
-[Ss][Ee][Qq][Uu][Ee][Nn][Cc][Ee]	{ return SEQUENCE; }
+[Ss][Ee][Qq][Uu][Ee][Nn][Cc][Ee]                             { return SEQUENCE; }
 
-[Ii][Gg][Nn][Oo][Rr][Ee]		{ return IGNORE; }
+[Ii][Gg][Nn][Oo][Rr][Ee]                                     { return IGNORE; }
 
-[Uu][Nn][Cc][Gg][Ii]			{ return UNCGI; }
+[Uu][Nn][Cc][Gg][Ii]                                         { return UNCGI; }
 
-[Ii][Ss][Oo]8859_1			{ return ISO8859_1; }
+[Ii][Ss][Oo]8859_1                                           { return ISO8859_1; }
 
-[Uu][Tt][Ff]_8				{ return UTF_8; }
+[Uu][Tt][Ff]_8                                               { return UTF_8; }
 
-[Ss][Aa][Ff][Ee]			{ return SAFE; }
+[Ss][Aa][Ff][Ee]                                             { return SAFE; }
 
-[Ww][Ii][Pp][Ee][Uu][Pp]		{ return WIPEUP; }
+[Ww][Ii][Pp][Ee][Uu][Pp]                                     { return WIPEUP; }
 
-[Mm][Aa][Xx]_[Ll][Ee][Nn][Gg][Tt][Hh]	{ return MAX_LENGTH; }
+[Mm][Aa][Xx]_[Ll][Ee][Nn][Gg][Tt][Hh]                        { return MAX_LENGTH; }
 
-[Ll][Oo][Ww][Ee][Rr]			{ return LOWER; }
+[Ll][Oo][Ww][Ee][Rr]                                         { return LOWER; }
 
-[Ll][Ee][Nn][Gg][Tt][Hh]		{ return LENGTH; }
+[Ll][Ee][Nn][Gg][Tt][Hh]                                     { return LENGTH; }
 
-[Ff][Ii][Ll][Ee][Nn][Aa][Mm][Ee]	{ return FILENAME; }
+[Ff][Ii][Ll][Ee][Nn][Aa][Mm][Ee]                             { return FILENAME; }
 
-[Rr][Ee][Mm][Oo][Vv][Ee]_[Tt][Rr][Aa][Ii][Ll][Ii][Nn][Gg]	{ return REMOVE_TRAILING; }
+[Rr][Ee][Mm][Oo][Vv][Ee]_[Tt][Rr][Aa][Ii][Ll][Ii][Nn][Gg]    { return REMOVE_TRAILING; }
 
-[{]		{ return OPEN; }
-[}]		{ return CLOSE; }
+[{]     { return OPEN; }
+[}]     { return CLOSE; }
 
-\"[^\"\n]*[\"\n] { 
-		  yylval.string = strdup(yytext+1);
-		  if (yylval.string[yyleng-2] != '"') {
-		    printf("Unterminated character string\n");
-		  }
-		  else {
-		    yylval.string[yyleng-2] = '\0';
-		  }
-		  return QSTRING;
-		}
+\"[^\"\n]*[\"\n] {
+    yylval.string = strdup(yytext+1);
+    if (yylval.string[yyleng-2] != '"') {
+        printf("Unterminated character string\n");
+    }
+    else {
+        yylval.string[yyleng-2] = '\0';
+    }
+    return QSTRING;
+}
 
-[a-zA-Z][a-zA-Z0-9_]*	{ 
-		  yylval.string = strdup(yytext); 
-		  return ID; 
-		}
+[a-zA-Z][a-zA-Z0-9_]* {
+    yylval.string = strdup(yytext);
+    return ID;
+}
 
-[0-9]+		{ 
-		  yylval.nvalue = atoi(yytext); 
-		  return NVALUE; 
-		}
+[0-9]+ {
+    yylval.nvalue = atoi(yytext);
+    return NVALUE;
+}
 
-
-
-[;]		{ return EOL; }
+[;]     { return EOL; }
 
 %%
-
-

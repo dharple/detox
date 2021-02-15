@@ -95,10 +95,10 @@ union YYSTYPE
 {
 #line 43 "config_file_yacc.y"
 
-    char	*string;	/* string buffer */
-    int		cmd;		/* command value */
-    struct detox_sequence_entry *seq;	/* sequence */
-    int		nvalue;		/* nvalue */
+    char                        *string; /* string buffer */
+    int                          cmd;    /* command value */
+    struct detox_sequence_entry *seq;    /* sequence */
+    int                          nvalue; /* nvalue */
 
 #line 104 "config_file_yacc.h"
 
