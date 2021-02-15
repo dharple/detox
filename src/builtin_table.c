@@ -87,7 +87,7 @@ static struct translation_table builtin_safe_table = {
     .default_translation = NULL,
 };
 
-struct translation_table *load_builtin_safe_table()
+struct translation_table *load_builtin_safe_table(void)
 {
     return table_resize(&builtin_safe_table, 256, 1);
 }
@@ -195,7 +195,7 @@ static struct translation_table builtin_iso8859_1_table = {
     .default_translation = "_",
 };
 
-struct translation_table *load_builtin_iso8859_1_table()
+struct translation_table *load_builtin_iso8859_1_table(void)
 {
     return table_resize(&builtin_iso8859_1_table, 256, 1);
 }
@@ -535,7 +535,7 @@ static struct translation_table builtin_unicode_table = {
     .default_translation = "_",
 };
 
-struct translation_table *load_builtin_unicode_table()
+struct translation_table *load_builtin_unicode_table(void)
 {
     return table_resize(&builtin_unicode_table, 512, 1);
 }

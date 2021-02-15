@@ -110,7 +110,7 @@ static void generate_loader(char *filename)
     //
 
     printf(
-        "struct translation_table *load_builtin_NEW_table()\n"
+        "struct translation_table *load_builtin_NEW_table(void)\n"
         "{\n"
         "    return table_resize(&builtin_NEW_table, %d, 1);\n"
         "}\n",
