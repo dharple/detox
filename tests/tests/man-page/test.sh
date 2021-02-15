@@ -13,7 +13,7 @@ fi
 DETOX=$1
 INLINE=$(dirname $DETOX)/inline-detox
 
-export | egrep "(LANG|LC_)"
+locale -a
 
 # ----------------------------------------------------------
 
@@ -22,32 +22,41 @@ INPUT=$(printf "\t \$ &")
 # ----------------------------------------------------------
 
 OUTPUT="tab_dollar_and_"
-LANG=C.utf-8
+LANG=C.UTF-8
+LC_ALL=$LANG
+LC_CTYPE=$LANG
 
 CHECK=$(echo "$INPUT" | $INLINE -f detoxrc.manpage)
 if [ "$CHECK" != "$OUTPUT" ] ; then
 	echo "Man page is a lie.  LANG=$LANG"
+	locale
 	exit 1
 fi
 
 # ----------------------------------------------------------
 
 OUTPUT="tab_dollar_and_"
-LANG=de_DE.utf-8
+LANG=de_DE.UTF-8
+LC_ALL=$LANG
+LC_CTYPE=$LANG
 
 CHECK=$(echo "$INPUT" | $INLINE -f detoxrc.manpage)
 if [ "$CHECK" != "$OUTPUT" ] ; then
 	echo "Man page is a lie.  LANG=$LANG"
+	locale
 	exit 1
 fi
 
 # ----------------------------------------------------------
 
 OUTPUT="tab_money_and_"
-LANG=en_US.utf-8
+LANG=en_US.UTF-8
+LC_ALL=$LANG
+LC_CTYPE=$LANG
 
 CHECK=$(echo "$INPUT" | $INLINE -f detoxrc.manpage)
 if [ "$CHECK" != "$OUTPUT" ] ; then
 	echo "Man page is a lie.  LANG=$LANG"
+	locale
 	exit 1
 fi
