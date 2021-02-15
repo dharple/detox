@@ -9,9 +9,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
   the old behavior, use `detox -s utf_8`. [#21]
-- Converted unsigned char strings to char strings, which broken iso8859-1
-  processing.  Updated iso8859-1 processing so that it works as before.
-  Updated CFLAGS to catch any issues that arise in the future. [#31]
 - Internal filters now run using compiled-in translation tables.  This removes
   all `clean_*_basic()` functions, and allows for consistent behavior between
   detox without translation tables and detox with the stock ones. [#21], [#29].
@@ -19,6 +16,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   [#37]
 - The UTF-8 filter no longer behaves like the safe filter.  All characters
   between 0x20 and 0x7E are preserved. [#40]
+- Updated the project to use char strings instead of unsigned char strings, to
+  fix compiler warnings.  Fixed resulting issues with the iso8859_1 filter.
+  Updated CFLAGS to catch any issues that arise in the future. [#31]
 
 ## Removed
 - The command line option `--remove-trailing` is now removed.  Use the sequence
@@ -38,7 +38,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Security
 - Added additional compiler protection flags, based on the openSUSE build from
   [#31].
-- UTF-8 encoded NULL values are converted to `_hidden_null` to make them
+- UTF-8 encoded NULL values are converted to `_hidden_null_` to make them
   obvious. [#40]
 
 ## [1.4.0] - 2021-02-11
