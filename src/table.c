@@ -61,13 +61,15 @@ struct translation_table *table_resize(struct translation_table *table, int rows
 
     ret = table_init(rows);
 
-    if (ret == NULL)
+    if (ret == NULL) {
         return table;
+    }
 
     ret->use_hash = use_hash;
 
-    if (table == NULL)
+    if (table == NULL) {
         return ret;
+    }
 
     if (table->default_translation != NULL) {
         ret->default_translation = strdup(table->default_translation);

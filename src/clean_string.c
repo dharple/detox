@@ -59,7 +59,7 @@ char *clean_iso8859_1(char *s, void *opts)
             continue;
         }
 
-        new_value = (unsigned char) *input_walk;
+        new_value = (unsigned char) input_walk[0];
 
         replace_walk = table_get(table, new_value);
 

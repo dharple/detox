@@ -72,8 +72,9 @@ int main(int argc, char **argv)
 
 #ifdef SYSCONFDIR
         err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detoxrc", SYSCONFDIR);
-        if (err < MAX_PATH_LEN)
+        if (err < MAX_PATH_LEN) {
             parse_results = parse_config_file(check_config_file, NULL, main_options);
+        }
 #endif
 
         if (parse_results == NULL) {
@@ -87,8 +88,9 @@ int main(int argc, char **argv)
         file_work = getenv("HOME");
         if (file_work != NULL) {
             err = snprintf(check_config_file, MAX_PATH_LEN, "%s/.detoxrc", file_work);
-            if (err < MAX_PATH_LEN)
+            if (err < MAX_PATH_LEN) {
                 parse_results = parse_config_file(check_config_file, parse_results, main_options);
+            }
 
             file_work = NULL;
         }
@@ -224,20 +226,23 @@ int main(int argc, char **argv)
 
 #ifdef DATADIR
                 err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detox/%s", DATADIR, check_filename);
-                if (err < MAX_PATH_LEN)
+                if (err < MAX_PATH_LEN) {
                     table = parse_table(check_config_file);
+                }
 #endif
 
                 if (table == NULL) {
                     err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/share/detox/%s", check_filename);
-                    if (err < MAX_PATH_LEN)
+                    if (err < MAX_PATH_LEN) {
                         table = parse_table(check_config_file);
+                    }
                 }
 
                 if (table == NULL) {
                     err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/local/share/detox/%s", check_filename);
-                    if (err < MAX_PATH_LEN)
+                    if (err < MAX_PATH_LEN) {
                         table = parse_table(check_config_file);
+                    }
                 }
 
                 // load builtin translation tables

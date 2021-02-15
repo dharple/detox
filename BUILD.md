@@ -19,7 +19,7 @@ Installation that overwrites config files and translation tables:
 ## Testing
 
 1. Run static analysis tools. (sparse, cppcheck)
-2. Run `astyle --style=kr --indent-switches $(ls src/*.[ch] | egrep -v 'config_file_(lex|yacc)')`
+2. Run `astyle --style=kr --indent-switches --add-braces --pad-oper --pad-header $(ls src/*.[ch] | egrep -v 'config_file_(lex|yacc)')`
 3. Run `make clean ; make` to rebuild `detox`.
 4. Run `tests/test.sh src/detox` to perform basic regression tests.
 5. Run custom external regression tests.

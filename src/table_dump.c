@@ -42,7 +42,7 @@ void table_stats(struct translation_table *table)
 {
     printf("used: %d\n", table->used);
     printf("max: %d\n", table->length);
-    printf("used percent: %0.2f\n", table->used*100.0/table->length);
+    printf("used percent: %0.2f\n", table->used * 100.0 / table->length);
 
     printf("hits: %d\n", table->hits);
     printf("misses: %d\n", table->misses);

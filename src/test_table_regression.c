@@ -77,7 +77,7 @@ static int regress_parse_table(int verbose)
                 if (verbose) {
                     printf("resizing table to multiple of %d\n", tests[i].multiple);
                 }
-                size = ((int) ceil(table->used/tests[i].multiple) + 1) * tests[i].multiple;
+                size = ((int) ceil(table->used / tests[i].multiple) + 1) * tests[i].multiple;
                 if (verbose) {
                     printf("resizing table to size %d\n", size);
                 }
