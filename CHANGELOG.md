@@ -6,6 +6,12 @@ For releases after 1.3.0, the format is based on
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added additional transliterations based on Sean M. Burke's [Text::Unidecode]
+  tables and Behat's [PHP transliteration library].  A new table has been
+  added, `unidecode.tbl`, and some update have been made to the main
+  transliteration tables.  [#47]
+
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
   the old behavior, use `detox -s utf_8`. [#21]
@@ -199,6 +205,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#47]: https://github.com/dharple/detox/issues/47
 [#44]: https://github.com/dharple/detox/issues/44
 [#41]: https://github.com/dharple/detox/issues/41
 [#40]: https://github.com/dharple/detox/issues/40
@@ -220,3 +227,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#1]: https://github.com/dharple/detox/issues/1
 
 [mikrosimage/detox]: https://github.com/mikrosimage/detox
+[PHP transliteration library]: https://github.com/Behat/Transliterator
+[Text::Unidecode]: https://metacpan.org/pod/Text::Unidecode

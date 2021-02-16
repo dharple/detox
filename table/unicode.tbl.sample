@@ -6,21 +6,24 @@
 # file that was distributed with this source code.
 
 # 
-# Special thanks to: http://www.unicode.org/Public/UNIDATA/UnicodeData.txt 
+# Special thanks to:
+# - https://www.unicode.org/Public/5.2.0/ucd/UnicodeData.txt
+# - https://metacpan.org/pod/Text::Unidecode
+# - https://github.com/Behat/Transliterator
 #
 # Used for translating Icelandic:
-# http://www.bartleby.com/65/th/Thingval.html
-# http://www.wordiq.com/definition/Thorn_%28letter%29
-# http://www.wordiq.com/definition/Edh
+# - http://www.bartleby.com/65/th/Thingval.html
+# - http://www.wordiq.com/definition/Thorn_%28letter%29
+# - http://www.wordiq.com/definition/Edh
 #
 # Greenlandic:
-# http://std.dkuug.dk/cultreg/registrations/narrative/da_DK,_4.3.html
+# - http://std.dkuug.dk/cultreg/registrations/narrative/da_DK,_4.3.html
 #
 # Sami:
-# http://www.wordiq.com/definition/Sami_languages
+# - http://www.wordiq.com/definition/Sami_languages
 #
 # Germanic:
-# http://www.wordiq.com/definition/%DF
+# - http://www.wordiq.com/definition/%DF
 # 
 
 default		_
@@ -33,21 +36,21 @@ start
 #
 
 0x0020		" "	# SPACE
-0x0021		!	# EXCLAMATION POINT
-0x0022		'"'	# DOUBLE QUOTE
+0x0021		!	# EXCLAMATION MARK
+0x0022		'"'	# QUOTATION MARK
 0x0023		#	# NUMBER SIGN
 0x0024		$	# DOLLAR SIGN
 0x0025		%	# PERCENT SIGN
 0x0026		&	# AMPERSAND
-0x0027		"'"	# SINGLE QUOTE
-0x0028		(	# PARENTHESIS OPEN
-0x0029		)	# PARENTHESIS CLOSE
+0x0027		"'"	# APOSTROPHE
+0x0028		(	# LEFT PARENTHESIS
+0x0029		)	# RIGHT PARENTHESIS
 0x002A		*	# ASTERISK
 0x002B		+	# PLUS SIGN
 0x002C		,	# COMMA
 0x002D		-	# HYPHEN-MINUS
 0x002E		.	# FULL STOP
-0x002F		/	# FORWARD SLASH
+0x002F		/	# SOLIDUS
 
 0x0030		0	# DIGIT ZERO
 0x0031		1	# DIGIT ONE
@@ -60,10 +63,10 @@ start
 0x0038		8	# DIGIT EIGHT
 0x0039		9	# DIGIT NINE
 0x003A		:	# COLON
-0x003B		;	# SEMI-COLON
-0x003C		<	# LESS THAN
+0x003B		;	# SEMICOLON
+0x003C		<	# LESS-THAN SIGN
 0x003D		=	# EQUALS SIGN
-0x003E		>	# GREATER THAN
+0x003E		>	# GREATER-THAN SIGN
 0x003F		?	# QUESTION MARK
 
 0x0040		@	# COMMERCIAL AT
@@ -94,13 +97,13 @@ start
 0x0058		X	# LATIN CAPITAL LETTER X
 0x0059		Y	# LATIN CAPITAL LETTER Y
 0x005A		Z	# LATIN CAPITAL LETTER Z
-0x005B		[	# SQUARE BRACKET OPEN
-0x005C		\	# BACK SLASH
-0x005D		]	# SQUARE BRACKET CLOSE
+0x005B		[	# LEFT SQUARE BRACKET
+0x005C		\	# REVERSE SOLIDUS
+0x005D		]	# RIGHT SQUARE BRACKET
 0x005E		^	# CIRCUMFLEX ACCENT
-0x005F		_	# UNDERSCORE
+0x005F		_	# LOW LINE
 
-0x0060		`	# BACKTICK
+0x0060		`	# GRAVE ACCENT
 0x0061		a	# LATIN SMALL LETTER A
 0x0062		b	# LATIN SMALL LETTER B
 0x0063		c	# LATIN SMALL LETTER C
@@ -128,9 +131,9 @@ start
 0x0078		x	# LATIN SMALL LETTER X
 0x0079		y	# LATIN SMALL LETTER Y
 0x007A		z	# LATIN SMALL LETTER Z
-0x007B		{	# CURVED BRACKET OPEN
-0x007C		|	# PIPE
-0x007D		}	# CURVED BRACKET CLOSE
+0x007B		{	# LEFT CURLY BRACKET
+0x007C		|	# VERTICAL LINE
+0x007D		}	# RIGHT CURLY BRACKET
 0x007E		~	# TILDE
 
 #
@@ -150,20 +153,42 @@ start
 0x009F		Y	# LATIN CAPITAL LETTER Y WITH DIAERESIS
 
 #
-# Latin 1
+# Latin 1 Supplemental
 #
 
-0x00A2		_cent_
-0x00A3		_pound_
-0x00A5		_yen_
-0x00A9		_copy_
-0x00AE		_reg_
+0x00A0		" "	# NO-BREAK SPACE
+0x00A1		!	# INVERTED EXCLAMATION MARK
+0x00A2		_cent_	# CENT SIGN
+0x00A3		_pound_	# POUND SIGN
+0x00A4		$	# CURRENCY SIGN
+0x00A5		_yen_	# YEN SIGN
+0x00A6		|	# BROKEN BAR
+0x00A7		SS	# SECTION SIGN
+0x00A8		'"'	# DIAERESIS
+0x00A9		_copy_	# COPYRIGHT SIGN
+0x00AA		a	# FEMININE ORDINAL INDICATOR
+0x00AB		<<	# LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+0x00AC		!	# NOT SIGN
+0x00AD		-	# SOFT HYPHEN
+0x00AE		_reg_	# REGISTERED SIGN
+0x00AF		-	# MACRON
 
-0x00B2		2
-0x00B3		3
-0x00B5		b
-0x00B6		_pp_
-0x00B9		1
+0x00B0		_deg_	# DEGREE SIGN
+0x00B1		+-	# PLUS-MINUS SIGN
+0x00B2		2	# SUPERSCRIPT TWO
+0x00B3		3	# SUPERSCRIPT THREE
+0x00B4		"'"	# ACUTE ACCENT
+0x00B5		u	# MICRO SIGN
+0x00B6		_pp_	# PILCROW SIGN
+0x00B7		*	# MIDDLE DOT
+0x00B8		,	# CEDILLA
+0x00B9		1	# SUPERSCRIPT ONE
+0x00BA		o	# MASCULINE ORDINAL INDICATOR
+0x00BB		>>	# RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+0x00BC		1/4	# VULGAR FRACTION ONE QUARTER
+0x00BD		1/2	# VULGAR FRACTION ONE HALF
+0x00BE		3/4	# VULGAR FRACTION THREE QUARTERS
+0x00BF		?	# INVERTED QUESTION MARK
 
 0x00C0		A	# LATIN CAPITAL LETTER A WITH GRAVE
 0x00C1		A	# LATIN CAPITAL LETTER A WITH ACUTE
@@ -223,6 +248,7 @@ start
 0x00F4		o	# LATIN SMALL LETTER O WITH CIRCUMFLEX
 0x00F5		o	# LATIN SMALL LETTER O WITH TILDE
 0x00F6		o	# LATIN SMALL LETTER O WITH DIAERESIS
+0x00F7		/	# DIVISION SIGN
 0x00F8		o	# LATIN SMALL LETTER O WITH STROKE
 0x00F9		u	# LATIN SMALL LETTER U WITH GRAVE
 0x00FA		u	# LATIN SMALL LETTER U WITH ACUTE
@@ -412,4 +438,3 @@ start		de
 0x00FC		ue	# LATIN SMALL LETTER U WITH UMLAUT 
 
 end
-
