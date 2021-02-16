@@ -1,5 +1,11 @@
 # Compilation Instructions
 
+## Tools Needed
+
+- automake
+- gcc or clang
+- make
+
 Compilation:
 
         autoreconf --install
@@ -14,7 +20,16 @@ Installation that overwrites config files and translation tables:
 
         make force-install
 
-# Release Instructions
+# Development Instructions
+
+## Tools Used
+
+- astyle
+- bison
+- cppcheck
+- flex
+- mandoc
+- sparse
 
 ## Generating Docs
 
@@ -40,6 +55,8 @@ mandoc -T lint man/*.[15]
 2. Run `make clean ; make` to rebuild `detox`.
 3. Run `tests/test.sh src/detox` to perform basic regression tests.
 4. Run custom external regression tests.
+
+# Release Instructions
 
 ## Release
 
