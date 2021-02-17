@@ -19,9 +19,11 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <errno.h>
+#include <math.h>
 
 #include "table.h"
 #include "table_dump.h"
+#include "builtin_table.h"
 
 enum {
     BASE_STATE,
@@ -132,9 +134,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
                     sscanf(work + offset, "%s", parsed);
                 }
 
-                printf("reviewing language subsection for %s\n", parsed);
-
-                state = INSIDE_STATE;
+                printf("skipping language subsection for %s\n", parsed);
 
                 continue;
             }
@@ -212,7 +212,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
 
         check = table_get(table, code);
         if (check == NULL || strcmp(parsed, check) != 0) {
-            fprintf(stderr, "Failed to retrieve row 0x%04x \"%s\" to translation table\n", code, parsed);
+            fprintf(stderr, "Failed to retrieve row 0x%04x \"%s\" in translation table\n", code, parsed);
             table_free(table);
             fclose(ttable_file);
             free(work);
@@ -241,22 +241,174 @@ static struct translation_table *check_table(char *filename, int use_hash)
     return table;
 }
 
+static struct translation_table *check_table_again(char *filename, struct translation_table *source)
+{
+    FILE *ttable_file;
+    char *work;
+    int code;
+    int offset;
+    char *parsed;
+    int err;
+    int ret;
+    int state;
+    char *check;
+
+    struct translation_table *table;
+
+    struct stat ttable_stat;
+
+    err = stat(filename, &ttable_stat);
+    if (err == -1) {
+        return NULL;
+    }
+
+    table = table_resize(source, ((int) ceil(source->used / BUILTIN_TABLE_MULTIPLE) + 1) * BUILTIN_TABLE_MULTIPLE, 1);
+
+    if (table == NULL) {
+        return NULL;
+    }
+
+    ttable_file = fopen(filename, "r");
+    if (ttable_file == NULL) {
+        fprintf(stderr, "Unable to open translation table: %s\n", strerror(errno));
+        return NULL;
+    }
+
+    work = malloc(1024);
+    if (work == NULL) {
+        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
+        fclose(ttable_file);
+        return NULL;
+    }
+
+    parsed = malloc(1024);
+    if (parsed == NULL) {
+        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
+        fclose(ttable_file);
+        free(work);
+        return NULL;
+    }
+
+    state = BASE_STATE;
+
+    while (fgets(work, 1024, ttable_file) != NULL) {
+        if (*work == '#') {
+
+            /*
+             * Don't even bother
+             */
+            continue;
+        }
+
+        parsed[0] = '\0';
+
+        if (state == BASE_STATE) {
+            ret = sscanf(work, " %s %n", parsed, &offset);
+
+            if (ret == 0) {
+                continue;
+            }
+
+            if (strncasecmp(parsed, "start", 5) == 0) {
+                if (work[offset] == '\0') {
+                    // All languages
+                    state = INSIDE_STATE;
+                    continue;
+                }
+
+                if (work[offset] == '"') {
+                    sscanf(work + offset + 1, "%[^\"]", parsed);
+                } else if (work[offset] == '\'') {
+                    sscanf(work + offset + 1, "%[^']", parsed);
+                } else {
+                    sscanf(work + offset, "%s", parsed);
+                }
+
+                printf("skipping language subsection for %s\n", parsed);
+
+                continue;
+            }
+
+            if (strncasecmp(parsed, "default", 7) == 0) {
+                continue;
+            }
+
+            continue;
+        }
+
+        /*
+         * Inside state
+         */
+
+        code = -1;
+
+        ret = sscanf(work, "%i %n", &code, &offset);
+
+        if (ret == 0 || code < 0 || offset < 0) {
+
+            /*
+             * Check for end
+             */
+            ret = sscanf(work, " %s %n", parsed, &offset);
+
+            if (ret > 0 && strncasecmp(parsed, "end", 5) == 0) {
+                state = BASE_STATE;
+            }
+
+            continue;
+        }
+
+        if (work[offset] == '\0') {
+            continue;
+        }
+
+        if (work[offset] == '"') {
+            sscanf(work + offset + 1, "%[^\"]", parsed);
+        } else if (work[offset] == '\'') {
+            sscanf(work + offset + 1, "%[^']", parsed);
+        } else {
+            sscanf(work + offset, "%s", parsed);
+        }
+
+        check = table_get(table, code);
+        if (check == NULL || strcmp(parsed, check) != 0) {
+            fprintf(stderr, "Failed to retrieve row 0x%04x \"%s\" in resized translation table\n", code, parsed);
+            table_free(table);
+            fclose(ttable_file);
+            free(work);
+            free(parsed);
+            return NULL;
+        }
+    }
+
+    free(work);
+    free(parsed);
+    fclose(ttable_file);
+
+    return table;
+}
+
 int main(int argc, char **argv)
 {
     struct translation_table *table;
     int optcode;
+    int builtin = 0;
     int dump = 0;
     int use_hash = 1;
     int verbose = 0;
 
-    while ((optcode = getopt(argc, argv, "dlhv")) != -1) {
+    while ((optcode = getopt(argc, argv, "bdlhv")) != -1) {
         switch (optcode) {
+            case 'b': // simulate a builtin table
+                builtin = 1;
+                break;
+
             case 'd':
                 dump = 1;
                 break;
 
             case 'h':
-                printf("check-table [-dlhv] filename.tbl\n");
+                printf("check-table [-bdlhv] filename.tbl\n");
                 return 0;
 
             case 'l': // linear
@@ -276,6 +428,9 @@ int main(int argc, char **argv)
     if (optind < argc) {
         printf("checking: %s\n", argv[optind]);
         table = check_table(argv[optind], use_hash);
+        if (builtin) {
+            table = check_table_again(argv[optind], table);
+        }
         if (table) {
             if (dump) {
                 table_dump(table, verbose);

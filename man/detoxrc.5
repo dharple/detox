@@ -6,7 +6,7 @@
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
 .\"
-.Dd February 15, 2021
+.Dd February 17, 2021
 .Dt DETOXRC 5
 .Os
 .Sh NAME
@@ -66,9 +66,7 @@ This transliterates ISO 8859-1 characters between 0xA0 and 0xFF into lower
 ASCII equivalents.  The output is not necessarily safe, and should also be run
 through the
 .Ar safe
-filter.  The default version of this filter also includes transliterations for
-.Ar CP-1252
-for characters between 0x80 and 0x9F.
+filter.
 .Pp
 Under normal circumstances, the filename syntax is not needed.
 .Cm detox
@@ -225,7 +223,6 @@ these files as command line options.
 .Xr inline-detox 1 ,
 .Xr detox.tbl 5 ,
 .Xr ascii 7 ,
-.Xr cp1252 7 ,
 .Xr iso_8859-1 7 ,
 .Xr unicode 7 ,
 .Xr utf-8 7

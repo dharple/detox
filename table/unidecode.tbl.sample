@@ -6126,6 +6126,8 @@ start
 # Characters 0x2E00 to 0x2EFF
 #
 
+0x2E18		?	# INVERTED INTERROBANG
+
 0x2E2E		?	# REVERSED QUESTION MARK
 
 #

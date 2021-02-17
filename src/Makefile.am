@@ -66,3 +66,4 @@ builtin_table.c: generate-builtin-table builtin_table.c.in ../table/*.sample
 	./generate-builtin-table ../table/safe.tbl.sample | sed -e's/NEW/safe/' >> builtin_table.c
 	./generate-builtin-table ../table/iso8859_1.tbl.sample | sed -e's/NEW/iso8859_1/' >> builtin_table.c
 	./generate-builtin-table ../table/unicode.tbl.sample | sed -e's/NEW/unicode/' >> builtin_table.c
+	./generate-builtin-table ../table/cp1252.tbl.sample | sed -e's/NEW/cp1252/' >> builtin_table.c

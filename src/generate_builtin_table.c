@@ -23,8 +23,7 @@
 
 #include "table.h"
 #include "parse_table.h"
-
-#define MULTIPLE 256
+#include "builtin_table.h"
 
 static void generate_loader(char *filename)
 {
@@ -82,6 +81,7 @@ static void generate_loader(char *filename)
         "    .max_data_length     = %d,\n"
         "    .hits                = 0,\n"
         "    .misses              = 0,\n"
+        "    .seeks               = 0,\n"
         "    .overwrites          = %d,\n"
         "    .use_hash            = 0,\n"
         "    .builtin             = 1,\n"
@@ -114,7 +114,7 @@ static void generate_loader(char *filename)
         "{\n"
         "    return table_resize(&builtin_NEW_table, %d, 1);\n"
         "}\n",
-        ((int) ceil(table->used / MULTIPLE) + 1) * MULTIPLE
+        ((int) ceil(table->used / BUILTIN_TABLE_MULTIPLE) + 1) * BUILTIN_TABLE_MULTIPLE
     );
 
     return;

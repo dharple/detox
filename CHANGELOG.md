@@ -9,8 +9,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Added additional transliterations based on Sean M. Burke's [Text::Unidecode]
   tables and Behat's [PHP transliteration library].  A new table has been
-  added, `unidecode.tbl`, and some update have been made to the main
-  transliteration tables.  [#47]
+  added, `unidecode.tbl.sample`, and some updates have been made to the main
+  transliteration tables.  [#47] [#53]
+  - Latin Extended B - 0x0180-0x024F
+  - General Punctuation - 0x2000-0x206F
 
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
@@ -29,6 +31,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   Updated CFLAGS to catch any issues that arise in the future. [#31]
 
 ## Removed
+- The main transliteration tables for ISO 8859-1 and Unicode no longer have
+  CP-1252 built in.  There is a separate table for it. [#48]
 - The command line option `--remove-trailing` is now removed.  Use the sequence
   `wipeup { remove_trailing; };` instead. [#24]
 
@@ -205,6 +209,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#53]: https://github.com/dharple/detox/issues/53
+[#48]: https://github.com/dharple/detox/issues/48
 [#47]: https://github.com/dharple/detox/issues/47
 [#44]: https://github.com/dharple/detox/issues/44
 [#41]: https://github.com/dharple/detox/issues/41

@@ -28,6 +28,7 @@ struct translation_table {
     int hits;
     int misses;
     int overwrites;
+    int seeks;
 
     int use_hash;
     int builtin;

@@ -46,5 +46,6 @@ void table_stats(struct translation_table *table)
 
     printf("hits: %d\n", table->hits);
     printf("misses: %d\n", table->misses);
+    printf("seeks: %d\n", table->seeks);
     printf("overwrites: %d\n", table->overwrites);
 }

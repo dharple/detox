@@ -76,6 +76,7 @@ struct translation_table *table_resize(struct translation_table *table, int rows
     }
 
     ret->max_data_length = table->max_data_length;
+    ret->overwrites = table->overwrites;
 
     for (i = 0; i < table->length; i++) {
         if (table->rows[i].key > 0 && table->rows[i].data != NULL) {
@@ -199,6 +200,8 @@ char *table_get(struct translation_table *table, unsigned int key)
     }
 
     if (offset == -1) {
+        table->seeks++;
+
         for (i = 0; i < table->length; i++) {
             if (table->rows[i].key == key) {
                 offset = i;
