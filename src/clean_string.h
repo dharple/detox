@@ -10,6 +10,8 @@
 #ifndef __CLEAN_STRING_H
 #define __CLEAN_STRING_H
 
+#include <stdlib.h>
+
 struct clean_string_options {
     char *filename;
     int remove_trailing;
