@@ -33,7 +33,7 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$M
 # ---------------------------------------------------------------------------
 
 INPUT="_-_-_-_-_-dotted-_-_-_-_line.....part......two......."
-OUTPUT="dotted-line.....part......two."
+OUTPUT="dotted-line.....part......two..."
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
@@ -43,4 +43,3 @@ INPUT="registered trademark symbol, ®, is a typographic symbol"
 OUTPUT="registered_trademark_symbol,_®,"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
-

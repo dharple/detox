@@ -24,6 +24,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   detox without translation tables and detox with the stock ones. [#21], [#29].
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
+- The max_length filter no longer acts like the wipeup filter.  Excess dots are
+  not reduced within this filter. [#46]
 - The UTF-8 filter no longer behaves like the safe filter.  All characters
   between 0x20 and 0x7E are preserved. [#40]
 - Updated the project to use char strings instead of unsigned char strings, to
@@ -41,6 +43,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Potential infinite loops in `table_put()` and `table_get()`. [#21] [#41]
 - src/Makefile.am no longer deletes src/config_file.h when `make
   maintainer-clean` is run.
+- The max_length filter attempts to find a second extension to preserve while
+  reducing the length of a filename. [#46]
 - Updated internal safe filter to ignore all upper ISO 8859-1 and UTF-8
   characters (0x80 though 0xFF) [#21], [#29]
 - Updated table-based safe filter to convert all control characters (0x01
@@ -212,6 +216,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#53]: https://github.com/dharple/detox/issues/53
 [#48]: https://github.com/dharple/detox/issues/48
 [#47]: https://github.com/dharple/detox/issues/47
+[#46]: https://github.com/dharple/detox/issues/46
 [#44]: https://github.com/dharple/detox/issues/44
 [#41]: https://github.com/dharple/detox/issues/41
 [#40]: https://github.com/dharple/detox/issues/40

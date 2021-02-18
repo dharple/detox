@@ -434,10 +434,12 @@ char *clean_utf_8(char *s, void *opts)
  */
 char *clean_max_length(char *s, void *opts)
 {
-    char *output, *input_walk, *output_walk;
+    char *extension;
+    char *input_walk;
+    char *output;
+    size_t body_length;
+    size_t extension_length;
     size_t max_length;
-    size_t s_length;
-    size_t ext_length;
 
     if (s == NULL) {
         return NULL;
@@ -448,40 +450,53 @@ char *clean_max_length(char *s, void *opts)
         max_length = ((struct clean_string_options *) opts)->max_length;
     }
 
-    s_length = strlen(s);
+    // check to see if the file is smaller than the max length
+    if (strlen(s) <= max_length) {
+        return strdup(s);
+    }
 
     output = malloc(max_length + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
-
     snprintf(output, max_length + 1, "%s", s);
 
-    if (s_length <= max_length) {
-        return output;
-    }
-
-    input_walk = strrchr(s, '.');
-
+    // check to see if the file has no extension
+    extension = input_walk = strrchr(s, '.');
     if (input_walk == NULL) {
         return output;
     }
 
-    ext_length = strlen(input_walk);
-
-    output_walk = output;
-    output_walk += max_length - ext_length;
-
-    while (*(output_walk - 1) == '.' && output_walk > output) {
-        output_walk--;
+    if (strlen(extension) == 1) {
+        return output;
     }
 
-    snprintf(output_walk, ext_length + 1, "%s", input_walk);
+    // look back 5 characters for a second extension
+    while (--input_walk > s) {
+        if (extension - input_walk > 5) {
+            break;
+        }
+
+        if (*input_walk == '.') {
+            extension = input_walk;
+            break;
+        }
+    }
+
+    extension_length = strlen(extension);
+    if (max_length <= extension_length) {
+        fprintf(stderr, "warning: max_length %d is less than required file length for '%s'.  giving up.\n", (int) max_length, s);
+        free(output);
+        return strdup(s);
+    }
+
+    body_length = max_length - extension_length;
+
+    snprintf(output + body_length, extension_length + 1, "%s", extension);
 
     return output;
 }
-
 
 /*
  * Converts all characters to lowercase.

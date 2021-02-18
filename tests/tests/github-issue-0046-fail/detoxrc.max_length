@@ -1,0 +1,6 @@
+sequence "default" {
+	max_length {
+		length 7;
+	};
+};
+

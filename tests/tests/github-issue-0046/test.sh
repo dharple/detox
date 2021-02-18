@@ -1,8 +1,8 @@
 #!/bin/bash -e
 #
-# Confirms that GitHub issue #41 is fixed
+# Confirms that GitHub issue #46 is fixed
 #
-# https://github.com/dharple/detox/issues/41
+# https://github.com/dharple/detox/issues/46
 #
 
 if [ -z "$TESTBASE" ] ; then
@@ -20,6 +20,22 @@ TABLEPATH=$(dirname $TESTBASE)/table
 INPUT="safe.txt"
 OUTPUT=$INPUT
 METHOD1=max-length-32
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
+
+# ---------------------------------------------------------------------------
+
+INPUT="safe.and.stuff.txt"
+OUTPUT="safe.and.s.txt"
+METHOD1=max-length-14
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
+
+# ---------------------------------------------------------------------------
+
+INPUT="safe.and.stu.ff.txt"
+OUTPUT="safe.an.ff.txt"
+METHOD1=max-length-14
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
@@ -58,7 +74,19 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 # ---------------------------------------------------------------------------
 
 INPUT="safe and stuff.tar.gz"
+OUTPUT="sa.tar.gz"
+METHOD1=max-length-9
+
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
+
+# ---------------------------------------------------------------------------
+
+INPUT="safe and stuff.tar.gz"
 OUTPUT="s.tar.gz"
 METHOD1=max-length-8
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
+
+# ---------------------------------------------------------------------------
+
+# max-length-7 is in github-issue=0046-fail
