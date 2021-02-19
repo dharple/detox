@@ -10,6 +10,8 @@
 #ifndef __DETOX_H
 #define __DETOX_H
 
+#define MAX_PATH_LEN 256
+
 /*
  * Holds information about all of the defined sequences
  */

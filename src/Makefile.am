@@ -32,6 +32,7 @@ noinst_PROGRAMS = \
 
 detox_SOURCES = \
 	builtin_table.c \
+	config_file.c \
 	config_file_yacc.y \
 	config_file_lex.l \
 	clean_string.c \
@@ -41,6 +42,7 @@ detox_SOURCES = \
 	file.c \
 	parse_options.c \
 	parse_table.c \
+	sequence.c \
 	table.c
 
 inline_detox_SOURCES = $(detox_SOURCES)
