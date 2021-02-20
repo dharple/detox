@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/dharple/detox.svg?branch=1.x)](https://travis-ci.com/dharple/detox)
-
 # Overview
 
 `detox` is a program that renames files to make them easier to work with under
