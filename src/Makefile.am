@@ -21,6 +21,8 @@ AM_CFLAGS = \
 
 AM_YFLAGS = -d
 
+AM_LFLAGS = -i
+
 bin_PROGRAMS = \
 	detox \
 	inline-detox

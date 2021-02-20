@@ -30,29 +30,18 @@ int config_file_lineno = 1;
 
 \n      { config_file_lineno++; }
 
-[Ss][Ee][Qq][Uu][Ee][Nn][Cc][Ee]                             { return SEQUENCE; }
-
-[Ii][Gg][Nn][Oo][Rr][Ee]                                     { return IGNORE; }
-
-[Uu][Nn][Cc][Gg][Ii]                                         { return UNCGI; }
-
-[Ii][Ss][Oo]8859_1                                           { return ISO8859_1; }
-
-[Uu][Tt][Ff]_8                                               { return UTF_8; }
-
-[Ss][Aa][Ff][Ee]                                             { return SAFE; }
-
-[Ww][Ii][Pp][Ee][Uu][Pp]                                     { return WIPEUP; }
-
-[Mm][Aa][Xx]_[Ll][Ee][Nn][Gg][Tt][Hh]                        { return MAX_LENGTH; }
-
-[Ll][Oo][Ww][Ee][Rr]                                         { return LOWER; }
-
-[Ll][Ee][Nn][Gg][Tt][Hh]                                     { return LENGTH; }
-
-[Ff][Ii][Ll][Ee][Nn][Aa][Mm][Ee]                             { return FILENAME; }
-
-[Rr][Ee][Mm][Oo][Vv][Ee]_[Tt][Rr][Aa][Ii][Ll][Ii][Nn][Gg]    { return REMOVE_TRAILING; }
+filename           { return FILENAME; }
+ignore             { return IGNORE; }
+iso8859_1          { return ISO8859_1; }
+length             { return LENGTH; }
+lower              { return LOWER; }
+max_length         { return MAX_LENGTH; }
+remove_trailing    { return REMOVE_TRAILING; }
+safe               { return SAFE; }
+sequence           { return SEQUENCE; }
+uncgi              { return UNCGI; }
+utf_8              { return UTF_8; }
+wipeup             { return WIPEUP; }
 
 [{]     { return OPEN; }
 [}]     { return CLOSE; }
