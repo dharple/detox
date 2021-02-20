@@ -13,6 +13,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   transliteration tables.  [#47] [#53]
   - Latin Extended B - 0x0180-0x024F
   - General Punctuation - 0x2000-0x206F
+- Builtin tables may now be explicitly accessed via the builtin keyword in the
+  config file. [#28] [#50]
 
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
@@ -24,6 +26,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   detox without translation tables and detox with the stock ones. [#21], [#29].
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
+- The default config file now explicitly uses the builtin keyword. [#28] [#50]
 - The max_length filter no longer acts like the wipeup filter.  Excess dots are
   not reduced within this filter. [#46]
 - The UTF-8 filter no longer behaves like the safe filter.  All characters
@@ -222,6 +225,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 [#56]: https://github.com/dharple/detox/issues/56
 [#53]: https://github.com/dharple/detox/issues/53
+[#50]: https://github.com/dharple/detox/issues/50
 [#48]: https://github.com/dharple/detox/issues/48
 [#47]: https://github.com/dharple/detox/issues/47
 [#46]: https://github.com/dharple/detox/issues/46
@@ -232,6 +236,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#31]: https://github.com/dharple/detox/issues/31
 [#30]: https://github.com/dharple/detox/issues/30
 [#29]: https://github.com/dharple/detox/issues/29
+[#28]: https://github.com/dharple/detox/issues/28
 [#24]: https://github.com/dharple/detox/issues/24
 [#22]: https://github.com/dharple/detox/issues/22
 [#21]: https://github.com/dharple/detox/issues/21
