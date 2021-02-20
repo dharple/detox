@@ -24,7 +24,7 @@ fi
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
 cd $WORK
 
-VALGRIND=$(command -v valgrind)
+VALGRIND=$(command -v valgrind || true)
 
 touch a b c d e f g h i j k
 
