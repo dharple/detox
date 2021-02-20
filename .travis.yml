@@ -26,9 +26,9 @@ jobs:
     - arch: amd64
       compiler: gcc
       dist: trusty
-    # test macOS on HFS+ (default os/x image)
+    # test macOS on HFS+
     - os: osx
-      osx_image: xcode9.4
+      osx_image: xcode10.3
       addons:
         homebrew:
           packages:
@@ -51,5 +51,7 @@ install:
 script:
   - ./configure && make
   - src/detox -V
+  - which bash
   - bash --version
+  - /bin/bash --version
   - tests/test.sh src/detox
