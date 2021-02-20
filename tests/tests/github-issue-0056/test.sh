@@ -1,8 +1,8 @@
 #!/bin/bash -e
 #
-# Tests to confirm GitHub issue #9 is resolved
+# Tests to confirm GitHub issue #56 is resolved
 #
-# https://github.com/dharple/detox/issues/9
+# https://github.com/dharple/detox/issues/56
 #
 
 if [ -z "$TESTBASE" ] ; then
