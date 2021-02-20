@@ -45,5 +45,4 @@ install:
 script:
   - ./configure && make
   - src/detox -V
-  - [ "$TRAVIS_OS_NAME" = "linux" ] && tests/test.sh src/detox
-  - [ "$TRAVIS_OS_NAME" = "osx" ] && /usr/local/bin/bash tests/test.sh src/detox
+  - tests/travis.sh src/detox
