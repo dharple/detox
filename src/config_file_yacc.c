@@ -156,45 +156,47 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    QSTRING = 258,
-    ID = 259,
-    SEQUENCE = 260,
-    IGNORE = 261,
-    UNCGI = 262,
+    BUILTIN = 258,
+    CLOSE = 259,
+    EOL = 260,
+    FILENAME = 261,
+    IGNORE = 262,
     ISO8859_1 = 263,
-    UTF_8 = 264,
-    SAFE = 265,
-    WIPEUP = 266,
-    MAX_LENGTH = 267,
-    LOWER = 268,
-    FILENAME = 269,
-    REMOVE_TRAILING = 270,
-    LENGTH = 271,
-    OPEN = 272,
-    CLOSE = 273,
-    EOL = 274,
-    NVALUE = 275
+    LENGTH = 264,
+    LOWER = 265,
+    MAX_LENGTH = 266,
+    OPEN = 267,
+    REMOVE_TRAILING = 268,
+    SAFE = 269,
+    SEQUENCE = 270,
+    UNCGI = 271,
+    UTF_8 = 272,
+    WIPEUP = 273,
+    NVALUE = 274,
+    ID = 275,
+    QSTRING = 276
   };
 #endif
 /* Tokens.  */
-#define QSTRING 258
-#define ID 259
-#define SEQUENCE 260
-#define IGNORE 261
-#define UNCGI 262
+#define BUILTIN 258
+#define CLOSE 259
+#define EOL 260
+#define FILENAME 261
+#define IGNORE 262
 #define ISO8859_1 263
-#define UTF_8 264
-#define SAFE 265
-#define WIPEUP 266
-#define MAX_LENGTH 267
-#define LOWER 268
-#define FILENAME 269
-#define REMOVE_TRAILING 270
-#define LENGTH 271
-#define OPEN 272
-#define CLOSE 273
-#define EOL 274
-#define NVALUE 275
+#define LENGTH 264
+#define LOWER 265
+#define MAX_LENGTH 266
+#define OPEN 267
+#define REMOVE_TRAILING 268
+#define SAFE 269
+#define SEQUENCE 270
+#define UNCGI 271
+#define UTF_8 272
+#define WIPEUP 273
+#define NVALUE 274
+#define ID 275
+#define QSTRING 276
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -207,7 +209,7 @@ union YYSTYPE
     struct detox_sequence_entry *seq;    /* sequence */
     int                          nvalue; /* nvalue */
 
-#line 211 "config_file_yacc.c"
+#line 213 "config_file_yacc.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -526,19 +528,19 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   74
+#define YYLAST   85
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  21
+#define YYNTOKENS  22
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  19
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  40
+#define YYNRULES  43
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  78
+#define YYNSTATES  90
 
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   275
+#define YYMAXUTOK   276
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -577,18 +579,18 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,    19,    20
+      15,    16,    17,    18,    19,    20,    21
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    62,    62,    64,    67,    69,    72,    75,    78,    81,
-      82,    85,    87,    89,    91,    93,    95,    97,   100,   102,
-     104,   113,   115,   117,   126,   128,   130,   139,   143,   147,
-     156,   158,   160,   169,   172,   175,   178,   179,   182,   187,
-     189
+       0,    74,    74,    76,    79,    81,    84,    87,    90,    93,
+      94,    97,    99,   101,   103,   105,   107,   109,   112,   114,
+     116,   124,   133,   135,   137,   145,   154,   156,   158,   166,
+     175,   179,   183,   192,   194,   196,   205,   208,   211,   214,
+     215,   218,   223,   225
 };
 #endif
 
@@ -597,13 +599,13 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "QSTRING", "ID", "SEQUENCE", "IGNORE",
-  "UNCGI", "ISO8859_1", "UTF_8", "SAFE", "WIPEUP", "MAX_LENGTH", "LOWER",
-  "FILENAME", "REMOVE_TRAILING", "LENGTH", "OPEN", "CLOSE", "EOL",
-  "NVALUE", "$accept", "configfile", "rule", "sequence", "sequence_open",
-  "sequence_close", "method_list", "method", "iso8859_1", "utf_8", "safe",
-  "wipeup", "max_length", "ignore", "ignore_open", "ignore_close",
-  "ignore_list", "ignore_filename", "string", YY_NULLPTR
+  "$end", "error", "$undefined", "BUILTIN", "CLOSE", "EOL", "FILENAME",
+  "IGNORE", "ISO8859_1", "LENGTH", "LOWER", "MAX_LENGTH", "OPEN",
+  "REMOVE_TRAILING", "SAFE", "SEQUENCE", "UNCGI", "UTF_8", "WIPEUP",
+  "NVALUE", "ID", "QSTRING", "$accept", "configfile", "rule", "sequence",
+  "sequence_open", "sequence_close", "method_list", "method", "iso8859_1",
+  "utf_8", "safe", "wipeup", "max_length", "ignore", "ignore_open",
+  "ignore_close", "ignore_list", "ignore_filename", "string", YY_NULLPTR
 };
 #endif
 
@@ -614,7 +616,7 @@ static const yytype_int16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275
+     275,   276
 };
 # endif
 
@@ -632,14 +634,15 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -29,    24,   -29,    35,    -8,   -29,   -29,     6,   -29,    -4,
-     -29,   -29,     3,   -29,     2,    23,    25,    26,    27,    28,
-      22,    -6,   -29,    29,    30,    31,    32,    33,    35,     8,
-     -29,   -29,   -29,    14,    17,    19,    -7,    18,   -29,    34,
-     -29,   -29,   -29,   -29,   -29,   -29,   -29,    36,    37,   -29,
-     -29,    35,   -29,    35,   -29,    35,   -29,    38,   -29,    39,
-     -29,   -29,   -29,   -29,    41,    42,    43,    40,    44,    46,
-      47,    48,   -29,    49,   -29,   -29,   -29,   -29
+     -29,     1,   -29,   -10,   -15,   -29,   -29,    24,   -29,     4,
+     -29,   -29,   -29,     6,    35,    10,    36,    37,    45,    39,
+      41,     3,   -29,    47,    49,    50,    51,    52,   -15,    18,
+     -29,   -29,    23,   -29,     0,    33,   -29,    40,    -1,    53,
+     -29,   -29,   -29,   -29,   -29,   -29,   -29,    54,    55,   -29,
+     -29,   -15,   -29,   -15,   -29,    26,   -15,   -29,   -15,   -15,
+     -29,   -15,   -29,    56,   -29,   -29,   -29,    57,    58,    59,
+      60,    61,    62,    63,    65,    66,    67,    68,    69,    70,
+      71,    72,   -29,   -29,   -29,   -29,   -29,   -29,   -29,   -29
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -648,27 +651,28 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        2,     0,     1,     0,     0,     3,     4,     0,     5,     0,
-      39,    40,     0,    34,     0,    18,    21,    24,    27,    30,
-       0,     0,     9,     0,     0,     0,     0,     0,     0,     0,
-      36,     7,    11,     0,     0,     0,     0,     0,    12,     0,
-       6,    10,    14,    15,    16,    13,    17,     0,     0,    33,
-      37,     0,    19,     0,    22,     0,    25,     0,    28,     0,
-      31,     8,    38,    35,     0,     0,     0,     0,     0,     0,
-       0,     0,    29,     0,    20,    23,    26,    32
+      37,    43,    42,     0,    18,     0,    33,    26,     0,    22,
+      30,     0,     9,     0,     0,     0,     0,     0,     0,     0,
+      39,     7,     0,    12,     0,     0,    11,     0,     0,     0,
+       6,    10,    14,    15,    16,    13,    17,     0,     0,    36,
+      40,     0,    19,     0,    34,     0,     0,    27,     0,     0,
+      23,     0,    31,     0,     8,    41,    38,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,    32,    21,    20,    35,    29,    28,    25,    24
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -29,   -29,   -29,   -29,   -29,   -29,   -29,    50,   -29,   -29,
-     -29,   -29,   -29,   -29,   -29,   -29,   -29,    45,   -28
+     -29,   -29,   -29,   -29,   -29,   -29,   -29,    64,   -29,   -29,
+     -29,   -29,   -29,   -29,   -29,   -29,   -29,    48,   -28
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
       -1,     1,     5,     6,     7,    40,    21,    22,    23,    24,
-      25,    26,    27,     8,     9,    49,    29,    30,    12
+      25,    26,    27,     8,     9,    49,    29,    30,    13
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -676,50 +680,53 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      47,    14,    15,    16,    17,    18,    19,    20,    57,    13,
-      28,    58,    39,    14,    15,    16,    17,    18,    19,    20,
-      31,    32,    28,    64,     2,    65,    48,    66,    51,     3,
-       4,    53,    52,    55,    59,    54,    60,    56,    10,    11,
-      33,    38,    34,    35,    36,    37,     0,     0,    42,    43,
-      44,    45,    46,    61,     0,    62,    63,    67,    72,    68,
-      69,    70,    71,    73,    74,    75,    76,    77,     0,     0,
-       0,    41,     0,     0,    50
+      47,     2,    10,    62,    54,    11,    12,    39,     3,    55,
+      28,    14,    63,    15,    16,    33,     4,    17,    31,    18,
+      19,    20,    48,    67,    28,    68,    51,    52,    70,    53,
+      71,    72,    14,    73,    15,    16,    56,    57,    17,    58,
+      18,    19,    20,    59,    60,    69,    61,    32,    34,    35,
+      36,    37,    42,    38,    43,    44,    45,    46,    64,    65,
+      66,    74,    75,    76,    77,    78,    79,    80,    81,    82,
+      83,    84,    85,    86,    87,    88,    89,    50,     0,     0,
+       0,     0,     0,     0,     0,    41
 };
 
 static const yytype_int8 yycheck[] =
 {
-      28,     7,     8,     9,    10,    11,    12,    13,    15,    17,
-      14,    18,    18,     7,     8,     9,    10,    11,    12,    13,
-      17,    19,    14,    51,     0,    53,    18,    55,    14,     5,
-       6,    14,    18,    14,    16,    18,    18,    18,     3,     4,
-      17,    19,    17,    17,    17,    17,    -1,    -1,    19,    19,
-      19,    19,    19,    19,    -1,    19,    19,    19,    18,    20,
-      19,    19,    19,    19,    18,    18,    18,    18,    -1,    -1,
-      -1,    21,    -1,    -1,    29
+      28,     0,    12,     4,     4,    20,    21,     4,     7,     9,
+       6,     8,    13,    10,    11,     5,    15,    14,    12,    16,
+      17,    18,     4,    51,     6,    53,     3,     4,    56,     6,
+      58,    59,     8,    61,    10,    11,     3,     4,    14,     6,
+      16,    17,    18,     3,     4,    19,     6,    12,    12,    12,
+       5,    12,     5,    12,     5,     5,     5,     5,     5,     5,
+       5,     5,     5,     5,     5,     5,     5,     5,     5,     4,
+       4,     4,     4,     4,     4,     4,     4,    29,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    21
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    22,     0,     5,     6,    23,    24,    25,    34,    35,
-       3,     4,    39,    17,     7,     8,     9,    10,    11,    12,
-      13,    27,    28,    29,    30,    31,    32,    33,    14,    37,
-      38,    17,    19,    17,    17,    17,    17,    17,    19,    18,
-      26,    28,    19,    19,    19,    19,    19,    39,    18,    36,
-      38,    14,    18,    14,    18,    14,    18,    15,    18,    16,
-      18,    19,    19,    19,    39,    39,    39,    19,    20,    19,
-      19,    19,    18,    19,    18,    18,    18,    18
+       0,    23,     0,     7,    15,    24,    25,    26,    35,    36,
+      12,    20,    21,    40,     8,    10,    11,    14,    16,    17,
+      18,    28,    29,    30,    31,    32,    33,    34,     6,    38,
+      39,    12,    12,     5,    12,    12,     5,    12,    12,     4,
+      27,    29,     5,     5,     5,     5,     5,    40,     4,    37,
+      39,     3,     4,     6,     4,     9,     3,     4,     6,     3,
+       4,     6,     4,    13,     5,     5,     5,    40,    40,    19,
+      40,    40,    40,    40,     5,     5,     5,     5,     5,     5,
+       5,     5,     4,     4,     4,     4,     4,     4,     4,     4
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    21,    22,    22,    23,    23,    24,    25,    26,    27,
-      27,    28,    28,    28,    28,    28,    28,    28,    29,    29,
-      29,    30,    30,    30,    31,    31,    31,    32,    32,    32,
-      33,    33,    33,    34,    35,    36,    37,    37,    38,    39,
-      39
+       0,    22,    23,    23,    24,    24,    25,    26,    27,    28,
+      28,    29,    29,    29,    29,    29,    29,    29,    30,    30,
+      30,    30,    31,    31,    31,    31,    32,    32,    32,    32,
+      33,    33,    33,    34,    34,    34,    35,    36,    37,    38,
+      38,    39,    40,    40
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -727,9 +734,9 @@ static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     1,     3,     3,     2,     1,
        2,     2,     2,     2,     2,     2,     2,     2,     1,     3,
-       6,     1,     3,     6,     1,     3,     6,     1,     3,     5,
-       1,     3,     6,     3,     2,     2,     1,     2,     3,     1,
-       1
+       6,     6,     1,     3,     6,     6,     1,     3,     6,     6,
+       1,     3,     5,     1,     3,     6,     3,     2,     2,     1,
+       2,     3,     1,     1
 };
 
 
@@ -1425,43 +1432,43 @@ yyreduce:
   switch (yyn)
     {
   case 7:
-#line 75 "config_file_yacc.y"
+#line 87 "config_file_yacc.y"
                                     { current_name = (yyvsp[-1].string); }
-#line 1431 "config_file_yacc.c"
+#line 1438 "config_file_yacc.c"
     break;
 
   case 8:
-#line 78 "config_file_yacc.y"
+#line 90 "config_file_yacc.y"
                           { cf_append_sequence_list(); }
-#line 1437 "config_file_yacc.c"
+#line 1444 "config_file_yacc.c"
     break;
 
   case 11:
-#line 85 "config_file_yacc.y"
+#line 97 "config_file_yacc.y"
                      { cf_append_sequence_entry(&clean_uncgi, NULL); }
-#line 1443 "config_file_yacc.c"
+#line 1450 "config_file_yacc.c"
     break;
 
   case 12:
-#line 87 "config_file_yacc.y"
+#line 99 "config_file_yacc.y"
                  { cf_append_sequence_entry(&clean_lower, NULL); }
-#line 1449 "config_file_yacc.c"
+#line 1456 "config_file_yacc.c"
     break;
 
   case 18:
-#line 100 "config_file_yacc.y"
+#line 112 "config_file_yacc.y"
                      { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
-#line 1455 "config_file_yacc.c"
+#line 1462 "config_file_yacc.c"
     break;
 
   case 19:
-#line 102 "config_file_yacc.y"
+#line 114 "config_file_yacc.y"
                          { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
-#line 1461 "config_file_yacc.c"
+#line 1468 "config_file_yacc.c"
     break;
 
   case 20:
-#line 104 "config_file_yacc.y"
+#line 116 "config_file_yacc.y"
                                              {
         csopts = malloc(sizeof(struct clean_string_options));
         memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1469,23 +1476,35 @@ yyreduce:
 
         cf_append_sequence_entry(&clean_iso8859_1, csopts);
     }
-#line 1473 "config_file_yacc.c"
+#line 1480 "config_file_yacc.c"
     break;
 
   case 21:
-#line 113 "config_file_yacc.y"
-             { cf_append_sequence_entry(&clean_utf_8, NULL); }
-#line 1479 "config_file_yacc.c"
+#line 124 "config_file_yacc.y"
+                                            {
+        csopts = malloc(sizeof(struct clean_string_options));
+        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts->builtin = (yyvsp[-2].string);
+
+        cf_append_sequence_entry(&clean_iso8859_1, csopts);
+    }
+#line 1492 "config_file_yacc.c"
     break;
 
   case 22:
-#line 115 "config_file_yacc.y"
-                     { cf_append_sequence_entry(&clean_utf_8, NULL); }
-#line 1485 "config_file_yacc.c"
+#line 133 "config_file_yacc.y"
+             { cf_append_sequence_entry(&clean_utf_8, NULL); }
+#line 1498 "config_file_yacc.c"
     break;
 
   case 23:
-#line 117 "config_file_yacc.y"
+#line 135 "config_file_yacc.y"
+                     { cf_append_sequence_entry(&clean_utf_8, NULL); }
+#line 1504 "config_file_yacc.c"
+    break;
+
+  case 24:
+#line 137 "config_file_yacc.y"
                                          {
         csopts = malloc(sizeof(struct clean_string_options));
         memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1493,23 +1512,35 @@ yyreduce:
 
         cf_append_sequence_entry(&clean_utf_8, csopts);
     }
-#line 1497 "config_file_yacc.c"
-    break;
-
-  case 24:
-#line 126 "config_file_yacc.y"
-           { cf_append_sequence_entry(&clean_safe, NULL); }
-#line 1503 "config_file_yacc.c"
+#line 1516 "config_file_yacc.c"
     break;
 
   case 25:
-#line 128 "config_file_yacc.y"
-                    { cf_append_sequence_entry(&clean_safe, NULL); }
-#line 1509 "config_file_yacc.c"
+#line 145 "config_file_yacc.y"
+                                        {
+        csopts = malloc(sizeof(struct clean_string_options));
+        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts->builtin = (yyvsp[-2].string);
+
+        cf_append_sequence_entry(&clean_utf_8, csopts);
+    }
+#line 1528 "config_file_yacc.c"
     break;
 
   case 26:
-#line 130 "config_file_yacc.y"
+#line 154 "config_file_yacc.y"
+           { cf_append_sequence_entry(&clean_safe, NULL); }
+#line 1534 "config_file_yacc.c"
+    break;
+
+  case 27:
+#line 156 "config_file_yacc.y"
+                    { cf_append_sequence_entry(&clean_safe, NULL); }
+#line 1540 "config_file_yacc.c"
+    break;
+
+  case 28:
+#line 158 "config_file_yacc.y"
                                         {
         csopts = malloc(sizeof(struct clean_string_options));
         memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1517,27 +1548,39 @@ yyreduce:
 
         cf_append_sequence_entry(&clean_safe, csopts);
     }
-#line 1521 "config_file_yacc.c"
-    break;
-
-  case 27:
-#line 139 "config_file_yacc.y"
-                  {
-        cf_append_sequence_entry(&clean_wipeup, NULL);
-    }
-#line 1529 "config_file_yacc.c"
-    break;
-
-  case 28:
-#line 143 "config_file_yacc.y"
-                      {
-        cf_append_sequence_entry(&clean_wipeup, NULL);
-    }
-#line 1537 "config_file_yacc.c"
+#line 1552 "config_file_yacc.c"
     break;
 
   case 29:
-#line 147 "config_file_yacc.y"
+#line 166 "config_file_yacc.y"
+                                       {
+        csopts = malloc(sizeof(struct clean_string_options));
+        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts->builtin = (yyvsp[-2].string);
+
+        cf_append_sequence_entry(&clean_safe, csopts);
+    }
+#line 1564 "config_file_yacc.c"
+    break;
+
+  case 30:
+#line 175 "config_file_yacc.y"
+                  {
+        cf_append_sequence_entry(&clean_wipeup, NULL);
+    }
+#line 1572 "config_file_yacc.c"
+    break;
+
+  case 31:
+#line 179 "config_file_yacc.y"
+                      {
+        cf_append_sequence_entry(&clean_wipeup, NULL);
+    }
+#line 1580 "config_file_yacc.c"
+    break;
+
+  case 32:
+#line 183 "config_file_yacc.y"
                                           {
         csopts = malloc(sizeof(struct clean_string_options));
         memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1545,23 +1588,23 @@ yyreduce:
 
         cf_append_sequence_entry(&clean_wipeup, csopts);
     }
-#line 1549 "config_file_yacc.c"
+#line 1592 "config_file_yacc.c"
     break;
 
-  case 30:
-#line 156 "config_file_yacc.y"
+  case 33:
+#line 192 "config_file_yacc.y"
                           { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1555 "config_file_yacc.c"
+#line 1598 "config_file_yacc.c"
     break;
 
-  case 31:
-#line 158 "config_file_yacc.y"
+  case 34:
+#line 194 "config_file_yacc.y"
                           { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1561 "config_file_yacc.c"
+#line 1604 "config_file_yacc.c"
     break;
 
-  case 32:
-#line 160 "config_file_yacc.y"
+  case 35:
+#line 196 "config_file_yacc.y"
                                             {
         csopts = malloc(sizeof(struct clean_string_options));
         memset(csopts, 0, sizeof(struct clean_string_options));
@@ -1569,31 +1612,31 @@ yyreduce:
 
         cf_append_sequence_entry(&clean_max_length, csopts);
     }
-#line 1573 "config_file_yacc.c"
+#line 1616 "config_file_yacc.c"
     break;
 
-  case 38:
-#line 182 "config_file_yacc.y"
+  case 41:
+#line 218 "config_file_yacc.y"
                                      {
         cf_append_ignore_entry(FILENAME, (yyvsp[-1].string));
     }
-#line 1581 "config_file_yacc.c"
+#line 1624 "config_file_yacc.c"
     break;
 
-  case 39:
-#line 187 "config_file_yacc.y"
+  case 42:
+#line 223 "config_file_yacc.y"
                         { (yyval.string) = (yyvsp[0].string); }
-#line 1587 "config_file_yacc.c"
+#line 1630 "config_file_yacc.c"
     break;
 
-  case 40:
-#line 189 "config_file_yacc.y"
+  case 43:
+#line 225 "config_file_yacc.y"
                   { (yyval.string) = (yyvsp[0].string); }
-#line 1593 "config_file_yacc.c"
+#line 1636 "config_file_yacc.c"
     break;
 
 
-#line 1597 "config_file_yacc.c"
+#line 1640 "config_file_yacc.c"
 
       default: break;
     }
@@ -1825,7 +1868,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 192 "config_file_yacc.y"
+#line 228 "config_file_yacc.y"
 
 
 extern FILE *yyin;

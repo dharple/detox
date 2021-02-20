@@ -14,6 +14,7 @@
 
 struct clean_string_options {
     char *filename;
+    char *builtin;
     int remove_trailing;
     size_t max_length;
 

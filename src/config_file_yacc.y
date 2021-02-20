@@ -47,13 +47,25 @@ int yylex (void);
     int                          nvalue; /* nvalue */
 }
 
-%token <string> QSTRING ID
-%token <cmd> SEQUENCE IGNORE
-%token <cmd> UNCGI ISO8859_1 UTF_8 SAFE WIPEUP
-%token <cmd> MAX_LENGTH LOWER
-%token <cmd> FILENAME REMOVE_TRAILING LENGTH
-%token <cmd> OPEN CLOSE EOL
+%token <cmd> BUILTIN
+%token <cmd> CLOSE
+%token <cmd> EOL
+%token <cmd> FILENAME
+%token <cmd> IGNORE
+%token <cmd> ISO8859_1
+%token <cmd> LENGTH
+%token <cmd> LOWER
+%token <cmd> MAX_LENGTH
+%token <cmd> OPEN
+%token <cmd> REMOVE_TRAILING
+%token <cmd> SAFE
+%token <cmd> SEQUENCE
+%token <cmd> UNCGI
+%token <cmd> UTF_8
+%token <cmd> WIPEUP
 %token <nvalue> NVALUE
+%token <string> ID
+%token <string> QSTRING
 
 %type <string> string
 
@@ -108,6 +120,14 @@ iso8859_1: ISO8859_1 { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
 
         cf_append_sequence_entry(&clean_iso8859_1, csopts);
     }
+    |
+    ISO8859_1 OPEN BUILTIN string EOL CLOSE {
+        csopts = malloc(sizeof(struct clean_string_options));
+        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts->builtin = $4;
+
+        cf_append_sequence_entry(&clean_iso8859_1, csopts);
+    }
     ;
 
 utf_8: UTF_8 { cf_append_sequence_entry(&clean_utf_8, NULL); }
@@ -121,6 +141,14 @@ utf_8: UTF_8 { cf_append_sequence_entry(&clean_utf_8, NULL); }
 
         cf_append_sequence_entry(&clean_utf_8, csopts);
     }
+    |
+    UTF_8 OPEN BUILTIN string EOL CLOSE {
+        csopts = malloc(sizeof(struct clean_string_options));
+        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts->builtin = $4;
+
+        cf_append_sequence_entry(&clean_utf_8, csopts);
+    }
     ;
 
 safe: SAFE { cf_append_sequence_entry(&clean_safe, NULL); }
@@ -131,6 +159,14 @@ safe: SAFE { cf_append_sequence_entry(&clean_safe, NULL); }
         csopts = malloc(sizeof(struct clean_string_options));
         memset(csopts, 0, sizeof(struct clean_string_options));
         csopts->filename = $4;
+
+        cf_append_sequence_entry(&clean_safe, csopts);
+    }
+    |
+    SAFE OPEN BUILTIN string EOL CLOSE {
+        csopts = malloc(sizeof(struct clean_string_options));
+        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts->builtin = $4;
 
         cf_append_sequence_entry(&clean_safe, csopts);
     }

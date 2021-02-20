@@ -22,6 +22,7 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
     struct detox_sequence_list *list_work = NULL;
     struct detox_sequence_entry *work = NULL;
     struct detox_ignore_entry *ignore_walk = NULL;
+    int count = 0;
 
     if (!main_options->verbose) {
         printf("available sequences:\n");
@@ -31,6 +32,9 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
 
     while (list_work != NULL) {
         if (main_options->verbose) {
+            if (count++ > 0) {
+                printf("\n");
+            }
             printf("sequence name: ");
         } else {
             printf("\t");
@@ -47,7 +51,9 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
                     printf("\tcleaner: safe\n");
                     if (work->options != NULL) {
                         struct clean_string_options *opts = work->options;
-                        if (opts->filename != NULL) {
+                        if (opts->builtin != NULL) {
+                            printf("\t\tbuiltin table: %s\n", opts->builtin);
+                        } else if (opts->filename != NULL) {
                             printf("\t\ttranslation table: %s\n", opts->filename);
                         }
                     }
@@ -61,7 +67,9 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
                     printf("\tcleaner: iso8859_1\n");
                     if (work->options != NULL) {
                         struct clean_string_options *opts = work->options;
-                        if (opts->filename != NULL) {
+                        if (opts->builtin != NULL) {
+                            printf("\t\tbuiltin table: %s\n", opts->builtin);
+                        } else if (opts->filename != NULL) {
                             printf("\t\ttranslation table: %s\n", opts->filename);
                         }
                     }
@@ -69,7 +77,9 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
                     printf("\tcleaner: utf_8\n");
                     if (work->options != NULL) {
                         struct clean_string_options *opts = work->options;
-                        if (opts->filename != NULL) {
+                        if (opts->builtin != NULL) {
+                            printf("\t\tbuiltin table: %s\n", opts->builtin);
+                        } else if (opts->filename != NULL) {
                             printf("\t\ttranslation table: %s\n", opts->filename);
                         }
                     }

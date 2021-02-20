@@ -9,7 +9,9 @@
 #
 
 sequence default {
-	safe;
+	safe {
+		builtin "safe";
+	};
 	wipeup;
 };
 
@@ -19,28 +21,69 @@ sequence default {
 
 # transliterates ISO 8859-1 into ASCII
 sequence "iso8859_1" {
-	iso8859_1;
-	safe;
+	iso8859_1 {
+		builtin "iso8859_1";
+	};
+	safe {
+		builtin "safe";
+	};
+	wipeup;
+};
+
+# transliterates CP-1252 and ISO8859-1 into ASCII
+sequence "iso8859_1-legacy" {
+	iso8859_1 {
+		builtin "cp1252";
+	};
+	iso8859_1 {
+		builtin "iso8859_1";
+	};
+	safe {
+		builtin "safe";
+	};
 	wipeup;
 };
 
 # transliterates UTF-8 into ASCII
 sequence "utf_8" {
-	utf_8;
-	safe;
+	utf_8 {
+		builtin "unicode";
+	};
+	safe {
+		builtin "safe";
+	};
+	wipeup;
+};
+
+# transliterates CP-1252 and UTF-8 into ASCII
+# this is *very* rare
+sequence "utf_8-legacy" {
+	utf_8 {
+		builtin "cp1252";
+	};
+	utf_8 {
+		builtin "unicode";
+	};
+	safe {
+		builtin "safe";
+	};
 	wipeup;
 };
 
 # decodes CGI-escaped characters
 sequence "uncgi" {
 	uncgi;
-	safe;
+	safe {
+		builtin "safe";
+	};
 	wipeup;
 };
 
 # converts files to lower case
 sequence "lower" {
-	safe;
+	safe {
+		builtin "safe";
+	};
 	lower;
 	wipeup;
 };
@@ -51,12 +94,23 @@ sequence "lower" {
 
 # transliterates ISO 8859-1 to ASCII
 sequence "iso8859_1-only" {
-	iso8859_1;
+	iso8859_1 {
+		builtin "iso8859_1";
+	};
+};
+
+# transliterates CP-1252 to ASCII
+sequence "cp1252-only" {
+	iso8859_1 {
+		builtin "cp1252";
+	};
 };
 
 # transliterates UTF-8 to ASCII
 sequence "utf_8-only" {
-	utf_8;
+	utf_8 {
+		builtin "unicode";
+	};
 };
 
 # decodes CGI-escaped characters

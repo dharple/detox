@@ -16,6 +16,7 @@
 #include "builtin_table.h"
 #include "parse_table.h"
 #include "clean_string.h"
+#include "sequence.h"
 
 /**
  * Chooses which sequence to use.
@@ -117,11 +118,37 @@ struct translation_table *sequence_load_builtin(struct detox_sequence_entry *seq
 }
 
 /**
+ * Uses a builtin table for a sequence.
+ *
+ * Valid values:
+ * - builtin:cp1252
+ * - builtin:iso8859_1
+ * - builtin:safe
+ * - builtin:unicode
+ *
+ * @param filename Builtin filename to use
+ */
+struct translation_table *sequence_load_builtin_by_filename(char *filename)
+{
+    if (strcmp(filename, "iso8859_1") == 0) {
+        return load_builtin_iso8859_1_table();
+    } else if (strcmp(filename, "unicode") == 0) {
+        return load_builtin_unicode_table();
+    } else if (strcmp(filename, "safe") == 0) {
+        return load_builtin_safe_table();
+    } else if (strcmp(filename, "cp1252") == 0) {
+        return load_builtin_cp1252_table();
+    }
+
+    return NULL;
+}
+
+/**
  * Checks the file associated with a sequence.
  *
  * @param sequence The sequence to check.
  */
-void sequence_check_file(struct detox_sequence_entry *sequence)
+struct translation_table *sequence_check_file(struct detox_sequence_entry *sequence)
 {
     struct clean_string_options *opts = NULL;
     struct translation_table *table = NULL;
@@ -135,11 +162,16 @@ void sequence_check_file(struct detox_sequence_entry *sequence)
     } else if (sequence->cleaner == &clean_safe) {
         check_filename = "safe.tbl";
     } else {
-        return;
+        return NULL;
     }
 
     if (sequence->options != NULL) {
         opts = sequence->options;
+
+        if (opts->builtin != NULL) {
+            return sequence_load_builtin_by_filename(opts->builtin);
+        }
+
         if (opts->filename != NULL) {
             check_filename = opts->filename;
             do_search = 0;
@@ -148,37 +180,27 @@ void sequence_check_file(struct detox_sequence_entry *sequence)
 
     if (do_search) {
         table = sequence_find_table(check_filename);
+        if (table != NULL) {
+            return table;
+        }
 
         // load builtin translation tables
-        if (table == NULL) {
-            table = sequence_load_builtin(sequence);
-        }
+        table = sequence_load_builtin(sequence);
 
         if (table == NULL) {
             fprintf(stderr, "detox: unable to locate translation table or fall back\n");
             exit(EXIT_FAILURE);
         }
-
-        // Allocate an options struct
-        opts = malloc(sizeof(struct clean_string_options));
-        if (opts == NULL) {
-            fprintf(stderr, "out of memory: %s\n", strerror(errno));
-            exit(EXIT_FAILURE);
-        }
-        memset(opts, 0, sizeof(struct clean_string_options));
-
-        opts->translation_table = table;
-        sequence->options = opts;
     } else {
         table = parse_table(check_filename);
+
         if (table == NULL) {
             fprintf(stderr, "detox: unable to parse file: %s\n", check_filename);
             exit(EXIT_FAILURE);
         }
-
-        opts = sequence->options;
-        opts->translation_table = table;
     }
+
+    return table;
 }
 
 /**
@@ -191,9 +213,29 @@ void sequence_check_file(struct detox_sequence_entry *sequence)
 void sequence_review(struct detox_sequence_entry *sequence)
 {
     struct detox_sequence_entry *work = sequence;
+    struct translation_table *table = NULL;
 
     while (work != NULL) {
-        sequence_check_file(work);
+        table = sequence_check_file(work);
+
+        if (table != NULL) {
+            struct clean_string_options *opts = NULL;
+
+            if (work->options == NULL) {
+                // Allocate an options struct
+                opts = malloc(sizeof(struct clean_string_options));
+                if (opts == NULL) {
+                    fprintf(stderr, "out of memory: %s\n", strerror(errno));
+                    exit(EXIT_FAILURE);
+                }
+                memset(opts, 0, sizeof(struct clean_string_options));
+                work->options = opts;
+            } else {
+                opts = work->options;
+            }
+
+            opts->translation_table = table;
+        }
         work = work->next;
     }
 }

@@ -49,45 +49,47 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    QSTRING = 258,
-    ID = 259,
-    SEQUENCE = 260,
-    IGNORE = 261,
-    UNCGI = 262,
+    BUILTIN = 258,
+    CLOSE = 259,
+    EOL = 260,
+    FILENAME = 261,
+    IGNORE = 262,
     ISO8859_1 = 263,
-    UTF_8 = 264,
-    SAFE = 265,
-    WIPEUP = 266,
-    MAX_LENGTH = 267,
-    LOWER = 268,
-    FILENAME = 269,
-    REMOVE_TRAILING = 270,
-    LENGTH = 271,
-    OPEN = 272,
-    CLOSE = 273,
-    EOL = 274,
-    NVALUE = 275
+    LENGTH = 264,
+    LOWER = 265,
+    MAX_LENGTH = 266,
+    OPEN = 267,
+    REMOVE_TRAILING = 268,
+    SAFE = 269,
+    SEQUENCE = 270,
+    UNCGI = 271,
+    UTF_8 = 272,
+    WIPEUP = 273,
+    NVALUE = 274,
+    ID = 275,
+    QSTRING = 276
   };
 #endif
 /* Tokens.  */
-#define QSTRING 258
-#define ID 259
-#define SEQUENCE 260
-#define IGNORE 261
-#define UNCGI 262
+#define BUILTIN 258
+#define CLOSE 259
+#define EOL 260
+#define FILENAME 261
+#define IGNORE 262
 #define ISO8859_1 263
-#define UTF_8 264
-#define SAFE 265
-#define WIPEUP 266
-#define MAX_LENGTH 267
-#define LOWER 268
-#define FILENAME 269
-#define REMOVE_TRAILING 270
-#define LENGTH 271
-#define OPEN 272
-#define CLOSE 273
-#define EOL 274
-#define NVALUE 275
+#define LENGTH 264
+#define LOWER 265
+#define MAX_LENGTH 266
+#define OPEN 267
+#define REMOVE_TRAILING 268
+#define SAFE 269
+#define SEQUENCE 270
+#define UNCGI 271
+#define UTF_8 272
+#define WIPEUP 273
+#define NVALUE 274
+#define ID 275
+#define QSTRING 276
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -100,7 +102,7 @@ union YYSTYPE
     struct detox_sequence_entry *seq;    /* sequence */
     int                          nvalue; /* nvalue */
 
-#line 104 "config_file_yacc.h"
+#line 106 "config_file_yacc.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

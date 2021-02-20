@@ -30,6 +30,7 @@ int config_file_lineno = 1;
 
 \n      { config_file_lineno++; }
 
+builtin            { return BUILTIN; }
 filename           { return FILENAME; }
 ignore             { return IGNORE; }
 iso8859_1          { return ISO8859_1; }
