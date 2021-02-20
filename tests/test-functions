@@ -265,21 +265,45 @@ function test_sequence ()
 				DONE
 				;;
 
-			safe-basic )
+			safe-search )
 				cat <<- DONE >> $RC
 					safe;
 				DONE
 				;;
 
-			utf_8-basic )
+			utf_8-search )
 				cat <<- DONE >> $RC
 					utf_8;
 				DONE
 				;;
 
-			iso8859_1-basic )
+			iso8859_1-search )
 				cat <<- DONE >> $RC
 					iso8859_1;
+				DONE
+				;;
+
+			safe-basic )
+				cat <<- DONE >> $RC
+					safe {
+						builtin "safe";
+					};
+				DONE
+				;;
+
+			utf_8-basic )
+				cat <<- DONE >> $RC
+					utf_8 {
+						builtin "unicode";
+					};
+				DONE
+				;;
+
+			iso8859_1-basic )
+				cat <<- DONE >> $RC
+					iso8859_1 {
+						builtin "iso8859_1";
+					};
 				DONE
 				;;
 

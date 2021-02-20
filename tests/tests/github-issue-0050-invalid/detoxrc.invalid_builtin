@@ -1,0 +1,6 @@
+sequence "default" {
+	safe {
+		builtin "safe ";
+	};
+};
+

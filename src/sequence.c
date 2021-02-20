@@ -169,7 +169,12 @@ struct translation_table *sequence_check_file(struct detox_sequence_entry *seque
         opts = sequence->options;
 
         if (opts->builtin != NULL) {
-            return sequence_load_builtin_by_filename(opts->builtin);
+            table = sequence_load_builtin_by_filename(opts->builtin);
+            if (table == NULL) {
+                fprintf(stderr, "detox: unable to locate builtin table \"%s\"\n", opts->builtin);
+                exit(EXIT_FAILURE);
+            }
+            return table;
         }
 
         if (opts->filename != NULL) {
@@ -195,7 +200,7 @@ struct translation_table *sequence_check_file(struct detox_sequence_entry *seque
         table = parse_table(check_filename);
 
         if (table == NULL) {
-            fprintf(stderr, "detox: unable to parse file: %s\n", check_filename);
+            fprintf(stderr, "detox: unable to parse file: \"%s\"\n", check_filename);
             exit(EXIT_FAILURE);
         }
     }
