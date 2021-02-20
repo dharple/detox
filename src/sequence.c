@@ -20,10 +20,10 @@
 /**
  * Chooses which sequence to use.
  *
- * @param struct detox_sequence_list *sequences     Sequences from the config file.
- * @param char                       *sequence_name The sequence name from the command line, if any.
+ * @param sequences     Sequences from the config file.
+ * @param sequence_name The sequence name from the command line, if any.
  *
- * @return struct detox_sequence_entry
+ * @return The chosen sequence.
  */
 struct detox_sequence_entry *sequence_choose_default(struct detox_sequence_list *sequences, char *sequence_name)
 {
@@ -54,6 +54,134 @@ struct detox_sequence_entry *sequence_choose_default(struct detox_sequence_list 
 }
 
 /**
+ * Attempts to find a translation table associated with a sequence.
+ *
+ * @param check_filename The filename to look for.
+ *
+ * @return
+ */
+struct translation_table *sequence_find_table(const char *check_filename)
+{
+    struct translation_table *table = NULL;
+    int err;
+    char *check_config_file;
+
+    check_config_file = alloca(MAX_PATH_LEN);
+    if (check_config_file == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+#ifdef DATADIR
+    err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detox/%s", DATADIR, check_filename);
+    if (err < MAX_PATH_LEN) {
+        table = parse_table(check_config_file);
+        if (table != NULL) {
+            return table;
+        }
+    }
+#endif
+
+    err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/share/detox/%s", check_filename);
+    if (err < MAX_PATH_LEN) {
+        table = parse_table(check_config_file);
+        if (table != NULL) {
+            return table;
+        }
+    }
+
+    err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/local/share/detox/%s", check_filename);
+    if (err < MAX_PATH_LEN) {
+        table = parse_table(check_config_file);
+    }
+
+    return table;
+}
+
+/**
+ * Uses a builtin table for a sequence.
+ *
+ * @param sequence The sequence to load a builtin for.
+ */
+struct translation_table *sequence_load_builtin(struct detox_sequence_entry *sequence)
+{
+    if (sequence->cleaner == &clean_iso8859_1) {
+        return load_builtin_iso8859_1_table();
+    } else if (sequence->cleaner == &clean_utf_8) {
+        return load_builtin_unicode_table();
+    } else if (sequence->cleaner == &clean_safe) {
+        return load_builtin_safe_table();
+    }
+
+    return NULL;
+}
+
+/**
+ * Checks the file associated with a sequence.
+ *
+ * @param sequence The sequence to check.
+ */
+void sequence_check_file(struct detox_sequence_entry *sequence)
+{
+    struct clean_string_options *opts = NULL;
+    struct translation_table *table = NULL;
+    char *check_filename = NULL;
+    int do_search = 1;
+
+    if (sequence->cleaner == &clean_iso8859_1) {
+        check_filename = "iso8859_1.tbl";
+    } else if (sequence->cleaner == &clean_utf_8) {
+        check_filename = "unicode.tbl";
+    } else if (sequence->cleaner == &clean_safe) {
+        check_filename = "safe.tbl";
+    } else {
+        return;
+    }
+
+    if (sequence->options != NULL) {
+        opts = sequence->options;
+        if (opts->filename != NULL) {
+            check_filename = opts->filename;
+            do_search = 0;
+        }
+    }
+
+    if (do_search) {
+        table = sequence_find_table(check_filename);
+
+        // load builtin translation tables
+        if (table == NULL) {
+            table = sequence_load_builtin(sequence);
+        }
+
+        if (table == NULL) {
+            fprintf(stderr, "detox: unable to locate translation table or fall back\n");
+            exit(EXIT_FAILURE);
+        }
+
+        // Allocate an options struct
+        opts = malloc(sizeof(struct clean_string_options));
+        if (opts == NULL) {
+            fprintf(stderr, "out of memory: %s\n", strerror(errno));
+            exit(EXIT_FAILURE);
+        }
+        memset(opts, 0, sizeof(struct clean_string_options));
+
+        opts->translation_table = table;
+        sequence->options = opts;
+    } else {
+        table = parse_table(check_filename);
+        if (table == NULL) {
+            fprintf(stderr, "detox: unable to parse file: %s\n", check_filename);
+            exit(EXIT_FAILURE);
+        }
+
+        opts = sequence->options;
+        opts->translation_table = table;
+    }
+}
+
+/**
  * Reviews a sequence to confirm that it's valid.
  *
  * @param struct detox_sequence_entry *sequence
@@ -63,126 +191,9 @@ struct detox_sequence_entry *sequence_choose_default(struct detox_sequence_list 
 void sequence_review(struct detox_sequence_entry *sequence)
 {
     struct detox_sequence_entry *work = sequence;
-    char *check_config_file = NULL;
-    int err;
 
     while (work != NULL) {
-        char *check_filename = NULL;
-        int do_search = 0;
-
-        struct translation_table *table = NULL;
-        struct clean_string_options *opts;
-
-        if (work->cleaner == &clean_iso8859_1) {
-            if (work->options != NULL) {
-                opts = work->options;
-                if (opts->filename != NULL) {
-                    check_filename = opts->filename;
-                }
-            }
-
-            if (!check_filename) {
-                check_filename = "iso8859_1.tbl";
-                do_search = 1;
-            }
-        } else if (work->cleaner == &clean_utf_8) {
-            if (work->options != NULL) {
-                opts = work->options;
-                if (opts->filename != NULL) {
-                    check_filename = opts->filename;
-                }
-            }
-
-            if (!check_filename) {
-                check_filename = "unicode.tbl";
-                do_search = 1;
-            }
-        } else if (work->cleaner == &clean_safe) {
-            if (work->options != NULL) {
-                opts = work->options;
-                if (opts->filename != NULL) {
-                    check_filename = opts->filename;
-                }
-            }
-
-            if (!check_filename) {
-                check_filename = "safe.tbl";
-                do_search = 1;
-            }
-        }
-
-        if (check_filename || do_search) {
-
-            table = NULL;
-
-            if (do_search) {
-                check_config_file = malloc(MAX_PATH_LEN);
-                if (check_config_file == NULL) {
-                    fprintf(stderr, "out of memory: %s\n", strerror(errno));
-                    exit(EXIT_FAILURE);
-                }
-
-#ifdef DATADIR
-                err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detox/%s", DATADIR, check_filename);
-                if (err < MAX_PATH_LEN) {
-                    table = parse_table(check_config_file);
-                }
-#endif
-
-                if (table == NULL) {
-                    err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/share/detox/%s", check_filename);
-                    if (err < MAX_PATH_LEN) {
-                        table = parse_table(check_config_file);
-                    }
-                }
-
-                if (table == NULL) {
-                    err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/local/share/detox/%s", check_filename);
-                    if (err < MAX_PATH_LEN) {
-                        table = parse_table(check_config_file);
-                    }
-                }
-
-                // load builtin translation tables
-                if (table == NULL) {
-                    if (work->cleaner == &clean_iso8859_1) {
-                        table = load_builtin_iso8859_1_table();
-                    } else if (work->cleaner == &clean_utf_8) {
-                        table = load_builtin_unicode_table();
-                    } else if (work->cleaner == &clean_safe) {
-                        table = load_builtin_safe_table();
-                    }
-                }
-
-                if (table == NULL) {
-                    fprintf(stderr, "detox: unable to locate translation table or fall back\n");
-                    exit(EXIT_FAILURE);
-                }
-
-                // Allocate an options struct
-                opts = malloc(sizeof(struct clean_string_options));
-                if (opts == NULL) {
-                    fprintf(stderr, "out of memory: %s\n", strerror(errno));
-                    exit(EXIT_FAILURE);
-                }
-                memset(opts, 0, sizeof(struct clean_string_options));
-
-                opts->translation_table = table;
-                work->options = opts;
-
-                free(check_config_file);
-            } else {
-                table = parse_table(check_filename);
-                if (table == NULL) {
-                    fprintf(stderr, "detox: unable to parse file: %s\n", check_filename);
-                    exit(EXIT_FAILURE);
-                }
-
-                opts = work->options;
-                opts->translation_table = table;
-            }
-        }
-
+        sequence_check_file(work);
         work = work->next;
     }
 }

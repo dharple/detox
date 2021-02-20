@@ -7,10 +7,13 @@
  * file that was distributed with this source code.
  */
 
-#ifndef DETOX_OPTIONS_H
-#define DETOX_OPTIONS_H
+#ifndef SEQUENCE_H
+#define SEQUENCE_H
 
 extern struct detox_sequence_entry *sequence_choose_default(struct detox_sequence_list *sequences, char *sequence_name);
+extern struct translation_table *sequence_find_table(const char *check_filename);
+extern struct translation_table *sequence_load_builtin(struct detox_sequence_entry *sequence);
+extern void sequence_check_file(struct detox_sequence_entry *sequence);
 extern void sequence_review(struct detox_sequence_entry *sequence);
 
-#endif //DETOX_OPTIONS_H
+#endif //SEQUENCE_H
