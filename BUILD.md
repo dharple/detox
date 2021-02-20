@@ -49,6 +49,11 @@ Check docs:
 mandoc -T lint man/*.[15]
 ```
 
+Check tests:
+```
+grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
+```
+
 ## Testing
 
 1. Run static analysis tools. (sparse, cppcheck)
