@@ -26,20 +26,14 @@ jobs:
     - arch: amd64
       compiler: gcc
       dist: trusty
-    # test macOS on HFS+
+    # test macOS on latest
     - os: osx
-      osx_image: xcode10.3
+      osx_image: xcode12.2
       addons:
         homebrew:
           packages:
           - bash
-    # test macOS on APFS
-    - os: osx
-      osx_image: xcode12
-      addons:
-        homebrew:
-          packages:
-          - bash
+          - sed
 
 env:
   global:
@@ -51,7 +45,5 @@ install:
 script:
   - ./configure && make
   - src/detox -V
-  - which bash
-  - bash --version
-  - /bin/bash --version
-  - tests/test.sh src/detox
+  - [ "$TRAVIS_OS_NAME" = "linux" ] && tests/test.sh src/detox
+  - [ "$TRAVIS_OS_NAME" = "osx" ] && /usr/local/bin/bash tests/test.sh src/detox
