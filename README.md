@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/dharple/detox.svg?branch=main)](https://travis-ci.com/dharple/detox)
-
 # Notice
 
 I have renamed the `master` branch to `main`.  If you have a copy of detox
