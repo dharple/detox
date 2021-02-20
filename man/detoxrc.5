@@ -61,12 +61,17 @@ the users'
 .Ar normal_seq
 will replace the system-wide version.
 .It Cm iso8859_1 ;
+.It Cm iso8859_1 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
 This transliterates ISO 8859-1 characters between 0xA0 and 0xFF into lower
 ASCII equivalents.  The output is not necessarily safe, and should also be run
 through the
 .Ar safe
 filter.
+.Pp
+If
+.Ar builtin
+is specified, a builtin table with the name specified will be used.
 .Pp
 Under normal circumstances, the filename syntax is not needed.
 .Cm detox
@@ -75,8 +80,8 @@ looks in several locations for a file called
 which is a set of rules defining how an ISO 8859-1 character should be
 translated.  If
 .Cm detox
-can't find the translation table, it will fall back on its internal translation
-table, based on the stock one.
+can't find the translation table, it will fall back on the builtin table
+.Pa iso8859_1 .
 .Pp
 You can also download or create your own, and tell
 .Cm detox
@@ -92,6 +97,7 @@ This filter is mutually exclusive with the
 .Ar utf_8
 filter.
 .It Cm utf_8 ;
+.It Cm utf_8 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm utf_8 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
 This transliterations Unicode characters, encoded using UTF-8, into lower
 ASCII equivalents.
@@ -103,13 +109,15 @@ except it looks for a translation table called
 .Pp
 Similar to the
 .Ar iso8859_1
-filter, an internal table exists, based on the stock translation table.
+filter, an internal table exists, based on the stock translation table, called
+.Pa unicode .
 .It Cm uncgi ;
 This translates CGI-escaped strings into their ASCII equivalents. The output of
 this is not necessarily safe, and should be run through the
 .Ar safe
 filter, at the least.
 .It Cm safe ;
+.It Cm safe Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm safe Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
 This could also be called "safe for UNIX-like operating systems".  It
 translates characters that are difficult to work with in UNIX environments into
@@ -120,7 +128,9 @@ Similar to the
 and
 .Ar utf_8
 filters, this can be controlled using a translation table.  This filter also
-has an internal version of the translation table based on the stock version.
+has an internal version of the translation table, which can be accessed via the
+builtin table
+.Ar safe .
 .Pp
 See the
 .Sx SAFE
@@ -152,27 +162,53 @@ This translates uppercase characters into lowercase characters.  It only works
 on ASCII characters.
 .It Cm # comments
 Any thing after a # on any line is ignored.
+.Sh BUILTIN TABLES
+.Bl -tag -width 0.25i
+.It cp1252
+A translation table for transliterating CP-1252 characters to ASCII.  This is
+no longer a common use case, and has been moved to a separate table.
+.It iso8859_1
+A translation table for transliterating single-byte characters with the high
+bit set from ISO 8859-1 to ASCII.
+.It safe
+A replacement table for characters that are hard to work with under Unix and
+Unix-like OSs.
+.It unicode
+A translation table for transliterating multi-byte characters encoded in UTF-8
+to ASCII.
 .El
 .Sh EXAMPLES
 .Bd -literal
-sequence default {
-  uncgi;
-  iso8859_1 {
-    filename "iso8859_1.tbl";
+.\" START SAMPLE
+# transliterate UTF-8 to ASCII (using chained tables), clean up
+sequence utf8 {
+  utf_8 {
+    filename "/usr/local/share/detox/custom.tbl";
   };
-# utf_8 {
-#   filename "unicode.tbl";
-# };
+  utf_8 {
+    builtin "unicode";
+  };
   safe {
-    filename "safe.tbl";
+    builtin "safe";
   };
   wipeup {
     remove_trailing;
   };
-# max_length {
-#   length 128;
-# };
+  max_length {
+    length 128;
+  };
 };
+# decode CGI, transliterate CP-1252 to ASCII, clean up
+sequence "cgi-cp1252" {
+  uncgi;
+  iso8859_1 {
+    builtin "cp1252";
+  };
+  safe {
+    builtin "safe";
+  };
+};
+.\" END SAMPLE
 .Ed
 .Sh SAFE
 The following characters are translated by the stock

@@ -1,0 +1,30 @@
+# START SAMPLE
+# transliterate UTF-8 to ASCII (using chained tables), clean up
+sequence utf8 {
+  utf_8 {
+    filename "/usr/local/share/detox/custom.tbl";
+  };
+  utf_8 {
+    builtin "unicode";
+  };
+  safe {
+    builtin "safe";
+  };
+  wipeup {
+    remove_trailing;
+  };
+  max_length {
+    length 128;
+  };
+};
+# decode CGI, transliterate CP-1252 to ASCII, clean up
+sequence "cgi-cp1252" {
+  uncgi;
+  iso8859_1 {
+    builtin "cp1252";
+  };
+  safe {
+    builtin "safe";
+  };
+};
+# END SAMPLE

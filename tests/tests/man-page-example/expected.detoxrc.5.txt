@@ -1,0 +1,20 @@
+sequence name: utf8 (*)
+	source file: detoxrc.detoxrc.5
+	cleaner: utf_8
+		translation table: /usr/local/share/detox/custom.tbl
+	cleaner: utf_8
+		builtin table: unicode
+	cleaner: safe
+		builtin table: safe
+	cleaner: wipeup
+		remove trailing: yes
+	cleaner: max length
+		length: 128
+
+sequence name: cgi-cp1252
+	source file: detoxrc.detoxrc.5
+	cleaner: uncgi
+	cleaner: iso8859_1
+		builtin table: cp1252
+	cleaner: safe
+		builtin table: safe

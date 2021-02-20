@@ -1,0 +1,6 @@
+sequence name: default (*)
+	source file: detoxrc.detox.tbl.5
+	cleaner: safe
+		translation table: /home/MYUSERNAME/.local/share/detox/safe.tbl
+	cleaner: safe
+	cleaner: wipeup
