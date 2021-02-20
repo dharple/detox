@@ -25,10 +25,39 @@
 #include "parse_table.h"
 #include "builtin_table.h"
 
+/**
+ * Escapes a string for this particular case.
+ *
+ * @param in
+ *
+ * @return
+ */
+static char *escape_string(char *in)
+{
+    char *ret, *work;
+
+    ret = work = malloc((strlen(in) * 2) + 1);
+    while (*in != '\0') {
+        switch (*in) {
+            case '"':
+            case '\\':
+                *work++ = '\\';
+                *work++ = *in++;
+                break;
+
+            default:
+                *work++ = *in++;
+                break;
+        }
+    }
+    *work++ = '\0';
+
+    return ret;
+}
+
 static void generate_loader(char *filename)
 {
     struct translation_table *table;
-    int escape;
     int i;
 
     table = parse_table(filename);
@@ -53,18 +82,13 @@ static void generate_loader(char *filename)
             continue;
         }
 
-        escape =
-            (strcmp(table->rows[i].data, "\"") == 0) ||
-            (strcmp(table->rows[i].data, "\\") == 0);
-
         printf(
             "    { "
             ".key  = 0x%04x, "
-            ".data = \"%s%s\" "
+            ".data = \"%s\" "
             "},\n",
             table->rows[i].key,
-            escape ? "\\" : "",
-            table->rows[i].data
+            escape_string(table->rows[i].data)
         );
     }
 
