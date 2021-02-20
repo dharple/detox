@@ -9,6 +9,9 @@ Hans-Peter Jansen gave me the impetus I needed to finally fix the char /
 unsigned char differences throughout the code.  Also, he provided a list of
 security-based compiler flags.
 
+David Tardon fixed a memory overflow bug, which was passed to me by
+UsernameRandomlyGenerated.
+
 Mplx let me know that `detox.1` had a typo in the examples.
 
 Daniel Hauck for letting me know that passing `.` as an argument was not
@@ -71,5 +74,3 @@ with hashes.
 
 Paul Oakenfold for his unbelievable mixes.  Version 1.0.0 was developed with
 the help of his Great Wall mix.
-
-

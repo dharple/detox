@@ -239,15 +239,17 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
     main_options->files = malloc(sizeof(char *) * 10);
 
     i = 0;
-    max = 0;
+    max = 10;
 
     if (optind < argc) {
         while (optind < argc) {
-            main_options->files[i++] = strdup(argv[optind]);
-            if (i > max) {
+            /* not enough space for the next file and
+               possible ending NULL -> realloc */
+            if (i + 2 > max) {
                 main_options->files = realloc(main_options->files, sizeof(char *) * (10 + max));
                 max += 10;
             }
+            main_options->files[i++] = strdup(argv[optind]);
 
             optind++;
         }

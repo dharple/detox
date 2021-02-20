@@ -57,6 +57,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - UTF-8 encoded NULL values are converted to `_hidden_null_` to make them
   obvious. [#40]
 
+## [1.4.1] - 2021-02-20
+### Fixed
+- Fixed a memory overflow bug while reading files from the command line, using
+  a patch from David Tardon, which was passed on by UsernameRandomlyGenerated.
+  [#56] [#sf-patch-3]
+
 ## [1.4.0] - 2021-02-11
 ### Added
 - Regression tests for basic functionality, based on old custom scripts.
@@ -204,7 +210,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/dharple/detox/compare/v1.4.0...main
+[Unreleased]: https://github.com/dharple/detox/compare/v1.4.1...main
+[1.4.1]: https://github.com/dharple/detox/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/dharple/detox/compare/v1.3.3...v1.4.0
 [1.3.3]: https://github.com/dharple/detox/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/dharple/detox/compare/v1.3.1...v1.3.2
@@ -213,6 +220,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#56]: https://github.com/dharple/detox/issues/56
 [#53]: https://github.com/dharple/detox/issues/53
 [#48]: https://github.com/dharple/detox/issues/48
 [#47]: https://github.com/dharple/detox/issues/47
@@ -236,6 +244,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2
 [#1]: https://github.com/dharple/detox/issues/1
+
+[#sf-patch-3]: https://sourceforge.net/p/detox/patches/3/
 
 [mikrosimage/detox]: https://github.com/mikrosimage/detox
 [PHP transliteration library]: https://github.com/Behat/Transliterator
