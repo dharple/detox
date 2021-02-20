@@ -5,6 +5,12 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Fixed a memory overflow bug while reading files from the command line, using
+  a patch from David Tardon, which was passed on by UsernameRandomlyGenerated.
+  [#56] [#sf-patch-3]
+
 ## [1.4.0] - 2021-02-11
 ### Added
 - Regression tests for basic functionality, based on old custom scripts.
@@ -161,6 +167,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#56]: https://github.com/dharple/detox/issues/56
 [#30]: https://github.com/dharple/detox/issues/30
 [#19]: https://github.com/dharple/detox/issues/19
 [#17]: https://github.com/dharple/detox/issues/17
@@ -171,5 +178,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#6]: https://github.com/dharple/detox/issues/6
 [#2]: https://github.com/dharple/detox/issues/2
 [#1]: https://github.com/dharple/detox/issues/1
+
+[#sf-patch-3]: https://sourceforge.net/p/detox/patches/3/
 
 [mikrosimage/detox]: https://github.com/mikrosimage/detox

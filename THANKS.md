@@ -2,6 +2,9 @@
 
 *If I missed you, please let me know!*
 
+David Tardon fixed a memory overflow bug, which was passed to me by
+UsernameRandomlyGenerated.
+
 Mplx let me know that `detox.1` had a typo in the examples.
 
 Daniel Hauck for letting me know that passing `.` as an argument was not
@@ -64,5 +67,3 @@ with hashes.
 
 Paul Oakenfold for his unbelievable mixes.  Version 1.0.0 was developed with
 the help of his Great Wall mix.
-
-
