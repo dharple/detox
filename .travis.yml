@@ -26,6 +26,7 @@ jobs:
     - arch: amd64
       compiler: gcc
       dist: trusty
+    - os: osx
 
 env:
   global:
