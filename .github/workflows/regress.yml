@@ -18,7 +18,7 @@ jobs:
     - name: make
       run: make
     - name: simple test
-      run bin/simple-test.sh
+      run: bin/simple-test.sh
     - name: make check
       run: make check
     - name: make distcheck
@@ -37,4 +37,4 @@ jobs:
     - name: make
       run: make
     - name: simple test
-      run bin/simple-test.sh
+      run: bin/simple-test.sh
