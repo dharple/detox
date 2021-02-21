@@ -7,10 +7,23 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: autoreconf
+      run: autoreconf --install
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
 
-    runs-on: ubuntu-latest, macos-latest
-
+  build-macos:
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
     - name: autoreconf
