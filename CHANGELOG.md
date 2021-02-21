@@ -59,6 +59,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Security
 - Added additional compiler protection flags, based on the openSUSE build from
   [#31].
+- Symlinks that point at directories are no longer followed when `--special`
+  and `-r` are specified together. [#23]
 - UTF-8 encoded NULL values are converted to `_hidden_null_` to make them
   obvious. [#40]
 
@@ -241,6 +243,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#29]: https://github.com/dharple/detox/issues/29
 [#28]: https://github.com/dharple/detox/issues/28
 [#24]: https://github.com/dharple/detox/issues/24
+[#23]: https://github.com/dharple/detox/issues/23
 [#22]: https://github.com/dharple/detox/issues/22
 [#21]: https://github.com/dharple/detox/issues/21
 [#19]: https://github.com/dharple/detox/issues/19

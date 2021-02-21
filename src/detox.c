@@ -106,7 +106,7 @@ int main(int argc, char **argv)
                 } else if (S_ISREG(stat_info.st_mode)) {
                     parse_file(*file_walk, main_options);
                 } else if (main_options->special) {
-                    parse_special(*file_walk, main_options);
+                    parse_file(*file_walk, main_options);
                 }
             }
 

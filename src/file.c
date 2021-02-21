@@ -211,69 +211,12 @@ void parse_dir(char *indir, struct detox_options *options)
                 work = parse_file(new_file, options);
                 free(work);
             } else if (options->special) {
-                parse_special(new_file, options);
+                parse_file(new_file, options);
             }
         }
         dir_entry = readdir(dir_handle);
     }
     closedir(dir_handle);
-}
-
-/*
- * Handles a special file.
- */
-void parse_special(char *in, struct detox_options *options)
-{
-    struct stat stat_info;
-    char *new_file, *work;
-    int err;
-
-    /* detox, then parse_dir if a symlink to a dir */
-    new_file = parse_file(in, options);
-    if (!new_file) {
-        return;
-    }
-
-    err = lstat(new_file, &stat_info);
-    if (err == -1) {
-        fprintf(stderr, "Unable to stat %s\n", in);
-        free(new_file);
-        return;
-    }
-
-    if (options->recurse && S_ISLNK(stat_info.st_mode)) {
-        work = malloc(1024);
-        if (!work) {
-            fprintf(stderr, "out of memory: %s\n", strerror(errno));
-            free(new_file);
-            return;
-        }
-
-        memset(work, 0, 1024);
-        err = readlink(new_file, work, 1023);
-        if (err == -1) {
-            fprintf(stderr, "Unable to read symbolic link %s\n", in);
-            free(work);
-            free(new_file);
-            return;
-        }
-
-        err = lstat(work, &stat_info);
-        if (err == -1) {
-            fprintf(stderr, "Unable to follow symbolic link %s\n", in);
-            free(work);
-            free(new_file);
-            return;
-        }
-
-        if (S_ISDIR(stat_info.st_mode)) {
-            parse_dir(work, options);
-        }
-
-        free(work);
-    }
-    free(new_file);
-
 }
 
 /*
