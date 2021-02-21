@@ -40,6 +40,7 @@ make force-install
 ## Rebuild Internals
 
 ```bash
+make
 make internals
 ```
 
@@ -68,15 +69,15 @@ grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 Regression testing:
 
 ```bash
-make clean
-make internals
 make
-tests/test.sh src/detox
+make internals
+make check
 ```
 
 Static Analysis:
 
 ```bash
+make
 make internals
 cppcheck src/*.[ch]
 sparse src/*.[ch]

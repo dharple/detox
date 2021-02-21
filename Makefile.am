@@ -18,5 +18,5 @@ EXTRA_DIST = man/detox.1.pdf man/inline-detox.1.pdf man/detoxrc.5.pdf man/detox.
 internals:
 	bin/generate.sh
 
-check: src/detox
+check:
 	if [ -x $(top_srcdir)/tests/test.sh ] ; then $(top_srcdir)/tests/test.sh src/detox ; else src/detox -V ; src/detox -L -v ; fi
