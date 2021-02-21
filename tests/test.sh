@@ -3,7 +3,7 @@
 # Executes all unit tests
 #
 
-if [ -z $1 ] ; then
+if [ -z "$1" ] ; then
 	echo missing detox path
 	exit 1
 fi
@@ -18,7 +18,8 @@ fi
 
 cd $(dirname $0)
 
-export TESTBASE=$(pwd)
+TESTBASE=$(pwd)
+export TESTBASE
 
 SUCCESS=1
 

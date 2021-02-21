@@ -7,11 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #include "detox.h"
 #include "config_file_dump.h"

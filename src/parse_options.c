@@ -9,16 +9,13 @@
 
 #include "config.h"
 
-#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <errno.h>
 #include <libgen.h>
 
 #include "detox.h"
-#include "config.h"
 #include "parse_options.h"
 
 #ifdef HAVE_GETOPT_LONG
@@ -26,8 +23,7 @@
 #endif
 
 enum {
-    LONG_OPTION_DRY_RUN = 1,
-    LONG_OPTION_INLINE,
+    LONG_OPTION_INLINE = 1,
     LONG_OPTION_SPECIAL
 };
 
@@ -239,7 +235,6 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
     main_options->files = malloc(sizeof(char *) * 10);
 
     i = 0;
-    max = 10;
 
     if (optind < argc) {
         while (optind < argc) {

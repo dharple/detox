@@ -7,8 +7,6 @@
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,7 +16,7 @@
 #include "config_file_spoof.h"
 #include "clean_string.h"
 
-struct detox_parse_results *spoof_config_file(struct detox_options *main_options)
+struct detox_parse_results *spoof_config_file(void)
 {
     struct detox_parse_results *ret = NULL;
     struct detox_sequence_list *sequences = NULL;

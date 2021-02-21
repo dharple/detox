@@ -7,8 +7,6 @@
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,7 +15,6 @@
 
 #include "clean_string.h"
 #include "parse_table.h"
-#include "table.h"
 
 #define ISO8859_1_UPPER_BIT 0x80
 

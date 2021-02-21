@@ -37,3 +37,15 @@ for FILE in $MANDIR/*.[15] ; do
 	echo process man page $(basename $FILE)
 	$MANDOC -T pdf $FILE > $FILE.pdf
 done
+
+#
+# Update tests based on man pages
+#
+
+TESTDIR=$PROJECT_ROOT/tests
+
+echo process detoxrc.5 into regression test
+sed -n '/START SAMPLE/,/END SAMPLE/p' $MANDIR/detoxrc.5 | sed -e's/^[.]." /# /' > $TESTDIR/tests/man-page-example/detoxrc.detoxrc.5
+
+echo process detox.tbl.5 into regression test
+sed -n '/START SAMPLE/,/END SAMPLE/p' $MANDIR/detox.tbl.5 | sed -e's/^[.]." /# /' > $TESTDIR/tests/man-page-example/detoxrc.detox.tbl.5

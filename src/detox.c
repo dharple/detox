@@ -7,26 +7,18 @@
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <unistd.h>
 
 #include "detox.h"
-#include "clean_string.h"
 
 #include "file.h"
 
-#include "builtin_table.h"
 #include "config_file.h"
-#include "config_file_spoof.h"
 #include "config_file_dump.h"
-#include "parse_table.h"
 #include "parse_options.h"
 #include "sequence.h"
 

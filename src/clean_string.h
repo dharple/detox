@@ -17,8 +17,6 @@ struct clean_string_options {
     char *builtin;
     int remove_trailing;
     size_t max_length;
-
-    void *misc;
     void *translation_table;
 };
 

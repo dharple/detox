@@ -52,8 +52,6 @@ mandoc -T lint man/*.[15]
 Check tests:
 ```
 grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
-sed -n '/START SAMPLE/,/END SAMPLE/p' man/detoxrc.5 | sed -e's/^[.]." /# /' > tests/tests/man-page-example/detoxrc.detoxrc.5
-sed -n '/START SAMPLE/,/END SAMPLE/p' man/detox.tbl.5 | sed -e's/^[.]." /# /' > tests/tests/man-page-example/detoxrc.detox.tbl.5
 ```
 
 ## Testing

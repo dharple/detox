@@ -7,8 +7,6 @@
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,9 +15,7 @@
 #include <string.h>
 #include <errno.h>
 
-#include "clean_string.h"
 #include "file.h"
-#include "detox.h"
 
 static char badfiles[3][30] = {
     ".",

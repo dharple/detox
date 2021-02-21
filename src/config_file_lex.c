@@ -554,11 +554,6 @@ char *yytext;
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
-#include <string.h>
-#include <stdlib.h>
-
 #include "config_file_yacc.h"
 #include "config_file.h"
 

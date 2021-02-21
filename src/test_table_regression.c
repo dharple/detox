@@ -13,7 +13,6 @@
 #include <math.h>
 #include <unistd.h>
 
-#include "clean_string.h"
 #include "parse_table.h"
 #include "table_dump.h"
 

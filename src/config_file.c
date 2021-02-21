@@ -67,12 +67,10 @@ struct detox_parse_results *config_file_load(struct detox_options *main_options)
             if (err < MAX_PATH_LEN) {
                 parse_results = parse_config_file(check_config_file, parse_results, main_options);
             }
-
-            file_work = NULL;
         }
 
         if (parse_results == NULL) {
-            parse_results = spoof_config_file(main_options);
+            parse_results = spoof_config_file();
         }
 
         free(check_config_file);

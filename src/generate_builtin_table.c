@@ -11,13 +11,9 @@
  * Helper utility that generates conversion tables.
  */
 
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <errno.h>
 #include <math.h>
 #include <libgen.h>
 
@@ -50,7 +46,7 @@ static char *escape_string(char *in)
                 break;
         }
     }
-    *work++ = '\0';
+    *work = '\0';
 
     return ret;
 }
@@ -140,10 +136,7 @@ static void generate_loader(char *filename)
         "}\n",
         ((int) ceil(table->used / BUILTIN_TABLE_MULTIPLE) + 1) * BUILTIN_TABLE_MULTIPLE
     );
-
-    return;
 }
-
 
 int main(int argc, char **argv)
 {

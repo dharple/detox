@@ -13,7 +13,7 @@
 #include "builtin_table.h"
 
 /**
- * Generated from safe.tbl.sample
+ * Generated from safe.tbl
  */
 
 static struct translation_table_row builtin_safe_rows[55] = {
@@ -94,7 +94,7 @@ struct translation_table *load_builtin_safe_table(void)
 }
 
 /**
- * Generated from iso8859_1.tbl.sample
+ * Generated from iso8859_1.tbl
  */
 
 static struct translation_table_row builtin_iso8859_1_rows[88] = {
@@ -208,7 +208,7 @@ struct translation_table *load_builtin_iso8859_1_table(void)
 }
 
 /**
- * Generated from unicode.tbl.sample
+ * Generated from unicode.tbl
  */
 
 static struct translation_table_row builtin_unicode_rows[594] = {
@@ -828,7 +828,7 @@ struct translation_table *load_builtin_unicode_table(void)
 }
 
 /**
- * Generated from cp1252.tbl.sample
+ * Generated from cp1252.tbl
  */
 
 static struct translation_table_row builtin_cp1252_rows[10] = {
