@@ -1,4 +1,4 @@
-# Compilation Instructions
+# Build Instructions
 
 ## Tools Needed
 
@@ -8,17 +8,23 @@
 
 Compilation:
 
-        autoreconf --install
-        ./configure
-        make
+```bash
+autoreconf --install
+./configure
+make
+```
 
 Installation:
 
-        make install
+```bash
+make install
+```
 
 Installation that overwrites config files and translation tables:
 
-        make force-install
+```bash
+make force-install
+```
 
 # Development Instructions
 
@@ -31,35 +37,50 @@ Installation that overwrites config files and translation tables:
 - mandoc
 - sparse
 
-## Generating Docs
+## Rebuild Internals
 
-Install `mandoc` to generate fresh PDFs.
-
-## Formatting
-
-Check code:
-
+```bash
+make internals
 ```
+
+## Code and Content Formatting
+
+Check code formatting:
+
+```bash
 astyle --style=kr --indent-switches --add-braces --pad-oper --pad-header $(ls src/*.[ch] | egrep -v 'config_file_(lex|yacc)')
 ```
 
-Check docs:
+Check formatting on man pages (noisy):
 
-```
+```bash
 mandoc -T lint man/*.[15]
 ```
 
-Check tests:
-```
+Confirm tests reference correct GitHub issue:
+
+```bash
 grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 ```
 
 ## Testing
 
-1. Run static analysis tools. (sparse, cppcheck)
-2. Run `make clean ; make` to rebuild `detox`.
-3. Run `tests/test.sh src/detox` to perform basic regression tests.
-4. Run custom external regression tests.
+Regression testing:
+
+```bash
+make clean
+make internals
+make
+tests/test.sh src/detox
+```
+
+Static Analysis:
+
+```bash
+make internals
+cppcheck src/*.[ch]
+sparse src/*.[ch]
+```
 
 # Release Instructions
 
@@ -71,13 +92,15 @@ grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 4. Run `autoconf` or `make` to rebuild `configure`.
 5. Commit and push.
 
-        git diff
-        git add -A
-        git commit -m "Release v1.4.0"
-        git tag
-        git tag v1.4.0
-        git push
-        git push --tags
+```bash
+git diff
+git add -A
+git commit -m "Release v1.4.0"
+git tag
+git tag v1.4.0
+git push
+git push --tags
+```
 
 6. Create a new release on GitHub, using the rendered contents of the
    CHANGELOG.
