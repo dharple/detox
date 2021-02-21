@@ -26,6 +26,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: brew install automake
+      run: brew install automake
     - name: autoreconf
       run: autoreconf --install
     - name: configure
