@@ -82,7 +82,7 @@ cd $WORK
 mkdir -p 4/.gnome
 touch "$INPUT"
 
-$DETOX -f $CONFIGPATH/detoxrc.sample -r 4/
+$DETOX -f $CONFIGPATH/detoxrc -r 4/
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo expected "$OUTPUT" not found

@@ -23,7 +23,7 @@ cp $SRCDIR/builtin_table.c.in $SRCDIR/builtin_table.c
 
 for TABLE in safe iso8859_1 unicode cp1252 ; do
 	echo process builtin $TABLE
-	$GENERATE $PROJECT_ROOT/table/$TABLE.tbl.sample | sed -e"s/NEW/$TABLE/" >> $SRCDIR/builtin_table.c
+	$GENERATE $PROJECT_ROOT/table/$TABLE.tbl | sed -e"s/NEW/$TABLE/" >> $SRCDIR/builtin_table.c
 done
 
 #

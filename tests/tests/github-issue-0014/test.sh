@@ -28,6 +28,6 @@ test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 # Run the same test, based on the default table
 
 OUTPUT="mE AE.txt"
-TABLE=$(dirname $TESTBASE)/table/unicode.tbl.sample
+TABLE=$(dirname $TESTBASE)/table/unicode.tbl
 
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"

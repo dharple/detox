@@ -16,7 +16,7 @@ DETOX=$1
 INPUT=$(printf '     '$'\n\n''song name'$'\n''by band'$'\n''/')
 OUTPUT="_______song_name_by_band_"
 METHOD="safe"
-TABLE=$(dirname $TESTBASE)/table/safe.tbl.sample
+TABLE=$(dirname $TESTBASE)/table/safe.tbl
 
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 

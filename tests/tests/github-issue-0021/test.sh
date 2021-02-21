@@ -16,7 +16,7 @@ DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
 
 # used for test_detoxrc
-DETOXRC=$(dirname $TESTBASE)/etc/detoxrc.sample
+DETOXRC=$(dirname $TESTBASE)/etc/detoxrc
 SEQUENCE=default
 
 # used for test_sequence

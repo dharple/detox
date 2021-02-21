@@ -9,7 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Added additional transliterations based on Sean M. Burke's [Text::Unidecode]
   tables and Behat's [PHP transliteration library].  A new table has been
-  added, `unidecode.tbl.sample`, and some updates have been made to the main
+  added, `unidecode.tbl`, and some updates have been made to the main
   transliteration tables.  [#47] [#53]
   - Latin Extended B - 0x0180-0x024F
   - General Punctuation - 0x2000-0x206F
@@ -19,6 +19,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
   the old behavior, use `detox -s utf_8`. [#21]
+- BREAKING CHANGE: The default config file and translation tables no longer end
+  with `.sample`.  [#59]
 - Code uses spaces instead of tabs. [#44]
 - Cleaned up man pages.  PDF versions are automatically generated. [#22]
 - Internal filters now run using compiled-in translation tables.  This removes
@@ -223,6 +225,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#59]: https://github.com/dharple/detox/issues/59
 [#56]: https://github.com/dharple/detox/issues/56
 [#53]: https://github.com/dharple/detox/issues/53
 [#50]: https://github.com/dharple/detox/issues/50

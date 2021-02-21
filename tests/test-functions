@@ -71,7 +71,7 @@ function test_detoxrc ()
 		if [ $NAME = "utf_8" ] ; then
 			TABLE="unicode.tbl"
 		fi
-		cp $TABLEPATH/$TABLE.sample $WORK/$TABLE
+		cp $TABLEPATH/$TABLE $WORK/$TABLE
 
 		sed -i -e"s@$NAME;@$NAME { filename \"$WORK/$TABLE\"; };@" $RC
 	done
@@ -233,7 +233,7 @@ function test_sequence ()
 				if [ $1 = "utf_8" ] ; then
 					TABLE="unicode.tbl"
 				fi
-				cp $TABLEPATH/$TABLE.sample $WORK/$TABLE
+				cp $TABLEPATH/$TABLE $WORK/$TABLE
 
 				cat <<- DONE >> $RC
 					$1 {
