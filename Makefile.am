@@ -1,23 +1,22 @@
-SUBDIRS = src man
-dist_doc_DATA = README.md
+SUBDIRS = src
+dist_doc_DATA = README.md CHANGELOG.md
 
-dist_man1_MANS = man/*.1
-dist_man5_MANS = man/*.5
+dist_man1_MANS = man/detox.1 man/inline-detox.1
+dist_man5_MANS = man/detoxrc.5 man/detox.tbl.5
 
 dist_sysconf_DATA = etc/detoxrc.sample
 
-dist_pkgdata_DATA = table/*
+dist_pkgdata_DATA = \
+	table/cp1252.tbl.sample \
+	table/iso8859_1.tbl.sample \
+	table/safe.tbl.sample \
+	table/unicode.tbl.sample \
+	table/unidecode.tbl.sample
 
-install-data-hook:
-	cp -an $(DESTDIR)$(sysconfdir)/detoxrc.sample $(DESTDIR)$(sysconfdir)/detoxrc && \
-	cp -an $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl.sample $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl && \
-	cp -an $(DESTDIR)$(pkgdatadir)/safe.tbl.sample $(DESTDIR)$(pkgdatadir)/safe.tbl && \
-	cp -an $(DESTDIR)$(pkgdatadir)/unicode.tbl.sample $(DESTDIR)$(pkgdatadir)/unicode.tbl
+EXTRA_DIST = man/detox.1.pdf man/inline-detox.1.pdf man/detoxrc.5.pdf man/detox.tbl.5.pdf
 
-.PHONY: force-install
-force-install: install
-	cp -a $(DESTDIR)$(sysconfdir)/detoxrc.sample $(DESTDIR)$(sysconfdir)/detoxrc && \
-	cp -a $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl.sample $(DESTDIR)$(pkgdatadir)/iso8859_1.tbl && \
-	cp -a $(DESTDIR)$(pkgdatadir)/safe.tbl.sample $(DESTDIR)$(pkgdatadir)/safe.tbl && \
-	cp -a $(DESTDIR)$(pkgdatadir)/unicode.tbl.sample $(DESTDIR)$(pkgdatadir)/unicode.tbl
+internals:
+	bin/generate.sh
 
+check: src/detox
+	if [ -x $(top_srcdir)/tests/test.sh ] ; then $(top_srcdir)/tests/test.sh src/detox ; else src/detox -V ; src/detox -L -v ; fi

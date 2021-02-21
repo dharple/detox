@@ -64,3 +64,6 @@ test-table-regression
 
 # Testing files
 lab/
+
+# Dist files
+/detox-*.tar.gz
