@@ -56,6 +56,17 @@ function test_detoxrc ()
 		return 1
 	fi
 
+	if [ -n "$USE_VALGRIND" ] ; then
+		VALGRIND=$(command -v valgrind || true)
+
+		if [ -z "$VALGRIND" ] ; then
+			echo "USE_VALGRIND specified, but valgrind is not installed"
+			exit 1
+		else
+			DETOX="$VALGRIND --quiet --error-exitcode=1 --track-origins=yes $DETOX"
+		fi
+	fi
+
 	local BASE=/tmp/detoxtest/
 	if [ ! -d $BASE ] ; then
 		mkdir $BASE
@@ -135,6 +146,17 @@ function test_single_table ()
 		return 1
 	fi
 
+	if [ -n "$USE_VALGRIND" ] ; then
+		VALGRIND=$(command -v valgrind || true)
+
+		if [ -z "$VALGRIND" ] ; then
+			echo "USE_VALGRIND specified, but valgrind is not installed"
+			exit 1
+		else
+			DETOX="$VALGRIND --quiet --error-exitcode=1 --track-origins=yes $DETOX"
+		fi
+	fi
+
 	local BASE=/tmp/detoxtest/
 	if [ ! -d $BASE ] ; then
 		mkdir $BASE
@@ -210,6 +232,17 @@ function test_sequence ()
 	if [ ! -d "$TABLEPATH" ] ; then
 		echo $TABLEPATH is not a dir
 		return 1
+	fi
+
+	if [ -n "$USE_VALGRIND" ] ; then
+		VALGRIND=$(command -v valgrind || true)
+
+		if [ -z "$VALGRIND" ] ; then
+			echo "USE_VALGRIND specified, but valgrind is not installed"
+			exit 1
+		else
+			DETOX="$VALGRIND --quiet --error-exitcode=1 --track-origins=yes $DETOX"
+		fi
 	fi
 
 	local BASE=/tmp/detoxtest/

@@ -20,3 +20,6 @@ internals:
 
 check:
 	if [ -x $(top_srcdir)/tests/test.sh ] ; then $(top_srcdir)/tests/test.sh src/detox ; else src/detox -V ; src/detox -L -v ; fi
+
+valgrind:
+	USE_VALGRIND=1 $(top_srcdir)/tests/test.sh src/detox

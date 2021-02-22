@@ -16,6 +16,18 @@ REGRESS=$(dirname $DETOX)/test-table-regression
 TIMEOUT=$(command -v timeout)
 TIMELIMIT=3s
 
+if [ -n "$USE_VALGRIND" ] ; then
+	VALGRIND=$(command -v valgrind || true)
+
+	if [ -z "$VALGRIND" ] ; then
+		echo "USE_VALGRIND specified, but valgrind is not installed"
+		exit 1
+	else
+		TIMELIMIT=15s
+		REGRESS="$VALGRIND --quiet --error-exitcode=1 --track-origins=yes $REGRESS"
+	fi
+fi
+
 if [ -n "$TIMEOUT" ] ; then
 	$TIMEOUT $TIMELIMIT $REGRESS
 	OUT=$?
