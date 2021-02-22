@@ -144,11 +144,11 @@ struct translation_table *sequence_load_builtin_by_filename(char *filename)
 }
 
 /**
- * Checks the file associated with a sequence.
+ * Loads the translation table associated with a sequence.
  *
  * @param sequence The sequence to check.
  */
-struct translation_table *sequence_check_file(struct detox_sequence_entry *sequence)
+struct translation_table *sequence_load_table(struct detox_sequence_entry *sequence)
 {
     struct clean_string_options *opts = NULL;
     struct translation_table *table = NULL;
@@ -221,7 +221,7 @@ void sequence_review(struct detox_sequence_entry *sequence)
     struct translation_table *table = NULL;
 
     while (work != NULL) {
-        table = sequence_check_file(work);
+        table = sequence_load_table(work);
 
         if (table != NULL) {
             struct clean_string_options *opts = NULL;
