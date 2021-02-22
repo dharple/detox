@@ -5,13 +5,12 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
 #ifndef __BUILTIN_TABLE_H
 #define __BUILTIN_TABLE_H
 
-#include "table.h"
+#include "detox_struct.h"
 
 #define BUILTIN_TABLE_MULTIPLE 256
 

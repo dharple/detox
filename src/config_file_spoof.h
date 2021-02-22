@@ -10,7 +10,7 @@
 #ifndef __CONFIG_FILE_SPOOF_H
 #define __CONFIG_FILE_SPOOF_H
 
-#include "detox.h"
+#include "detox_struct.h"
 
 extern struct detox_parse_results *spoof_config_file(void);
 

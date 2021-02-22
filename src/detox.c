@@ -13,7 +13,7 @@
 #include <string.h>
 #include <errno.h>
 
-#include "detox.h"
+#include "detox_struct.h"
 
 #include "file.h"
 

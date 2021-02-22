@@ -7,10 +7,44 @@
  * file that was distributed with this source code.
  */
 
-#ifndef __DETOX_H
-#define __DETOX_H
+#ifndef __DETOX_STRUCT_H
+#define __DETOX_STRUCT_H
+
+#include <stdlib.h>
 
 #define MAX_PATH_LEN 256
+
+struct translation_table_row {
+    unsigned int key;
+    char *data;
+};
+
+struct translation_table {
+    int length;
+    int used;
+
+    int max_data_length;
+
+    char *default_translation;
+
+    struct translation_table_row *rows;
+
+    int hits;
+    int misses;
+    int overwrites;
+    int seeks;
+
+    int use_hash;
+    int builtin;
+};
+
+struct clean_string_options {
+    char *filename;
+    char *builtin;
+    int remove_trailing;
+    size_t max_length;
+    void *translation_table;
+};
 
 /*
  * Holds information about all of the defined sequences
@@ -77,4 +111,4 @@ struct detox_options {
     char **files;
 };
 
-#endif /* __DETOX_H */
+#endif /* __DETOX_STRUCT_H */

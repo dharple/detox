@@ -10,7 +10,7 @@
 #ifndef __CONFIG_FILE_DUMP_H
 #define __CONFIG_FILE_DUMP_H
 
-#include "detox.h"
+#include "detox_struct.h"
 
 extern void dump_config_file(struct detox_parse_results *parse_results, struct detox_options *main_options);
 

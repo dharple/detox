@@ -11,7 +11,7 @@
 #ifndef __PARSE_OPTIONS_H
 #define __PARSE_OPTIONS_H
 
-#include "detox.h"
+#include "detox_struct.h"
 
 extern char usage_message[];
 extern char help_message[];

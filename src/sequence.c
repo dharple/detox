@@ -12,7 +12,7 @@
 #include <errno.h>
 #include <string.h>
 
-#include "detox.h"
+#include "detox_struct.h"
 #include "builtin_table.h"
 #include "parse_table.h"
 #include "clean_string.h"

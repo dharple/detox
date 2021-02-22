@@ -10,7 +10,7 @@
 #ifndef __FILE_H
 #define __FILE_H
 
-#include "detox.h"
+#include "detox_struct.h"
 
 extern char *parse_file(char *filename, struct detox_options *options);
 

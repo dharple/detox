@@ -10,7 +10,7 @@
 #ifndef __TABLE_DUMP_H
 #define __TABLE_DUMP_H
 
-#include "table.h"
+#include "detox_struct.h"
 
 extern void table_dump(struct translation_table *table, int verbose);
 extern void table_stats(struct translation_table *table);

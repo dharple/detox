@@ -11,7 +11,7 @@
 #ifndef __PARSE_TABLE_H
 #define __PARSE_TABLE_H
 
-#include "table.h"
+#include "detox_struct.h"
 
 extern struct translation_table *parse_table(char *filename);
 

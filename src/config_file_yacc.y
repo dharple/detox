@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "detox.h"
+#include "detox_struct.h"
 #include "clean_string.h"
 #include "config_file.h"
 

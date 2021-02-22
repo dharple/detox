@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-#include "detox.h"
+#include "detox_struct.h"
 #include "config_file_dump.h"
 #include "clean_string.h"
 

@@ -10,29 +10,7 @@
 #ifndef __TABLE_H
 #define __TABLE_H
 
-struct translation_table_row {
-    unsigned int key;
-    char *data;
-};
-
-struct translation_table {
-    int length;
-    int used;
-
-    int max_data_length;
-
-    char *default_translation;
-
-    struct translation_table_row *rows;
-
-    int hits;
-    int misses;
-    int overwrites;
-    int seeks;
-
-    int use_hash;
-    int builtin;
-};
+#include "detox_struct.h"
 
 extern struct translation_table *table_init(int max_rows);
 extern struct translation_table *table_resize(struct translation_table *table, int rows, int use_hash);

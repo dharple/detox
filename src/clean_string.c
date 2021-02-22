@@ -15,6 +15,7 @@
 
 #include "clean_string.h"
 #include "parse_table.h"
+#include "table.h"
 
 #define ISO8859_1_UPPER_BIT 0x80
 

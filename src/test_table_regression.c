@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include "parse_table.h"
+#include "table.h"
 #include "table_dump.h"
 
 struct test_definition {

@@ -15,7 +15,7 @@
 #include <errno.h>
 #include <libgen.h>
 
-#include "detox.h"
+#include "detox_struct.h"
 #include "parse_options.h"
 
 #ifdef HAVE_GETOPT_LONG

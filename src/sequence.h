@@ -10,6 +10,8 @@
 #ifndef SEQUENCE_H
 #define SEQUENCE_H
 
+#include "detox_struct.h"
+
 extern struct detox_sequence_entry *sequence_choose_default(struct detox_sequence_list *sequences, char *sequence_name);
 extern struct translation_table *sequence_check_file(struct detox_sequence_entry *sequence);
 extern struct translation_table *sequence_find_table(const char *check_filename);

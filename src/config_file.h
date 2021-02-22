@@ -10,7 +10,7 @@
 #ifndef __CONFIG_FILE_H
 #define __CONFIG_FILE_H
 
-#include "detox.h"
+#include "detox_struct.h"
 
 extern int config_file_lineno;
 
