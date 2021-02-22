@@ -30,7 +30,7 @@ enum {
 
 static struct translation_table *check_table(char *filename, int use_hash)
 {
-    FILE *ttable_file;
+    FILE *table_file;
     char *work;
     int code;
     int offset;
@@ -45,17 +45,17 @@ static struct translation_table *check_table(char *filename, int use_hash)
 
     struct translation_table *table;
 
-    struct stat ttable_stat;
+    struct stat table_stat;
 
-    err = stat(filename, &ttable_stat);
+    err = stat(filename, &table_stat);
     if (err == -1) {
         return NULL;
     }
 
-    if (ttable_stat.st_size > 0) {
-        size = ttable_stat.st_size;
+    if (table_stat.st_size > 0) {
+        size = table_stat.st_size;
     } else {
-        size = (512 * ttable_stat.st_blocks);
+        size = (512 * table_stat.st_blocks);
     }
 
     size /= 6;
@@ -71,8 +71,8 @@ static struct translation_table *check_table(char *filename, int use_hash)
 
     table->use_hash = use_hash;
 
-    ttable_file = fopen(filename, "r");
-    if (ttable_file == NULL) {
+    table_file = fopen(filename, "r");
+    if (table_file == NULL) {
         fprintf(stderr, "Unable to open translation table: %s\n", strerror(errno));
         return NULL;
     }
@@ -80,14 +80,14 @@ static struct translation_table *check_table(char *filename, int use_hash)
     work = malloc(1024);
     if (work == NULL) {
         fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(ttable_file);
+        fclose(table_file);
         return NULL;
     }
 
     parsed = malloc(1024);
     if (parsed == NULL) {
         fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(ttable_file);
+        fclose(table_file);
         free(work);
         return NULL;
     }
@@ -97,7 +97,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
     max_data_length = 1;
     state = BASE_STATE;
 
-    while (fgets(work, 1024, ttable_file) != NULL) {
+    while (fgets(work, 1024, table_file) != NULL) {
         if (*work == '#') {
 
             /*
@@ -202,7 +202,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
         if (ret == -1) {
             fprintf(stderr, "Failed to add row 0x%04x \"%s\" to translation table\n", code, parsed);
             table_free(table);
-            fclose(ttable_file);
+            fclose(table_file);
             free(work);
             free(parsed);
             return NULL;
@@ -212,7 +212,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
         if (check == NULL || strcmp(parsed, check) != 0) {
             fprintf(stderr, "Failed to retrieve row 0x%04x \"%s\" in translation table\n", code, parsed);
             table_free(table);
-            fclose(ttable_file);
+            fclose(table_file);
             free(work);
             free(parsed);
             return NULL;
@@ -234,14 +234,14 @@ static struct translation_table *check_table(char *filename, int use_hash)
 
     free(work);
     free(parsed);
-    fclose(ttable_file);
+    fclose(table_file);
 
     return table;
 }
 
 static struct translation_table *check_table_again(char *filename, struct translation_table *source)
 {
-    FILE *ttable_file;
+    FILE *table_file;
     char *work;
     int code;
     int offset;
@@ -253,9 +253,9 @@ static struct translation_table *check_table_again(char *filename, struct transl
 
     struct translation_table *table;
 
-    struct stat ttable_stat;
+    struct stat table_stat;
 
-    err = stat(filename, &ttable_stat);
+    err = stat(filename, &table_stat);
     if (err == -1) {
         return NULL;
     }
@@ -266,8 +266,8 @@ static struct translation_table *check_table_again(char *filename, struct transl
         return NULL;
     }
 
-    ttable_file = fopen(filename, "r");
-    if (ttable_file == NULL) {
+    table_file = fopen(filename, "r");
+    if (table_file == NULL) {
         fprintf(stderr, "Unable to open translation table: %s\n", strerror(errno));
         return NULL;
     }
@@ -275,21 +275,21 @@ static struct translation_table *check_table_again(char *filename, struct transl
     work = malloc(1024);
     if (work == NULL) {
         fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(ttable_file);
+        fclose(table_file);
         return NULL;
     }
 
     parsed = malloc(1024);
     if (parsed == NULL) {
         fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(ttable_file);
+        fclose(table_file);
         free(work);
         return NULL;
     }
 
     state = BASE_STATE;
 
-    while (fgets(work, 1024, ttable_file) != NULL) {
+    while (fgets(work, 1024, table_file) != NULL) {
         if (*work == '#') {
 
             /*
@@ -372,7 +372,7 @@ static struct translation_table *check_table_again(char *filename, struct transl
         if (check == NULL || strcmp(parsed, check) != 0) {
             fprintf(stderr, "Failed to retrieve row 0x%04x \"%s\" in resized translation table\n", code, parsed);
             table_free(table);
-            fclose(ttable_file);
+            fclose(table_file);
             free(work);
             free(parsed);
             return NULL;
@@ -381,7 +381,7 @@ static struct translation_table *check_table_again(char *filename, struct transl
 
     free(work);
     free(parsed);
-    fclose(ttable_file);
+    fclose(table_file);
 
     return table;
 }

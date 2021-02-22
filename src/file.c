@@ -10,14 +10,13 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <dirent.h>
 #include <string.h>
 #include <errno.h>
 
 #include "file.h"
 
-static char badfiles[3][30] = {
+static char bad_files[3][30] = {
     ".",
     "..",
     ""
@@ -151,7 +150,7 @@ char *parse_file(char *filename, struct detox_options *options)
 /*
  * Handles directory.
  */
-void parse_dir(char *indir, struct detox_options *options)
+void parse_dir(char *filename, struct detox_options *options)
 {
     char *new_file, *work;
     DIR *dir_handle;
@@ -161,7 +160,7 @@ void parse_dir(char *indir, struct detox_options *options)
     int err;
     size_t new_file_length;
 
-    err = lstat(indir, &stat_info);
+    err = lstat(filename, &stat_info);
     if (err == -1) {
         return;
     }
@@ -170,7 +169,7 @@ void parse_dir(char *indir, struct detox_options *options)
         return;
     }
 
-    new_file_length = strlen(indir) + 1024;
+    new_file_length = strlen(filename) + 1024;
     new_file = malloc(new_file_length);
     if (new_file == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
@@ -181,7 +180,7 @@ void parse_dir(char *indir, struct detox_options *options)
      * Parse directory
      */
 
-    dir_handle = opendir(indir);
+    dir_handle = opendir(filename);
     if (dir_handle == NULL) {
         fprintf(stderr, "unable to parse: %s\n", strerror(errno));
         free(new_file);
@@ -198,7 +197,7 @@ void parse_dir(char *indir, struct detox_options *options)
         check_file = !ignore_file(dir_entry->d_name, options);
 
         if (check_file) {
-            snprintf(new_file, new_file_length, "%s/%s", indir, dir_entry->d_name);
+            snprintf(new_file, new_file_length, "%s/%s", filename, dir_entry->d_name);
 
             lstat(new_file, &stat_info);
             if (S_ISDIR(stat_info.st_mode)) {
@@ -227,8 +226,8 @@ static int ignore_file(char *filename, struct detox_options *options)
     struct detox_ignore_entry *ignore_walk;
     int x;
 
-    for (x = 0; badfiles[x][0] != 0; x++) {
-        if (strcmp(filename, badfiles[x]) == 0) {
+    for (x = 0; bad_files[x][0] != 0; x++) {
+        if (strcmp(filename, bad_files[x]) == 0) {
             return 1;
         }
     }

@@ -8,6 +8,5 @@
  *
  */
 
-#include <stdio.h>
 #include "table.h"
 #include "builtin_table.h"

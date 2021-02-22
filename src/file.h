@@ -14,7 +14,7 @@
 
 extern char *parse_file(char *filename, struct detox_options *options);
 
-extern void parse_dir(char *indir, struct detox_options *options);
+extern void parse_dir(char *filename, struct detox_options *options);
 
 extern void parse_inline(char *filename, struct detox_options *options);
 

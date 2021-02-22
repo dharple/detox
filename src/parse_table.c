@@ -23,7 +23,7 @@ enum {
 
 struct translation_table *parse_table(char *filename)
 {
-    FILE *ttable_file;
+    FILE *table_file;
     char *work;
     int code;
     int offset;
@@ -37,9 +37,9 @@ struct translation_table *parse_table(char *filename)
 
     struct translation_table *table;
 
-    struct stat ttable_stat;
+    struct stat table_stat;
 
-    err = stat(filename, &ttable_stat);
+    err = stat(filename, &table_stat);
     if (err == -1) {
         return NULL;
     }
@@ -49,10 +49,10 @@ struct translation_table *parse_table(char *filename)
         system_ctype = ""; // I don't think we can free the return from setlocale()
     }
 
-    if (ttable_stat.st_size > 0) {
-        size = ttable_stat.st_size;
+    if (table_stat.st_size > 0) {
+        size = table_stat.st_size;
     } else {
-        size = (512 * ttable_stat.st_blocks);
+        size = (512 * table_stat.st_blocks);
     }
 
     size /= 6;
@@ -66,8 +66,8 @@ struct translation_table *parse_table(char *filename)
         return NULL;
     }
 
-    ttable_file = fopen(filename, "r");
-    if (ttable_file == NULL) {
+    table_file = fopen(filename, "r");
+    if (table_file == NULL) {
         fprintf(stderr, "Unable to open translation table: %s\n", strerror(errno));
         return NULL;
     }
@@ -75,14 +75,14 @@ struct translation_table *parse_table(char *filename)
     work = malloc(1024);
     if (work == NULL) {
         fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(ttable_file);
+        fclose(table_file);
         return NULL;
     }
 
     parsed = malloc(1024);
     if (parsed == NULL) {
         fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(ttable_file);
+        fclose(table_file);
         free(work);
         return NULL;
     }
@@ -90,7 +90,7 @@ struct translation_table *parse_table(char *filename)
     max_data_length = 1;
     state = BASE_STATE;
 
-    while (fgets(work, 1024, ttable_file) != NULL) {
+    while (fgets(work, 1024, table_file) != NULL) {
         if (*work == '#') {
 
             /*
@@ -196,7 +196,7 @@ struct translation_table *parse_table(char *filename)
         if (ret == -1) {
             fprintf(stderr, "Failed to add row 0x%04x \"%s\" to translation table\n", code, parsed);
             table_free(table);
-            fclose(ttable_file);
+            fclose(table_file);
             free(work);
             free(parsed);
             return NULL;
@@ -212,7 +212,7 @@ struct translation_table *parse_table(char *filename)
 
     free(work);
     free(parsed);
-    fclose(ttable_file);
+    fclose(table_file);
 
     return table;
 }
