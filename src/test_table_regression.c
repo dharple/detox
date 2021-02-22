@@ -51,6 +51,7 @@ static struct test_value values[9] = {
 static int regress_parse_table(int verbose)
 {
     struct translation_table *table;
+    struct translation_table *new_table;
     char *check;
     int i, j;
     int size;
@@ -72,7 +73,10 @@ static int regress_parse_table(int verbose)
                 if (verbose) {
                     printf("resizing table to size %d\n", tests[i].size);
                 }
-                table = table_resize(table, tests[i].size, use_hash);
+                new_table = table_resize(table, tests[i].size, use_hash);
+                table_free(table);
+                table = new_table;
+                new_table = NULL;
             } else if (tests[i].multiple > 0) {
                 if (verbose) {
                     printf("resizing table to multiple of %d\n", tests[i].multiple);
@@ -81,7 +85,10 @@ static int regress_parse_table(int verbose)
                 if (verbose) {
                     printf("resizing table to size %d\n", size);
                 }
-                table = table_resize(table, size, use_hash);
+                new_table = table_resize(table, size, use_hash);
+                table_free(table);
+                table = new_table;
+                new_table = NULL;
             }
 
             if (verbose) {
@@ -116,6 +123,8 @@ static int regress_parse_table(int verbose)
                 }
             }
         }
+
+        free(table);
     }
 
     return 0;

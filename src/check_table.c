@@ -389,6 +389,7 @@ static struct translation_table *check_table_again(char *filename, struct transl
 int main(int argc, char **argv)
 {
     struct translation_table *table;
+    struct translation_table *new_table;
     int optcode;
     int builtin = 0;
     int dump = 0;
@@ -427,13 +428,17 @@ int main(int argc, char **argv)
         printf("checking: %s\n", argv[optind]);
         table = check_table(argv[optind], use_hash);
         if (builtin) {
-            table = check_table_again(argv[optind], table);
+            new_table = check_table_again(argv[optind], table);
+            table_free(table);
+            table = new_table;
+            new_table = NULL;
         }
         if (table) {
             if (dump) {
                 table_dump(table, verbose);
             }
             table_stats(table);
+            table_free(table);
         }
     } else {
         printf("please specify a file to operate on\n");

@@ -96,6 +96,10 @@ void table_free(struct translation_table *table)
         }
     }
 
+    if (table->default_translation != NULL) {
+        free(table->default_translation);
+    }
+
     free(table->rows);
     free(table);
 }
