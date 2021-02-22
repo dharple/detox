@@ -20,12 +20,12 @@ struct clean_string_options {
     void *translation_table;
 };
 
-extern char *clean_iso8859_1(char *s, void *opts);
-extern char *clean_safe(char *s, void *opts);
-extern char *clean_uncgi(char *s, void *opts);
-extern char *clean_wipeup(char *s, void *opts);
-extern char *clean_utf_8(char *s, void *opts);
-extern char *clean_max_length(char *s, void *opts);
-extern char *clean_lower(char *s, void *opts);
+extern char *clean_iso8859_1(char *filename, void *opts);
+extern char *clean_safe(char *filename, void *opts);
+extern char *clean_uncgi(char *filename, void *opts);
+extern char *clean_wipeup(char *filename, void *opts);
+extern char *clean_utf_8(char *filename, void *opts);
+extern char *clean_max_length(char *filename, void *opts);
+extern char *clean_lower(char *filename, void *opts);
 
 #endif /* __CLEAN_STRING_H */

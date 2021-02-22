@@ -21,7 +21,7 @@
 /*
  * Translates ISO 8859-1 characters (Latin-1) into lower ASCII characters.
  */
-char *clean_iso8859_1(char *s, void *opts)
+char *clean_iso8859_1(char *filename, void *opts)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
     int new_value;
@@ -29,7 +29,7 @@ char *clean_iso8859_1(char *s, void *opts)
     struct translation_table *table = NULL;
     struct clean_string_options *options = NULL;
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
@@ -41,13 +41,13 @@ char *clean_iso8859_1(char *s, void *opts)
     options = (struct clean_string_options *) opts;
     table = options->translation_table;
 
-    output = malloc((strlen(s) * table->max_data_length) + 1);
+    output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
 
-    input_walk = s;
+    input_walk = filename;
     output_walk = output;
 
     while (*input_walk != '\0') {
@@ -87,14 +87,14 @@ char *clean_iso8859_1(char *s, void *opts)
 /*
  * Translates unsafe characters using a translation table.
  */
-char *clean_safe(char *s, void *opts)
+char *clean_safe(char *filename, void *opts)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
 
     struct translation_table *table = NULL;
     struct clean_string_options *options = NULL;
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
@@ -106,13 +106,13 @@ char *clean_safe(char *s, void *opts)
     options = (struct clean_string_options *) opts;
     table = options->translation_table;
 
-    output = malloc((strlen(s) * table->max_data_length) + 1);
+    output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
 
-    input_walk = s;
+    input_walk = filename;
     output_walk = output;
 
     while (*input_walk != '\0') {
@@ -147,22 +147,22 @@ char *clean_safe(char *s, void *opts)
  * Cleans up any CGI encoded characters, in the form "%" followed by 2 hex
  * digits.
  */
-char *clean_uncgi(char *s, void *opts)
+char *clean_uncgi(char *filename, void *opts)
 {
     char *output, *input_walk, *output_walk;
     char conv[3];
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
-    output = malloc(strlen(s) + 1);
+    output = malloc(strlen(filename) + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
 
-    input_walk = s;
+    input_walk = filename;
     output_walk = output;
 
     while (*input_walk != '\0') {
@@ -194,13 +194,13 @@ char *clean_uncgi(char *s, void *opts)
  * Strips any "-", "_" or "#" from the beginning of a string.
  *
  */
-char *clean_wipeup(char *s, void *opts)
+char *clean_wipeup(char *filename, void *opts)
 {
     char *output, *input_walk, *output_walk;
     int matched;
     int remove_trailing;
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
@@ -210,17 +210,17 @@ char *clean_wipeup(char *s, void *opts)
     }
 
     /* remove any -, _, or # at beginning of string */
-    while (*s == '-' || *s == '_' || *s == '#') {
-        s++;
+    while (*filename == '-' || *filename == '_' || *filename == '#') {
+        filename++;
     }
 
-    output = malloc(strlen(s) + 1);
+    output = malloc(strlen(filename) + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
 
-    input_walk = s;
+    input_walk = filename;
     output_walk = output;
     matched = 0;
 
@@ -284,7 +284,7 @@ char *clean_wipeup(char *s, void *opts)
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
  * Unicode and then runs the translation table.
  */
-char *clean_utf_8(char *s, void *opts)
+char *clean_utf_8(char *filename, void *opts)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
     int new_value, expected_chars;
@@ -294,7 +294,7 @@ char *clean_utf_8(char *s, void *opts)
 
     int characters_eaten;
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
@@ -306,13 +306,13 @@ char *clean_utf_8(char *s, void *opts)
     options = (struct clean_string_options *) opts;
     table = options->translation_table;
 
-    output = malloc((strlen(s) * table->max_data_length) + 1);
+    output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
 
-    input_walk = s;
+    input_walk = filename;
     output_walk = output;
 
     while (*input_walk != '\0') {
@@ -429,7 +429,7 @@ char *clean_utf_8(char *s, void *opts)
 /*
  * Trims a file down to specified length.
  */
-char *clean_max_length(char *s, void *opts)
+char *clean_max_length(char *filename, void *opts)
 {
     char *extension;
     char *input_walk;
@@ -438,7 +438,7 @@ char *clean_max_length(char *s, void *opts)
     size_t extension_length;
     size_t max_length;
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
@@ -448,8 +448,8 @@ char *clean_max_length(char *s, void *opts)
     }
 
     // check to see if the file is smaller than the max length
-    if (strlen(s) <= max_length) {
-        return strdup(s);
+    if (strlen(filename) <= max_length) {
+        return strdup(filename);
     }
 
     output = malloc(max_length + 1);
@@ -457,10 +457,10 @@ char *clean_max_length(char *s, void *opts)
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
-    snprintf(output, max_length + 1, "%s", s);
+    snprintf(output, max_length + 1, "%s", filename);
 
     // check to see if the file has no extension
-    extension = input_walk = strrchr(s, '.');
+    extension = input_walk = strrchr(filename, '.');
     if (input_walk == NULL) {
         return output;
     }
@@ -470,7 +470,7 @@ char *clean_max_length(char *s, void *opts)
     }
 
     // look back 5 characters for a second extension
-    while (--input_walk > s) {
+    while (--input_walk > filename) {
         if (extension - input_walk > 5) {
             break;
         }
@@ -483,9 +483,9 @@ char *clean_max_length(char *s, void *opts)
 
     extension_length = strlen(extension);
     if (max_length <= extension_length) {
-        fprintf(stderr, "warning: max_length %d is less than required file length for '%s'.  giving up.\n", (int) max_length, s);
+        fprintf(stderr, "warning: max_length %d is less than required file length for '%s'.  giving up.\n", (int) max_length, filename);
         free(output);
-        return strdup(s);
+        return strdup(filename);
     }
 
     body_length = max_length - extension_length;
@@ -498,21 +498,21 @@ char *clean_max_length(char *s, void *opts)
 /*
  * Converts all characters to lowercase.
  */
-char *clean_lower(char *s, void *opts)
+char *clean_lower(char *filename, void *opts)
 {
     char *output, *input_walk, *output_walk;
 
-    if (s == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
-    output = malloc(strlen(s) + 1);
+    output = malloc(strlen(filename) + 1);
     if (output == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         return NULL;
     }
 
-    input_walk = s;
+    input_walk = filename;
     output_walk = output;
 
     while (*input_walk != '\0') {

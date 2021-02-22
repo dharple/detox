@@ -34,7 +34,7 @@ struct detox_sequence_list {
 struct detox_sequence_entry {
     struct detox_sequence_entry *next;
 
-    char *(*cleaner) (char *str, void *options);
+    char *(*cleaner) (char *filename, void *options);
     void *options;
 };
 
