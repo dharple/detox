@@ -150,7 +150,6 @@ struct translation_table *sequence_load_builtin_by_filename(char *filename)
  */
 struct translation_table *sequence_load_table(struct detox_sequence_entry *sequence)
 {
-    struct clean_string_options *opts = NULL;
     struct translation_table *table = NULL;
     char *check_filename = NULL;
     int do_search = 1;
@@ -166,19 +165,17 @@ struct translation_table *sequence_load_table(struct detox_sequence_entry *seque
     }
 
     if (sequence->options != NULL) {
-        opts = sequence->options;
-
-        if (opts->builtin != NULL) {
-            table = sequence_load_builtin_by_filename(opts->builtin);
+        if (sequence->options->builtin != NULL) {
+            table = sequence_load_builtin_by_filename(sequence->options->builtin);
             if (table == NULL) {
-                fprintf(stderr, "detox: unable to locate builtin table \"%s\"\n", opts->builtin);
+                fprintf(stderr, "detox: unable to locate builtin table \"%s\"\n", sequence->options->builtin);
                 exit(EXIT_FAILURE);
             }
             return table;
         }
 
-        if (opts->filename != NULL) {
-            check_filename = opts->filename;
+        if (sequence->options->filename != NULL) {
+            check_filename = sequence->options->filename;
             do_search = 0;
         }
     }
@@ -224,22 +221,17 @@ void sequence_review(struct detox_sequence_entry *sequence)
         table = sequence_load_table(work);
 
         if (table != NULL) {
-            struct clean_string_options *opts = NULL;
-
             if (work->options == NULL) {
                 // Allocate an options struct
-                opts = malloc(sizeof(struct clean_string_options));
-                if (opts == NULL) {
+                work->options = malloc(sizeof(struct clean_string_options));
+                if (work->options == NULL) {
                     fprintf(stderr, "out of memory: %s\n", strerror(errno));
                     exit(EXIT_FAILURE);
                 }
-                memset(opts, 0, sizeof(struct clean_string_options));
-                work->options = opts;
-            } else {
-                opts = work->options;
+                memset(work->options, 0, sizeof(struct clean_string_options));
             }
 
-            opts->translation_table = table;
+            work->options->translation_table = table;
         }
         work = work->next;
     }

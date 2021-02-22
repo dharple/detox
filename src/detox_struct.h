@@ -43,7 +43,7 @@ struct clean_string_options {
     char *builtin;
     int remove_trailing;
     size_t max_length;
-    void *translation_table;
+    struct translation_table *translation_table;
 };
 
 /*
@@ -68,8 +68,8 @@ struct detox_sequence_list {
 struct detox_sequence_entry {
     struct detox_sequence_entry *next;
 
-    char *(*cleaner) (char *filename, void *options);
-    void *options;
+    char *(*cleaner) (char *filename, struct clean_string_options *options);
+    struct clean_string_options *options;
 };
 
 /*

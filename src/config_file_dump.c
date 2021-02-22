@@ -46,44 +46,39 @@ void dump_config_file(struct detox_parse_results *parse_results, struct detox_op
                 } else if (work->cleaner == &clean_safe) {
                     printf("\tcleaner: safe\n");
                     if (work->options != NULL) {
-                        struct clean_string_options *opts = work->options;
-                        if (opts->builtin != NULL) {
-                            printf("\t\tbuiltin table: %s\n", opts->builtin);
-                        } else if (opts->filename != NULL) {
-                            printf("\t\ttranslation table: %s\n", opts->filename);
+                        if (work->options->builtin != NULL) {
+                            printf("\t\tbuiltin table: %s\n", work->options->builtin);
+                        } else if (work->options->filename != NULL) {
+                            printf("\t\ttranslation table: %s\n", work->options->filename);
                         }
                     }
                 } else if (work->cleaner == &clean_wipeup) {
                     printf("\tcleaner: wipeup\n");
                     if (work->options != NULL) {
-                        struct clean_string_options *opts = work->options;
-                        printf("\t\tremove trailing: %s\n", opts->remove_trailing ? "yes" : "no");
+                        printf("\t\tremove trailing: %s\n", work->options->remove_trailing ? "yes" : "no");
                     }
                 } else if (work->cleaner == &clean_iso8859_1) {
                     printf("\tcleaner: iso8859_1\n");
                     if (work->options != NULL) {
-                        struct clean_string_options *opts = work->options;
-                        if (opts->builtin != NULL) {
-                            printf("\t\tbuiltin table: %s\n", opts->builtin);
-                        } else if (opts->filename != NULL) {
-                            printf("\t\ttranslation table: %s\n", opts->filename);
+                        if (work->options->builtin != NULL) {
+                            printf("\t\tbuiltin table: %s\n", work->options->builtin);
+                        } else if (work->options->filename != NULL) {
+                            printf("\t\ttranslation table: %s\n", work->options->filename);
                         }
                     }
                 } else if (work->cleaner == &clean_utf_8) {
                     printf("\tcleaner: utf_8\n");
                     if (work->options != NULL) {
-                        struct clean_string_options *opts = work->options;
-                        if (opts->builtin != NULL) {
-                            printf("\t\tbuiltin table: %s\n", opts->builtin);
-                        } else if (opts->filename != NULL) {
-                            printf("\t\ttranslation table: %s\n", opts->filename);
+                        if (work->options->builtin != NULL) {
+                            printf("\t\tbuiltin table: %s\n", work->options->builtin);
+                        } else if (work->options->filename != NULL) {
+                            printf("\t\ttranslation table: %s\n", work->options->filename);
                         }
                     }
                 } else if (work->cleaner == &clean_max_length) {
                     printf("\tcleaner: max length\n");
                     if (work->options != NULL) {
-                        struct clean_string_options *opts = work->options;
-                        printf("\t\tlength: %d\n", (unsigned int) opts->max_length);
+                        printf("\t\tlength: %d\n", (unsigned int) work->options->max_length);
                     }
                 }
                 if (work->cleaner == &clean_lower) {

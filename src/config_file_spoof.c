@@ -21,7 +21,6 @@ struct detox_parse_results *spoof_config_file(void)
     struct detox_parse_results *ret = NULL;
     struct detox_sequence_list *sequences = NULL;
     struct detox_sequence_entry *work = NULL;
-    struct clean_string_options *opts = NULL;
 
     /*
      * Initialize return
@@ -66,14 +65,13 @@ struct detox_parse_results *spoof_config_file(void)
     work->cleaner = &clean_safe;
 
     // Allocate an options struct
-    opts = malloc(sizeof(struct clean_string_options));
-    if (opts == NULL) {
+    work->options = malloc(sizeof(struct clean_string_options));
+    if (work->options == NULL) {
         fprintf(stderr, "out of memory: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-    memset(opts, 0, sizeof(struct clean_string_options));
-    work->options = opts;
-    opts->builtin = strdup("safe");
+    memset(work->options, 0, sizeof(struct clean_string_options));
+    work->options->builtin = strdup("safe");
 
     /*
      * Step 2 - Wipe Up

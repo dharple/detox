@@ -31,7 +31,7 @@ static char *current_filename = NULL;
 static struct detox_options *current_options;
 
 void cf_append_sequence_list(void);
-void cf_append_sequence_entry(void *ptr, void *opts);
+void cf_append_sequence_entry(void *ptr, struct clean_string_options *options);
 void cf_append_ignore_entry(int token, void *str);
 
 void yyerror (char *s);
@@ -384,14 +384,14 @@ void cf_append_sequence_list(void) {
 }
 
 
-void cf_append_sequence_entry(void *ptr, void *opts) {
+void cf_append_sequence_entry(void *ptr, struct clean_string_options *options) {
     struct detox_sequence_entry *work;
 
     work = malloc(sizeof(struct detox_sequence_entry));
     memset(work, 0, sizeof(struct detox_sequence_entry));
 
     work->cleaner = ptr;
-    work->options = opts;
+    work->options = options;
 
     if (cf_seq_ret == NULL) {
         cf_seq_ret = cf_seq_current = work;

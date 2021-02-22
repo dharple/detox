@@ -12,12 +12,12 @@
 
 #include "detox_struct.h"
 
-extern char *clean_iso8859_1(char *filename, void *opts);
-extern char *clean_safe(char *filename, void *opts);
-extern char *clean_uncgi(char *filename, void *opts);
-extern char *clean_wipeup(char *filename, void *opts);
-extern char *clean_utf_8(char *filename, void *opts);
-extern char *clean_max_length(char *filename, void *opts);
-extern char *clean_lower(char *filename, void *opts);
+extern char *clean_iso8859_1(char *filename, struct clean_string_options *options);
+extern char *clean_safe(char *filename, struct clean_string_options *options);
+extern char *clean_uncgi(char *filename, struct clean_string_options *options);
+extern char *clean_wipeup(char *filename, struct clean_string_options *options);
+extern char *clean_utf_8(char *filename, struct clean_string_options *options);
+extern char *clean_max_length(char *filename, struct clean_string_options *options);
+extern char *clean_lower(char *filename, struct clean_string_options *options);
 
 #endif /* __CLEAN_STRING_H */
