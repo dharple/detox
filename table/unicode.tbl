@@ -27,6 +27,9 @@
 # Germanic:
 # - http://www.wordiq.com/definition/%DF
 # 
+# Currency:
+# - # https://www.xe.com/symbols.php
+#
 
 default		_
 
@@ -607,6 +610,7 @@ start
 #
 
 0x02C6		^	# MODIFIER LETTER CIRCUMFLEX ACCENT
+0x02DC		~	# SMALL TILDE
 
 #
 # ...
@@ -705,6 +709,36 @@ start
 0x2060		" "	# WORD JOINER
 
 #
+#
+# Currency Symbols - 0x20A0–0x20CF
+#
+# https://www.unicode.org/charts/PDF/U20A0.pdf
+#
+
+0x20A0		ECU	# EURO-CURRENCY SIGN
+0x20A1		CL	# COLON SIGN
+0x20A2		Cr	# CRUZEIRO SIGN
+0x20A3		FF	# FRENCH FRANC SIGN
+0x20A4		L	# LIRA SIGN
+0x20A5		mil	# MILL SIGN
+0x20A6		N	# NAIRA SIGN
+0x20A7		Pts	# PESETA SIGN
+0x20A8		Rs	# RUPEE SIGN
+0x20A9		W	# WON SIGN
+0x20AA		NS	# NEW SHEQEL SIGN
+0x20AB		D	# DONG SIGN
+0x20AC		EUR	# EURO SIGN
+0x20AD		K	# KIP SIGN
+0x20AE		T	# TUGRIK SIGN
+0x20AF		Dr	# DRACHMA SIGN
+
+0x20B1		$	# PESO SIGN
+0x20B2		Gs	# GUARANI SIGN
+0x20B2		C	# CEDI SIGN
+0x20BB		M	# NORDIC MARK SIGN
+0x20BF		_btc_	# BITCOIN SIGN
+
+#
 # ...
 #
 
@@ -715,6 +749,12 @@ start
 #
 
 0x10348		hu	# HWAIR
+
+#
+# h/t to homebrew
+#
+
+0x1f37a		_beer_	# in a tree...
 
 end
 

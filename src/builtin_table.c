@@ -8,7 +8,6 @@
  *
  */
 
-#include <stdio.h>
 #include "table.h"
 #include "builtin_table.h"
 
@@ -78,6 +77,7 @@ static struct translation_table builtin_safe_table = {
     .length              = 55,
     .used                = 55,
     .max_data_length     = 5,
+    .max_key             = 0x007f,
     .hits                = 0,
     .misses              = 0,
     .seeks               = 0,
@@ -192,6 +192,7 @@ static struct translation_table builtin_iso8859_1_table = {
     .length              = 88,
     .used                = 88,
     .max_data_length     = 7,
+    .max_key             = 0x00ff,
     .hits                = 0,
     .misses              = 0,
     .seeks               = 0,
@@ -211,7 +212,7 @@ struct translation_table *load_builtin_iso8859_1_table(void)
  * Generated from unicode.tbl
  */
 
-static struct translation_table_row builtin_unicode_rows[594] = {
+static struct translation_table_row builtin_unicode_rows[616] = {
     { .key  = 0x0020, .data = " " },
     { .key  = 0x0021, .data = "!" },
     { .key  = 0x0022, .data = "\"" },
@@ -587,7 +588,6 @@ static struct translation_table_row builtin_unicode_rows[594] = {
     { .key  = 0x01bd, .data = "5" },
     { .key  = 0x01be, .data = "ts" },
     { .key  = 0x01bf, .data = "w" },
-    { .key  = 0x10348, .data = "hu" },
     { .key  = 0x01c4, .data = "DZ" },
     { .key  = 0x01c5, .data = "Dz" },
     { .key  = 0x01c6, .data = "dz" },
@@ -727,6 +727,7 @@ static struct translation_table_row builtin_unicode_rows[594] = {
     { .key  = 0x024e, .data = "Y" },
     { .key  = 0x024f, .data = "y" },
     { .key  = 0x02c6, .data = "^" },
+    { .key  = 0x02dc, .data = "~" },
     { .key  = 0x1e9e, .data = "SS" },
     { .key  = 0x2000, .data = " " },
     { .key  = 0x2001, .data = " " },
@@ -805,17 +806,40 @@ static struct translation_table_row builtin_unicode_rows[594] = {
     { .key  = 0x205e, .data = ":" },
     { .key  = 0x205f, .data = " " },
     { .key  = 0x2060, .data = " " },
+    { .key  = 0x20a0, .data = "ECU" },
+    { .key  = 0x20a1, .data = "CL" },
+    { .key  = 0x20a2, .data = "Cr" },
+    { .key  = 0x20a3, .data = "FF" },
+    { .key  = 0x20a4, .data = "L" },
+    { .key  = 0x20a5, .data = "mil" },
+    { .key  = 0x20a6, .data = "N" },
+    { .key  = 0x20a7, .data = "Pts" },
+    { .key  = 0x20a8, .data = "Rs" },
+    { .key  = 0x20a9, .data = "W" },
+    { .key  = 0x20aa, .data = "NS" },
+    { .key  = 0x20ab, .data = "D" },
+    { .key  = 0x20ac, .data = "EUR" },
+    { .key  = 0x20ad, .data = "K" },
+    { .key  = 0x20ae, .data = "T" },
+    { .key  = 0x20af, .data = "Dr" },
+    { .key  = 0x20b1, .data = "$" },
+    { .key  = 0x20b2, .data = "C" },
+    { .key  = 0x20bb, .data = "M" },
+    { .key  = 0x20bf, .data = "_btc_" },
     { .key  = 0x2122, .data = "_tm_" },
+    { .key  = 0x10348, .data = "hu" },
+    { .key  = 0x1f37a, .data = "_beer_" },
 };
 
 static struct translation_table builtin_unicode_table = {
-    .length              = 594,
-    .used                = 594,
+    .length              = 616,
+    .used                = 616,
     .max_data_length     = 7,
+    .max_key             = 0x1f37a,
     .hits                = 0,
     .misses              = 0,
     .seeks               = 0,
-    .overwrites          = 0,
+    .overwrites          = 1,
     .use_hash            = 0,
     .builtin             = 1,
     .rows                = builtin_unicode_rows,
@@ -831,23 +855,39 @@ struct translation_table *load_builtin_unicode_table(void)
  * Generated from cp1252.tbl
  */
 
-static struct translation_table_row builtin_cp1252_rows[10] = {
+static struct translation_table_row builtin_cp1252_rows[25] = {
+    { .key  = 0x0080, .data = "EUR" },
+    { .key  = 0x0082, .data = "'" },
+    { .key  = 0x0083, .data = "f" },
+    { .key  = 0x0084, .data = "\"" },
     { .key  = 0x0085, .data = "..." },
+    { .key  = 0x0086, .data = "+" },
+    { .key  = 0x0087, .data = "++" },
     { .key  = 0x0088, .data = "^" },
+    { .key  = 0x0089, .data = "%" },
     { .key  = 0x008a, .data = "S" },
     { .key  = 0x008c, .data = "OE" },
+    { .key  = 0x008e, .data = "Z" },
+    { .key  = 0x0091, .data = "'" },
+    { .key  = 0x0092, .data = "'" },
+    { .key  = 0x0093, .data = "\"" },
+    { .key  = 0x0094, .data = "\"" },
+    { .key  = 0x0095, .data = "*" },
     { .key  = 0x0096, .data = "-" },
     { .key  = 0x0097, .data = "-" },
+    { .key  = 0x0098, .data = "~" },
     { .key  = 0x0099, .data = "_tm_" },
     { .key  = 0x009a, .data = "s" },
     { .key  = 0x009c, .data = "oe" },
+    { .key  = 0x009e, .data = "z" },
     { .key  = 0x009f, .data = "Y" },
 };
 
 static struct translation_table builtin_cp1252_table = {
-    .length              = 10,
-    .used                = 10,
+    .length              = 25,
+    .used                = 25,
     .max_data_length     = 4,
+    .max_key             = 0x009f,
     .hits                = 0,
     .misses              = 0,
     .seeks               = 0,

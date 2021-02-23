@@ -36,6 +36,7 @@ struct translation_table {
 
     int use_hash;
     int builtin;
+    int max_key;
 };
 
 struct clean_string_options {

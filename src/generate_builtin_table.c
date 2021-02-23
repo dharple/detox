@@ -54,9 +54,12 @@ static char *escape_string(char *in)
 static void generate_loader(char *filename)
 {
     struct translation_table *table;
+    struct translation_table *hold_table;
     int i;
 
-    table = parse_table(filename);
+    hold_table = parse_table(filename);
+
+    table = table_resize(hold_table, hold_table->max_key + 1, 1);
 
     printf(
         "\n"
@@ -99,6 +102,7 @@ static void generate_loader(char *filename)
         "    .length              = %d,\n"
         "    .used                = %d,\n"
         "    .max_data_length     = %d,\n"
+        "    .max_key             = 0x%04x,\n"
         "    .hits                = 0,\n"
         "    .misses              = 0,\n"
         "    .seeks               = 0,\n"
@@ -109,6 +113,7 @@ static void generate_loader(char *filename)
         table->used,
         table->used,
         table->max_data_length,
+        table->max_key,
         table->overwrites
     );
 

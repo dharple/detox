@@ -37,11 +37,15 @@ void table_dump(struct translation_table *table, int verbose)
 void table_stats(struct translation_table *table)
 {
     printf("used: %d\n", table->used);
-    printf("max: %d\n", table->length);
+    printf("available: %d\n", table->length);
     printf("used percent: %0.2f\n", table->used * 100.0 / table->length);
 
     printf("hits: %d\n", table->hits);
     printf("misses: %d\n", table->misses);
     printf("seeks: %d\n", table->seeks);
     printf("overwrites: %d\n", table->overwrites);
+
+    printf("longest entry: %d\n", table->max_data_length);
+    printf("default translation: %s\n", table->default_translation);
+    printf("maximum key: 0x%04x\n", table->max_key);
 }

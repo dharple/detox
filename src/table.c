@@ -165,6 +165,10 @@ int table_put(struct translation_table *table, unsigned int key, char *data)
     table->rows[offset].data = strdup(data);
     table->used++;
 
+    if (table->max_key < key) {
+        table->max_key = key;
+    }
+
     return offset;
 }
 
