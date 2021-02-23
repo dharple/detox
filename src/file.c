@@ -170,6 +170,12 @@ void parse_dir(char *filename, struct detox_options *options)
     if (dir_handle == NULL) {
         fprintf(stderr, "unable to parse: %s\n", strerror(errno));
         free(new_file);
+
+        // too many open files
+        if (errno == EMFILE) {
+            exit(EXIT_FAILURE);
+        }
+
         return;
     }
 
@@ -196,7 +202,8 @@ void parse_dir(char *filename, struct detox_options *options)
                 work = parse_file(new_file, options);
                 free(work);
             } else if (options->special) {
-                parse_file(new_file, options);
+                work = parse_file(new_file, options);
+                free(work);
             }
         }
         dir_entry = readdir(dir_handle);
