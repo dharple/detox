@@ -179,22 +179,21 @@ char *clean_uncgi(char *filename, struct clean_string_options *options)
 }
 
 
-/*
- * Reduces any series of "_" and "-" to a single character.  "-" takes
+/**
+ * Reduces any series of underscore or dash to a single character.  The dash takes
  * precedence.
  *
- * If "remove_trailing" is set to non-zero, then "." is added to the
- * comparison, and takes precedence.  This has the effect of reducing "-." or
- * "._", etc, to ".".
+ * If remove_trailing is set, then periods are added to the set of characters
+ * to work on.  The period takes precendence then, followed by the dash.
  *
- * Strips any "-", "_" or "#" from the beginning of a string.
- *
+ * If a hash character, underscore, or dash are present at the start of the
+ * filename, they will be removed.
  */
 char *clean_wipeup(char *filename, struct clean_string_options *options)
 {
     char *output, *input_walk, *output_walk;
-    int matched;
     int remove_trailing;
+    char *search, *seek, *current;
 
     if (filename == NULL) {
         return NULL;
@@ -216,55 +215,39 @@ char *clean_wipeup(char *filename, struct clean_string_options *options)
         return NULL;
     }
 
+    search = strdup(remove_trailing ? ".-_" : "-_");
+
     input_walk = filename;
     output_walk = output;
-    matched = 0;
+    current = NULL;
 
     while (*input_walk != '\0') {
-        switch (*input_walk) {
-            case '-':
-                if (matched) {
-                    if (*output_walk == '_') {
-                        *output_walk = '-';
-                    }
-                } else {
-                    *output_walk = '-';
-                }
+        seek = strchr(search, *input_walk);
+        if (seek != NULL) {
+            if (current == NULL || seek < current) {
+                current = seek;
+            }
 
-                matched = 1;
-                break;
-
-            case '_':
-                if (!matched) {
-                    *output_walk = '_';
-                }
-
-                matched = 1;
-                break;
-
-            case '.':
-                if (remove_trailing) {
-                    *output_walk = '.';
-                    matched = 1;
-                    break;
-                }
-            /* else fall through */
-            default:
-                if (matched) {
-                    output_walk++;
-                    matched = 0;
-                }
-
-                *output_walk++ = *input_walk;
+            input_walk++;
+            continue;
         }
-        input_walk++;
+
+        if (current != NULL) {
+            *output_walk++ = current[0];
+            current = NULL;
+        }
+
+
+        *output_walk++ = *input_walk++;
     }
 
-    if (matched) {
-        output_walk++;
+    if (current != NULL) {
+        *output_walk++ = current[0];
     }
 
     *output_walk = '\0';
+
+    free(search);
 
     return output;
 }

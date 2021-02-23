@@ -98,11 +98,11 @@ function test_detoxrc ()
 		CMDINPUT="${INPUT:0: -1}"
 	fi
 
-	$ACTION "$CMDINPUT"
+	$ACTION -- "$CMDINPUT"
 	if [ -n "$SEQUENCE" ] ; then
-		$DETOX -s $SEQUENCE -f $RC "$CMDINPUT"
+		$DETOX -s $SEQUENCE -f $RC -- "$CMDINPUT"
 	else
-		$DETOX -f $RC "$CMDINPUT"
+		$DETOX -f $RC -- "$CMDINPUT"
 	fi
 	if [ ! $OPERATOR "$OUTPUT" ] ; then
 		echo renaming "$INPUT" to "$OUTPUT" failed
@@ -188,8 +188,8 @@ function test_single_table ()
 		CMDINPUT="${INPUT:0: -1}"
 	fi
 
-	$ACTION "$CMDINPUT"
-	$DETOX -s $SEQUENCE -f $RC "$CMDINPUT"
+	$ACTION -- "$CMDINPUT"
+	$DETOX -s $SEQUENCE -f $RC -- "$CMDINPUT"
 	if [ ! $OPERATOR "$OUTPUT" ] ; then
 		echo renaming "$INPUT" to "$OUTPUT" failed
 		return 1
@@ -364,8 +364,8 @@ function test_sequence ()
 		CMDINPUT="${INPUT:0: -1}"
 	fi
 
-	$ACTION "$CMDINPUT"
-	$DETOX -s $SEQUENCE -f $RC "$CMDINPUT"
+	$ACTION -- "$CMDINPUT"
+	$DETOX -s $SEQUENCE -f $RC -- "$CMDINPUT"
 	if [ ! $OPERATOR "$OUTPUT" ] ; then
 		echo renaming "$INPUT" to "$OUTPUT" failed
 		return 1
