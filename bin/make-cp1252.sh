@@ -1,6 +1,15 @@
 #!/bin/bash
+#
+# This script generates the CP-1252 translation table based on a table found on
+# Wikipedia which lists Unicode equivalents for CP-1252 characters.
+#
 
 TABLEPATH=$(dirname $(dirname $(realpath $0)))/table/
+
+TABLE1=$TABLEPATH/unicode.tbl
+TABLE2=$TABLEPATH/unidecode.tbl
+
+START_HEX=0x0080
 
 #
 # CP-1252 Translation - 0x0080-0x009F
@@ -48,16 +57,10 @@ undef
 0178
 "
 
-START_HEX=0x0080
 CURRENT=$(printf "%d" $START_HEX)
-
-TABLE1=$TABLEPATH/unicode.tbl
-TABLE2=$TABLEPATH/unidecode.tbl
 
 for CHAR in $CHARS ; do
 	CURRENT_HEX=$(printf "0x%04X" $CURRENT)
-
-	# echo $CURRENT_HEX $CHAR
 
 	if [ "$CHAR" = "undef" ] ; then
 		echo "# $CURRENT_HEX		undef"
