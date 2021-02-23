@@ -18,10 +18,48 @@
 
 #define BUF_SIZE 1024
 
-/*
- * Internal function declarations
+/**
+ * Determines if the file should be ignored
+ *
+ * @param filename The file to check
+ * @param options  The main options
+ *
+ * @return bool
  */
-static int ignore_file(char *filename, struct detox_options *options);
+static int ignore_file(const char *filename, const struct detox_options *options)
+{
+    struct detox_ignore_entry *ignore_walk;
+
+    if (filename[0] == '.') {
+        return 1;
+    }
+
+    ignore_walk = options->files_to_ignore;
+    while (ignore_walk != NULL) {
+        if (strcmp(filename, ignore_walk->filename) == 0) {
+            return 1;
+        }
+        ignore_walk = ignore_walk->next;
+    }
+
+    return 0;
+}
+
+/**
+ * Whether or not the file is "." or ".."
+ *
+ * @param filename The file to check
+ *
+ * @return bool
+ */
+static int is_protected(const char *filename)
+{
+    if (filename == NULL) {
+        return 0;
+    }
+
+    return (filename[0] == '.' && (filename[1] == '\0' || (filename[1] == '.' && filename[2] == '\0')));
+}
 
 /*
  * Renames file to a safe filename.
@@ -60,6 +98,10 @@ char *parse_file(char *filename, struct detox_options *options)
     sequence = options->sequence_to_use;
 
     work = strdup(old_filename_ptr);
+
+    if (is_protected(work)) {
+        work = NULL;
+    }
 
     while (sequence != NULL && work != NULL) {
         hold = sequence->cleaner(work, sequence->options);
@@ -212,28 +254,6 @@ void parse_dir(char *filename, struct detox_options *options)
 }
 
 /*
- * Determines if the file should be ignored
- */
-static int ignore_file(char *filename, struct detox_options *options)
-{
-    struct detox_ignore_entry *ignore_walk;
-
-    if (filename[0] == '.') {
-        return 1;
-    }
-
-    ignore_walk = options->files_to_ignore;
-    while (ignore_walk != NULL) {
-        if (strcmp(filename, ignore_walk->filename) == 0) {
-            return 1;
-        }
-        ignore_walk = ignore_walk->next;
-    }
-
-    return 0;
-}
-
-/*
  * Renames file to a safe filename.
  */
 void parse_inline(char *filename, struct detox_options *options)
@@ -277,9 +297,13 @@ void parse_inline(char *filename, struct detox_options *options)
         }
         *hold = '\0';
 
+        sequence = options->sequence_to_use;
+
         work = strdup(base);
 
-        sequence = options->sequence_to_use;
+        if (is_protected(work)) {
+            work = NULL;
+        }
 
         while (sequence != NULL && work != NULL) {
             hold = sequence->cleaner(work, sequence->options);
@@ -294,7 +318,7 @@ void parse_inline(char *filename, struct detox_options *options)
         if (work != NULL) {
             printf("%s\n", work);
         } else {
-            printf("\n");
+            printf("%s\n", base);
         }
     }
 }

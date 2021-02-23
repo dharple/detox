@@ -1,0 +1,10 @@
+sequence default {
+	safe {
+		builtin "safe";
+	};
+	wipeup;
+};
+
+ignore {
+	filename "{arch}";
+};
