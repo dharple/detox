@@ -2,6 +2,11 @@
 
 *If I missed you, please let me know!*
 
+Sean M. Burke for [Text::Unidecode], which helped with Unicode transliteration
+and became a new table, `unidecode.tbl`.  Additionally, Behat's [PHP
+transliteration library] put Text::Unidecode in a format I was comfortable
+working with.
+
 K Lange's awesome AC_C_COMPILE_FLAGS macro helped me write my own, updated
 version of the same feature.
 
@@ -74,3 +79,6 @@ with hashes.
 
 Paul Oakenfold for his unbelievable mixes.  Version 1.0.0 was developed with
 the help of his Great Wall mix.
+
+[PHP transliteration library]: https://github.com/Behat/Transliterator
+[Text::Unidecode]: https://metacpan.org/pod/Text::Unidecode

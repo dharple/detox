@@ -7,64 +7,47 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Added
-- Added additional transliterations based on Sean M. Burke's [Text::Unidecode]
-  tables and Behat's [PHP transliteration library].  A new table has been
-  added, `unidecode.tbl`, and some updates have been made to the main
-  transliteration tables.  [#47] [#53]
-  - Latin Extended B - 0x0180-0x024F
-  - General Punctuation - 0x2000-0x206F
-- Builtin tables may now be explicitly accessed via the builtin keyword in the
-  config file. [#28] [#50]
+- Added a new transliteration table, `unidecode.tbl`, based on
+  [Text:Unidecode].  [#47] [#53]
+- A new config file statement telling `detox` to use a builtin table.  [#28]
+  [#50]
 
 ### Changed
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
-  the old behavior, use `detox -s utf_8`. [#21]
-- BREAKING CHANGE: The default config file and translation tables no longer end
-  with `.sample`.  [#59]
-- Code uses spaces instead of tabs. [#44]
-- Cleaned up man pages.  PDF versions are automatically generated. [#22]
-- Internal filters now run using compiled-in translation tables.  This removes
-  all `clean_*_basic()` functions, and allows for consistent behavior between
-  detox without translation tables and detox with the stock ones. [#21], [#29].
-- All files and directories starting with a period are ignored during
-  recursion. [#64]
-- Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
-  [#37]
-- The default config file now explicitly uses the builtin keyword. [#28] [#50]
-- The max_length filter no longer acts like the wipeup filter.  Excess dots are
-  not reduced within this filter. [#46]
+  the old behavior, use `detox -s utf_8`.  [#21]
+- PACKAGE MAINTAINERS: The default config file and translation tables no longer
+  end with `.sample`.  [#59]
+- Builtin translation tables are generated from `table/*.tbl`.  [#21] [#29]
+- Cleaned up man pages.  PDF versions are automatically generated.  [#22]
+- Code uses spaces instead of tabs.  [#44]
+- CP-1252 transliteration is now done via a separate table.  [#48]
+- Files and directories starting with a period are ignored during recursion.
+  [#64]
+- The default config file now explicitly uses the builtin statement.  [#28]
+  [#50]
+- The max_length filter no longer acts like the wipeup filter.  Excess periods
+  are not reduced within this filter.  [#46]
 - The UTF-8 filter no longer behaves like the safe filter.  All characters
-  between 0x20 and 0x7E are preserved. [#40]
-- Updated the project to use char strings instead of unsigned char strings, to
-  fix compiler warnings.  Fixed resulting issues with the iso8859_1 filter.
-  Updated CFLAGS to catch any issues that arise in the future. [#31]
+  between 0x20 and 0x7E are preserved.  [#40]
 
 ## Removed
-- The main transliteration tables for ISO 8859-1 and Unicode no longer have
-  CP-1252 built in.  There is a separate table for it. [#48]
-- The command line option `--remove-trailing` is now removed.  Use the sequence
-  `wipeup { remove_trailing; };` instead. [#24]
+- Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
+  [#37]
+- The deprecated command line option `--remove-trailing` is now removed.  Use
+  the sequence `wipeup { remove_trailing; };` instead.  [#24]
 
 ### Fixed
-- Minor issues discovered by `cppcheck` and `sparse`.
-- Potential infinite loops in `table_put()` and `table_get()`. [#21] [#41]
-- src/Makefile.am no longer deletes src/config_file.h when `make
-  maintainer-clean` is run.
-- The max_length filter attempts to find a second extension to preserve while
-  reducing the length of a filename. [#46]
-- Updated internal safe filter to ignore all upper ISO 8859-1 and UTF-8
-  characters (0x80 though 0xFF) [#21], [#29]
-- Updated table-based safe filter to convert all control characters (0x01
-  though 0x20) to `_`. [#21], [#29]
-- Updated both safe filters to convert 0x7F (DEL) into `_`. [#29]
+- Numerous internal bugs and inconsistencies.  [#21] [#31] [#41]
+- The `max_length` filter recognizes files with two extensions.  [#46]
+- The `safe` filter converts all ASCII control characters to `_`.  [#21] [#29]
+- The `safe` filter ignores characters between 0x80 and 0xFF.  [#21] [#29]
 
 ### Security
-- Added additional compiler protection flags, based on the openSUSE build from
-  [#31].
+- Added additional compiler protection flags.  [#31]
 - Symlinks that point at directories are no longer followed when `--special`
   and `-r` are specified together. [#23]
-- UTF-8 encoded NULL values are converted to `_hidden_null_` to make them
-  obvious. [#40]
+- UTF-8 encoded NULL (0x0000) values are converted to `_hidden_null_` to make
+  them obvious. [#40]
 
 ## [1.4.1] - 2021-02-20
 ### Fixed
@@ -262,5 +245,4 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#sf-patch-3]: https://sourceforge.net/p/detox/patches/3/
 
 [mikrosimage/detox]: https://github.com/mikrosimage/detox
-[PHP transliteration library]: https://github.com/Behat/Transliterator
 [Text::Unidecode]: https://metacpan.org/pod/Text::Unidecode
