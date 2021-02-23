@@ -36,7 +36,7 @@ configuration files used by
 Each statement is semicolon terminated, and modifiers on a particular statement
 are generally contained within braces.
 .Bl -tag -width 0.25i
-.It Cm sequence Qo Ar name Qc Bro Ar ... Brc ;
+.It Cm sequence Qo Ar name Qc Bro Ar sequence; ... Brc ;
 Defines a sequence of filters to run a filename through.
 .Ar name
 specifies how the user will refer to the particular sequence during runtime.
@@ -60,6 +60,23 @@ and a user has a sequence with the same name in their
 the users'
 .Ar normal_seq
 will replace the system-wide version.
+.It Cm ignore Bro Cm filename Qo Ar filename Qc ; ... Brc ;
+Any filename listed here will be ignored during recursion.  Note that all files
+beginning with a period, such as
+.Pa .git
+or
+.Pa .config
+will be ignored by
+.Cm detox
+during recursion.
+.It Cm # comments
+Any thing after a # on any line is ignored.
+.El
+.Ss SEQUENCES
+All of these statements occur within a
+.Cm sequence
+block.
+.Bl -tag -width 0.25i
 .It Cm iso8859_1 ;
 .It Cm iso8859_1 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
@@ -160,8 +177,6 @@ the filter would output
 .It Cm lower ;
 This translates uppercase characters into lowercase characters.  It only works
 on ASCII characters.
-.It Cm # comments
-Any thing after a # on any line is ignored.
 .El
 .Sh BUILTIN TABLES
 .Bl -tag -width 0.25i

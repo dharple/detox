@@ -16,12 +16,6 @@
 
 #include "file.h"
 
-static char bad_files[3][30] = {
-    ".",
-    "..",
-    ""
-};
-
 #define BUF_SIZE 1024
 
 /*
@@ -57,14 +51,6 @@ char *parse_file(char *filename, struct detox_options *options)
         old_filename_ptr++;
     } else {
         old_filename_ptr = old_filename;
-    }
-
-    /*
-     * Check for files that need to be ignored
-     */
-
-    if (ignore_file(old_filename_ptr, options)) {
-        return old_filename;
     }
 
     /*
@@ -224,12 +210,9 @@ void parse_dir(char *filename, struct detox_options *options)
 static int ignore_file(char *filename, struct detox_options *options)
 {
     struct detox_ignore_entry *ignore_walk;
-    int x;
 
-    for (x = 0; bad_files[x][0] != 0; x++) {
-        if (strcmp(filename, bad_files[x]) == 0) {
-            return 1;
-        }
+    if (filename[0] == '.') {
+        return 1;
     }
 
     ignore_walk = options->files_to_ignore;

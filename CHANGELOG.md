@@ -26,6 +26,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Internal filters now run using compiled-in translation tables.  This removes
   all `clean_*_basic()` functions, and allows for consistent behavior between
   detox without translation tables and detox with the stock ones. [#21], [#29].
+- All files and directories starting with a period are ignored during
+  recursion. [#64]
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
 - The default config file now explicitly uses the builtin keyword. [#28] [#50]
@@ -227,6 +229,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#64]: https://github.com/dharple/detox/issues/64
 [#59]: https://github.com/dharple/detox/issues/59
 [#56]: https://github.com/dharple/detox/issues/56
 [#53]: https://github.com/dharple/detox/issues/53

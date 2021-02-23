@@ -125,14 +125,12 @@ sequence "lower-only" {
 
 
 #
-# Files to ignore (detox only)
+# Files to ignore during recursion (detox only)
+#
+# Any file or directory starting with '.' is automatically ignored except when
+# it is passed on the command-line.
 #
 
 ignore {
-	filename ".arch-params";
-	filename ".evolution";
-	filename ".gnome";
-	filename ".mozilla";
-	filename ".themes";
 	filename "{arch}";
 };

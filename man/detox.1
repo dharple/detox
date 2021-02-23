@@ -76,7 +76,14 @@ Doesn't actually change anything.  This implies the
 .Fl v
 option.
 .It Fl r
-Recurse into subdirectories.
+Recurse into subdirectories.  Any file or directory that starts with a period,
+such as
+.Pa .git/
+or
+.Pa .cache/ ,
+will be ignored during recursion unless specified on the command line.  Also,
+any file or directory specified in the ignore section of the config file will
+be ignored during recursion.
 .It Fl s Ar sequence
 Use
 .Ar sequence

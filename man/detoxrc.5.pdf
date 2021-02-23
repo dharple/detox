@@ -625,12 +625,17 @@ ET
 BT
 /F2 11 Tf
 167.519 441.375 Td
+(sequence;) Tj
+ET
+BT
+/F2 11 Tf
+214.247 441.375 Td
 (...) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-175.769 441.375 Td
+222.497 441.375 Td
 (};) Tj
 ET
 BT
@@ -1236,335 +1241,309 @@ ET
 BT
 /F1 11 Tf
 81.774 241.318 Td
-(iso8859) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-116.611 241.318 Td
-(_) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-122.111 241.318 Td
-(1) Tj
+(ignore) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-127.611 241.318 Td
-(;) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 210.540 Td
-(iso8859) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-116.611 210.540 Td
-(_) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-122.111 210.540 Td
-(1) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-130.361 210.540 Td
+114.466 241.318 Td
 ({) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-135.641 210.540 Td
-(builtin) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-169.576 210.540 Td
-(") Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-174.064 210.540 Td
-(name) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-197.890 210.540 Td
-(";};) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 179.762 Td
-(iso8859) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-116.611 179.762 Td
-(_) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-122.111 179.762 Td
-(1) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-130.361 179.762 Td
-({) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-135.641 179.762 Td
+119.746 241.318 Td
 (filename) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-178.717 179.762 Td
+162.822 241.318 Td
 (") Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-183.205 179.762 Td
-(/path/to/filename) Tj
+167.310 241.318 Td
+(filename) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-258.379 179.762 Td
-(";};) Tj
+205.194 241.318 Td
+(";) Tj
 ET
 BT
 /F0 11 Tf
-105.270 164.373 Td
-(This) Tj
+215.490 241.318 Td
+(...};) Tj
 ET
 BT
 /F0 11 Tf
-127.578 164.373 Td
-(transliterates) Tj
+105.270 225.929 Td
+(Any) Tj
 ET
 BT
 /F0 11 Tf
-186.538 164.373 Td
-(ISO) Tj
+126.962 225.929 Td
+(filename) Tj
 ET
 BT
 /F0 11 Tf
-207.009 164.373 Td
-(8859-1) Tj
+168.201 225.929 Td
+(listed) Tj
 ET
 BT
 /F0 11 Tf
-240.922 164.373 Td
-(characters) Tj
+194.788 225.929 Td
+(here) Tj
 ET
 BT
 /F0 11 Tf
-288.255 164.373 Td
-(between) Tj
-ET
-BT
-/F0 11 Tf
-327.657 164.373 Td
-(0xA0) Tj
-ET
-BT
-/F0 11 Tf
-354.849 164.373 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-373.483 164.373 Td
-(0xFF) Tj
-ET
-BT
-/F0 11 Tf
-399.465 164.373 Td
-(into) Tj
-ET
-BT
-/F0 11 Tf
-419.331 164.373 Td
-(lower) Tj
-ET
-BT
-/F0 11 Tf
-447.128 164.373 Td
-(ASCII) Tj
-ET
-BT
-/F0 11 Tf
-478.599 164.373 Td
-(equivalents.) Tj
-ET
-BT
-/F0 11 Tf
-105.270 148.984 Td
-(The) Tj
-ET
-BT
-/F0 11 Tf
-125.125 148.984 Td
-(output) Tj
-ET
-BT
-/F0 11 Tf
-155.991 148.984 Td
-(is) Tj
-ET
-BT
-/F0 11 Tf
-166.078 148.984 Td
-(not) Tj
-ET
-BT
-/F0 11 Tf
-182.886 148.984 Td
-(necessarily) Tj
-ET
-BT
-/F0 11 Tf
-234.509 148.984 Td
-(safe,) Tj
-ET
-BT
-/F0 11 Tf
-257.719 148.984 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-276.353 148.984 Td
-(should) Tj
-ET
-BT
-/F0 11 Tf
-308.440 148.984 Td
-(also) Tj
-ET
-BT
-/F0 11 Tf
-328.911 148.984 Td
-(be) Tj
-ET
-BT
-/F0 11 Tf
-342.045 148.984 Td
-(run) Tj
-ET
-BT
-/F0 11 Tf
-359.458 148.984 Td
-(through) Tj
-ET
-BT
-/F0 11 Tf
-396.429 148.984 Td
-(the) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-412.621 148.984 Td
-(safe) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-433.092 148.984 Td
-(filter.) Tj
-ET
-BT
-/F0 11 Tf
-105.270 118.206 Td
-(If) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-115.346 118.206 Td
-(builtin) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-146.828 118.206 Td
-(is) Tj
-ET
-BT
-/F0 11 Tf
-156.915 118.206 Td
-(specified,) Tj
-ET
-BT
-/F0 11 Tf
-202.125 118.206 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-209.759 118.206 Td
-(builtin) Tj
-ET
-BT
-/F0 11 Tf
-241.241 118.206 Td
-(table) Tj
-ET
-BT
-/F0 11 Tf
-265.375 118.206 Td
-(with) Tj
-ET
-BT
-/F0 11 Tf
-287.683 118.206 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-303.875 118.206 Td
-(name) Tj
-ET
-BT
-/F0 11 Tf
-330.451 118.206 Td
-(specified) Tj
-ET
-BT
-/F0 11 Tf
-372.911 118.206 Td
+216.469 225.929 Td
 (will) Tj
 ET
 BT
 /F0 11 Tf
-392.777 118.206 Td
+236.335 225.929 Td
 (be) Tj
 ET
 BT
 /F0 11 Tf
-405.911 118.206 Td
-(used.) Tj
+249.469 225.929 Td
+(ignored) Tj
+ET
+BT
+/F0 11 Tf
+285.824 225.929 Td
+(during) Tj
+ET
+BT
+/F0 11 Tf
+317.295 225.929 Td
+(recursion.) Tj
+ET
+BT
+/F0 11 Tf
+366.476 225.929 Td
+(Note) Tj
+ET
+BT
+/F0 11 Tf
+390.610 225.929 Td
+(that) Tj
+ET
+BT
+/F0 11 Tf
+409.860 225.929 Td
+(all) Tj
+ET
+BT
+/F0 11 Tf
+423.610 225.929 Td
+(files) Tj
+ET
+BT
+/F0 11 Tf
+445.302 225.929 Td
+(beginning) Tj
+ET
+BT
+/F0 11 Tf
+492.052 225.929 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+514.360 225.929 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+105.270 210.540 Td
+(period,) Tj
+ET
+BT
+/F0 11 Tf
+138.875 210.540 Td
+(such) Tj
+ET
+BT
+/F0 11 Tf
+161.788 210.540 Td
+(as) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+173.701 210.540 Td
+(.git) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+190.817 210.540 Td
+(or) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+202.730 210.540 Td
+(.config) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+235.730 210.540 Td
+(will) Tj
+ET
+BT
+/F0 11 Tf
+255.596 210.540 Td
+(be) Tj
+ET
+BT
+/F0 11 Tf
+268.730 210.540 Td
+(ignored) Tj
+ET
+BT
+/F0 11 Tf
+305.085 210.540 Td
+(by) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+318.835 210.540 Td
+(detox) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+347.248 210.540 Td
+(during) Tj
+ET
+BT
+/F0 11 Tf
+378.719 210.540 Td
+(recursion.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 179.762 Td
+(#) Tj
+ET
+BT
+/F1 11 Tf
+90.024 179.762 Td
+(comments) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+105.270 164.373 Td
+(Any) Tj
+ET
+BT
+/F0 11 Tf
+126.962 164.373 Td
+(thing) Tj
+ET
+BT
+/F0 11 Tf
+152.328 164.373 Td
+(after) Tj
+ET
+BT
+/F0 11 Tf
+175.230 164.373 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+182.864 164.373 Td
+(#) Tj
+ET
+BT
+/F0 11 Tf
+191.114 164.373 Td
+(on) Tj
+ET
+BT
+/F0 11 Tf
+204.864 164.373 Td
+(any) Tj
+ET
+BT
+/F0 11 Tf
+223.498 164.373 Td
+(line) Tj
+ET
+BT
+/F0 11 Tf
+242.748 164.373 Td
+(is) Tj
+ET
+BT
+/F0 11 Tf
+252.835 164.373 Td
+(ignored.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+76.274 133.595 Td
+(SEQUENCES) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 118.206 Td
+(All) Tj
+ET
+BT
+/F0 11 Tf
+98.582 118.206 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+110.495 118.206 Td
+(these) Tj
+ET
+BT
+/F0 11 Tf
+135.850 118.206 Td
+(statements) Tj
+ET
+BT
+/F0 11 Tf
+185.042 118.206 Td
+(occur) Tj
+ET
+BT
+/F0 11 Tf
+212.223 118.206 Td
+(within) Tj
+ET
+BT
+/F0 11 Tf
+243.089 118.206 Td
+(a) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+250.723 118.206 Td
+(sequence) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+295.636 118.206 Td
+(block.) Tj
 ET
 /F0 11 Tf
 BT
@@ -1620,7 +1599,7 @@ ET
 endstream
 endobj
 8 0 obj
-14567
+14370
 endobj
 9 0 obj
 <<
@@ -1647,1468 +1626,1408 @@ endobj
 >>
 stream
 BT
-/F0 11 Tf
-105.270 702.988 Td
-(Under) Tj
+/F1 11 Tf
+81.774 702.988 Td
+(iso8859) Tj
 ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+116.611 702.988 Td
+(_) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+122.111 702.988 Td
+(1) Tj
+ET
+/F0 11 Tf
 BT
 /F0 11 Tf
-135.509 702.988 Td
-(normal) Tj
+127.611 702.988 Td
+(;) Tj
 ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 672.210 Td
+(iso8859) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+116.611 672.210 Td
+(_) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+122.111 672.210 Td
+(1) Tj
+ET
+/F0 11 Tf
 BT
 /F0 11 Tf
-169.422 702.988 Td
-(circumstances,) Tj
+130.361 672.210 Td
+({) Tj
 ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+135.641 672.210 Td
+(builtin) Tj
+ET
+/F0 11 Tf
 BT
 /F0 11 Tf
-237.237 702.988 Td
-(the) Tj
+169.576 672.210 Td
+(") Tj
 ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+174.064 672.210 Td
+(name) Tj
+ET
+/F0 11 Tf
 BT
 /F0 11 Tf
-253.429 702.988 Td
+197.890 672.210 Td
+(";};) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 641.432 Td
+(iso8859) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+116.611 641.432 Td
+(_) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+122.111 641.432 Td
+(1) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+130.361 641.432 Td
+({) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+135.641 641.432 Td
 (filename) Tj
 ET
+/F0 11 Tf
 BT
 /F0 11 Tf
-294.668 702.988 Td
-(syntax) Tj
+178.717 641.432 Td
+(") Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+183.205 641.432 Td
+(/path/to/filename) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+258.379 641.432 Td
+(";};) Tj
 ET
 BT
 /F0 11 Tf
-326.139 702.988 Td
+105.270 626.043 Td
+(This) Tj
+ET
+BT
+/F0 11 Tf
+127.578 626.043 Td
+(transliterates) Tj
+ET
+BT
+/F0 11 Tf
+186.538 626.043 Td
+(ISO) Tj
+ET
+BT
+/F0 11 Tf
+207.009 626.043 Td
+(8859-1) Tj
+ET
+BT
+/F0 11 Tf
+240.922 626.043 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+288.255 626.043 Td
+(between) Tj
+ET
+BT
+/F0 11 Tf
+327.657 626.043 Td
+(0xA0) Tj
+ET
+BT
+/F0 11 Tf
+354.849 626.043 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+373.483 626.043 Td
+(0xFF) Tj
+ET
+BT
+/F0 11 Tf
+399.465 626.043 Td
+(into) Tj
+ET
+BT
+/F0 11 Tf
+419.331 626.043 Td
+(lower) Tj
+ET
+BT
+/F0 11 Tf
+447.128 626.043 Td
+(ASCII) Tj
+ET
+BT
+/F0 11 Tf
+478.599 626.043 Td
+(equivalents.) Tj
+ET
+BT
+/F0 11 Tf
+105.270 610.654 Td
+(The) Tj
+ET
+BT
+/F0 11 Tf
+125.125 610.654 Td
+(output) Tj
+ET
+BT
+/F0 11 Tf
+155.991 610.654 Td
 (is) Tj
 ET
 BT
 /F0 11 Tf
-336.226 702.988 Td
+166.078 610.654 Td
 (not) Tj
 ET
 BT
 /F0 11 Tf
-353.034 702.988 Td
+182.886 610.654 Td
+(necessarily) Tj
+ET
+BT
+/F0 11 Tf
+234.509 610.654 Td
+(safe,) Tj
+ET
+BT
+/F0 11 Tf
+257.719 610.654 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+276.353 610.654 Td
+(should) Tj
+ET
+BT
+/F0 11 Tf
+308.440 610.654 Td
+(also) Tj
+ET
+BT
+/F0 11 Tf
+328.911 610.654 Td
+(be) Tj
+ET
+BT
+/F0 11 Tf
+342.045 610.654 Td
+(run) Tj
+ET
+BT
+/F0 11 Tf
+359.458 610.654 Td
+(through) Tj
+ET
+BT
+/F0 11 Tf
+396.429 610.654 Td
+(the) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+412.621 610.654 Td
+(safe) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+433.092 610.654 Td
+(filter.) Tj
+ET
+BT
+/F0 11 Tf
+105.270 579.876 Td
+(If) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+115.346 579.876 Td
+(builtin) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+146.828 579.876 Td
+(is) Tj
+ET
+BT
+/F0 11 Tf
+156.915 579.876 Td
+(specified,) Tj
+ET
+BT
+/F0 11 Tf
+202.125 579.876 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+209.759 579.876 Td
+(builtin) Tj
+ET
+BT
+/F0 11 Tf
+241.241 579.876 Td
+(table) Tj
+ET
+BT
+/F0 11 Tf
+265.375 579.876 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+287.683 579.876 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+303.875 579.876 Td
+(name) Tj
+ET
+BT
+/F0 11 Tf
+330.451 579.876 Td
+(specified) Tj
+ET
+BT
+/F0 11 Tf
+372.911 579.876 Td
+(will) Tj
+ET
+BT
+/F0 11 Tf
+392.777 579.876 Td
+(be) Tj
+ET
+BT
+/F0 11 Tf
+405.911 579.876 Td
+(used.) Tj
+ET
+BT
+/F0 11 Tf
+105.270 549.098 Td
+(Under) Tj
+ET
+BT
+/F0 11 Tf
+135.509 549.098 Td
+(normal) Tj
+ET
+BT
+/F0 11 Tf
+169.422 549.098 Td
+(circumstances,) Tj
+ET
+BT
+/F0 11 Tf
+237.237 549.098 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+253.429 549.098 Td
+(filename) Tj
+ET
+BT
+/F0 11 Tf
+294.668 549.098 Td
+(syntax) Tj
+ET
+BT
+/F0 11 Tf
+326.139 549.098 Td
+(is) Tj
+ET
+BT
+/F0 11 Tf
+336.226 549.098 Td
+(not) Tj
+ET
+BT
+/F0 11 Tf
+353.034 549.098 Td
 (needed.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-392.436 702.988 Td
+392.436 549.098 Td
 (detox) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-420.849 702.988 Td
+420.849 549.098 Td
 (looks) Tj
 ET
 BT
 /F0 11 Tf
-447.436 702.988 Td
+447.436 549.098 Td
 (in) Tj
 ET
 BT
 /F0 11 Tf
-458.744 702.988 Td
+458.744 549.098 Td
 (several) Tj
 ET
 BT
 /F0 11 Tf
-492.646 702.988 Td
+492.646 549.098 Td
 (locations) Tj
 ET
 BT
 /F0 11 Tf
-105.270 687.599 Td
+105.270 533.709 Td
 (for) Tj
 ET
 BT
 /F0 11 Tf
-120.846 687.599 Td
+120.846 533.709 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-128.480 687.599 Td
+128.480 533.709 Td
 (file) Tj
 ET
 BT
 /F0 11 Tf
-145.893 687.599 Td
+145.893 533.709 Td
 (called) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-174.911 687.599 Td
+174.911 533.709 Td
 (iso8859_1.tbl) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-235.114 687.599 Td
+235.114 533.709 Td
 (,) Tj
 ET
 BT
 /F0 11 Tf
-240.614 687.599 Td
+240.614 533.709 Td
 (which) Tj
 ET
 BT
 /F0 11 Tf
-270.248 687.599 Td
+270.248 533.709 Td
 (is) Tj
 ET
 BT
 /F0 11 Tf
-280.335 687.599 Td
+280.335 533.709 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-287.969 687.599 Td
+287.969 533.709 Td
 (set) Tj
 ET
 BT
 /F0 11 Tf
-302.940 687.599 Td
+302.940 533.709 Td
 (of) Tj
 ET
 BT
 /F0 11 Tf
-314.853 687.599 Td
+314.853 533.709 Td
 (rules) Tj
 ET
 BT
 /F0 11 Tf
-338.987 687.599 Td
+338.987 533.709 Td
 (defining) Tj
 ET
 BT
 /F0 11 Tf
-378.400 687.599 Td
+378.400 533.709 Td
 (how) Tj
 ET
 BT
 /F0 11 Tf
-400.092 687.599 Td
+400.092 533.709 Td
 (an) Tj
 ET
 BT
 /F0 11 Tf
-413.226 687.599 Td
+413.226 533.709 Td
 (ISO) Tj
 ET
 BT
 /F0 11 Tf
-433.697 687.599 Td
+433.697 533.709 Td
 (8859-1) Tj
 ET
 BT
 /F0 11 Tf
-467.610 687.599 Td
+467.610 533.709 Td
 (character) Tj
 ET
 BT
 /F0 11 Tf
-510.664 687.599 Td
+510.664 533.709 Td
 (should) Tj
 ET
 BT
 /F0 11 Tf
-105.270 672.210 Td
+105.270 518.320 Td
 (be) Tj
 ET
 BT
 /F0 11 Tf
-118.404 672.210 Td
+118.404 518.320 Td
 (translated.) Tj
 ET
 BT
 /F0 11 Tf
-169.422 672.210 Td
+169.422 518.320 Td
 (If) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-179.498 672.210 Td
+179.498 518.320 Td
 (detox) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-207.911 672.210 Td
+207.911 518.320 Td
 (can't) Tj
 ET
 BT
 /F0 11 Tf
-232.650 672.210 Td
+232.650 518.320 Td
 (find) Tj
 ET
 BT
 /F0 11 Tf
-253.121 672.210 Td
+253.121 518.320 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-269.313 672.210 Td
+269.313 518.320 Td
 (translation) Tj
 ET
 BT
 /F0 11 Tf
-318.505 672.210 Td
+318.505 518.320 Td
 (table,) Tj
 ET
 BT
 /F0 11 Tf
-345.389 672.210 Td
+345.389 518.320 Td
 (it) Tj
 ET
 BT
 /F0 11 Tf
-354.255 672.210 Td
+354.255 518.320 Td
 (will) Tj
 ET
 BT
 /F0 11 Tf
-374.121 672.210 Td
+374.121 518.320 Td
 (fall) Tj
 ET
 BT
 /F0 11 Tf
-391.534 672.210 Td
+391.534 518.320 Td
 (back) Tj
 ET
 BT
 /F0 11 Tf
-415.052 672.210 Td
+415.052 518.320 Td
 (on) Tj
 ET
 BT
 /F0 11 Tf
-428.802 672.210 Td
+428.802 518.320 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-444.994 672.210 Td
+444.994 518.320 Td
 (builtin) Tj
 ET
 BT
 /F0 11 Tf
-476.476 672.210 Td
+476.476 518.320 Td
 (table) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-105.270 656.821 Td
+105.270 502.931 Td
 (iso8859_1) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-151.107 656.821 Td
+151.107 502.931 Td
 (.) Tj
 ET
 BT
 /F0 11 Tf
-105.270 626.043 Td
+105.270 472.153 Td
 (You) Tj
 ET
 BT
 /F0 11 Tf
-126.962 626.043 Td
+126.962 472.153 Td
 (can) Tj
 ET
 BT
 /F0 11 Tf
-144.980 626.043 Td
+144.980 472.153 Td
 (also) Tj
 ET
 BT
 /F0 11 Tf
-165.451 626.043 Td
+165.451 472.153 Td
 (download) Tj
 ET
 BT
 /F0 11 Tf
-211.585 626.043 Td
+211.585 472.153 Td
 (or) Tj
 ET
 BT
 /F0 11 Tf
-223.498 626.043 Td
+223.498 472.153 Td
 (create) Tj
 ET
 BT
 /F0 11 Tf
-252.505 626.043 Td
+252.505 472.153 Td
 (your) Tj
 ET
 BT
 /F0 11 Tf
-275.418 626.043 Td
+275.418 472.153 Td
 (own,) Tj
 ET
 BT
 /F0 11 Tf
-299.860 626.043 Td
+299.860 472.153 Td
 (and) Tj
 ET
 BT
 /F0 11 Tf
-318.494 626.043 Td
+318.494 472.153 Td
 (tell) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-335.302 626.043 Td
+335.302 472.153 Td
 (detox) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-363.715 626.043 Td
+363.715 472.153 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-379.907 626.043 Td
+379.907 472.153 Td
 (location) Tj
 ET
 BT
 /F0 11 Tf
-418.099 626.043 Td
+418.099 472.153 Td
 (of) Tj
 ET
 BT
 /F0 11 Tf
-430.012 626.043 Td
+430.012 472.153 Td
 (it) Tj
 ET
 BT
 /F0 11 Tf
-438.878 626.043 Td
+438.878 472.153 Td
 (using) Tj
 ET
 BT
 /F0 11 Tf
-465.465 626.043 Td
+465.465 472.153 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-481.657 626.043 Td
+481.657 472.153 Td
 (filename) Tj
 ET
 BT
 /F0 11 Tf
-105.270 610.654 Td
+105.270 456.764 Td
 (syntax) Tj
 ET
 BT
 /F0 11 Tf
-136.741 610.654 Td
+136.741 456.764 Td
 (shown) Tj
 ET
 BT
 /F0 11 Tf
-168.212 610.654 Td
+168.212 456.764 Td
 (above.) Tj
 ET
 BT
 /F0 11 Tf
-105.270 579.876 Td
+105.270 425.986 Td
 (You) Tj
 ET
 BT
 /F0 11 Tf
-126.962 579.876 Td
+126.962 425.986 Td
 (can) Tj
 ET
 BT
 /F0 11 Tf
-144.980 579.876 Td
+144.980 425.986 Td
 (chain) Tj
 ET
 BT
 /F0 11 Tf
-171.556 579.876 Td
+171.556 425.986 Td
 (together) Tj
 ET
 BT
 /F0 11 Tf
-210.353 579.876 Td
+210.353 425.986 Td
 (multiple) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-249.777 579.876 Td
+249.777 425.986 Td
 (iso8859_1) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-298.364 579.876 Td
+298.364 425.986 Td
 (filters,) Tj
 ET
 BT
 /F0 11 Tf
-329.527 579.876 Td
+329.527 425.986 Td
 (as) Tj
 ET
 BT
 /F0 11 Tf
-341.440 579.876 Td
+341.440 425.986 Td
 (long) Tj
 ET
 BT
 /F0 11 Tf
-363.748 579.876 Td
+363.748 425.986 Td
 (as) Tj
 ET
 BT
 /F0 11 Tf
-375.661 579.876 Td
+375.661 425.986 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-391.853 579.876 Td
+391.853 425.986 Td
 (default) Tj
 ET
 BT
 /F0 11 Tf
-425.150 579.876 Td
+425.150 425.986 Td
 (value) Tj
 ET
 BT
 /F0 11 Tf
-451.726 579.876 Td
+451.726 425.986 Td
 (of) Tj
 ET
 BT
 /F0 11 Tf
-463.639 579.876 Td
+463.639 425.986 Td
 (all) Tj
 ET
 BT
 /F0 11 Tf
-477.389 579.876 Td
+477.389 425.986 Td
 (but) Tj
 ET
 BT
 /F0 11 Tf
-494.197 579.876 Td
+494.197 425.986 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-510.389 579.876 Td
+510.389 425.986 Td
 (last) Tj
 ET
 BT
 /F0 11 Tf
-105.270 564.487 Td
+105.270 410.597 Td
 (one) Tj
 ET
 BT
 /F0 11 Tf
-123.904 564.487 Td
+123.904 410.597 Td
 (it) Tj
 ET
 BT
 /F0 11 Tf
-132.770 564.487 Td
+132.770 410.597 Td
 (empty.) Tj
 ET
 BT
 /F0 11 Tf
-168.520 564.487 Td
+168.520 410.597 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-190.828 564.487 Td
+190.828 410.597 Td
 (is) Tj
 ET
 BT
 /F0 11 Tf
-200.915 564.487 Td
+200.915 410.597 Td
 (explained) Tj
 ET
 BT
 /F0 11 Tf
-246.433 564.487 Td
+246.433 410.597 Td
 (in) Tj
 ET
 BT
 /F0 11 Tf
-257.741 564.487 Td
+257.741 410.597 Td
 (detox.tbl\(5\).) Tj
 ET
 BT
 /F0 11 Tf
-105.270 533.709 Td
+105.270 379.819 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-127.578 533.709 Td
+127.578 379.819 Td
 (filter) Tj
 ET
 BT
 /F0 11 Tf
-151.712 533.709 Td
+151.712 379.819 Td
 (is) Tj
 ET
 BT
 /F0 11 Tf
-161.799 533.709 Td
+161.799 379.819 Td
 (mutually) Tj
 ET
 BT
 /F0 11 Tf
-203.665 533.709 Td
+203.665 379.819 Td
 (exclusive) Tj
 ET
 BT
 /F0 11 Tf
-247.962 533.709 Td
+247.962 379.819 Td
 (with) Tj
 ET
 BT
 /F0 11 Tf
-270.270 533.709 Td
+270.270 379.819 Td
 (the) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-286.462 533.709 Td
+286.462 379.819 Td
 (utf_8) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-311.828 533.709 Td
+311.828 379.819 Td
 (filter.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-81.774 502.931 Td
+81.774 349.041 Td
 (utf) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-95.216 502.931 Td
+95.216 349.041 Td
 (_) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-100.716 502.931 Td
+100.716 349.041 Td
 (8) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-106.216 502.931 Td
+106.216 349.041 Td
 (;) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-81.774 472.153 Td
+81.774 318.263 Td
 (utf) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-95.216 472.153 Td
+95.216 318.263 Td
 (_) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-100.716 472.153 Td
+100.716 318.263 Td
 (8) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-108.966 472.153 Td
+108.966 318.263 Td
 ({) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-114.246 472.153 Td
+114.246 318.263 Td
 (builtin) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-148.181 472.153 Td
+148.181 318.263 Td
 (") Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-152.669 472.153 Td
+152.669 318.263 Td
 (name) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-176.495 472.153 Td
+176.495 318.263 Td
 (";};) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-81.774 441.375 Td
+81.774 287.485 Td
 (utf) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-95.216 441.375 Td
+95.216 287.485 Td
 (_) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-100.716 441.375 Td
+100.716 287.485 Td
 (8) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-108.966 441.375 Td
+108.966 287.485 Td
 ({) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-114.246 441.375 Td
+114.246 287.485 Td
 (filename) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-157.322 441.375 Td
+157.322 287.485 Td
 (") Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-161.810 441.375 Td
+161.810 287.485 Td
 (/path/to/filename) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-236.984 441.375 Td
+236.984 287.485 Td
 (";};) Tj
 ET
 BT
 /F0 11 Tf
-105.270 425.986 Td
+105.270 272.096 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-127.578 425.986 Td
+127.578 272.096 Td
 (transliterations) Tj
 ET
 BT
 /F0 11 Tf
-195.712 425.986 Td
+195.712 272.096 Td
 (Unicode) Tj
 ET
 BT
 /F0 11 Tf
-235.730 425.986 Td
+235.730 272.096 Td
 (characters,) Tj
 ET
 BT
 /F0 11 Tf
-285.813 425.986 Td
+285.813 272.096 Td
 (encoded) Tj
 ET
 BT
 /F0 11 Tf
-325.215 425.986 Td
+325.215 272.096 Td
 (using) Tj
 ET
 BT
 /F0 11 Tf
-351.802 425.986 Td
+351.802 272.096 Td
 (UTF-8,) Tj
 ET
 BT
 /F0 11 Tf
-387.244 425.986 Td
+387.244 272.096 Td
 (into) Tj
 ET
 BT
 /F0 11 Tf
-407.110 425.986 Td
+407.110 272.096 Td
 (lower) Tj
 ET
 BT
 /F0 11 Tf
-434.907 425.986 Td
+434.907 272.096 Td
 (ASCII) Tj
 ET
 BT
 /F0 11 Tf
-466.378 425.986 Td
+466.378 272.096 Td
 (equivalents.) Tj
 ET
 BT
 /F0 11 Tf
-105.270 395.208 Td
+105.270 241.318 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-127.578 395.208 Td
+127.578 241.318 Td
 (operates) Tj
 ET
 BT
 /F0 11 Tf
-166.980 395.208 Td
+166.980 241.318 Td
 (in) Tj
 ET
 BT
 /F0 11 Tf
-178.288 395.208 Td
+178.288 241.318 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-185.922 395.208 Td
+185.922 241.318 Td
 (manner) Tj
 ET
 BT
 /F0 11 Tf
-221.661 395.208 Td
+221.661 241.318 Td
 (similar) Tj
 ET
 BT
 /F0 11 Tf
-254.969 395.208 Td
+254.969 241.318 Td
 (to) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-266.277 395.208 Td
+266.277 241.318 Td
 (iso8859_1) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-312.114 395.208 Td
+312.114 241.318 Td
 (,) Tj
 ET
 BT
 /F0 11 Tf
-317.614 395.208 Td
+317.614 241.318 Td
 (except) Tj
 ET
 BT
 /F0 11 Tf
-349.074 395.208 Td
+349.074 241.318 Td
 (it) Tj
 ET
 BT
 /F0 11 Tf
-357.940 395.208 Td
+357.940 241.318 Td
 (looks) Tj
 ET
 BT
 /F0 11 Tf
-384.527 395.208 Td
+384.527 241.318 Td
 (for) Tj
 ET
 BT
 /F0 11 Tf
-400.103 395.208 Td
+400.103 241.318 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-407.737 395.208 Td
+407.737 241.318 Td
 (translation) Tj
 ET
 BT
 /F0 11 Tf
-456.929 395.208 Td
+456.929 241.318 Td
 (table) Tj
 ET
 BT
 /F0 11 Tf
-481.063 395.208 Td
+481.063 241.318 Td
 (called) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-105.270 379.819 Td
+105.270 225.929 Td
 (unicode.tbl) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-154.462 379.819 Td
+154.462 225.929 Td
 (.) Tj
 ET
 BT
 /F0 11 Tf
-105.270 349.041 Td
+105.270 195.151 Td
 (Similar) Tj
 ET
 BT
 /F0 11 Tf
-140.415 349.041 Td
+140.415 195.151 Td
 (to) Tj
 ET
 BT
 /F0 11 Tf
-151.723 349.041 Td
+151.723 195.151 Td
 (the) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-167.915 349.041 Td
+167.915 195.151 Td
 (iso8859_1) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-216.502 349.041 Td
+216.502 195.151 Td
 (filter,) Tj
 ET
 BT
 /F0 11 Tf
-243.386 349.041 Td
+243.386 195.151 Td
 (an) Tj
 ET
 BT
 /F0 11 Tf
-256.520 349.041 Td
+256.520 195.151 Td
 (internal) Tj
 ET
 BT
 /F0 11 Tf
-292.875 349.041 Td
+292.875 195.151 Td
 (table) Tj
 ET
 BT
 /F0 11 Tf
-317.009 349.041 Td
+317.009 195.151 Td
 (exists,) Tj
 ET
 BT
 /F0 11 Tf
-347.567 349.041 Td
+347.567 195.151 Td
 (based) Tj
 ET
 BT
 /F0 11 Tf
-375.364 349.041 Td
+375.364 195.151 Td
 (on) Tj
 ET
 BT
 /F0 11 Tf
-389.114 349.041 Td
+389.114 195.151 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-405.306 349.041 Td
+405.306 195.151 Td
 (stock) Tj
 ET
 BT
 /F0 11 Tf
-431.277 349.041 Td
+431.277 195.151 Td
 (translation) Tj
 ET
 BT
 /F0 11 Tf
-480.469 349.041 Td
+480.469 195.151 Td
 (table,) Tj
 ET
 BT
 /F0 11 Tf
-507.353 349.041 Td
+507.353 195.151 Td
 (called) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-105.270 333.652 Td
+105.270 179.762 Td
 (unicode) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-140.096 333.652 Td
+140.096 179.762 Td
 (.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-81.774 302.874 Td
+81.774 148.984 Td
 (uncgi) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-107.448 302.874 Td
+107.448 148.984 Td
 (;) Tj
 ET
 BT
 /F0 11 Tf
-105.270 287.485 Td
+105.270 133.595 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-127.578 287.485 Td
+127.578 133.595 Td
 (translates) Tj
 ET
 BT
 /F0 11 Tf
-171.875 287.485 Td
+171.875 133.595 Td
 (CGI-escaped) Tj
 ET
 BT
 /F0 11 Tf
-232.045 287.485 Td
+232.045 133.595 Td
 (strings) Tj
 ET
 BT
 /F0 11 Tf
-264.132 287.485 Td
+264.132 133.595 Td
 (into) Tj
 ET
 BT
 /F0 11 Tf
-283.998 287.485 Td
+283.998 133.595 Td
 (their) Tj
 ET
 BT
 /F0 11 Tf
-306.911 287.485 Td
+306.911 133.595 Td
 (ASCII) Tj
 ET
 BT
 /F0 11 Tf
-338.382 287.485 Td
+338.382 133.595 Td
 (equivalents.) Tj
 ET
 BT
 /F0 11 Tf
-393.987 287.485 Td
+393.987 133.595 Td
 (The) Tj
 ET
 BT
 /F0 11 Tf
-413.842 287.485 Td
+413.842 133.595 Td
 (output) Tj
 ET
 BT
 /F0 11 Tf
-444.708 287.485 Td
+444.708 133.595 Td
 (of) Tj
 ET
 BT
 /F0 11 Tf
-456.621 287.485 Td
+456.621 133.595 Td
 (this) Tj
 ET
 BT
 /F0 11 Tf
-475.266 287.485 Td
+475.266 133.595 Td
 (is) Tj
 ET
 BT
 /F0 11 Tf
-485.353 287.485 Td
+485.353 133.595 Td
 (not) Tj
 ET
 BT
 /F0 11 Tf
-105.270 272.096 Td
+105.270 118.206 Td
 (necessarily) Tj
 ET
 BT
 /F0 11 Tf
-156.893 272.096 Td
+156.893 118.206 Td
 (safe,) Tj
 ET
 BT
 /F0 11 Tf
-180.103 272.096 Td
+180.103 118.206 Td
 (and) Tj
 ET
 BT
 /F0 11 Tf
-198.737 272.096 Td
+198.737 118.206 Td
 (should) Tj
 ET
 BT
 /F0 11 Tf
-230.824 272.096 Td
+230.824 118.206 Td
 (be) Tj
 ET
 BT
 /F0 11 Tf
-243.958 272.096 Td
+243.958 118.206 Td
 (run) Tj
 ET
 BT
 /F0 11 Tf
-261.371 272.096 Td
+261.371 118.206 Td
 (through) Tj
 ET
 BT
 /F0 11 Tf
-298.342 272.096 Td
+298.342 118.206 Td
 (the) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-314.534 272.096 Td
+314.534 118.206 Td
 (safe) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-335.005 272.096 Td
+335.005 118.206 Td
 (filter,) Tj
 ET
 BT
 /F0 11 Tf
-361.889 272.096 Td
+361.889 118.206 Td
 (at) Tj
 ET
 BT
 /F0 11 Tf
-372.581 272.096 Td
+372.581 118.206 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-388.773 272.096 Td
+388.773 118.206 Td
 (least.) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 241.318 Td
-(safe) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-100.100 241.318 Td
-(;) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 210.540 Td
-(safe) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-102.850 210.540 Td
-({) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-108.130 210.540 Td
-(builtin) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-142.065 210.540 Td
-(") Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-146.553 210.540 Td
-(name) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-170.379 210.540 Td
-(";};) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 179.762 Td
-(safe) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-102.850 179.762 Td
-({) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-108.130 179.762 Td
-(filename) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-151.206 179.762 Td
-(") Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-155.694 179.762 Td
-(/path/to/filename) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-230.868 179.762 Td
-(";};) Tj
-ET
-BT
-/F0 11 Tf
-105.270 164.373 Td
-(This) Tj
-ET
-BT
-/F0 11 Tf
-127.578 164.373 Td
-(could) Tj
-ET
-BT
-/F0 11 Tf
-154.770 164.373 Td
-(also) Tj
-ET
-BT
-/F0 11 Tf
-175.241 164.373 Td
-(be) Tj
-ET
-BT
-/F0 11 Tf
-188.375 164.373 Td
-(called) Tj
-ET
-BT
-/F0 11 Tf
-217.393 164.373 Td
-("safe) Tj
-ET
-BT
-/F0 11 Tf
-242.341 164.373 Td
-(for) Tj
-ET
-BT
-/F0 11 Tf
-257.917 164.373 Td
-(UNIX-like) Tj
-ET
-BT
-/F0 11 Tf
-308.319 164.373 Td
-(operating) Tj
-ET
-BT
-/F0 11 Tf
-352.616 164.373 Td
-(systems".) Tj
-ET
-BT
-/F0 11 Tf
-400.191 164.373 Td
-(It) Tj
-ET
-BT
-/F0 11 Tf
-409.662 164.373 Td
-(translates) Tj
-ET
-BT
-/F0 11 Tf
-453.959 164.373 Td
-(characters) Tj
-ET
-BT
-/F0 11 Tf
-501.292 164.373 Td
-(that) Tj
-ET
-BT
-/F0 11 Tf
-520.542 164.373 Td
-(are) Tj
-ET
-BT
-/F0 11 Tf
-105.270 148.984 Td
-(difficult) Tj
-ET
-BT
-/F0 11 Tf
-143.462 148.984 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-154.770 148.984 Td
-(work) Tj
-ET
-BT
-/F0 11 Tf
-180.125 148.984 Td
-(with) Tj
-ET
-BT
-/F0 11 Tf
-202.433 148.984 Td
-(in) Tj
-ET
-BT
-/F0 11 Tf
-213.741 148.984 Td
-(UNIX) Tj
-ET
-BT
-/F0 11 Tf
-243.980 148.984 Td
-(environments) Tj
-ET
-BT
-/F0 11 Tf
-306.614 148.984 Td
-(into) Tj
-ET
-BT
-/F0 11 Tf
-326.480 148.984 Td
-(characters) Tj
-ET
-BT
-/F0 11 Tf
-373.813 148.984 Td
-(that) Tj
-ET
-BT
-/F0 11 Tf
-393.063 148.984 Td
-(are) Tj
-ET
-BT
-/F0 11 Tf
-409.244 148.984 Td
-(not.) Tj
-ET
-BT
-/F0 11 Tf
-105.270 118.206 Td
-(Similar) Tj
-ET
-BT
-/F0 11 Tf
-140.415 118.206 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-151.723 118.206 Td
-(the) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-167.915 118.206 Td
-(iso8859_1) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-216.502 118.206 Td
-(and) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-235.136 118.206 Td
-(utf_8) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-260.502 118.206 Td
-(filters,) Tj
-ET
-BT
-/F0 11 Tf
-291.665 118.206 Td
-(this) Tj
-ET
-BT
-/F0 11 Tf
-310.310 118.206 Td
-(can) Tj
-ET
-BT
-/F0 11 Tf
-328.328 118.206 Td
-(be) Tj
-ET
-BT
-/F0 11 Tf
-341.462 118.206 Td
-(controlled) Tj
-ET
-BT
-/F0 11 Tf
-388.817 118.206 Td
-(using) Tj
-ET
-BT
-/F0 11 Tf
-415.404 118.206 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-423.038 118.206 Td
-(translation) Tj
-ET
-BT
-/F0 11 Tf
-472.230 118.206 Td
-(table.) Tj
-ET
-BT
-/F0 11 Tf
-501.864 118.206 Td
-(This) Tj
-ET
-BT
-/F0 11 Tf
-105.270 102.817 Td
-(filter) Tj
-ET
-BT
-/F0 11 Tf
-129.404 102.817 Td
-(also) Tj
-ET
-BT
-/F0 11 Tf
-149.875 102.817 Td
-(has) Tj
-ET
-BT
-/F0 11 Tf
-167.288 102.817 Td
-(an) Tj
-ET
-BT
-/F0 11 Tf
-180.422 102.817 Td
-(internal) Tj
-ET
-BT
-/F0 11 Tf
-216.777 102.817 Td
-(version) Tj
-ET
-BT
-/F0 11 Tf
-251.911 102.817 Td
-(of) Tj
-ET
-BT
-/F0 11 Tf
-263.824 102.817 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-280.016 102.817 Td
-(translation) Tj
-ET
-BT
-/F0 11 Tf
-329.208 102.817 Td
-(table,) Tj
-ET
-BT
-/F0 11 Tf
-356.092 102.817 Td
-(which) Tj
-ET
-BT
-/F0 11 Tf
-385.726 102.817 Td
-(can) Tj
-ET
-BT
-/F0 11 Tf
-403.744 102.817 Td
-(be) Tj
-ET
-BT
-/F0 11 Tf
-416.878 102.817 Td
-(accessed) Tj
-ET
-BT
-/F0 11 Tf
-458.106 102.817 Td
-(via) Tj
-ET
-BT
-/F0 11 Tf
-474.298 102.817 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-490.490 102.817 Td
-(builtin) Tj
-ET
-BT
-/F0 11 Tf
-521.972 102.817 Td
-(table) Tj
 ET
 /F0 11 Tf
 BT
@@ -3164,7 +3083,7 @@ ET
 endstream
 endobj
 12 0 obj
-13971
+13400
 endobj
 13 0 obj
 <<
@@ -3191,322 +3110,408 @@ endobj
 >>
 stream
 BT
-/F2 11 Tf
-105.270 702.988 Td
+/F1 11 Tf
+81.774 702.988 Td
 (safe) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-122.991 702.988 Td
-(.) Tj
-ET
-BT
-/F0 11 Tf
-105.270 672.210 Td
-(See) Tj
-ET
-BT
-/F0 11 Tf
-123.904 672.210 Td
-(the) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-140.096 672.210 Td
-(SAFE) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-168.509 672.210 Td
-(section) Tj
-ET
-BT
-/F0 11 Tf
-202.422 672.210 Td
-(for) Tj
-ET
-BT
-/F0 11 Tf
-217.998 672.210 Td
-(more) Tj
-ET
-BT
-/F0 11 Tf
-243.353 672.210 Td
-(details) Tj
-ET
-BT
-/F0 11 Tf
-274.824 672.210 Td
-(on) Tj
-ET
-BT
-/F0 11 Tf
-288.574 672.210 Td
-(what) Tj
-ET
-BT
-/F0 11 Tf
-312.708 672.210 Td
-(this) Tj
-ET
-BT
-/F0 11 Tf
-331.353 672.210 Td
-(filter) Tj
-ET
-BT
-/F0 11 Tf
-355.487 672.210 Td
-(translates) Tj
-ET
-BT
-/F0 11 Tf
-399.784 672.210 Td
-(by) Tj
-ET
-BT
-/F0 11 Tf
-413.534 672.210 Td
-(default.) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 641.432 Td
-(wipeup) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-116.006 641.432 Td
+100.100 702.988 Td
 (;) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-81.774 610.654 Td
-(wipeup) Tj
+81.774 672.210 Td
+(safe) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-118.756 610.654 Td
+102.850 672.210 Td
 ({) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-124.036 610.654 Td
-(remove) Tj
+108.130 672.210 Td
+(builtin) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+142.065 672.210 Td
+(") Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-158.851 610.654 Td
-(_) Tj
+146.553 672.210 Td
+(name) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+170.379 672.210 Td
+(";};) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-164.351 610.654 Td
-(trailing) Tj
+81.774 641.432 Td
+(safe) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-199.188 610.654 Td
-(;};) Tj
+102.850 641.432 Td
+({) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+108.130 641.432 Td
+(filename) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+151.206 641.432 Td
+(") Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+155.694 641.432 Td
+(/path/to/filename) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+230.868 641.432 Td
+(";};) Tj
 ET
 BT
 /F0 11 Tf
-105.270 595.265 Td
+105.270 626.043 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-127.578 595.265 Td
-(condenses) Tj
+127.578 626.043 Td
+(could) Tj
 ET
 BT
 /F0 11 Tf
-175.538 595.265 Td
-(sequences) Tj
+154.770 626.043 Td
+(also) Tj
 ET
 BT
 /F0 11 Tf
-222.882 595.265 Td
-(of) Tj
+175.241 626.043 Td
+(be) Tj
 ET
 BT
 /F0 11 Tf
-234.795 595.265 Td
-(dashes) Tj
+188.375 626.043 Td
+(called) Tj
 ET
 BT
 /F0 11 Tf
-266.871 595.265 Td
-(and) Tj
+217.393 626.043 Td
+("safe) Tj
 ET
 BT
 /F0 11 Tf
-285.505 595.265 Td
-(underscores) Tj
+242.341 626.043 Td
+(for) Tj
 ET
 BT
 /F0 11 Tf
-340.791 595.265 Td
+257.917 626.043 Td
+(UNIX-like) Tj
+ET
+BT
+/F0 11 Tf
+308.319 626.043 Td
+(operating) Tj
+ET
+BT
+/F0 11 Tf
+352.616 626.043 Td
+(systems".) Tj
+ET
+BT
+/F0 11 Tf
+400.191 626.043 Td
+(It) Tj
+ET
+BT
+/F0 11 Tf
+409.662 626.043 Td
+(translates) Tj
+ET
+BT
+/F0 11 Tf
+453.959 626.043 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+501.292 626.043 Td
+(that) Tj
+ET
+BT
+/F0 11 Tf
+520.542 626.043 Td
+(are) Tj
+ET
+BT
+/F0 11 Tf
+105.270 610.654 Td
+(difficult) Tj
+ET
+BT
+/F0 11 Tf
+143.462 610.654 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+154.770 610.654 Td
+(work) Tj
+ET
+BT
+/F0 11 Tf
+180.125 610.654 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+202.433 610.654 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+213.741 610.654 Td
+(UNIX) Tj
+ET
+BT
+/F0 11 Tf
+243.980 610.654 Td
+(environments) Tj
+ET
+BT
+/F0 11 Tf
+306.614 610.654 Td
 (into) Tj
 ET
 BT
 /F0 11 Tf
-360.657 595.265 Td
-(a) Tj
+326.480 610.654 Td
+(characters) Tj
 ET
 BT
 /F0 11 Tf
-368.291 595.265 Td
-(single) Tj
+373.813 610.654 Td
+(that) Tj
 ET
 BT
 /F0 11 Tf
-397.320 595.265 Td
-(dash,) Tj
+393.063 610.654 Td
+(are) Tj
 ET
 BT
 /F0 11 Tf
-422.983 595.265 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-441.617 595.265 Td
-(removes) Tj
-ET
-BT
-/F0 11 Tf
-481.635 595.265 Td
-(leading) Tj
+409.244 610.654 Td
+(not.) Tj
 ET
 BT
 /F0 11 Tf
 105.270 579.876 Td
-(dashes,) Tj
+(Similar) Tj
 ET
 BT
 /F0 11 Tf
-140.096 579.876 Td
-(underscores,) Tj
+140.415 579.876 Td
+(to) Tj
 ET
 BT
 /F0 11 Tf
-198.132 579.876 Td
+151.723 579.876 Td
+(the) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+167.915 579.876 Td
+(iso8859_1) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+216.502 579.876 Td
 (and) Tj
 ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+235.136 579.876 Td
+(utf_8) Tj
+ET
+/F0 11 Tf
 BT
 /F0 11 Tf
-216.766 579.876 Td
-(octothorpes) Tj
+260.502 579.876 Td
+(filters,) Tj
 ET
 BT
 /F0 11 Tf
-270.842 579.876 Td
-(\(A.K.A.) Tj
+291.665 579.876 Td
+(this) Tj
 ET
 BT
 /F0 11 Tf
-309.331 579.876 Td
-(pound) Tj
+310.310 579.876 Td
+(can) Tj
 ET
 BT
 /F0 11 Tf
-339.581 579.876 Td
-(signs) Tj
+328.328 579.876 Td
+(be) Tj
 ET
 BT
 /F0 11 Tf
-364.947 579.876 Td
-(or) Tj
+341.462 579.876 Td
+(controlled) Tj
 ET
 BT
 /F0 11 Tf
-376.860 579.876 Td
-(hash) Tj
+388.817 579.876 Td
+(using) Tj
 ET
 BT
 /F0 11 Tf
-399.773 579.876 Td
-(tags\).) Tj
+415.404 579.876 Td
+(a) Tj
 ET
 BT
 /F0 11 Tf
+423.038 579.876 Td
+(translation) Tj
+ET
+BT
+/F0 11 Tf
+472.230 579.876 Td
+(table.) Tj
+ET
+BT
+/F0 11 Tf
+501.864 579.876 Td
+(This) Tj
+ET
+BT
+/F0 11 Tf
+105.270 564.487 Td
+(filter) Tj
+ET
+BT
+/F0 11 Tf
+129.404 564.487 Td
+(also) Tj
+ET
+BT
+/F0 11 Tf
+149.875 564.487 Td
+(has) Tj
+ET
+BT
+/F0 11 Tf
+167.288 564.487 Td
+(an) Tj
+ET
+BT
+/F0 11 Tf
+180.422 564.487 Td
+(internal) Tj
+ET
+BT
+/F0 11 Tf
+216.777 564.487 Td
+(version) Tj
+ET
+BT
+/F0 11 Tf
+251.911 564.487 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+263.824 564.487 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+280.016 564.487 Td
+(translation) Tj
+ET
+BT
+/F0 11 Tf
+329.208 564.487 Td
+(table,) Tj
+ET
+BT
+/F0 11 Tf
+356.092 564.487 Td
+(which) Tj
+ET
+BT
+/F0 11 Tf
+385.726 564.487 Td
+(can) Tj
+ET
+BT
+/F0 11 Tf
+403.744 564.487 Td
+(be) Tj
+ET
+BT
+/F0 11 Tf
+416.878 564.487 Td
+(accessed) Tj
+ET
+BT
+/F0 11 Tf
+458.106 564.487 Td
+(via) Tj
+ET
+BT
+/F0 11 Tf
+474.298 564.487 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+490.490 564.487 Td
+(builtin) Tj
+ET
+BT
+/F0 11 Tf
+521.972 564.487 Td
+(table) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
 105.270 549.098 Td
-(The) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-125.125 549.098 Td
-(remove_trailing) Tj
+(safe) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-198.759 549.098 Td
-(option) Tj
-ET
-BT
-/F0 11 Tf
-229.625 549.098 Td
-(removes) Tj
-ET
-BT
-/F0 11 Tf
-269.643 549.098 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-277.277 549.098 Td
-(dash) Tj
-ET
-BT
-/F0 11 Tf
-300.190 549.098 Td
-(or) Tj
-ET
-BT
-/F0 11 Tf
-312.103 549.098 Td
-(underscore) Tj
-ET
-BT
-/F0 11 Tf
-363.110 549.098 Td
-(followed) Tj
-ET
-BT
-/F0 11 Tf
-404.965 549.098 Td
-(immediately) Tj
-ET
-BT
-/F0 11 Tf
-462.715 549.098 Td
-(by) Tj
-ET
-BT
-/F0 11 Tf
-476.465 549.098 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-484.099 549.098 Td
-(period.) Tj
+122.991 549.098 Td
+(.) Tj
 ET
 BT
 /F0 11 Tf
@@ -3522,715 +3527,740 @@ ET
 BT
 /F2 11 Tf
 140.096 518.320 Td
-(WIPEUP) Tj
+(SAFE) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-183.777 518.320 Td
+168.509 518.320 Td
 (section) Tj
 ET
 BT
 /F0 11 Tf
-217.690 518.320 Td
+202.422 518.320 Td
 (for) Tj
 ET
 BT
 /F0 11 Tf
-233.266 518.320 Td
+217.998 518.320 Td
 (more) Tj
 ET
 BT
 /F0 11 Tf
-258.621 518.320 Td
+243.353 518.320 Td
 (details) Tj
 ET
 BT
 /F0 11 Tf
-290.092 518.320 Td
+274.824 518.320 Td
 (on) Tj
 ET
 BT
 /F0 11 Tf
-303.842 518.320 Td
+288.574 518.320 Td
 (what) Tj
 ET
 BT
 /F0 11 Tf
-327.976 518.320 Td
+312.708 518.320 Td
 (this) Tj
 ET
 BT
 /F0 11 Tf
-346.621 518.320 Td
+331.353 518.320 Td
 (filter) Tj
 ET
 BT
 /F0 11 Tf
-370.755 518.320 Td
-(translates.) Tj
+355.487 518.320 Td
+(translates) Tj
+ET
+BT
+/F0 11 Tf
+399.784 518.320 Td
+(by) Tj
+ET
+BT
+/F0 11 Tf
+413.534 518.320 Td
+(default.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
 81.774 487.542 Td
-(max) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-101.937 487.542 Td
-(_) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-107.437 487.542 Td
-(length) Tj
+(wipeup) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-139.524 487.542 Td
+116.006 487.542 Td
+(;) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+81.774 456.764 Td
+(wipeup) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+118.756 456.764 Td
 ({) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-144.804 487.542 Td
-(length) Tj
+124.036 456.764 Td
+(remove) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-176.891 487.542 Td
-(value) Tj
+158.851 456.764 Td
+(_) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+164.351 456.764 Td
+(trailing) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-200.717 487.542 Td
+199.188 456.764 Td
 (;};) Tj
 ET
 BT
 /F0 11 Tf
-105.270 472.153 Td
+105.270 441.375 Td
 (This) Tj
 ET
 BT
 /F0 11 Tf
-127.578 472.153 Td
-(trims) Tj
+127.578 441.375 Td
+(condenses) Tj
 ET
 BT
 /F0 11 Tf
-152.944 472.153 Td
-(a) Tj
+175.538 441.375 Td
+(sequences) Tj
 ET
 BT
 /F0 11 Tf
-160.578 472.153 Td
-(filename) Tj
-ET
-BT
-/F0 11 Tf
-201.817 472.153 Td
-(down) Tj
-ET
-BT
-/F0 11 Tf
-229.009 472.153 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-240.317 472.153 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-256.509 472.153 Td
-(length) Tj
-ET
-BT
-/F0 11 Tf
-286.759 472.153 Td
-(specified) Tj
-ET
-BT
-/F0 11 Tf
-329.219 472.153 Td
-(\(or) Tj
-ET
-BT
-/F0 11 Tf
-344.795 472.153 Td
-(less\).) Tj
-ET
-BT
-/F0 11 Tf
-373.208 472.153 Td
-(It) Tj
-ET
-BT
-/F0 11 Tf
-382.679 472.153 Td
-(is) Tj
-ET
-BT
-/F0 11 Tf
-392.766 472.153 Td
-(conscious) Tj
-ET
-BT
-/F0 11 Tf
-438.900 472.153 Td
+222.882 441.375 Td
 (of) Tj
 ET
 BT
 /F0 11 Tf
-450.813 472.153 Td
-(extensions) Tj
+234.795 441.375 Td
+(dashes) Tj
 ET
 BT
 /F0 11 Tf
-500.005 472.153 Td
+266.871 441.375 Td
 (and) Tj
 ET
 BT
 /F0 11 Tf
-105.270 456.764 Td
-(attempts) Tj
+285.505 441.375 Td
+(underscores) Tj
 ET
 BT
 /F0 11 Tf
-145.299 456.764 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-156.607 456.764 Td
-(preserve) Tj
-ET
-BT
-/F0 11 Tf
-196.614 456.764 Td
-(anything) Tj
-ET
-BT
-/F0 11 Tf
-237.864 456.764 Td
-(following) Tj
-ET
-BT
-/F0 11 Tf
-283.393 456.764 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-299.585 456.764 Td
-(last) Tj
-ET
-BT
-/F0 11 Tf
-317.614 456.764 Td
-(period) Tj
-ET
-BT
-/F0 11 Tf
-348.469 456.764 Td
-(in) Tj
-ET
-BT
-/F0 11 Tf
-359.777 456.764 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-367.411 456.764 Td
-(filename.) Tj
-ET
-BT
-/F0 11 Tf
-105.270 425.986 Td
-(For) Tj
-ET
-BT
-/F0 11 Tf
-123.299 425.986 Td
-(instance,) Tj
-ET
-BT
-/F0 11 Tf
-164.846 425.986 Td
-(given) Tj
-ET
-BT
-/F0 11 Tf
-192.038 425.986 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-199.672 425.986 Td
-(max) Tj
-ET
-BT
-/F0 11 Tf
-221.364 425.986 Td
-(length) Tj
-ET
-BT
-/F0 11 Tf
-251.614 425.986 Td
-(of) Tj
-ET
-BT
-/F0 11 Tf
-263.527 425.986 Td
-(12,) Tj
-ET
-BT
-/F0 11 Tf
-280.027 425.986 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-298.661 425.986 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-306.295 425.986 Td
-(filename) Tj
-ET
-BT
-/F0 11 Tf
-347.534 425.986 Td
-(of) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-359.447 425.986 Td
-(this_is_my_file.txt) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-439.813 425.986 Td
-(,) Tj
-ET
-BT
-/F0 11 Tf
-445.313 425.986 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-461.505 425.986 Td
-(filter) Tj
-ET
-BT
-/F0 11 Tf
-485.639 425.986 Td
-(would) Tj
-ET
-BT
-/F0 11 Tf
-105.270 410.597 Td
-(output) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-136.136 410.597 Td
-(this_is_.txt) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-184.118 410.597 Td
-(.) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-81.774 379.819 Td
-(lower) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-108.042 379.819 Td
-(;) Tj
-ET
-BT
-/F0 11 Tf
-105.270 364.430 Td
-(This) Tj
-ET
-BT
-/F0 11 Tf
-127.578 364.430 Td
-(translates) Tj
-ET
-BT
-/F0 11 Tf
-171.875 364.430 Td
-(uppercase) Tj
-ET
-BT
-/F0 11 Tf
-218.603 364.430 Td
-(characters) Tj
-ET
-BT
-/F0 11 Tf
-265.936 364.430 Td
+340.791 441.375 Td
 (into) Tj
 ET
 BT
 /F0 11 Tf
-285.802 364.430 Td
-(lowercase) Tj
+360.657 441.375 Td
+(a) Tj
 ET
 BT
 /F0 11 Tf
-332.530 364.430 Td
-(characters.) Tj
+368.291 441.375 Td
+(single) Tj
 ET
 BT
 /F0 11 Tf
-385.363 364.430 Td
-(It) Tj
+397.320 441.375 Td
+(dash,) Tj
 ET
 BT
 /F0 11 Tf
-394.834 364.430 Td
-(only) Tj
+422.983 441.375 Td
+(and) Tj
 ET
 BT
 /F0 11 Tf
-417.142 364.430 Td
-(works) Tj
+441.617 441.375 Td
+(removes) Tj
 ET
 BT
 /F0 11 Tf
-446.776 364.430 Td
+481.635 441.375 Td
+(leading) Tj
+ET
+BT
+/F0 11 Tf
+105.270 425.986 Td
+(dashes,) Tj
+ET
+BT
+/F0 11 Tf
+140.096 425.986 Td
+(underscores,) Tj
+ET
+BT
+/F0 11 Tf
+198.132 425.986 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+216.766 425.986 Td
+(octothorpes) Tj
+ET
+BT
+/F0 11 Tf
+270.842 425.986 Td
+(\(A.K.A.) Tj
+ET
+BT
+/F0 11 Tf
+309.331 425.986 Td
+(pound) Tj
+ET
+BT
+/F0 11 Tf
+339.581 425.986 Td
+(signs) Tj
+ET
+BT
+/F0 11 Tf
+364.947 425.986 Td
+(or) Tj
+ET
+BT
+/F0 11 Tf
+376.860 425.986 Td
+(hash) Tj
+ET
+BT
+/F0 11 Tf
+399.773 425.986 Td
+(tags\).) Tj
+ET
+BT
+/F0 11 Tf
+105.270 395.208 Td
+(The) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+125.125 395.208 Td
+(remove_trailing) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+198.759 395.208 Td
+(option) Tj
+ET
+BT
+/F0 11 Tf
+229.625 395.208 Td
+(removes) Tj
+ET
+BT
+/F0 11 Tf
+269.643 395.208 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+277.277 395.208 Td
+(dash) Tj
+ET
+BT
+/F0 11 Tf
+300.190 395.208 Td
+(or) Tj
+ET
+BT
+/F0 11 Tf
+312.103 395.208 Td
+(underscore) Tj
+ET
+BT
+/F0 11 Tf
+363.110 395.208 Td
+(followed) Tj
+ET
+BT
+/F0 11 Tf
+404.965 395.208 Td
+(immediately) Tj
+ET
+BT
+/F0 11 Tf
+462.715 395.208 Td
+(by) Tj
+ET
+BT
+/F0 11 Tf
+476.465 395.208 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+484.099 395.208 Td
+(period.) Tj
+ET
+BT
+/F0 11 Tf
+105.270 364.430 Td
+(See) Tj
+ET
+BT
+/F0 11 Tf
+123.904 364.430 Td
+(the) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+140.096 364.430 Td
+(WIPEUP) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+183.777 364.430 Td
+(section) Tj
+ET
+BT
+/F0 11 Tf
+217.690 364.430 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+233.266 364.430 Td
+(more) Tj
+ET
+BT
+/F0 11 Tf
+258.621 364.430 Td
+(details) Tj
+ET
+BT
+/F0 11 Tf
+290.092 364.430 Td
 (on) Tj
 ET
 BT
 /F0 11 Tf
-460.526 364.430 Td
-(ASCII) Tj
+303.842 364.430 Td
+(what) Tj
 ET
 BT
 /F0 11 Tf
-491.997 364.430 Td
-(characters.) Tj
+327.976 364.430 Td
+(this) Tj
+ET
+BT
+/F0 11 Tf
+346.621 364.430 Td
+(filter) Tj
+ET
+BT
+/F0 11 Tf
+370.755 364.430 Td
+(translates.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
 81.774 333.652 Td
-(#) Tj
+(max) Tj
 ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+101.937 333.652 Td
+(_) Tj
+ET
+/F1 11 Tf
 BT
 /F1 11 Tf
-90.024 333.652 Td
-(comments) Tj
+107.437 333.652 Td
+(length) Tj
 ET
 /F0 11 Tf
+BT
+/F0 11 Tf
+139.524 333.652 Td
+({) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+144.804 333.652 Td
+(length) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+176.891 333.652 Td
+(value) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+200.717 333.652 Td
+(;};) Tj
+ET
 BT
 /F0 11 Tf
 105.270 318.263 Td
-(Any) Tj
+(This) Tj
 ET
 BT
 /F0 11 Tf
-126.962 318.263 Td
-(thing) Tj
+127.578 318.263 Td
+(trims) Tj
 ET
 BT
 /F0 11 Tf
-152.328 318.263 Td
-(after) Tj
-ET
-BT
-/F0 11 Tf
-175.230 318.263 Td
+152.944 318.263 Td
 (a) Tj
 ET
 BT
 /F0 11 Tf
-182.864 318.263 Td
-(#) Tj
+160.578 318.263 Td
+(filename) Tj
 ET
 BT
 /F0 11 Tf
-191.114 318.263 Td
-(on) Tj
+201.817 318.263 Td
+(down) Tj
 ET
 BT
 /F0 11 Tf
-204.864 318.263 Td
-(any) Tj
+229.009 318.263 Td
+(to) Tj
 ET
 BT
 /F0 11 Tf
-223.498 318.263 Td
-(line) Tj
+240.317 318.263 Td
+(the) Tj
 ET
 BT
 /F0 11 Tf
-242.748 318.263 Td
+256.509 318.263 Td
+(length) Tj
+ET
+BT
+/F0 11 Tf
+286.759 318.263 Td
+(specified) Tj
+ET
+BT
+/F0 11 Tf
+329.219 318.263 Td
+(\(or) Tj
+ET
+BT
+/F0 11 Tf
+344.795 318.263 Td
+(less\).) Tj
+ET
+BT
+/F0 11 Tf
+373.208 318.263 Td
+(It) Tj
+ET
+BT
+/F0 11 Tf
+382.679 318.263 Td
 (is) Tj
 ET
 BT
 /F0 11 Tf
-252.835 318.263 Td
-(ignored.) Tj
+392.766 318.263 Td
+(conscious) Tj
+ET
+BT
+/F0 11 Tf
+438.900 318.263 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+450.813 318.263 Td
+(extensions) Tj
+ET
+BT
+/F0 11 Tf
+500.005 318.263 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+105.270 302.874 Td
+(attempts) Tj
+ET
+BT
+/F0 11 Tf
+145.299 302.874 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+156.607 302.874 Td
+(preserve) Tj
+ET
+BT
+/F0 11 Tf
+196.614 302.874 Td
+(anything) Tj
+ET
+BT
+/F0 11 Tf
+237.864 302.874 Td
+(following) Tj
+ET
+BT
+/F0 11 Tf
+283.393 302.874 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+299.585 302.874 Td
+(last) Tj
+ET
+BT
+/F0 11 Tf
+317.614 302.874 Td
+(period) Tj
+ET
+BT
+/F0 11 Tf
+348.469 302.874 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+359.777 302.874 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+367.411 302.874 Td
+(filename.) Tj
+ET
+BT
+/F0 11 Tf
+105.270 272.096 Td
+(For) Tj
+ET
+BT
+/F0 11 Tf
+123.299 272.096 Td
+(instance,) Tj
+ET
+BT
+/F0 11 Tf
+164.846 272.096 Td
+(given) Tj
+ET
+BT
+/F0 11 Tf
+192.038 272.096 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+199.672 272.096 Td
+(max) Tj
+ET
+BT
+/F0 11 Tf
+221.364 272.096 Td
+(length) Tj
+ET
+BT
+/F0 11 Tf
+251.614 272.096 Td
+(of) Tj
+ET
+BT
+/F0 11 Tf
+263.527 272.096 Td
+(12,) Tj
+ET
+BT
+/F0 11 Tf
+280.027 272.096 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+298.661 272.096 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+306.295 272.096 Td
+(filename) Tj
+ET
+BT
+/F0 11 Tf
+347.534 272.096 Td
+(of) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+359.447 272.096 Td
+(this_is_my_file.txt) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+439.813 272.096 Td
+(,) Tj
+ET
+BT
+/F0 11 Tf
+445.313 272.096 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+461.505 272.096 Td
+(filter) Tj
+ET
+BT
+/F0 11 Tf
+485.639 272.096 Td
+(would) Tj
+ET
+BT
+/F0 11 Tf
+105.270 256.707 Td
+(output) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+136.136 256.707 Td
+(this_is_.txt) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+184.118 256.707 Td
+(.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-68.024 287.485 Td
+81.774 225.929 Td
+(lower) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+108.042 225.929 Td
+(;) Tj
+ET
+BT
+/F0 11 Tf
+105.270 210.540 Td
+(This) Tj
+ET
+BT
+/F0 11 Tf
+127.578 210.540 Td
+(translates) Tj
+ET
+BT
+/F0 11 Tf
+171.875 210.540 Td
+(uppercase) Tj
+ET
+BT
+/F0 11 Tf
+218.603 210.540 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+265.936 210.540 Td
+(into) Tj
+ET
+BT
+/F0 11 Tf
+285.802 210.540 Td
+(lowercase) Tj
+ET
+BT
+/F0 11 Tf
+332.530 210.540 Td
+(characters.) Tj
+ET
+BT
+/F0 11 Tf
+385.363 210.540 Td
+(It) Tj
+ET
+BT
+/F0 11 Tf
+394.834 210.540 Td
+(only) Tj
+ET
+BT
+/F0 11 Tf
+417.142 210.540 Td
+(works) Tj
+ET
+BT
+/F0 11 Tf
+446.776 210.540 Td
+(on) Tj
+ET
+BT
+/F0 11 Tf
+460.526 210.540 Td
+(ASCII) Tj
+ET
+BT
+/F0 11 Tf
+491.997 210.540 Td
+(characters.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.024 179.762 Td
 (BUILTIN) Tj
 ET
 BT
 /F1 11 Tf
-117.227 287.485 Td
+117.227 179.762 Td
 (TABLES) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 272.096 Td
+81.774 164.373 Td
 (cp1252) Tj
-ET
-BT
-/F0 11 Tf
-105.270 256.707 Td
-(A) Tj
-ET
-BT
-/F0 11 Tf
-115.962 256.707 Td
-(translation) Tj
-ET
-BT
-/F0 11 Tf
-165.154 256.707 Td
-(table) Tj
-ET
-BT
-/F0 11 Tf
-189.288 256.707 Td
-(for) Tj
-ET
-BT
-/F0 11 Tf
-204.864 256.707 Td
-(transliterating) Tj
-ET
-BT
-/F0 11 Tf
-268.719 256.707 Td
-(CP-1252) Tj
-ET
-BT
-/F0 11 Tf
-310.585 256.707 Td
-(characters) Tj
-ET
-BT
-/F0 11 Tf
-357.918 256.707 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-369.226 256.707 Td
-(ASCII.) Tj
-ET
-BT
-/F0 11 Tf
-406.197 256.707 Td
-(This) Tj
-ET
-BT
-/F0 11 Tf
-428.505 256.707 Td
-(is) Tj
-ET
-BT
-/F0 11 Tf
-438.592 256.707 Td
-(no) Tj
-ET
-BT
-/F0 11 Tf
-452.342 256.707 Td
-(longer) Tj
-ET
-BT
-/F0 11 Tf
-483.197 256.707 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-490.831 256.707 Td
-(common) Tj
-ET
-BT
-/F0 11 Tf
-105.270 241.318 Td
-(use) Tj
-ET
-BT
-/F0 11 Tf
-122.683 241.318 Td
-(case,) Tj
-ET
-BT
-/F0 11 Tf
-147.114 241.318 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-165.748 241.318 Td
-(has) Tj
-ET
-BT
-/F0 11 Tf
-183.161 241.318 Td
-(been) Tj
-ET
-BT
-/F0 11 Tf
-206.679 241.318 Td
-(moved) Tj
-ET
-BT
-/F0 11 Tf
-239.371 241.318 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-250.679 241.318 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-258.313 241.318 Td
-(separate) Tj
-ET
-BT
-/F0 11 Tf
-297.099 241.318 Td
-(table.) Tj
-ET
-BT
-/F0 11 Tf
-81.774 210.540 Td
-(iso8859_1) Tj
-ET
-BT
-/F0 11 Tf
-105.270 195.151 Td
-(A) Tj
-ET
-BT
-/F0 11 Tf
-115.962 195.151 Td
-(translation) Tj
-ET
-BT
-/F0 11 Tf
-165.154 195.151 Td
-(table) Tj
-ET
-BT
-/F0 11 Tf
-189.288 195.151 Td
-(for) Tj
-ET
-BT
-/F0 11 Tf
-204.864 195.151 Td
-(transliterating) Tj
-ET
-BT
-/F0 11 Tf
-268.719 195.151 Td
-(single-byte) Tj
-ET
-BT
-/F0 11 Tf
-320.353 195.151 Td
-(characters) Tj
-ET
-BT
-/F0 11 Tf
-367.686 195.151 Td
-(with) Tj
-ET
-BT
-/F0 11 Tf
-389.994 195.151 Td
-(the) Tj
-ET
-BT
-/F0 11 Tf
-406.186 195.151 Td
-(high) Tj
-ET
-BT
-/F0 11 Tf
-428.494 195.151 Td
-(bit) Tj
-ET
-BT
-/F0 11 Tf
-442.860 195.151 Td
-(set) Tj
-ET
-BT
-/F0 11 Tf
-457.831 195.151 Td
-(from) Tj
-ET
-BT
-/F0 11 Tf
-481.965 195.151 Td
-(ISO) Tj
-ET
-BT
-/F0 11 Tf
-502.436 195.151 Td
-(8859-1) Tj
-ET
-BT
-/F0 11 Tf
-105.270 179.762 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-116.578 179.762 Td
-(ASCII.) Tj
-ET
-BT
-/F0 11 Tf
-81.774 148.984 Td
-(safe) Tj
 ET
 BT
 /F0 11 Tf
@@ -4240,142 +4270,127 @@ ET
 BT
 /F0 11 Tf
 115.962 148.984 Td
-(replacement) Tj
-ET
-BT
-/F0 11 Tf
-172.469 148.984 Td
-(table) Tj
-ET
-BT
-/F0 11 Tf
-196.603 148.984 Td
-(for) Tj
-ET
-BT
-/F0 11 Tf
-212.179 148.984 Td
-(characters) Tj
-ET
-BT
-/F0 11 Tf
-259.512 148.984 Td
-(that) Tj
-ET
-BT
-/F0 11 Tf
-278.762 148.984 Td
-(are) Tj
-ET
-BT
-/F0 11 Tf
-294.943 148.984 Td
-(hard) Tj
-ET
-BT
-/F0 11 Tf
-317.240 148.984 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-328.548 148.984 Td
-(work) Tj
-ET
-BT
-/F0 11 Tf
-353.903 148.984 Td
-(with) Tj
-ET
-BT
-/F0 11 Tf
-376.211 148.984 Td
-(under) Tj
-ET
-BT
-/F0 11 Tf
-404.008 148.984 Td
-(Unix) Tj
-ET
-BT
-/F0 11 Tf
-428.758 148.984 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-447.392 148.984 Td
-(Unix-like) Tj
-ET
-BT
-/F0 11 Tf
-492.305 148.984 Td
-(OSs.) Tj
-ET
-BT
-/F0 11 Tf
-81.774 118.206 Td
-(unicode) Tj
-ET
-BT
-/F0 11 Tf
-105.270 102.817 Td
-(A) Tj
-ET
-BT
-/F0 11 Tf
-115.962 102.817 Td
 (translation) Tj
 ET
 BT
 /F0 11 Tf
-165.154 102.817 Td
+165.154 148.984 Td
 (table) Tj
 ET
 BT
 /F0 11 Tf
-189.288 102.817 Td
+189.288 148.984 Td
 (for) Tj
 ET
 BT
 /F0 11 Tf
-204.864 102.817 Td
+204.864 148.984 Td
 (transliterating) Tj
 ET
 BT
 /F0 11 Tf
-268.719 102.817 Td
-(multi-byte) Tj
+268.719 148.984 Td
+(CP-1252) Tj
 ET
 BT
 /F0 11 Tf
-317.306 102.817 Td
+310.585 148.984 Td
 (characters) Tj
 ET
 BT
 /F0 11 Tf
-364.639 102.817 Td
-(encoded) Tj
-ET
-BT
-/F0 11 Tf
-404.041 102.817 Td
-(in) Tj
-ET
-BT
-/F0 11 Tf
-415.349 102.817 Td
-(UTF-8) Tj
-ET
-BT
-/F0 11 Tf
-448.041 102.817 Td
+357.918 148.984 Td
 (to) Tj
 ET
 BT
 /F0 11 Tf
-459.349 102.817 Td
+369.226 148.984 Td
 (ASCII.) Tj
+ET
+BT
+/F0 11 Tf
+406.197 148.984 Td
+(This) Tj
+ET
+BT
+/F0 11 Tf
+428.505 148.984 Td
+(is) Tj
+ET
+BT
+/F0 11 Tf
+438.592 148.984 Td
+(no) Tj
+ET
+BT
+/F0 11 Tf
+452.342 148.984 Td
+(longer) Tj
+ET
+BT
+/F0 11 Tf
+483.197 148.984 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+490.831 148.984 Td
+(common) Tj
+ET
+BT
+/F0 11 Tf
+105.270 133.595 Td
+(use) Tj
+ET
+BT
+/F0 11 Tf
+122.683 133.595 Td
+(case,) Tj
+ET
+BT
+/F0 11 Tf
+147.114 133.595 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+165.748 133.595 Td
+(has) Tj
+ET
+BT
+/F0 11 Tf
+183.161 133.595 Td
+(been) Tj
+ET
+BT
+/F0 11 Tf
+206.679 133.595 Td
+(moved) Tj
+ET
+BT
+/F0 11 Tf
+239.371 133.595 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+250.679 133.595 Td
+(a) Tj
+ET
+BT
+/F0 11 Tf
+258.313 133.595 Td
+(separate) Tj
+ET
+BT
+/F0 11 Tf
+297.099 133.595 Td
+(table.) Tj
+ET
+BT
+/F0 11 Tf
+81.774 102.817 Td
+(iso8859_1) Tj
 ET
 /F0 11 Tf
 BT
@@ -4431,7 +4446,7 @@ ET
 endstream
 endobj
 16 0 obj
-11450
+12345
 endobj
 17 0 obj
 <<
@@ -4458,654 +4473,651 @@ endobj
 >>
 stream
 BT
+/F0 11 Tf
+105.270 702.988 Td
+(A) Tj
+ET
+BT
+/F0 11 Tf
+115.962 702.988 Td
+(translation) Tj
+ET
+BT
+/F0 11 Tf
+165.154 702.988 Td
+(table) Tj
+ET
+BT
+/F0 11 Tf
+189.288 702.988 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+204.864 702.988 Td
+(transliterating) Tj
+ET
+BT
+/F0 11 Tf
+268.719 702.988 Td
+(single-byte) Tj
+ET
+BT
+/F0 11 Tf
+320.353 702.988 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+367.686 702.988 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+389.994 702.988 Td
+(the) Tj
+ET
+BT
+/F0 11 Tf
+406.186 702.988 Td
+(high) Tj
+ET
+BT
+/F0 11 Tf
+428.494 702.988 Td
+(bit) Tj
+ET
+BT
+/F0 11 Tf
+442.860 702.988 Td
+(set) Tj
+ET
+BT
+/F0 11 Tf
+457.831 702.988 Td
+(from) Tj
+ET
+BT
+/F0 11 Tf
+481.965 702.988 Td
+(ISO) Tj
+ET
+BT
+/F0 11 Tf
+502.436 702.988 Td
+(8859-1) Tj
+ET
+BT
+/F0 11 Tf
+105.270 687.599 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+116.578 687.599 Td
+(ASCII.) Tj
+ET
+BT
+/F0 11 Tf
+81.774 656.821 Td
+(safe) Tj
+ET
+BT
+/F0 11 Tf
+105.270 656.821 Td
+(A) Tj
+ET
+BT
+/F0 11 Tf
+115.962 656.821 Td
+(replacement) Tj
+ET
+BT
+/F0 11 Tf
+172.469 656.821 Td
+(table) Tj
+ET
+BT
+/F0 11 Tf
+196.603 656.821 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+212.179 656.821 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+259.512 656.821 Td
+(that) Tj
+ET
+BT
+/F0 11 Tf
+278.762 656.821 Td
+(are) Tj
+ET
+BT
+/F0 11 Tf
+294.943 656.821 Td
+(hard) Tj
+ET
+BT
+/F0 11 Tf
+317.240 656.821 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+328.548 656.821 Td
+(work) Tj
+ET
+BT
+/F0 11 Tf
+353.903 656.821 Td
+(with) Tj
+ET
+BT
+/F0 11 Tf
+376.211 656.821 Td
+(under) Tj
+ET
+BT
+/F0 11 Tf
+404.008 656.821 Td
+(Unix) Tj
+ET
+BT
+/F0 11 Tf
+428.758 656.821 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+447.392 656.821 Td
+(Unix-like) Tj
+ET
+BT
+/F0 11 Tf
+492.305 656.821 Td
+(OSs.) Tj
+ET
+BT
+/F0 11 Tf
+81.774 626.043 Td
+(unicode) Tj
+ET
+BT
+/F0 11 Tf
+105.270 610.654 Td
+(A) Tj
+ET
+BT
+/F0 11 Tf
+115.962 610.654 Td
+(translation) Tj
+ET
+BT
+/F0 11 Tf
+165.154 610.654 Td
+(table) Tj
+ET
+BT
+/F0 11 Tf
+189.288 610.654 Td
+(for) Tj
+ET
+BT
+/F0 11 Tf
+204.864 610.654 Td
+(transliterating) Tj
+ET
+BT
+/F0 11 Tf
+268.719 610.654 Td
+(multi-byte) Tj
+ET
+BT
+/F0 11 Tf
+317.306 610.654 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+364.639 610.654 Td
+(encoded) Tj
+ET
+BT
+/F0 11 Tf
+404.041 610.654 Td
+(in) Tj
+ET
+BT
+/F0 11 Tf
+415.349 610.654 Td
+(UTF-8) Tj
+ET
+BT
+/F0 11 Tf
+448.041 610.654 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+459.349 610.654 Td
+(ASCII.) Tj
+ET
 /F1 11 Tf
-68.024 702.988 Td
+BT
+/F1 11 Tf
+68.024 579.876 Td
 (EXAMPLES) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 687.599 Td
+81.774 564.487 Td
 (#) Tj
 ET
 BT
 /F0 11 Tf
-90.024 687.599 Td
+90.024 564.487 Td
 (transliterate) Tj
 ET
 BT
 /F0 11 Tf
-144.705 687.599 Td
+144.705 564.487 Td
 (UTF-8) Tj
 ET
 BT
 /F0 11 Tf
-177.397 687.599 Td
+177.397 564.487 Td
 (to) Tj
 ET
 BT
 /F0 11 Tf
-188.705 687.599 Td
+188.705 564.487 Td
 (ASCII) Tj
 ET
 BT
 /F0 11 Tf
-220.176 687.599 Td
+220.176 564.487 Td
 (\(using) Tj
 ET
 BT
 /F0 11 Tf
-250.426 687.599 Td
+250.426 564.487 Td
 (chained) Tj
 ET
 BT
 /F0 11 Tf
-287.386 687.599 Td
+287.386 564.487 Td
 (tables\),) Tj
 ET
 BT
 /F0 11 Tf
-322.212 687.599 Td
+322.212 564.487 Td
 (clean) Tj
 ET
 BT
 /F0 11 Tf
-348.172 687.599 Td
+348.172 564.487 Td
 (up) Tj
 ET
 BT
 /F0 11 Tf
-81.774 672.210 Td
+81.774 549.098 Td
 (sequence) Tj
 ET
 BT
 /F0 11 Tf
-124.839 672.210 Td
+124.839 549.098 Td
 (utf8) Tj
 ET
 BT
 /F0 11 Tf
-145.310 672.210 Td
+145.310 549.098 Td
 ({) Tj
-ET
-BT
-/F0 11 Tf
-87.274 656.821 Td
-(utf_8) Tj
-ET
-BT
-/F0 11 Tf
-113.245 656.821 Td
-({) Tj
-ET
-BT
-/F0 11 Tf
-92.774 641.432 Td
-(filename) Tj
-ET
-BT
-/F0 11 Tf
-134.013 641.432 Td
-("/usr/local/share/detox/custom.tbl";) Tj
-ET
-BT
-/F0 11 Tf
-87.274 626.043 Td
-(};) Tj
-ET
-BT
-/F0 11 Tf
-87.274 610.654 Td
-(utf_8) Tj
-ET
-BT
-/F0 11 Tf
-113.245 610.654 Td
-({) Tj
-ET
-BT
-/F0 11 Tf
-92.774 595.265 Td
-(builtin) Tj
-ET
-BT
-/F0 11 Tf
-124.256 595.265 Td
-("unicode";) Tj
-ET
-BT
-/F0 11 Tf
-87.274 579.876 Td
-(};) Tj
-ET
-BT
-/F0 11 Tf
-87.274 564.487 Td
-(safe) Tj
-ET
-BT
-/F0 11 Tf
-107.734 564.487 Td
-({) Tj
-ET
-BT
-/F0 11 Tf
-92.774 549.098 Td
-(builtin) Tj
-ET
-BT
-/F0 11 Tf
-124.256 549.098 Td
-("safe";) Tj
 ET
 BT
 /F0 11 Tf
 87.274 533.709 Td
-(};) Tj
+(utf_8) Tj
 ET
 BT
 /F0 11 Tf
-87.274 518.320 Td
-(wipeup) Tj
-ET
-BT
-/F0 11 Tf
-122.408 518.320 Td
+113.245 533.709 Td
 ({) Tj
 ET
 BT
 /F0 11 Tf
-92.774 502.931 Td
-(remove_trailing;) Tj
+92.774 518.320 Td
+(filename) Tj
+ET
+BT
+/F0 11 Tf
+134.013 518.320 Td
+("/usr/local/share/detox/custom.tbl";) Tj
+ET
+BT
+/F0 11 Tf
+87.274 502.931 Td
+(};) Tj
 ET
 BT
 /F0 11 Tf
 87.274 487.542 Td
-(};) Tj
+(utf_8) Tj
 ET
 BT
 /F0 11 Tf
-87.274 472.153 Td
-(max_length) Tj
-ET
-BT
-/F0 11 Tf
-141.966 472.153 Td
+113.245 487.542 Td
 ({) Tj
 ET
 BT
 /F0 11 Tf
-92.774 456.764 Td
-(length) Tj
+92.774 472.153 Td
+(builtin) Tj
 ET
 BT
 /F0 11 Tf
-123.024 456.764 Td
-(128;) Tj
+124.256 472.153 Td
+("unicode";) Tj
+ET
+BT
+/F0 11 Tf
+87.274 456.764 Td
+(};) Tj
 ET
 BT
 /F0 11 Tf
 87.274 441.375 Td
-(};) Tj
-ET
-BT
-/F0 11 Tf
-81.774 425.986 Td
-(};) Tj
-ET
-BT
-/F0 11 Tf
-81.774 410.597 Td
-(#) Tj
-ET
-BT
-/F0 11 Tf
-90.024 410.597 Td
-(decode) Tj
-ET
-BT
-/F0 11 Tf
-123.926 410.597 Td
-(CGI,) Tj
-ET
-BT
-/F0 11 Tf
-148.368 410.597 Td
-(transliterate) Tj
-ET
-BT
-/F0 11 Tf
-203.049 410.597 Td
-(CP-1252) Tj
-ET
-BT
-/F0 11 Tf
-244.915 410.597 Td
-(to) Tj
-ET
-BT
-/F0 11 Tf
-256.223 410.597 Td
-(ASCII,) Tj
-ET
-BT
-/F0 11 Tf
-290.444 410.597 Td
-(clean) Tj
-ET
-BT
-/F0 11 Tf
-316.404 410.597 Td
-(up) Tj
-ET
-BT
-/F0 11 Tf
-81.774 395.208 Td
-(sequence) Tj
-ET
-BT
-/F0 11 Tf
-124.839 395.208 Td
-("cgi-cp1252") Tj
-ET
-BT
-/F0 11 Tf
-186.054 395.208 Td
-({) Tj
-ET
-BT
-/F0 11 Tf
-87.274 379.819 Td
-(uncgi;) Tj
-ET
-BT
-/F0 11 Tf
-87.274 364.430 Td
-(iso8859_1) Tj
-ET
-BT
-/F0 11 Tf
-135.861 364.430 Td
-({) Tj
-ET
-BT
-/F0 11 Tf
-92.774 349.041 Td
-(builtin) Tj
-ET
-BT
-/F0 11 Tf
-124.256 349.041 Td
-("cp1252";) Tj
-ET
-BT
-/F0 11 Tf
-87.274 333.652 Td
-(};) Tj
-ET
-BT
-/F0 11 Tf
-87.274 318.263 Td
 (safe) Tj
 ET
 BT
 /F0 11 Tf
-107.734 318.263 Td
+107.734 441.375 Td
 ({) Tj
 ET
 BT
 /F0 11 Tf
-92.774 302.874 Td
+92.774 425.986 Td
 (builtin) Tj
 ET
 BT
 /F0 11 Tf
-124.256 302.874 Td
+124.256 425.986 Td
 ("safe";) Tj
 ET
 BT
 /F0 11 Tf
-87.274 287.485 Td
+87.274 410.597 Td
 (};) Tj
 ET
 BT
 /F0 11 Tf
+87.274 395.208 Td
+(wipeup) Tj
+ET
+BT
+/F0 11 Tf
+122.408 395.208 Td
+({) Tj
+ET
+BT
+/F0 11 Tf
+92.774 379.819 Td
+(remove_trailing;) Tj
+ET
+BT
+/F0 11 Tf
+87.274 364.430 Td
+(};) Tj
+ET
+BT
+/F0 11 Tf
+87.274 349.041 Td
+(max_length) Tj
+ET
+BT
+/F0 11 Tf
+141.966 349.041 Td
+({) Tj
+ET
+BT
+/F0 11 Tf
+92.774 333.652 Td
+(length) Tj
+ET
+BT
+/F0 11 Tf
+123.024 333.652 Td
+(128;) Tj
+ET
+BT
+/F0 11 Tf
+87.274 318.263 Td
+(};) Tj
+ET
+BT
+/F0 11 Tf
+81.774 302.874 Td
+(};) Tj
+ET
+BT
+/F0 11 Tf
+81.774 287.485 Td
+(#) Tj
+ET
+BT
+/F0 11 Tf
+90.024 287.485 Td
+(decode) Tj
+ET
+BT
+/F0 11 Tf
+123.926 287.485 Td
+(CGI,) Tj
+ET
+BT
+/F0 11 Tf
+148.368 287.485 Td
+(transliterate) Tj
+ET
+BT
+/F0 11 Tf
+203.049 287.485 Td
+(CP-1252) Tj
+ET
+BT
+/F0 11 Tf
+244.915 287.485 Td
+(to) Tj
+ET
+BT
+/F0 11 Tf
+256.223 287.485 Td
+(ASCII,) Tj
+ET
+BT
+/F0 11 Tf
+290.444 287.485 Td
+(clean) Tj
+ET
+BT
+/F0 11 Tf
+316.404 287.485 Td
+(up) Tj
+ET
+BT
+/F0 11 Tf
 81.774 272.096 Td
+(sequence) Tj
+ET
+BT
+/F0 11 Tf
+124.839 272.096 Td
+("cgi-cp1252") Tj
+ET
+BT
+/F0 11 Tf
+186.054 272.096 Td
+({) Tj
+ET
+BT
+/F0 11 Tf
+87.274 256.707 Td
+(uncgi;) Tj
+ET
+BT
+/F0 11 Tf
+87.274 241.318 Td
+(iso8859_1) Tj
+ET
+BT
+/F0 11 Tf
+135.861 241.318 Td
+({) Tj
+ET
+BT
+/F0 11 Tf
+92.774 225.929 Td
+(builtin) Tj
+ET
+BT
+/F0 11 Tf
+124.256 225.929 Td
+("cp1252";) Tj
+ET
+BT
+/F0 11 Tf
+87.274 210.540 Td
+(};) Tj
+ET
+BT
+/F0 11 Tf
+87.274 195.151 Td
+(safe) Tj
+ET
+BT
+/F0 11 Tf
+107.734 195.151 Td
+({) Tj
+ET
+BT
+/F0 11 Tf
+92.774 179.762 Td
+(builtin) Tj
+ET
+BT
+/F0 11 Tf
+124.256 179.762 Td
+("safe";) Tj
+ET
+BT
+/F0 11 Tf
+87.274 164.373 Td
+(};) Tj
+ET
+BT
+/F0 11 Tf
+81.774 148.984 Td
 (};) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-68.024 241.318 Td
+68.024 118.206 Td
 (SAFE) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 225.929 Td
+81.774 102.817 Td
 (The) Tj
 ET
 BT
 /F0 11 Tf
-101.629 225.929 Td
+101.629 102.817 Td
 (following) Tj
 ET
 BT
 /F0 11 Tf
-147.158 225.929 Td
+147.158 102.817 Td
 (characters) Tj
 ET
 BT
 /F0 11 Tf
-194.491 225.929 Td
+194.491 102.817 Td
 (are) Tj
 ET
 BT
 /F0 11 Tf
-210.672 225.929 Td
+210.672 102.817 Td
 (translated) Tj
 ET
 BT
 /F0 11 Tf
-256.190 225.929 Td
+256.190 102.817 Td
 (by) Tj
 ET
 BT
 /F0 11 Tf
-269.940 225.929 Td
+269.940 102.817 Td
 (the) Tj
 ET
 BT
 /F0 11 Tf
-286.132 225.929 Td
+286.132 102.817 Td
 (stock) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-312.103 225.929 Td
+312.103 102.817 Td
 (safe) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-332.574 225.929 Td
+332.574 102.817 Td
 (filter.) Tj
 ET
 BT
 /F0 11 Tf
-362.208 225.929 Td
+362.208 102.817 Td
 (They) Tj
 ET
 BT
 /F0 11 Tf
-387.563 225.929 Td
+387.563 102.817 Td
 (can) Tj
 ET
 BT
 /F0 11 Tf
-405.581 225.929 Td
+405.581 102.817 Td
 (be) Tj
 ET
 BT
 /F0 11 Tf
-418.715 225.929 Td
+418.715 102.817 Td
 (tuned) Tj
 ET
 BT
 /F0 11 Tf
-445.907 225.929 Td
+445.907 102.817 Td
 (by) Tj
 ET
 BT
 /F0 11 Tf
-459.657 225.929 Td
+459.657 102.817 Td
 (updating) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-500.907 225.929 Td
+500.907 102.817 Td
 (safe.tbl) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-81.774 210.540 Td
-(or) Tj
-ET
-BT
-/F0 11 Tf
-93.687 210.540 Td
-(creating) Tj
-ET
-BT
-/F0 11 Tf
-131.868 210.540 Td
-(a) Tj
-ET
-BT
-/F0 11 Tf
-139.502 210.540 Td
-(copy) Tj
-ET
-BT
-/F0 11 Tf
-163.636 210.540 Td
-(of) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-175.549 210.540 Td
-(safe.tbl) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-210.386 210.540 Td
-(and) Tj
-ET
-BT
-/F0 11 Tf
-229.020 210.540 Td
-(updating) Tj
-ET
-BT
-/F0 11 Tf
-270.270 210.540 Td
-(your) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-293.183 210.540 Td
-(detoxrc) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-328.922 210.540 Td
-(file.) Tj
-ET
-/F1 11 Tf
-BT
-/F1 11 Tf
-76.274 179.762 Td
-(Rules) Tj
-ET
-BT
-/F1 11 Tf
-105.303 179.762 Td
-(that) Tj
-ET
-BT
-/F1 11 Tf
-126.995 179.762 Td
-(apply) Tj
-ET
-BT
-/F1 11 Tf
-156.035 179.762 Td
-(anywhere) Tj
-ET
-BT
-/F1 11 Tf
-204.611 179.762 Td
-(in) Tj
-ET
-BT
-/F1 11 Tf
-216.535 179.762 Td
-(the) Tj
-ET
-BT
-/F1 11 Tf
-233.948 179.762 Td
-(filename:) Tj
-ET
-BT
-/F1 11 Tf
-109.274 164.373 Td
-(Safe) Tj
-ET
-BT
-/F1 11 Tf
-180.169 164.373 Td
-(Original) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-109.274 148.984 Td
-(_and_) Tj
-ET
-BT
-/F0 11 Tf
-179.553 148.984 Td
-(&) Tj
-ET
-BT
-/F0 11 Tf
-109.274 133.595 Td
-(_) Tj
-ET
-/F2 11 Tf
-BT
-/F2 11 Tf
-179.553 133.595 Td
-(space) Tj
-ET
-/F0 11 Tf
-BT
-/F0 11 Tf
-207.350 133.595 Td
-(`) Tj
-ET
-BT
-/F0 11 Tf
-213.763 133.595 Td
-(!) Tj
-ET
-BT
-/F0 11 Tf
-220.176 133.595 Td
-(@) Tj
-ET
-BT
-/F0 11 Tf
-233.057 133.595 Td
-($) Tj
-ET
-BT
-/F0 11 Tf
-241.307 133.595 Td
-(*) Tj
-ET
-BT
-/F0 11 Tf
-249.557 133.595 Td
-(\\) Tj
-ET
-BT
-/F0 11 Tf
-255.365 133.595 Td
-(|) Tj
-ET
-BT
-/F0 11 Tf
-260.315 133.595 Td
-(:) Tj
-ET
-BT
-/F0 11 Tf
-266.123 133.595 Td
-(;) Tj
-ET
-BT
-/F0 11 Tf
-271.931 133.595 Td
-(") Tj
-ET
-BT
-/F0 11 Tf
-279.169 133.595 Td
-(') Tj
-ET
-BT
-/F0 11 Tf
-285.582 133.595 Td
-(<) Tj
-ET
-BT
-/F0 11 Tf
-294.536 133.595 Td
-(>) Tj
-ET
-BT
-/F0 11 Tf
-303.490 133.595 Td
-(?) Tj
-ET
-BT
-/F0 11 Tf
-311.124 133.595 Td
-(/) Tj
-ET
-BT
-/F0 11 Tf
-109.274 118.206 Td
-(-) Tj
-ET
-BT
-/F0 11 Tf
-179.553 118.206 Td
-(\() Tj
-ET
-BT
-/F0 11 Tf
-185.966 118.206 Td
-(\)) Tj
-ET
-BT
-/F0 11 Tf
-192.379 118.206 Td
-([) Tj
-ET
-BT
-/F0 11 Tf
-198.792 118.206 Td
-(]) Tj
-ET
-BT
-/F0 11 Tf
-205.205 118.206 Td
-({) Tj
-ET
-BT
-/F0 11 Tf
-213.235 118.206 Td
-(}) Tj
 ET
 /F0 11 Tf
 BT
@@ -5161,7 +5173,7 @@ ET
 endstream
 endobj
 20 0 obj
-6380
+6463
 endobj
 21 0 obj
 <<
@@ -5188,114 +5200,207 @@ endobj
 >>
 stream
 BT
-/F1 11 Tf
-68.024 702.988 Td
-(WIPEUP) Tj
-ET
 /F0 11 Tf
-BT
-/F0 11 Tf
-81.774 687.599 Td
-(The) Tj
+81.774 702.988 Td
+(or) Tj
 ET
 BT
 /F0 11 Tf
-101.629 687.599 Td
-(following) Tj
+93.687 702.988 Td
+(creating) Tj
 ET
 BT
 /F0 11 Tf
-147.158 687.599 Td
-(characters) Tj
+131.868 702.988 Td
+(a) Tj
 ET
 BT
 /F0 11 Tf
-194.491 687.599 Td
-(are) Tj
+139.502 702.988 Td
+(copy) Tj
 ET
 BT
 /F0 11 Tf
-210.672 687.599 Td
-(translated) Tj
-ET
-BT
-/F0 11 Tf
-256.190 687.599 Td
-(by) Tj
-ET
-BT
-/F0 11 Tf
-269.940 687.599 Td
-(the) Tj
+163.636 702.988 Td
+(of) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-286.132 687.599 Td
-(wipeup) Tj
+175.549 702.988 Td
+(safe.tbl) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-320.661 687.599 Td
-(filter.) Tj
+210.386 702.988 Td
+(and) Tj
+ET
+BT
+/F0 11 Tf
+229.020 702.988 Td
+(updating) Tj
+ET
+BT
+/F0 11 Tf
+270.270 702.988 Td
+(your) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+293.183 702.988 Td
+(detoxrc) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+328.922 702.988 Td
+(file.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-76.274 656.821 Td
+76.274 672.210 Td
 (Rules) Tj
 ET
 BT
 /F1 11 Tf
-105.303 656.821 Td
+105.303 672.210 Td
 (that) Tj
 ET
 BT
 /F1 11 Tf
-126.995 656.821 Td
+126.995 672.210 Td
 (apply) Tj
 ET
 BT
 /F1 11 Tf
-156.035 656.821 Td
+156.035 672.210 Td
 (anywhere) Tj
 ET
 BT
 /F1 11 Tf
-204.611 656.821 Td
+204.611 672.210 Td
 (in) Tj
 ET
 BT
 /F1 11 Tf
-216.535 656.821 Td
+216.535 672.210 Td
 (the) Tj
 ET
 BT
 /F1 11 Tf
-233.948 656.821 Td
+233.948 672.210 Td
 (filename:) Tj
 ET
 BT
 /F1 11 Tf
-109.274 641.432 Td
-(Wipeup) Tj
+109.274 656.821 Td
+(Safe) Tj
 ET
 BT
 /F1 11 Tf
-174.680 641.432 Td
+180.169 656.821 Td
 (Original) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-109.274 626.043 Td
-(-) Tj
+109.274 641.432 Td
+(_and_) Tj
 ET
 BT
 /F0 11 Tf
-172.216 626.043 Td
-(-_) Tj
+179.553 641.432 Td
+(&) Tj
+ET
+BT
+/F0 11 Tf
+109.274 626.043 Td
+(_) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+179.553 626.043 Td
+(space) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+207.350 626.043 Td
+(`) Tj
+ET
+BT
+/F0 11 Tf
+213.763 626.043 Td
+(!) Tj
+ET
+BT
+/F0 11 Tf
+220.176 626.043 Td
+(@) Tj
+ET
+BT
+/F0 11 Tf
+233.057 626.043 Td
+($) Tj
+ET
+BT
+/F0 11 Tf
+241.307 626.043 Td
+(*) Tj
+ET
+BT
+/F0 11 Tf
+249.557 626.043 Td
+(\\) Tj
+ET
+BT
+/F0 11 Tf
+255.365 626.043 Td
+(|) Tj
+ET
+BT
+/F0 11 Tf
+260.315 626.043 Td
+(:) Tj
+ET
+BT
+/F0 11 Tf
+266.123 626.043 Td
+(;) Tj
+ET
+BT
+/F0 11 Tf
+271.931 626.043 Td
+(") Tj
+ET
+BT
+/F0 11 Tf
+279.169 626.043 Td
+(') Tj
+ET
+BT
+/F0 11 Tf
+285.582 626.043 Td
+(<) Tj
+ET
+BT
+/F0 11 Tf
+294.536 626.043 Td
+(>) Tj
+ET
+BT
+/F0 11 Tf
+303.490 626.043 Td
+(?) Tj
+ET
+BT
+/F0 11 Tf
+311.124 626.043 Td
+(/) Tj
 ET
 BT
 /F0 11 Tf
@@ -5304,368 +5409,514 @@ BT
 ET
 BT
 /F0 11 Tf
-172.216 610.654 Td
-(_-) Tj
+179.553 610.654 Td
+(\() Tj
 ET
 BT
 /F0 11 Tf
-109.274 595.265 Td
+185.966 610.654 Td
+(\)) Tj
+ET
+BT
+/F0 11 Tf
+192.379 610.654 Td
+([) Tj
+ET
+BT
+/F0 11 Tf
+198.792 610.654 Td
+(]) Tj
+ET
+BT
+/F0 11 Tf
+205.205 610.654 Td
+({) Tj
+ET
+BT
+/F0 11 Tf
+213.235 610.654 Td
+(}) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+68.024 579.876 Td
+(WIPEUP) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+81.774 564.487 Td
+(The) Tj
+ET
+BT
+/F0 11 Tf
+101.629 564.487 Td
+(following) Tj
+ET
+BT
+/F0 11 Tf
+147.158 564.487 Td
+(characters) Tj
+ET
+BT
+/F0 11 Tf
+194.491 564.487 Td
+(are) Tj
+ET
+BT
+/F0 11 Tf
+210.672 564.487 Td
+(translated) Tj
+ET
+BT
+/F0 11 Tf
+256.190 564.487 Td
+(by) Tj
+ET
+BT
+/F0 11 Tf
+269.940 564.487 Td
+(the) Tj
+ET
+/F2 11 Tf
+BT
+/F2 11 Tf
+286.132 564.487 Td
+(wipeup) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+320.661 564.487 Td
+(filter.) Tj
+ET
+/F1 11 Tf
+BT
+/F1 11 Tf
+76.274 533.709 Td
+(Rules) Tj
+ET
+BT
+/F1 11 Tf
+105.303 533.709 Td
+(that) Tj
+ET
+BT
+/F1 11 Tf
+126.995 533.709 Td
+(apply) Tj
+ET
+BT
+/F1 11 Tf
+156.035 533.709 Td
+(anywhere) Tj
+ET
+BT
+/F1 11 Tf
+204.611 533.709 Td
+(in) Tj
+ET
+BT
+/F1 11 Tf
+216.535 533.709 Td
+(the) Tj
+ET
+BT
+/F1 11 Tf
+233.948 533.709 Td
+(filename:) Tj
+ET
+BT
+/F1 11 Tf
+109.274 518.320 Td
+(Wipeup) Tj
+ET
+BT
+/F1 11 Tf
+174.680 518.320 Td
+(Original) Tj
+ET
+/F0 11 Tf
+BT
+/F0 11 Tf
+109.274 502.931 Td
 (-) Tj
 ET
 BT
 /F0 11 Tf
-172.216 595.265 Td
+172.216 502.931 Td
+(-_) Tj
+ET
+BT
+/F0 11 Tf
+109.274 487.542 Td
+(-) Tj
+ET
+BT
+/F0 11 Tf
+172.216 487.542 Td
+(_-) Tj
+ET
+BT
+/F0 11 Tf
+109.274 472.153 Td
+(-) Tj
+ET
+BT
+/F0 11 Tf
+172.216 472.153 Td
 (--) Tj
 ET
 BT
 /F0 11 Tf
-109.274 579.876 Td
+109.274 456.764 Td
 (_) Tj
 ET
 BT
 /F0 11 Tf
-172.216 579.876 Td
+172.216 456.764 Td
 (__) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-76.274 549.098 Td
+76.274 425.986 Td
 (Rules) Tj
 ET
 BT
 /F1 11 Tf
-105.303 549.098 Td
+105.303 425.986 Td
 (that) Tj
 ET
 BT
 /F1 11 Tf
-126.995 549.098 Td
+126.995 425.986 Td
 (apply) Tj
 ET
 BT
 /F1 11 Tf
-156.035 549.098 Td
+156.035 425.986 Td
 (only) Tj
 ET
 BT
 /F1 11 Tf
-178.959 549.098 Td
+178.959 425.986 Td
 (at) Tj
 ET
 BT
 /F1 11 Tf
-190.872 549.098 Td
+190.872 425.986 Td
 (the) Tj
 ET
 BT
 /F1 11 Tf
-208.285 549.098 Td
+208.285 425.986 Td
 (beginning) Tj
 ET
 BT
 /F1 11 Tf
-257.499 549.098 Td
+257.499 425.986 Td
 (of) Tj
 ET
 BT
 /F1 11 Tf
-269.412 549.098 Td
+269.412 425.986 Td
 (a) Tj
 ET
 BT
 /F1 11 Tf
-277.662 549.098 Td
+277.662 425.986 Td
 (filename:) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 533.709 Td
+81.774 410.597 Td
 (Any) Tj
 ET
 BT
 /F0 11 Tf
-103.466 533.709 Td
+103.466 410.597 Td
 (leading) Tj
 ET
 BT
 /F0 11 Tf
-138.600 533.709 Td
+138.600 410.597 Td
 (dashes) Tj
 ET
 BT
 /F0 11 Tf
-170.676 533.709 Td
+170.676 410.597 Td
 (are) Tj
 ET
 BT
 /F0 11 Tf
-186.857 533.709 Td
+186.857 410.597 Td
 (stripped) Tj
 ET
 BT
 /F0 11 Tf
-225.049 533.709 Td
+225.049 410.597 Td
 (to) Tj
 ET
 BT
 /F0 11 Tf
-236.357 533.709 Td
+236.357 410.597 Td
 (prevent) Tj
 ET
 BT
 /F0 11 Tf
-272.096 533.709 Td
+272.096 410.597 Td
 (programs) Tj
 ET
 BT
 /F0 11 Tf
-316.393 533.709 Td
+316.393 410.597 Td
 (from) Tj
 ET
 BT
 /F0 11 Tf
-340.527 533.709 Td
+340.527 410.597 Td
 (interpreting) Tj
 ET
 BT
 /F0 11 Tf
-394.603 533.709 Td
+394.603 410.597 Td
 (these) Tj
 ET
 BT
 /F0 11 Tf
-419.958 533.709 Td
+419.958 410.597 Td
 (files) Tj
 ET
 BT
 /F0 11 Tf
-441.650 533.709 Td
+441.650 410.597 Td
 (as) Tj
 ET
 BT
 /F0 11 Tf
-453.563 533.709 Td
+453.563 410.597 Td
 (command) Tj
 ET
 BT
 /F0 11 Tf
-499.697 533.709 Td
+499.697 410.597 Td
 (line) Tj
 ET
 BT
 /F0 11 Tf
-81.774 518.320 Td
+81.774 395.208 Td
 (options.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-109.274 487.542 Td
+109.274 364.430 Td
 (Wipeup) Tj
 ET
 BT
 /F1 11 Tf
-178.343 487.542 Td
+178.343 364.430 Td
 (Original) Tj
 ET
 /F2 11 Tf
 BT
 /F2 11 Tf
-109.274 472.153 Td
+109.274 349.041 Td
 (removed) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-175.263 472.153 Td
+175.263 349.041 Td
 (-) Tj
 ET
 BT
 /F0 11 Tf
-181.676 472.153 Td
+181.676 349.041 Td
 (_) Tj
 ET
 BT
 /F0 11 Tf
-189.926 472.153 Td
+189.926 349.041 Td
 (#) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-76.274 441.375 Td
+76.274 318.263 Td
 (Rules) Tj
 ET
 BT
 /F1 11 Tf
-105.303 441.375 Td
+105.303 318.263 Td
 (that) Tj
 ET
 BT
 /F1 11 Tf
-126.995 441.375 Td
+126.995 318.263 Td
 (apply) Tj
 ET
 BT
 /F1 11 Tf
-156.035 441.375 Td
+156.035 318.263 Td
 (when) Tj
 ET
 BT
 /F1 11 Tf
-183.843 441.375 Td
+183.843 318.263 Td
 (remove) Tj
 ET
 BT
 /F1 11 Tf
-221.408 441.375 Td
+221.408 318.263 Td
 (trailing) Tj
 ET
 BT
 /F1 11 Tf
-258.995 441.375 Td
+258.995 318.263 Td
 (is) Tj
 ET
 BT
 /F1 11 Tf
-269.082 441.375 Td
+269.082 318.263 Td
 (enabled:) Tj
 ET
 BT
 /F1 11 Tf
-109.274 425.986 Td
+109.274 302.874 Td
 (Wipeup) Tj
 ET
 BT
 /F1 11 Tf
-174.680 425.986 Td
+174.680 302.874 Td
 (Original) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-109.274 410.597 Td
+109.274 287.485 Td
 (.) Tj
 ET
 BT
 /F0 11 Tf
-172.216 410.597 Td
+172.216 287.485 Td
 (.-) Tj
 ET
 BT
 /F0 11 Tf
-109.274 395.208 Td
+109.274 272.096 Td
 (.) Tj
 ET
 BT
 /F0 11 Tf
-172.216 395.208 Td
+172.216 272.096 Td
 (-.) Tj
 ET
 BT
 /F0 11 Tf
-109.274 379.819 Td
+109.274 256.707 Td
 (.) Tj
 ET
 BT
 /F0 11 Tf
-172.216 379.819 Td
+172.216 256.707 Td
 (._) Tj
 ET
 BT
 /F0 11 Tf
-109.274 364.430 Td
+109.274 241.318 Td
 (.) Tj
 ET
 BT
 /F0 11 Tf
-172.216 364.430 Td
+172.216 241.318 Td
 (_.) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-68.024 333.652 Td
+68.024 210.540 Td
 (SEE) Tj
 ET
 BT
 /F1 11 Tf
-91.564 333.652 Td
+91.564 210.540 Td
 (ALSO) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 318.263 Td
+81.774 195.151 Td
 (detox\(1\),) Tj
 ET
 BT
 /F0 11 Tf
-124.542 318.263 Td
+124.542 195.151 Td
 (inline-detox\(1\),) Tj
 ET
 BT
 /F0 11 Tf
-196.031 318.263 Td
+196.031 195.151 Td
 (detox.tbl\(5\),) Tj
 ET
 BT
 /F0 11 Tf
-253.165 318.263 Td
+253.165 195.151 Td
 (ascii\(7\),) Tj
 ET
 BT
 /F0 11 Tf
-291.654 318.263 Td
+291.654 195.151 Td
 (iso_8859-1\(7\),) Tj
 ET
 BT
 /F0 11 Tf
-359.480 318.263 Td
+359.480 195.151 Td
 (unicode\(7\),) Tj
 ET
 BT
 /F0 11 Tf
-412.632 318.263 Td
+412.632 195.151 Td
 (utf-8\(7\)) Tj
 ET
 /F1 11 Tf
 BT
 /F1 11 Tf
-68.024 287.485 Td
+68.024 164.373 Td
 (AUTHORS) Tj
 ET
 /F0 11 Tf
 BT
 /F0 11 Tf
-81.774 272.096 Td
+81.774 148.984 Td
 (detox) Tj
 ET
 BT
 /F0 11 Tf
-108.966 272.096 Td
+108.966 148.984 Td
 (was) Tj
 ET
 BT
 /F0 11 Tf
-128.821 272.096 Td
+128.821 148.984 Td
 (written) Tj
 ET
 BT
 /F0 11 Tf
-162.734 272.096 Td
+162.734 148.984 Td
 (by) Tj
 ET
 BT
 /F0 11 Tf
-176.484 272.096 Td
+176.484 148.984 Td
 (Doug) Tj
 ET
 BT
 /F0 11 Tf
-203.676 272.096 Td
+203.676 148.984 Td
 (Harple.) Tj
 ET
 /F0 11 Tf
@@ -5722,7 +5973,7 @@ ET
 endstream
 endobj
 24 0 obj
-4926
+7036
 endobj
 25 0 obj
 <<
@@ -5761,32 +6012,32 @@ xref
 0 28
 0000000000 65535 f 
 0000000009 00000 n 
-0000052924 00000 n 
+0000055244 00000 n 
 0000000030 00000 n 
 0000000112 00000 n 
 0000000193 00000 n 
 0000000276 00000 n 
 0000000363 00000 n 
+0000014785 00000 n 
+0000014806 00000 n 
+0000014901 00000 n 
 0000014982 00000 n 
-0000015003 00000 n 
-0000015098 00000 n 
-0000015179 00000 n 
-0000029204 00000 n 
-0000029226 00000 n 
-0000029322 00000 n 
-0000029405 00000 n 
-0000040909 00000 n 
-0000040931 00000 n 
-0000041027 00000 n 
-0000041110 00000 n 
-0000047544 00000 n 
-0000047565 00000 n 
-0000047661 00000 n 
-0000047744 00000 n 
-0000052724 00000 n 
-0000052745 00000 n 
-0000052841 00000 n 
-0000053035 00000 n 
+0000028436 00000 n 
+0000028458 00000 n 
+0000028554 00000 n 
+0000028637 00000 n 
+0000041036 00000 n 
+0000041058 00000 n 
+0000041154 00000 n 
+0000041237 00000 n 
+0000047754 00000 n 
+0000047775 00000 n 
+0000047871 00000 n 
+0000047954 00000 n 
+0000055044 00000 n 
+0000055065 00000 n 
+0000055161 00000 n 
+0000055355 00000 n 
 trailer
 <<
 /Size 28
@@ -5794,5 +6045,5 @@ trailer
 /Info 1 0 R
 >>
 startxref
-53085
+55405
 %%EOF
