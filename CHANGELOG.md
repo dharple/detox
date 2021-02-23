@@ -23,10 +23,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - CP-1252 transliteration is now done via a separate table.  [#48]
 - Files and directories starting with a period are ignored during recursion.
   [#64]
+- The default config file enables `remove_trailing` in the `wipeup` filter.
+  [#43]
 - The default config file now explicitly uses the builtin statement.  [#28]
   [#50]
-- The max_length filter no longer acts like the wipeup filter.  Excess periods
-  are not reduced within this filter.  [#46]
+- The `max_length` filter no longer acts like the wipeup filter.  Excess
+  periods are not reduced within this filter.  [#46]
 - The UTF-8 filter no longer behaves like the safe filter.  All characters
   between 0x20 and 0x7E are preserved.  [#40]
 
@@ -221,6 +223,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#47]: https://github.com/dharple/detox/issues/47
 [#46]: https://github.com/dharple/detox/issues/46
 [#44]: https://github.com/dharple/detox/issues/44
+[#43]: https://github.com/dharple/detox/issues/43
 [#41]: https://github.com/dharple/detox/issues/41
 [#40]: https://github.com/dharple/detox/issues/40
 [#37]: https://github.com/dharple/detox/issues/37

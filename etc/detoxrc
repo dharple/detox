@@ -12,7 +12,9 @@ sequence default {
 	safe {
 		builtin "safe";
 	};
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 #
@@ -27,7 +29,9 @@ sequence "iso8859_1" {
 	safe {
 		builtin "safe";
 	};
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 # transliterates CP-1252 and ISO8859-1 into ASCII
@@ -41,7 +45,9 @@ sequence "iso8859_1-legacy" {
 	safe {
 		builtin "safe";
 	};
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 # transliterates UTF-8 into ASCII
@@ -52,7 +58,9 @@ sequence "utf_8" {
 	safe {
 		builtin "safe";
 	};
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 # transliterates CP-1252 and UTF-8 into ASCII
@@ -67,7 +75,9 @@ sequence "utf_8-legacy" {
 	safe {
 		builtin "safe";
 	};
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 # decodes CGI-escaped characters
@@ -76,7 +86,9 @@ sequence "uncgi" {
 	safe {
 		builtin "safe";
 	};
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 # converts files to lower case
@@ -85,7 +97,9 @@ sequence "lower" {
 		builtin "safe";
 	};
 	lower;
-	wipeup;
+	wipeup {
+		remove_trailing;
+	};
 };
 
 #

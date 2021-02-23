@@ -88,6 +88,15 @@ struct detox_parse_results *spoof_config_file(void)
 
     work->cleaner = &clean_wipeup;
 
+    // Allocate an options struct
+    work->options = malloc(sizeof(struct clean_string_options));
+    if (work->options == NULL) {
+        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    memset(work->options, 0, sizeof(struct clean_string_options));
+    work->options->remove_trailing = 1;
+
     /*
      *
      */
