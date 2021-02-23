@@ -1,0 +1,46 @@
+# EditorConfig spec: https://editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[**]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# 4 space indentation for chilly
+[**.c]
+indent_size = 4
+indent_style = space
+
+[**.h]
+indent_size = 4
+indent_style = space
+
+[**.l]
+indent_size = 4
+indent_style = space
+
+[**.y]
+indent_size = 4
+indent_style = space
+
+# Tab indentation for automake, autoconf, shell, and system config files
+[**.am]
+indent_style = tab
+
+[**.ac]
+indent_style = tab
+
+[**.sh]
+indent_style = tab
+
+[etc/detoxrc]
+indent_style = tab
+
+# 2 spaces for YAML files
+[**.yml]
+indent_style = space
+indent_size = 2
