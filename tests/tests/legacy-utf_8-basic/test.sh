@@ -25,31 +25,36 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$M
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u00AE reg")
-OUTPUT="reg_reg"
+if [ "$LOWER_UNICODE_SUPPORT" = "yes" ] ; then
 
-test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+	INPUT=$(printf "\\u00AE reg")
+	OUTPUT="reg_reg"
 
-# ---------------------------------------------------------------------------
+	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
-INPUT=$(printf "\\u00A9 copy")
-OUTPUT="copy_copy"
+	# ---------------------------------------------------------------------------
 
-test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+	INPUT=$(printf "\\u00A9 copy")
+	OUTPUT="copy_copy"
 
-# ---------------------------------------------------------------------------
+	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
-INPUT=$(printf "\\u00C6 capital AE")
-OUTPUT="AE_capital_AE"
+	# ---------------------------------------------------------------------------
 
-test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+	INPUT=$(printf "\\u00C6 capital AE")
+	OUTPUT="AE_capital_AE"
 
-# ---------------------------------------------------------------------------
+	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
-INPUT=$(printf "\\u00DE capital thorn")
-OUTPUT="TH_capital_thorn"
+	# ---------------------------------------------------------------------------
 
-test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+	INPUT=$(printf "\\u00DE capital thorn")
+	OUTPUT="TH_capital_thorn"
+
+	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
+else
+	echo "WARNING: skipped several tests due to old version of bash"
+fi
 
 # ---------------------------------------------------------------------------
 
