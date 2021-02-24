@@ -150,23 +150,19 @@ filters, this can be controlled using a translation table.
 This filter also has an internal version of the translation table, which can be
 accessed via the builtin table
 .Ar safe .
-.Pp
-See the
-.Sx SAFE
-section for more details on what this filter translates by default.
 .It Cm wipeup ;
 .It Cm wipeup Bro Cm remove_trailing ; Brc ;
-This condenses sequences of dashes and underscores into a single dash, and
-removes leading dashes, underscores, and octothorpes (A.K.A. pound signs or
-hash tags).
+Reduces any series of underscores or dashes to a single character.
+The dash takes precedence.
 .Pp
-The
-.Ar remove_trailing
-option removes a dash or underscore followed immediately by a period.
+If
+.Cm remove_trailing
+is set, then periods are added to the set of characters
+to work on.
+The period then takes precendence, followed by the dash.
 .Pp
-See the
-.Sx WIPEUP
-section for more details on what this filter translates.
+If a hash character, underscore, or dash are present at the start of the
+filename, they will be removed.
 .It Cm max_length Bro Cm length Ar value ; Brc ;
 This trims a filename down to the length specified (or less).
 It is conscious of extensions and attempts to preserve anything following the
@@ -228,51 +224,6 @@ sequence "cgi-cp1252" {
 };
 .\" END SAMPLE
 .Ed
-.Sh SAFE
-The following characters are translated by the stock
-.Ar safe
-filter.
-They can be tuned by updating
-.Pa safe.tbl
-or creating a copy of
-.Pa safe.tbl
-and updating your
-.Pa detoxrc
-file.
-.Ss Rules that apply anywhere in the filename:
-.Bl -column -offset indent ".Sy Removed" ".Sy Original"
-.It Sy Safe Ta Sy Original
-.It _and_ Ta &
-.It _ Ta \fIspace\fR ` \&! @ $ * \e | \&: \&; \&" ' < > \&? /
-.It - Ta \&( \&) \&[ \&] { }
-.El
-.Sh WIPEUP
-The following characters are translated by the
-.Ar wipeup
-filter.
-.Ss Rules that apply anywhere in the filename:
-.Bl -column -offset indent ".Sy Wipeup" ".Sy Original"
-.It Sy Wipeup Ta Sy Original
-.It - Ta -_
-.It - Ta _-
-.It - Ta --
-.It _ Ta __
-.El
-.Ss Rules that apply only at the beginning of a filename:
-Any leading dashes are stripped to prevent programs from interpreting these
-files as command line options.
-.Bl -column -offset indent ".Sy removed" ".Sy Original"
-.It Sy Wipeup Ta Sy Original
-.It \fIremoved\fR Ta - _ #
-.El
-.Ss Rules that apply when remove trailing is enabled:
-.Bl -column -offset indent ".Sy Wipeup" ".Sy Original"
-.It Sy Wipeup Ta Sy Original
-.It . Ta .-
-.It . Ta -.
-.It . Ta ._
-.It . Ta _.
-.El
 .Sh SEE ALSO
 .Xr detox 1 ,
 .Xr inline-detox 1 ,

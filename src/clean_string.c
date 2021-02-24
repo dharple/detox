@@ -180,11 +180,11 @@ char *clean_uncgi(char *filename, struct clean_string_options *options)
 
 
 /**
- * Reduces any series of underscore or dash to a single character.  The dash takes
- * precedence.
+ * Reduces any series of underscores or dashes to a single character.  The dash
+ * takes precedence.
  *
  * If remove_trailing is set, then periods are added to the set of characters
- * to work on.  The period takes precendence then, followed by the dash.
+ * to work on.  The period then takes precendence, followed by the dash.
  *
  * If a hash character, underscore, or dash are present at the start of the
  * filename, they will be removed.
