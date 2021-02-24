@@ -24,6 +24,7 @@
 
 enum {
     LONG_OPTION_INLINE = 1,
+    LONG_OPTION_RECURSIVE,
     LONG_OPTION_SPECIAL
 };
 
@@ -41,6 +42,7 @@ static struct option longopts[] = {
 
     /* long options without */
     {"inline", no_argument, &long_option, LONG_OPTION_INLINE},
+    {"recursive", no_argument, &long_option, LONG_OPTION_RECURSIVE},
     {"special", no_argument, &long_option, LONG_OPTION_SPECIAL},
 
     /* done */
@@ -54,7 +56,7 @@ static struct option longopts[] = {
 char usage_message[] = {
      "usage: detox [-hLnrvV] [-f configfile] [-s sequence]"
 #ifdef HAVE_GETOPT_LONG
-     " [--dry-run] [--inline] [--special]"
+     " [--dry-run] [--help] [--inline] [--recursive] [--special]"
      "\n\t "
 #endif
      " file [file ...]\n"
@@ -74,10 +76,11 @@ char help_message[] = {
     "			with -v ... dump sequence contents\n"
 #ifdef HAVE_GETOPT_LONG
     "	-n --dry-run	do a dry run (don't actually do anything)\n"
+    "	-r --recursive	be recursive (descend into subdirectories)\n"
 #else
     "	-n 		do a dry run (don't actually do anything)\n"
-#endif
     "	-r 		be recursive (descend into subdirectories)\n"
+#endif
     "	-s sequence	choose which sequence to detox with\n"
 #ifdef HAVE_GETOPT_LONG
     "	--special	work on links and special files\n"
@@ -202,6 +205,10 @@ struct detox_options *parse_options_getopt(int argc, char **argv)
                 switch (long_option) {
                     case LONG_OPTION_INLINE:
                         main_options->is_inline_mode = 1;
+                        break;
+
+                    case LONG_OPTION_RECURSIVE:
+                        main_options->recurse = 1;
                         break;
 
                     case LONG_OPTION_SPECIAL:
