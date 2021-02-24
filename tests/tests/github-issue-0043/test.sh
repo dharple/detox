@@ -1,6 +1,8 @@
 #!/bin/bash -e
 #
-# Subset of legacy regression tests: remove_trailing
+# Tests to confirm GitHub issue #43 is resolved
+#
+# https://github.com/dharple/detox/issues/43
 #
 
 if [ -z "$TESTBASE" ] ; then
