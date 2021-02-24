@@ -34,10 +34,12 @@
 The
 .Nm
 utility generates new filenames to make them easier to work with under Unix and
-Unix-like operating systems.  It replaces characters that make it hard to type
-out a filename with dashes and underscores.  It also provides
-transliteration-based filters, converting ISO 8859-1 or UTF-8 to ASCII, in part
-or in whole.  An additional filter unescapes CGI-escaped filenames.
+Unix-like operating systems.
+It replaces characters that make it hard to type out a filename with dashes and
+underscores.
+It also provides transliteration-based filters, converting ISO 8859-1 or UTF-8
+to ASCII, in part or in whole.
+An additional filter unescapes CGI-escaped filenames.
 .Pp
 .Nm
 reads filename(s) from the input stream and writes the updated filename(s) to
@@ -59,11 +61,13 @@ Sequences are covered in more detail in
 .Xr detoxrc 5
 and are discoverable with the
 .Fl L
-option.  The default sequence will run the
+option.
+The default sequence will run the
 .Ar safe
 and
 .Ar wipeup
-filters.  Other examples of pre-configured sequences are
+filters.
+Other examples of pre-configured sequences are
 .Ar iso8859_1
 and
 .Ar utf_8 ,
@@ -78,11 +82,13 @@ filters.
 Use
 .Pa configfile
 instead of the default configuration files for loading translation
-sequences.  No other config file will be parsed.
+sequences.
+No other config file will be parsed.
 .It Fl h , -help
 Display helpful information.
 .It Fl L
-List the currently available sequences.  When paired with
+List the currently available sequences.
+When paired with
 .Fl v
 this option shows what filters are used in each sequence and any
 properties applied to the filters.
@@ -102,7 +108,8 @@ Show the current version of
 .It Pa /etc/detoxrc
 The system-wide detoxrc file.
 .It Pa ~/.detoxrc
-A user's personal detoxrc.  Normally it extends the system-wide
+A user's personal detoxrc.
+Normally it extends the system-wide
 .Pa detoxrc ,
 unless
 .Fl f
@@ -131,20 +138,21 @@ listing any changes and returning the result to the output stream.
 .Xr utf-8 7
 .Sh HISTORY
 .Nm
-was originally designed to clean up files that I had received from
-friends which had been created using other operating systems.  It's
-trivial to create a filename with spaces, parenthesis, brackets, and
-ampersands under some operating systems.  These have special meaning
-within FreeBSD and Linux, and cause problems when you go to access
-them.  I created
+was originally designed to clean up files that I had received from friends
+which had been created using other operating systems.
+It's trivial to create a filename with spaces, parenthesis, brackets, and
+ampersands under some operating systems.
+These have special meaning within FreeBSD and Linux, and cause problems when
+you go to access them.
+I created
 .Nm
 to clean up these files.
 .Pp
 Version 2.0 stepped back from transliteration out of the box, instead focusing
-on ease of use.  The primary motivations for this were user-provided feedback,
-and the fact that many modern Unix-like OSs use UTF-8 as their primary
-character set.  Transliterating from UTF-8 to ASCII in this scenario is lossy
-and pointless.
+on ease of use.
+The primary motivations for this were user-provided feedback, and the fact that
+many modern Unix-like OSs use UTF-8 as their primary character set.
+Transliterating from UTF-8 to ASCII in this scenario is lossy and pointless.
 .Sh AUTHORS
 .Nm
 was written by

@@ -33,10 +33,12 @@
 The
 .Nm
 utility renames files to make them easier to work with under Unix and Unix-like
-operating systems.  It replaces characters that make it hard to type out a
-filename with dashes and underscores.  It also provides transliteration-based
-filters, converting ISO 8859-1 or UTF-8 to ASCII, in part or in whole.  An
-additional filter unescapes CGI-escaped filenames.
+operating systems.
+It replaces characters that make it hard to type out a filename with dashes and
+underscores.
+It also provides transliteration-based filters, converting ISO 8859-1 or UTF-8
+to ASCII, in part or in whole.
+An additional filter unescapes CGI-escaped filenames.
 .Ss Sequences
 .Nm
 is driven by a configurable series of filters, called a sequence.
@@ -44,11 +46,13 @@ Sequences are covered in more detail in
 .Xr detoxrc 5
 and are discoverable with the
 .Fl L
-option.  The default sequence will run the
+option.
+The default sequence will run the
 .Ar safe
 and
 .Ar wipeup
-filters.  Other examples of pre-configured sequences are
+filters.
+Other examples of pre-configured sequences are
 .Ar iso8859_1
 and
 .Ar utf_8 ,
@@ -62,39 +66,43 @@ filters.
 .It Fl f Pa configfile
 Use
 .Pa configfile
-instead of the default configuration files for loading translation
-sequences.  No other config file will be parsed.
+instead of the default configuration files for loading translation sequences.
+No other config file will be parsed.
 .It Fl h , -help
 Display helpful information.
 .It Fl -inline
-Run in inline mode.  See
+Run in inline mode.
+See
 .Xr inline-detox 1
 for more details.
 .It Fl L
-List the currently available sequences.  When paired with
+List the currently available sequences.
+When paired with
 .Fl v
-this option shows what filters are used in each sequence and any
-properties applied to the filters.
+this option shows what filters are used in each sequence and any properties
+applied to the filters.
 .It Fl n , -dry-run
-Doesn't actually change anything.  This implies the
+Doesn't actually change anything.
+This implies the
 .Fl v
 option.
 .It Fl r
-Recurse into subdirectories.  Any file or directory that starts with a period,
-such as
+Recurse into subdirectories.
+Any file or directory that starts with a period, such as
 .Pa .git/
 or
 .Pa .cache/ ,
-will be ignored during recursion unless specified on the command line.  Also,
-any file or directory specified in the ignore section of the config file will
-be ignored during recursion.
+will be ignored during recursion unless specified on the command line.
+Also, any file or directory specified in the ignore section of the config file
+will be ignored during recursion.
 .It Fl s Ar sequence
 Use
 .Ar sequence
 instead of
 .Cm default .
 .It Fl -special
-Works on special files (including links).  Normally
+Works on special files (including links).
+Normally
 .Nm
 ignores these files.
 .Nm
@@ -110,7 +118,8 @@ Show the current version of
 .It Pa /etc/detoxrc
 The system-wide detoxrc file.
 .It Pa ~/.detoxrc
-A user's personal detoxrc.  Normally it extends the system-wide
+A user's personal detoxrc.
+Normally it extends the system-wide
 .Pa detoxrc ,
 unless
 .Fl f
@@ -145,20 +154,21 @@ showing their filters and options.
 .Xr utf-8 7
 .Sh HISTORY
 .Nm
-was originally designed to clean up files that I had received from
-friends which had been created using other operating systems.  It's
-trivial to create a filename with spaces, parenthesis, brackets, and
-ampersands under some operating systems.  These have special meaning
-within FreeBSD and Linux, and cause problems when you go to access
-them.  I created
+was originally designed to clean up files that I had received from friends
+which had been created using other operating systems.
+It's trivial to create a filename with spaces, parenthesis, brackets, and
+ampersands under some operating systems.
+These have special meaning within FreeBSD and Linux, and cause problems when
+you go to access them.
+I created
 .Nm
 to clean up these files.
 .Pp
 Version 2.0 stepped back from transliteration out of the box, instead focusing
-on ease of use.  The primary motivations for this were user-provided feedback,
-and the fact that many modern Unix-like OSs use UTF-8 as their primary
-character set.  Transliterating from UTF-8 to ASCII in this scenario is lossy
-and pointless.
+on ease of use.
+The primary motivations for this were user-provided feedback, and the fact that
+many modern Unix-like OSs use UTF-8 as their primary character set.
+Transliterating from UTF-8 to ASCII in this scenario is lossy and pointless.
 .Sh AUTHORS
 .Nm
 was written by

@@ -15,8 +15,8 @@
 .Xr detox 1
 .Sh OVERVIEW
 .Cm detox
-allows for configuration of its sequences through config files.  This document
-describes how these files work.
+allows for configuration of its sequences through config files.
+This document describes how these files work.
 .Sh IMPORTANT
 When setting up a new set of rules, the
 .Ar safe
@@ -27,11 +27,12 @@ such as the
 .Ar utf_8
 or the
 .Ar uncgi
-filters.  Otherwise, the risk of introducing difficult characters into the
-filename is introduced.
+filters.
+Otherwise, the risk of introducing difficult characters into the filename is
+introduced.
 .Sh SYNTAX
-The format of this configuration file is C-like.  It is based loosely off the
-configuration files used by
+The format of this configuration file is C-like.
+It is based loosely off the configuration files used by
 .Cm named .
 Each statement is semicolon terminated, and modifiers on a particular statement
 are generally contained within braces.
@@ -52,8 +53,8 @@ This can be overridden through the command line option
 or the environmental variable
 .Ev DETOX_SEQUENCE .
 .Pp
-Sequence names are case sensitive and unique throughout all sequences;
-that is, if a system-wide file defines
+Sequence names are case sensitive and unique throughout all sequences; that is,
+if a system-wide file defines
 .Ar normal_seq
 and a user has a sequence with the same name in their
 .Pa .detoxrc ,
@@ -61,8 +62,8 @@ the users'
 .Ar normal_seq
 will replace the system-wide version.
 .It Cm ignore Bro Cm filename Qo Ar filename Qc ; ... Brc ;
-Any filename listed here will be ignored during recursion.  Note that all files
-beginning with a period, such as
+Any filename listed here will be ignored during recursion.
+Note that all files beginning with a period, such as
 .Pa .git
 or
 .Pa .config
@@ -81,8 +82,8 @@ block.
 .It Cm iso8859_1 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
 This transliterates ISO 8859-1 characters between 0xA0 and 0xFF into lower
-ASCII equivalents.  The output is not necessarily safe, and should also be run
-through the
+ASCII equivalents.
+The output is not necessarily safe, and should also be run through the
 .Ar safe
 filter.
 .Pp
@@ -95,7 +96,8 @@ Under normal circumstances, the filename syntax is not needed.
 looks in several locations for a file called
 .Pa iso8859_1.tbl ,
 which is a set of rules defining how an ISO 8859-1 character should be
-translated.  If
+translated.
+If
 .Cm detox
 can't find the translation table, it will fall back on the builtin table
 .Pa iso8859_1 .
@@ -106,8 +108,8 @@ the location of it using the filename syntax shown above.
 .Pp
 You can chain together multiple
 .Ar iso8859_1
-filters, as long as the default value of all but the last one it empty.  This
-is explained in
+filters, as long as the default value of all but the last one it empty.
+This is explained in
 .Xr detox.tbl 5 .
 .Pp
 This filter is mutually exclusive with the
@@ -116,8 +118,8 @@ filter.
 .It Cm utf_8 ;
 .It Cm utf_8 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm utf_8 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This transliterations Unicode characters, encoded using UTF-8, into lower
-ASCII equivalents.
+This transliterations Unicode characters, encoded using UTF-8, into lower ASCII
+equivalents.
 .Pp
 This operates in a manner similar to
 .Ar iso8859_1 ,
@@ -129,24 +131,24 @@ Similar to the
 filter, an internal table exists, based on the stock translation table, called
 .Pa unicode .
 .It Cm uncgi ;
-This translates CGI-escaped strings into their ASCII equivalents. The output of
-this is not necessarily safe, and should be run through the
+This translates CGI-escaped strings into their ASCII equivalents.
+The output of this is not necessarily safe, and should be run through the
 .Ar safe
 filter, at the least.
 .It Cm safe ;
 .It Cm safe Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm safe Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This could also be called "safe for UNIX-like operating systems".  It
-translates characters that are difficult to work with in UNIX environments into
-characters that are not.
+This could also be called "safe for UNIX-like operating systems".
+It translates characters that are difficult to work with in UNIX environments
+into characters that are not.
 .Pp
 Similar to the
 .Ar iso8859_1
 and
 .Ar utf_8
-filters, this can be controlled using a translation table.  This filter also
-has an internal version of the translation table, which can be accessed via the
-builtin table
+filters, this can be controlled using a translation table.
+This filter also has an internal version of the translation table, which can be
+accessed via the builtin table
 .Ar safe .
 .Pp
 See the
@@ -166,23 +168,23 @@ See the
 .Sx WIPEUP
 section for more details on what this filter translates.
 .It Cm max_length Bro Cm length Ar value ; Brc ;
-This trims a filename down to the length specified (or less).  It is conscious
-of extensions and attempts to preserve anything following the last period in a
-filename.
+This trims a filename down to the length specified (or less).
+It is conscious of extensions and attempts to preserve anything following the
+last period in a filename.
 .Pp
 For instance, given a max length of 12, and a filename of
 .Pa this_is_my_file.txt ,
 the filter would output
 .Pa this_is_.txt .
 .It Cm lower ;
-This translates uppercase characters into lowercase characters.  It only works
-on ASCII characters.
+This translates uppercase characters into lowercase characters.
+It only works on ASCII characters.
 .El
 .Sh BUILTIN TABLES
 .Bl -tag -width 0.25i
 .It cp1252
-A translation table for transliterating CP-1252 characters to ASCII.  This is
-no longer a common use case, and has been moved to a separate table.
+A translation table for transliterating CP-1252 characters to ASCII.
+This is no longer a common use case, and has been moved to a separate table.
 .It iso8859_1
 A translation table for transliterating single-byte characters with the high
 bit set from ISO 8859-1 to ASCII.
@@ -229,7 +231,8 @@ sequence "cgi-cp1252" {
 .Sh SAFE
 The following characters are translated by the stock
 .Ar safe
-filter.  They can be tuned by updating
+filter.
+They can be tuned by updating
 .Pa safe.tbl
 or creating a copy of
 .Pa safe.tbl
@@ -256,8 +259,8 @@ filter.
 .It _ Ta __
 .El
 .Ss Rules that apply only at the beginning of a filename:
-Any leading dashes are stripped to prevent programs from interpreting
-these files as command line options.
+Any leading dashes are stripped to prevent programs from interpreting these
+files as command line options.
 .Bl -column -offset indent ".Sy removed" ".Sy Original"
 .It Sy Wipeup Ta Sy Original
 .It \fIremoved\fR Ta - _ #
