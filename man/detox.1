@@ -6,7 +6,7 @@
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
 .\"
-.Dd February 15, 2021
+.Dd February 24, 2021
 .Dt DETOX 1
 .Os
 .Sh NAME
@@ -59,13 +59,17 @@ and
 filters.
 .Ss Options
 .Bl -tag -width Fl
-.It Fl f Ar configfile
+.It Fl f Pa configfile
 Use
-.Ar configfile
+.Pa configfile
 instead of the default configuration files for loading translation
 sequences.  No other config file will be parsed.
 .It Fl h , -help
 Display helpful information.
+.It Fl -inline
+Run in inline mode.  See
+.Xr inline-detox 1
+for more details.
 .It Fl L
 List the currently available sequences.  When paired with
 .Fl v
@@ -163,6 +167,4 @@ was written by
 If, after the translation of a filename is finished, a file already exists with
 that same name,
 .Nm
-will not rename the file.  This could cause a problem with the
-.Ar max_length
-filter, if it was imperative that the files be cut down to a certain length.
+will not rename the file.
