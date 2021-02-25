@@ -5,15 +5,6 @@ checked out, you can update your code to point at the new branch using
 [these steps](https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9).
 Alternatively, you can clone a fresh copy of the repo.
 
-Also, if you have a current copy of `detox` checked out, please note that I
-have committed the output from `autoreconf --install`, and you no longer need
-to take that step to build `detox`.
-
-If you encounter a problem running `git pull`, you can run `make
-maintainer-clean`, which will delete all of the files added by `autoreconf
---install` (as well as some built files in `src/`).  If that doesn't work, I
-recommend pulling a fresh copy of the repo.
-
 # Overview
 
 `detox` is a program that renames files to make them easier to work with under
@@ -49,17 +40,6 @@ detox -r /music/transferred_from_elsewhere/
 
 # Build
 
-To build a stable copy of `detox`, run:
-
-```
-wget https://github.com/dharple/detox/releases/download/v1.4.1/detox-1.4.1.tar.gz
-tar xzvf detox-1.4.1.tar.gz
-cd detox-1.4.1
-./configure
-make
-make install
-```
-
 To build a stable copy of `detox` from source, run:
 
 ```
@@ -68,17 +48,6 @@ cd detox
 autoreconf --install
 ./configure
 make
-make install
-```
-
-To build the latest copy of `detox` from source, follow the instructions in
-`BUILD.md`.
-
-To remove a copy of `detox` that was installed via these methods, from the same
-directory that you ran `make install`, run:
-
-```
-make uninstall
 ```
 
 # Contact

@@ -2,12 +2,14 @@
 
 ## Tools Needed
 
+- automake
 - gcc or clang
 - make
 
 Compilation:
 
 ```bash
+autoreconf --install
 ./configure
 make
 ```
@@ -22,12 +24,6 @@ Installation that overwrites config files and translation tables:
 
 ```bash
 make force-install
-```
-
-Uninstall:
-
-```bash
-make uninstall
 ```
 
 # Development Instructions

@@ -1,4 +1,4 @@
-name: Test build and deploy process on main
+name: C/C++ CI
 
 on:
   push:
@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+    - name: autoreconf
+      run: autoreconf --install
     - name: configure
       run: ./configure
     - name: make
@@ -26,6 +28,10 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: brew install
+      run: brew install automake
+    - name: autoreconf
+      run: autoreconf --install
     - name: configure
       run: ./configure
     - name: make
