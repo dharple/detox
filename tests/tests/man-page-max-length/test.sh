@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env -S bash -e
 #
 # Confirm a statement on the detoxrc.5 manpage
 #

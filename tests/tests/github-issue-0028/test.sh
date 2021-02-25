@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env -S bash -e
 #
 # Tests to confirm GitHub issue #28 is resolved
 #
@@ -43,7 +43,7 @@ for METHOD1 in safe safe-basic safe-search ; do
 	CHECK="$HOLD/strace.$METHOD1.txt"
 	SCRIPT="$HOLD/check.$METHOD1.sh"
 	cat <<- DONE >> $SCRIPT
-		#!/bin/bash
+		#!/usr/bin/env -S bash
 		. $TESTBASE/test-functions
 		DETOX="$DETOX"
 		TABLEPATH="$TABLEPATH"
@@ -52,7 +52,8 @@ for METHOD1 in safe safe-basic safe-search ; do
 		METHOD1="$METHOD1"
 		test_sequence "\$DETOX" "\$INPUT" "\$OUTPUT" "\$TABLEPATH" "\$METHOD1"
 	DONE
-	$STRACE -f -o "$CHECK" -s 1024 -e trace=file /bin/bash $SCRIPT
+	chmod +x $SCRIPT
+	$STRACE -f -o "$CHECK" -s 1024 -e trace=file $SCRIPT
 
 	case "$METHOD1" in
 		safe | safe-basic )

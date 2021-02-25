@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env -S bash -e
 #
 # Confirm that the sample detoxrcs in detoxrc.5 and detox.tbl.5 parse
 # correctly.

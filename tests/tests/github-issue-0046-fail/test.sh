@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env -S bash
 #
 # Confirms that GitHub issue #46 is fixed
 #

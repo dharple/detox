@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env -S bash -e
 #
 # Tests to confirm GitHub issue #62 is resolved
 #

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env -S bash
 #
 # Tests to confirm GitHub issue #37 is resolved.  Confirms that an invalid
 # config file won't cause a segfault.
