@@ -5,6 +5,15 @@ checked out, you can update your code to point at the new branch using
 [these steps](https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9).
 Alternatively, you can clone a fresh copy of the repo.
 
+Also, if you have a current copy of `detox` checked out, please note that I
+have committed the output from `autoreconf --install`, and you no longer need
+to take that step to build `detox`.
+
+If you encounter a problem running `git pull`, you can run `make
+maintainer-clean`, which will delete all of the files added by `autoreconf
+--install` (as well as some built files in `src/`).  If that doesn't work, I
+recommend pulling a fresh copy of the repo.
+
 # Overview
 
 `detox` is a program that renames files to make them easier to work with under
