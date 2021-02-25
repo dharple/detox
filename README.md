@@ -40,6 +40,17 @@ detox -r /music/transferred_from_elsewhere/
 
 # Build
 
+To build a stable copy of `detox`, run:
+
+```
+wget https://github.com/dharple/detox/releases/download/v1.4.1/detox-1.4.1.tar.gz
+tar xzvf detox-1.4.1.tar.gz
+cd detox-1.4.1
+./configure
+make
+make install
+```
+
 To build a stable copy of `detox` from source, run:
 
 ```
@@ -48,6 +59,17 @@ cd detox
 autoreconf --install
 ./configure
 make
+make install
+```
+
+To build the latest copy of `detox` from source, follow the instructions in
+`BUILD.md`.
+
+To remove a copy of `detox` that was installed via these methods, from the same
+directory that you ran `make install`, run:
+
+```
+make uninstall
 ```
 
 # Contact
