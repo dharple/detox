@@ -38,17 +38,10 @@
 *.rej
 *~
 .idea
-aclocal.m4
 autom4te.cache/
-compile
-depcomp
-install-sh
-missing
-ylwrap
 
 # Dist Clean files
 Makefile
-Makefile.in
 config.h
 config.log
 config.status

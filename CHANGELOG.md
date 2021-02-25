@@ -23,6 +23,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - CP-1252 transliteration is now done via a separate table.  [#48]
 - Files and directories starting with a period are ignored during recursion.
   [#64]
+- Made it easier to compile `detox` directly from a `git` checkout.  [#66]
 - The default config file enables `remove_trailing` in the `wipeup` filter.
   [#43]
 - The default config file now explicitly uses the builtin statement.  [#28]
@@ -214,6 +215,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#66]: https://github.com/dharple/detox/issues/66
 [#64]: https://github.com/dharple/detox/issues/64
 [#59]: https://github.com/dharple/detox/issues/59
 [#56]: https://github.com/dharple/detox/issues/56
