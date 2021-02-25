@@ -38,7 +38,43 @@ You can also specify recursion (this works best on directories):
 detox -r /music/transferred_from_elsewhere/
 ```
 
-# Build
+# Building Detox
+
+Many distributions include a copy of detox with their packages.  If you wish to
+build it from scratch, you'll need the following tools:
+
+- gcc, or clang
+- make
+
+Additionally, you may need:
+
+- autoconf
+- automake
+- bison, yacc, or byacc
+- flex, or lex
+
+## Install Stable from GitHub Package
+
+To build a stable copy of `detox`, run:
+
+```
+wget https://github.com/dharple/detox/releases/download/v1.4.1/detox-1.4.1.tar.gz
+tar xzvf detox-1.4.1.tar.gz
+cd detox-1.4.1
+./configure
+make
+make install
+```
+
+If that during the configure or make steps, run
+```
+autoreconf --install
+./configure
+make
+make install
+```
+
+## Install Stable from Repository
 
 To build a stable copy of `detox` from source, run:
 
@@ -48,8 +84,26 @@ cd detox
 autoreconf --install
 ./configure
 make
+make install
+```
+
+## Install Development from Repository
+
+To build the latest copy of `detox` from source, follow the instructions in
+`BUILD.md`.
+
+## Uninstall
+
+To remove a copy of `detox` that was installed via these methods, from the same
+directory that you ran `make install`, run:
+
+```
+make uninstall
 ```
 
 # Contact
 
-Doug Harple <detox.dharple@gmail.com>
+For support, to report a defect, or to request a new feature, please use the
+[GitHub Issues system].
+
+[GitHub Issues system]: https://github.com/dharple/detox/issues/

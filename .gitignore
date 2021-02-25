@@ -1,69 +1,36 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-
 # Maintainer files
 *.orig
 *.patch
 *.rej
 *~
 .idea
+
+# Automake / Autoconf
 aclocal.m4
 autom4te.cache/
 compile
-depcomp
-install-sh
-missing
-ylwrap
-
-# Dist Clean files
-Makefile
-Makefile.in
 config.h
 config.log
 config.status
-
-# Clean files
+configure
+depcomp
 .deps/
+install-sh
+Makefile
+Makefile.in
+missing
+stamp-h1
+ylwrap
+
+# Built Objects
+*.o
+
+# Built Binaries
 check-table
 detox
 generate-builtin-table
 inline-detox
-stamp-h1
 test-table-regression
 
-# Testing files
-lab/
-
-# Dist files
+# Built Packages
 /detox-*.tar.gz

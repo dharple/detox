@@ -2,11 +2,21 @@
 
 ## Tools Needed
 
+Always:
+
+- autoconf
 - automake
-- gcc or clang
+- gcc, or clang
 - make
 
-Compilation:
+Sometimes:
+
+- bison, yacc, or byacc
+- flex, or lex
+
+## Compile
+
+To compile `detox`, run:
 
 ```bash
 autoreconf --install
@@ -14,28 +24,55 @@ autoreconf --install
 make
 ```
 
-Installation:
+## Install
+
+To install `detox`, run:
 
 ```bash
 make install
 ```
 
-Installation that overwrites config files and translation tables:
+To force an overwrite of config files and translation tables, run:
 
 ```bash
 make force-install
+```
+
+## Uninstall
+
+From the same directory, run:
+
+```bash
+make uninstall
 ```
 
 # Development Instructions
 
 ## Tools Used
 
-- astyle
+Basic Development:
+
+- autoconf
+- automake
+- bash
 - bison
-- cppcheck
 - flex
+- gcc, or clang
+- make
+
+Linting:
+
+- astyle
+- cppcheck
 - mandoc
 - sparse
+
+Testing:
+
+- printf
+- sed
+- strace
+- valgrind
 
 ## Rebuild Internals
 
@@ -52,7 +89,7 @@ Check code formatting:
 astyle --style=kr --indent-switches --add-braces --pad-oper --pad-header $(ls src/*.[ch] | egrep -v 'config_file_(lex|yacc)')
 ```
 
-Check formatting on man pages (noisy):
+Check formatting on man pages:
 
 ```bash
 mandoc -T lint man/*.[15]
