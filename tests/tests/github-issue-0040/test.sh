@@ -10,7 +10,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions
+. $TESTBASE/test-functions.sh
+. $TESTBASE/character-helper.sh
 
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
@@ -26,59 +27,59 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\u4000 ignore")
+	INPUT=$(printf "${UTF8_4000} ignore")
 	OUTPUT="_ ignore"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\u007F delete")
+	INPUT=$(printf "${UTF8_007F} delete")
 	OUTPUT="_ delete"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte UTF-8 encoded \x00 (null)
+	# 2 byte UTF-8 encoded ${CHAR_00} (null)
 
-	INPUT=$(printf "\\xc0\\x80 null")
+	INPUT=$(printf "${CHAR_C0}${CHAR_80} null")
 	OUTPUT="_hidden_null_ null"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte UTF-8 encoded \x20 (space)
+	# 2 byte UTF-8 encoded ${CHAR_20} (space)
 
-	INPUT=$(printf "\\xc0\\xa0 space")
+	INPUT=$(printf "${CHAR_C0}${CHAR_A0} space")
 	OUTPUT="  space"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte UTF-8 encoded \x30 (zero)
+	# 2 byte UTF-8 encoded ${CHAR_30} (zero)
 
-	INPUT=$(printf "\\xc0\\xb0 zero")
+	INPUT=$(printf "${CHAR_C0}${CHAR_B0} zero")
 	OUTPUT="0 zero"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte UTF-8 encoded \x7e (tilde)
+	# 2 byte UTF-8 encoded ${CHAR_7E} (tilde)
 
-	INPUT=$(printf "\\xc1\\xbe tilde")
+	INPUT=$(printf "${CHAR_C1}${CHAR_BE} tilde")
 	OUTPUT="~ tilde"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 	# ---------------------------------------------------------------------------
 
-	# 2 byte UTF-8 encoded \x7f (delete)
+	# 2 byte UTF-8 encoded ${CHAR_7F} (delete)
 
-	INPUT=$(printf "\\xc1\\xbf delete")
+	INPUT=$(printf "${CHAR_C1}${CHAR_BF} delete")
 	OUTPUT="_ delete"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"

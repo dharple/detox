@@ -8,7 +8,7 @@ if [ -z "$1" ] ; then
 	exit 1
 fi
 
-. $(dirname $0)/test-functions
+. $(dirname $0)/test-functions.sh
 
 DETOX=$(realpath $1)
 if [ ! -x "$DETOX" ] ; then

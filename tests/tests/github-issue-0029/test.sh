@@ -10,10 +10,11 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions
+. $TESTBASE/test-functions.sh
+. $TESTBASE/character-helper.sh
 
 DETOX=$1
-TABLEPATH=$(dirname $TESTBASE)/table
+TABLEPATH=$(dirname $0)
 METHOD2=wipeup
 
 for METHOD1 in safe safe-basic ; do
@@ -27,63 +28,72 @@ for METHOD1 in safe safe-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\x07 bell")
-	OUTPUT="bell"
+	INPUT=$(printf "${CHAR_07} bell")
+	if [ "$METHOD1" = "safe" ] ; then
+		OUTPUT="beep_bell"
+	else
+		OUTPUT="bell"
+	fi
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\x09 tab \\x0a new line")
-	OUTPUT="tab_new_line"
+	# $CHAR_0A would not work here
+	INPUT=$(printf "${CHAR_09} tab \n new line")
+	if [ "$METHOD1" = "safe" ] ; then
+		OUTPUT="tab_tab_nl_new_line"
+	else
+		OUTPUT="tab_new_line"
+	fi
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\u00C6 capital AE")
-	OUTPUT=$(printf "\\u00C6_capital_AE")
+	INPUT=$(printf "${UTF8_00C6} capital AE")
+	OUTPUT=$(printf "${UTF8_00C6}_capital_AE")
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\xC6 capital AE")
-	OUTPUT=$(printf "\\xC6_capital_AE")
+	INPUT=$(printf "${CHAR_C6} capital AE")
+	OUTPUT=$(printf "${CHAR_C6}_capital_AE")
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\u00DE capital thorn")
-	OUTPUT=$(printf "\\u00DE_capital_thorn")
+	INPUT=$(printf "${UTF8_00DE} capital thorn")
+	OUTPUT=$(printf "${UTF8_00DE}_capital_thorn")
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\xDE capital thorn")
-	OUTPUT=$(printf "\\xDE_capital_thorn")
+	INPUT=$(printf "${CHAR_DE} capital thorn")
+	OUTPUT=$(printf "${CHAR_DE}_capital_thorn")
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\u0172 capital U with Ogonek")
-	OUTPUT=$(printf "\\u0172_capital_U_with_Ogonek")
+	INPUT=$(printf "${UTF8_0172} capital U with Ogonek")
+	OUTPUT=$(printf "${UTF8_0172}_capital_U_with_Ogonek")
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\x7e tilde")
+	INPUT=$(printf "${CHAR_7E} tilde")
 	OUTPUT="~_tilde"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\x7f delete")
+	INPUT=$(printf "${CHAR_7F} delete")
 	OUTPUT="delete"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"

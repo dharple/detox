@@ -10,7 +10,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions
+. $TESTBASE/test-functions.sh
+. $TESTBASE/character-helper.sh
 
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
@@ -26,7 +27,7 @@ for METHOD1 in utf_8 utf_8-basic ; do
 
 	# ---------------------------------------------------------------------------
 
-	INPUT=$(printf "\\u4000unknown")
+	INPUT=$(printf "${UTF8_4000}unknown")
 	OUTPUT="_unknown"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"

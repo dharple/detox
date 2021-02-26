@@ -10,7 +10,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions
+. $TESTBASE/test-functions.sh
+. $TESTBASE/character-helper.sh
 
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
@@ -26,7 +27,7 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 # ---------------------------------------------------------------------------
 
 if [ "$LOWER_UNICODE_SUPPORT" = "yes" ] ; then
-	INPUT=$(printf "\\u00AE reg")
+	INPUT=$(printf "${UTF8_00AE} reg")
 	OUTPUT="_reg_ reg"
 
 	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
@@ -36,7 +37,7 @@ fi
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\U00010348 hwair")
+INPUT=$(printf "${UTF8_10348} hwair")
 OUTPUT="hu hwair"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"

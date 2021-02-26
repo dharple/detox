@@ -10,7 +10,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions
+. $TESTBASE/test-functions.sh
+. $TESTBASE/character-helper.sh
 
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
@@ -34,8 +35,8 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u00AE reg")
-OUTPUT=$(printf "\\u00AE_reg")
+INPUT=$(printf "${UTF8_00AE} reg")
+OUTPUT=$(printf "${UTF8_00AE}_reg")
 
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH" "$SEQUENCE"
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH"
@@ -43,8 +44,8 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u00A9 copy")
-OUTPUT=$(printf "\\u00A9_copy")
+INPUT=$(printf "${UTF8_00A9} copy")
+OUTPUT=$(printf "${UTF8_00A9}_copy")
 
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH" "$SEQUENCE"
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH"
@@ -52,8 +53,8 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u00C6 capital AE")
-OUTPUT=$(printf "\\u00C6_capital_AE")
+INPUT=$(printf "${UTF8_00C6} capital AE")
+OUTPUT=$(printf "${UTF8_00C6}_capital_AE")
 
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH" "$SEQUENCE"
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH"
@@ -61,8 +62,8 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u00DE capital thorn")
-OUTPUT=$(printf "\\u00DE_capital_thorn")
+INPUT=$(printf "${UTF8_00DE} capital thorn")
+OUTPUT=$(printf "${UTF8_00DE}_capital_thorn")
 
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH" "$SEQUENCE"
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH"
@@ -70,8 +71,8 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u014A capital ENG")
-OUTPUT=$(printf "\\u014A_capital_ENG")
+INPUT=$(printf "${UTF8_014A} capital ENG")
+OUTPUT=$(printf "${UTF8_014A}_capital_ENG")
 
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH" "$SEQUENCE"
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH"
@@ -79,8 +80,8 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\u0172 capital U with Ogonek")
-OUTPUT=$(printf "\\u0172_capital_U_with_Ogonek")
+INPUT=$(printf "${UTF8_0172} capital U with Ogonek")
+OUTPUT=$(printf "${UTF8_0172}_capital_U_with_Ogonek")
 
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH" "$SEQUENCE"
 test_detoxrc "$DETOX" "$INPUT" "$OUTPUT" "$DETOXRC" "$TABLEPATH"

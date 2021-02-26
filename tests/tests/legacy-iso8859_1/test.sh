@@ -8,7 +8,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions
+. $TESTBASE/test-functions.sh
+. $TESTBASE/character-helper.sh
 
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
@@ -25,28 +26,28 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$M
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\xAE reg")
+INPUT=$(printf "${CHAR_AE} reg")
 OUTPUT="reg_reg"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\xA9 copy")
+INPUT=$(printf "${CHAR_A9} copy")
 OUTPUT="copy_copy"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\xC6 capital AE")
+INPUT=$(printf "${CHAR_C6} capital AE")
 OUTPUT="AE_capital_AE"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"
 
 # ---------------------------------------------------------------------------
 
-INPUT=$(printf "\\xDE capital thorn")
+INPUT=$(printf "${CHAR_DE} capital thorn")
 OUTPUT="TH_capital_thorn"
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1" "$METHOD2" "$METHOD3"

@@ -1,0 +1,59 @@
+start
+
+0x01		_	#  SOH (start of heading)
+0x02		_	#  STX (start of text)
+0x03		_	#  ETX (end of text)
+0x04		_	#  EOT (end of transmission)
+0x05		_	#  ENQ (enquiry)
+0x06		_	#  ACK (acknowledge)
+0x07		_beep_	#  BEL '\a' (bell)
+0x08		_	#  BS  '\b' (backspace)
+0x09		_tab_	#  HT  '\t' (horizontal tab)
+0x0a		_nl_	#  LF  '\n' (new line)
+0x0b		_	#  VT  '\v' (vertical tab)
+0x0c		_	#  FF  '\f' (form feed)
+0x0d		_	#  CR  '\r' (carriage ret)
+0x0e		_	#  SO  (shift out)
+0x0f		_	#  SI  (shift in)
+0x10		_	#  DLE (data link escape)
+0x11		_	#  DC1 (device control 1)
+0x12		_	#  DC2 (device control 2)
+0x13		_	#  DC3 (device control 3)
+0x14		_	#  DC4 (device control 4)
+0x15		_	#  NAK (negative ack.)
+0x16		_	#  SYN (synchronous idle)
+0x17		_	#  ETB (end of trans. blk)
+0x18		_	#  CAN (cancel)
+0x19		_	#  EM  (end of medium)
+0x1a		_	#  SUB (substitute)
+0x1b		_	#  ESC (escape)
+0x1c		_	#  FS  (file separator)
+0x1d		_	#  GS  (group separator)
+0x1e		_	#  RS  (record separator)
+0x1f		_	#  US  (unit separator)
+0x20		_	# space
+0x21		_	# !
+0x22		_	# "
+0x24		_	# $
+0x26		_and_	# &
+0x27		_	# '
+0x28		-	# (
+0x29		-	# )
+0x2a		_	# *
+0x2f		_	# /
+0x3a		_	# :
+0x3b		_	# ;
+0x3c		_	# <
+0x3e		_	# >
+0x3f		_	# ?
+0x40		_	# @
+0x5b		-	# [
+0x5c		_	# \
+0x5d		-	# ]
+0x60		_	# `
+0x7b		-	# {
+0x7c		_	# |
+0x7d		-	# }
+0x7f		_	#  DEL
+
+end
