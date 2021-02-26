@@ -17,17 +17,6 @@ if [ ! -x "$(command -v realpath)" ] ; then
 fi
 
 ##
-# Check for a bug in older versions of bash that cause Unicode 0x0080-0x00FF to
-# be written out as a single byte character (essentially ISO 8859-1).
-#
-
-LOWER_UNICODE_SUPPORT=yes
-
-if [ "$(printf "\u00AD" | wc -c | cut -f 1 -d ' ')" -eq "1" ] ; then
-	LOWER_UNICODE_SUPPORT=no
-fi
-
-##
 # Executes a single test against a detoxrc, tables, and sequence.
 #
 # @param $1 Detox Executable

@@ -26,14 +26,10 @@ test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 # ---------------------------------------------------------------------------
 
-if [ "$LOWER_UNICODE_SUPPORT" = "yes" ] ; then
-	INPUT=$(printf "${UTF8_00AE} reg")
-	OUTPUT="_reg_ reg"
+INPUT=$(printf "${UTF8_00AE} reg")
+OUTPUT="_reg_ reg"
 
-	test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
-else
-	echo "WARNING: skipped one test due to old version of bash"
-fi
+test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 
 # ---------------------------------------------------------------------------
 
