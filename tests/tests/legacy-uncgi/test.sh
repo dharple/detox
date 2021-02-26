@@ -1,7 +1,9 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Subset of legacy regression tests: uncgi
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env

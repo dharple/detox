@@ -1,7 +1,9 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Confirm a statement on the detoxrc.5 manpage
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env

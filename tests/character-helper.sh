@@ -1,4 +1,4 @@
-#! /usr/bin/env -S bash
+#!/usr/bin/env bash
 
 # Unicode: 0x0007 / Hex: \x07 / BELL
 UTF8_0007=$(printf "\007")

@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/env bash
 #
 # Confirm that the language selection from the detox.tbl.5 man page works as
 # described.

@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/env bash
 #
 # This script generates the CP-1252 translation table based on a table found on
 # Wikipedia which lists Unicode equivalents for CP-1252 characters.

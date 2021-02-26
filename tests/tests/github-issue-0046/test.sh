@@ -1,9 +1,11 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Confirms that GitHub issue #46 is fixed
 #
 # https://github.com/dharple/detox/issues/46
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env

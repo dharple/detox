@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Very simple test suite.
 #
@@ -8,6 +8,8 @@
 # Full Test Suite:
 # 	tests/test.sh src/detox
 #
+
+set -e
 
 DETOX=$(dirname $(dirname $0))/src/detox
 DETOXRC=$(dirname $(dirname $0))/etc/detoxrc

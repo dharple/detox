@@ -1,7 +1,9 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Subset of legacy regression tests: max_32
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env

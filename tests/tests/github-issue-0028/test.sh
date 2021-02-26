@@ -1,9 +1,11 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Tests to confirm GitHub issue #28 is resolved
 #
 # https://github.com/dharple/detox/issues/28
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env
@@ -44,7 +46,7 @@ for METHOD1 in safe safe-basic safe-search ; do
 	CHECK="$HOLD/strace.$METHOD1.txt"
 	SCRIPT="$HOLD/check.$METHOD1.sh"
 	cat <<- DONE >> $SCRIPT
-		#!/usr/bin/env -S bash
+		#!/usr/bin/env bash
 		. $TESTBASE/test-functions.sh
 		. $TESTBASE/character-helper.sh
 		DETOX="$DETOX"

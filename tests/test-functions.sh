@@ -1,4 +1,4 @@
-#! /usr/bin/env -S bash
+#!/usr/bin/env bash
 #
 # unit test functions
 #

@@ -1,8 +1,10 @@
-#!/usr/bin/env -S bash -e
+#!/usr/bin/env bash
 #
 # Confirm that the sample detoxrcs in detoxrc.5 and detox.tbl.5 parse
 # correctly.
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env
