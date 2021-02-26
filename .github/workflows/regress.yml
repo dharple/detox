@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: brew install
-      run: brew install automake coreutils
+      run: brew install automake
     - name: autoreconf
       run: autoreconf --install
     - name: configure
@@ -38,7 +38,3 @@ jobs:
       run: make
     - name: simple test
       run: bin/simple-test.sh
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
