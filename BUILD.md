@@ -119,6 +119,13 @@ make
 make coverage
 ```
 
+#### Caveats
+
+For some reason, if you pass `-ftest-coverage` to gcc when you're linking
+objects into an exectuable, whichever object is first on the command line will
+have its `.gcno` file wiped out.  There is a hack in `src/Makefile.am` that
+puts `-ftest-coverage` on the `DEFS` variable.
+
 # Release Instructions
 
 ## Release

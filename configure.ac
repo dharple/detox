@@ -93,7 +93,9 @@ AC_ARG_WITH([coverage],
 
 AS_IF([test "x$with_coverage" != xno], [
 	AC_CHECK_CFLAG([[-fprofile-arcs]])
-	AC_CHECK_CFLAG([[-ftest-coverage]])
+
+	# see src/Makefile.am
+	# AC_CHECK_CFLAG([[-ftest-coverage]])
 ])
 AM_CONDITIONAL([WITH_COVERAGE], [test "x$with_coverage" != xno])
 

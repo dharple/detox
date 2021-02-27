@@ -67,6 +67,13 @@ generate_builtin_table_SOURCES = \
 
 if WITH_COVERAGE
 
+#
+# This is so hacky.  If you go the normal route, and put `-ftest-coverage` on a
+# CFLAGS variable, it works as expected, BUT, when the linking happens, gcc
+# will zero out the `.gcno` file for the first file on the link list.
+#
+DEFS += -ftest-coverage
+
 coverage-text:
 	gcov *.c
 
