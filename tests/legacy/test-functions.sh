@@ -23,14 +23,13 @@ fi
 # @param $2 Input Filename
 # @param $3 Output Filename
 # @param $4 Path to Config File
-# @param $5 Path to Stock Tables
-# @param $6 Sequence to Run (leave blank to use default)
+# @param $5 Sequence to Run (leave blank to use default)
 #
 # @return int 0 for success, 1 for failure
 #
 function test_detoxrc ()
 {
-	if [ -z "$1" -o -z "$2" -o -z "$3" -o -z "$4" -o -z "$5" ] ; then
+	if [ -z "$1" -o -z "$2" -o -z "$3" -o -z "$4" ] ; then
 		echo missing parameters
 		return 1
 	fi
@@ -39,8 +38,7 @@ function test_detoxrc ()
 	local INPUT=$2
 	local OUTPUT=$3
 	local DETOXRC=$4
-	local TABLEPATH=$5
-	local SEQUENCE=$6
+	local SEQUENCE=$5
 
 	if [ ! -x "$DETOX" ] ; then
 		echo $DETOX is not executable
@@ -49,11 +47,6 @@ function test_detoxrc ()
 
 	if [ ! -f "$DETOXRC" ] ; then
 		echo $DETOXRC is not a file
-		return 1
-	fi
-
-	if [ ! -d "$TABLEPATH" ] ; then
-		echo $TABLEPATH is not a dir
 		return 1
 	fi
 
@@ -77,16 +70,6 @@ function test_detoxrc ()
 	local RC=$WORK/detoxrc
 
 	cp $DETOXRC $RC
-
-	for NAME in safe iso8859_1 utf_8 ; do
-		local TABLE=$NAME.tbl
-		if [ $NAME = "utf_8" ] ; then
-			TABLE="unicode.tbl"
-		fi
-		cp $TABLEPATH/$TABLE $WORK/$TABLE
-
-		sed -i -e"s@$NAME;@$NAME { filename \"$WORK/$TABLE\"; };@" $RC
-	done
 
 	cd $WORK
 

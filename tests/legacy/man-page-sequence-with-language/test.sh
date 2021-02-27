@@ -27,9 +27,10 @@ FOUND=$(locale -a | grep -c '^C[.]')
 
 if [ "$FOUND" -gt 0 ] ; then
 	OUTPUT="tab_dollar_and_"
-	LANG=$WHICH
-	LC_ALL=$WHICH
-	LC_CTYPE=$WHICH
+	for VAR in LANG LC_ALL LC_CTYPE ; do
+		eval "$VAR=$WHICH"
+		export $VAR
+	done
 
 	CHECK=$(echo "$INPUT" | $INLINE -f detoxrc.manpage)
 	if [ "$CHECK" != "$OUTPUT" ] ; then
@@ -49,9 +50,10 @@ FOUND=$(locale -a | grep -c '^de_DE')
 
 if [ "$FOUND" -gt 0 ] ; then
 	OUTPUT="tab_dollar_and_"
-	LANG=$WHICH
-	LC_ALL=$WHICH
-	LC_CTYPE=$WHICH
+	for VAR in LANG LC_ALL LC_CTYPE ; do
+		eval "$VAR=$WHICH"
+		export $VAR
+	done
 
 	CHECK=$(echo "$INPUT" | $INLINE -f detoxrc.manpage)
 	if [ "$CHECK" != "$OUTPUT" ] ; then
@@ -71,9 +73,10 @@ FOUND=$(locale -a | grep -c '^en_US')
 
 if [ "$FOUND" -gt 0 ] ; then
 	OUTPUT="tab_money_and_"
-	LANG=$WHICH
-	LC_ALL=$WHICH
-	LC_CTYPE=$WHICH
+	for VAR in LANG LC_ALL LC_CTYPE ; do
+		eval "$VAR=$WHICH"
+		export $VAR
+	done
 
 	CHECK=$(echo "$INPUT" | $INLINE -f detoxrc.manpage)
 	if [ "$CHECK" != "$OUTPUT" ] ; then

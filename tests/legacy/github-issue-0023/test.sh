@@ -42,9 +42,9 @@ cd further
 
 cd $TESTBASE
 $DETOX -n -r --special $WORK > $CHECK 2>&1
-COUNT=$(wc -l $CHECK | cut -f 1 -d ' ')
+COUNT=$(wc -l $CHECK | sed -e's/^ *//g' | cut -f 1 -d ' ')
 
-if [ $COUNT -ne 1 ] ; then
+if [ "$COUNT" -ne "1" ] ; then
 	echo expected 1 line of output from detox, found $COUNT instead
 	exit 1
 fi
@@ -55,9 +55,9 @@ fi
 # positive
 
 $DETOX -n -r --special $WORK > $CHECK 2>&1
-COUNT=$(wc -l $CHECK | cut -f 1 -d ' ')
+COUNT=$(wc -l $CHECK | sed -e's/^ *//g' | cut -f 1 -d ' ')
 
-if [ $COUNT -ne 1 ] ; then
+if [ "$COUNT" -ne "1" ] ; then
 	echo expected 1 line of output from detox, found $COUNT instead
 	exit 1
 fi
@@ -77,9 +77,9 @@ if [ ! -d $WORK/test/deeper-test/further/long_loop/deeper-test/ ] ; then
 fi
 
 $DETOX -n -r --special $WORK > $CHECK 2>&1
-COUNT=$(wc -l $CHECK | cut -f 1 -d ' ')
+COUNT=$(wc -l $CHECK | sed -e's/^ *//g' | cut -f 1 -d ' ')
 
-if [ $COUNT -ne 1 ] ; then
+if [ "$COUNT" -ne "1" ] ; then
 	echo expected 1 line of output from detox, found $COUNT instead
 	exit 1
 fi
