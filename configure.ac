@@ -53,11 +53,18 @@ AC_CHECK_CFLAG([[-fstack-protector-strong]])
 #
 #
 
+PKG_CHECK_MODULES([CHECK], [check >= 0.10.0])
+
+#
+#
+#
+
 AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
 	tests/Makefile
 	tests/legacy/Makefile
+	tests/unit/Makefile
 ])
 AC_OUTPUT

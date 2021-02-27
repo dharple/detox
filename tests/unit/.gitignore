@@ -1,0 +1,6 @@
+# check output
+*.log
+*.trs
+
+# specific files
+check_clean_string

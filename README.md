@@ -43,13 +43,15 @@ detox -r /music/transferred_from_elsewhere/
 Many distributions include a copy of detox with their packages.  If you wish to
 build it from scratch, you'll need the following tools:
 
+- autoconf
+- automake
 - gcc, or clang
+- libtool
 - make
+- pkg-config
 
 Additionally, you may need:
 
-- autoconf
-- automake
 - bison, yacc, or byacc
 - flex, or lex
 
