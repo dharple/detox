@@ -17,6 +17,7 @@ AM_LDFLAGS = \
 
 TESTS = \
 	test_clean_lower \
+	test_clean_max_length \
 	test_clean_safe \
 	test_clean_wipeup
 

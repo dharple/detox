@@ -12,8 +12,10 @@
 
 struct test_filename {
     char *filename;
+    char *expected;
     char *expected_a;
     char *expected_b;
+    int   max_length;
 };
 
 #endif /* __UNIT_STRUCT_H */
