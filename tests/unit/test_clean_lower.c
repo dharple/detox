@@ -17,16 +17,16 @@
 
 #include <string.h>
 
-#include "../../src/clean_string.h"
+#include "clean_string.h"
 
 #include "unit_struct.h"
 
 #define DATA_COUNT 4
 static struct test_filename data[DATA_COUNT] = {
-    { .filename = "lower",      .expected_a = "lower" },
-    { .filename = "L0W3R",      .expected_a = "l0w3r" },
-    { .filename = "UPPER",      .expected_a = "upper" },
-    { .filename = "UPPer_2",    .expected_a = "upper_2" },
+    { .filename = "lower",      .expected = "lower" },
+    { .filename = "L0W3R",      .expected = "l0w3r" },
+    { .filename = "UPPER",      .expected = "upper" },
+    { .filename = "UPPer_2",    .expected = "upper_2" },
 };
 
 START_TEST(test_clean_lower)
@@ -38,7 +38,7 @@ START_TEST(test_clean_lower)
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
         output = clean_lower(data[i].filename, NULL);
-        ck_assert_str_eq(output, data[i].expected_a);
+        ck_assert_str_eq(output, data[i].expected);
     }
 
     // confirm NULL works

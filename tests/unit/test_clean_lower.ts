@@ -9,7 +9,7 @@
 
 #include <string.h>
 
-#include "../../src/clean_string.h"
+#include "clean_string.h"
 
 #include "unit_struct.h"
 
