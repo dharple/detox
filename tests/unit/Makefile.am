@@ -1,4 +1,4 @@
-if BUILDCHECK
+if WITH_CHECK
 
 AM_CFLAGS = \
 	@CHECK_CFLAGS@ \
@@ -23,7 +23,7 @@ TESTS = \
 
 check_PROGRAMS = $(TESTS)
 
-endif # BUILDCHECK
+endif # WITH_CHECK
 
 clean-local:
 	rm -f *.gcov *.gcno *.gcda

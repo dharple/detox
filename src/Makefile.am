@@ -72,8 +72,22 @@ test_table_regression_SOURCES = \
 # code coverage rules
 #
 
+if WITH_COVERAGE
+
 coverage-text:
 	gcov *.c
 
+else
+
+coverage-text:
+	echo "code coverage is not enabled; run ./configure --with-coverage"
+
+endif # WITH_COVERAGE
+
+#
+#
+#
+
 clean-local:
+	rm -f *.i *.s
 	rm -f *.gcov *.gcno *.gcda

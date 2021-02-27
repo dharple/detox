@@ -29,12 +29,28 @@ internals:
 valgrind:
 	USE_VALGRIND=1 $(top_srcdir)/tests/test.sh src/detox
 
+#
+# code coverage rules
+#
+
+if WITH_COVERAGE
+
 coverage:
 	lcov --capture --directory src --output-file coverage.info
 	genhtml coverage.info --output-directory coverage
 
 coverge-text:
 	cd src && make coverage-text
+
+else
+
+coverage:
+	echo "code coverage is not enabled; run ./configure --with-coverage"
+
+
+coverage-text: coverage
+
+endif # WITH_COVERAGE
 
 clean-local:
 	rm -rf coverage.info coverage/

@@ -50,7 +50,7 @@ AC_CHECK_CFLAG([[-fstack-clash-protection]])
 AC_CHECK_CFLAG([[-fstack-protector-strong]])
 
 #
-# Support for check
+# Support for check unit tests
 #
 
 #
@@ -78,23 +78,24 @@ AS_IF([test "x$with_check" != xno], [
 		]
 	)
 ])
-AM_CONDITIONAL([BUILDCHECK], [test "x$with_check" != xno])
+AM_CONDITIONAL([WITH_CHECK], [test "x$with_check" != xno])
 
 #
-# Support for gcov
+# Support for code coverage
 #
 
-AC_ARG_WITH([gcov],
-	[AS_HELP_STRING([--with-gcov],
-		[enable experimental support for gcov])],
+AC_ARG_WITH([coverage],
+	[AS_HELP_STRING([--with-coverage],
+		[enable experimental support for coverage])],
 	[],
-	[with_gcov=no]
+	[with_coverage=no]
 )
 
-AS_IF([test "x$with_gcov" != xno], [
+AS_IF([test "x$with_coverage" != xno], [
 	AC_CHECK_CFLAG([[-fprofile-arcs]])
 	AC_CHECK_CFLAG([[-ftest-coverage]])
 ])
+AM_CONDITIONAL([WITH_COVERAGE], [test "x$with_coverage" != xno])
 
 #
 #
