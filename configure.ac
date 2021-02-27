@@ -64,7 +64,6 @@ AC_ARG_WITH([check],
 	[with_check=no]
 )
 
-USECHECK=
 AS_IF([test "x$with_check" != xno], [
 	PKG_CHECK_EXISTS([CHECK], [check >= 0.10.0],
 		[
@@ -72,7 +71,6 @@ AS_IF([test "x$with_check" != xno], [
 			# if the module is available, and configures it
 
 			PKG_CHECK_MODULES([CHECK], [check >= 0.10.0])
-			AC_SUBST([USECHECK], ["unit"])
 			AC_DEFINE([HAVE_LIBCHECK], [1], [Define if you have libcheck])
 		],
 		[
@@ -80,6 +78,7 @@ AS_IF([test "x$with_check" != xno], [
 		]
 	)
 ])
+AM_CONDITIONAL([BUILDCHECK], [test "x$with_check" != xno])
 
 #
 #
