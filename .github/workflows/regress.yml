@@ -38,3 +38,22 @@ jobs:
       run: make
     - name: simple test
       run: bin/simple-test.sh
+
+  build-ubuntu-unit-test:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: apt install
+      run: apt install check
+    - name: autoreconf
+      run: autoreconf --install
+    - name: configure
+      run: ./configure --with-check
+    - name: make
+      run: make
+    - name: simple test
+      run: bin/simple-test.sh
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
