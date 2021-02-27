@@ -26,7 +26,7 @@ echo TESTBASE=$TESTBASE
 
 SUCCESS=1
 
-for DIR in $(find -type d -name '[a-z]*' | sort) ; do
+for DIR in github-* legacy-* man-page-* ; do
 	echo "------------------------------------------------------"
 	echo running test $(basename $DIR)
 	cd $DIR
