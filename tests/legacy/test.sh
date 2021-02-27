@@ -21,6 +21,9 @@ cd $(dirname $0)
 TESTBASE=$(pwd)
 export TESTBASE
 
+echo DETOX=$DETOX
+echo TESTBASE=$TESTBASE
+
 SUCCESS=1
 
 for DIR in $(find -type d -name '[a-z]*' | sort) ; do

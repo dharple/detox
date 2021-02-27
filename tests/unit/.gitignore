@@ -3,4 +3,6 @@
 *.trs
 
 # specific files
-check_clean_string
+test_clean_lower
+test_clean_safe
+test_clean_wipeup

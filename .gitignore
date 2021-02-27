@@ -23,6 +23,11 @@ stamp-h1
 test-driver
 ylwrap
 
+# Debugging Cruft
+*.i
+*.s
+a.out
+
 # Built Objects
 *.o
 

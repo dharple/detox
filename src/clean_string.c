@@ -32,7 +32,7 @@ char *clean_iso8859_1(char *filename, struct clean_string_options *options)
         return NULL;
     }
 
-    if (options == NULL) {
+    if (options == NULL || options->translation_table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
@@ -95,7 +95,7 @@ char *clean_safe(char *filename, struct clean_string_options *options)
         return NULL;
     }
 
-    if (options == NULL) {
+    if (options == NULL || options->translation_table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
@@ -276,7 +276,7 @@ char *clean_utf_8(char *filename, struct clean_string_options *options)
         return NULL;
     }
 
-    if (options == NULL) {
+    if (options == NULL || options->translation_table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }

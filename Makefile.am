@@ -21,7 +21,10 @@ dist_pkgdata_DATA = \
 EXTRA_DIST = man/detox.1.pdf man/inline-detox.1.pdf man/detoxrc.5.pdf man/detox.tbl.5.pdf
 
 internals:
-	bin/generate.sh
+	bin/generate-builtin.sh || true
+	bin/generate-legacy-tests.sh || true
+	bin/generate-pdf.sh || true
+	bin/generate-unit-tests.sh || true
 
 valgrind:
 	USE_VALGRIND=1 $(top_srcdir)/tests/test.sh src/detox
