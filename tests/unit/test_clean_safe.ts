@@ -61,10 +61,7 @@ static struct test_filename data[DATA_COUNT] = {
     char *output;
     int i;
 
-    // Allocate an options struct
-    options = malloc(sizeof(struct clean_string_options));
-    ck_assert_msg((options != NULL), "options could not be allocated");
-    memset(options, 0, sizeof(struct clean_string_options));
+    options = new_clean_string_options();
     options->translation_table = load_builtin_safe_table();
 
     // legacy tests

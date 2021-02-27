@@ -112,4 +112,6 @@ struct detox_options {
     char **files;
 };
 
+extern struct clean_string_options *new_clean_string_options();
+
 #endif /* __DETOX_STRUCT_H */

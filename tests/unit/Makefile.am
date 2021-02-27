@@ -9,9 +9,10 @@ AM_CFLAGS = \
 	-Werror
 
 AM_LDFLAGS = \
-	$(top_builddir)/src/clean_string.o \
-	$(top_builddir)/src/table.o \
 	$(top_builddir)/src/builtin_table.o \
+	$(top_builddir)/src/clean_string.o \
+	$(top_builddir)/src/detox_struct.o \
+	$(top_builddir)/src/table.o \
 	@CHECK_LIBS@
 
 TESTS = \

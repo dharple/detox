@@ -114,16 +114,14 @@ iso8859_1: ISO8859_1 { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
     ISO8859_1 OPEN CLOSE { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
     |
     ISO8859_1 OPEN FILENAME string EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->filename = $4;
 
         cf_append_sequence_entry(&clean_iso8859_1, csopts);
     }
     |
     ISO8859_1 OPEN BUILTIN string EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->builtin = $4;
 
         cf_append_sequence_entry(&clean_iso8859_1, csopts);
@@ -135,16 +133,14 @@ utf_8: UTF_8 { cf_append_sequence_entry(&clean_utf_8, NULL); }
     UTF_8 OPEN CLOSE { cf_append_sequence_entry(&clean_utf_8, NULL); }
     |
     UTF_8 OPEN FILENAME string EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->filename = $4;
 
         cf_append_sequence_entry(&clean_utf_8, csopts);
     }
     |
     UTF_8 OPEN BUILTIN string EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->builtin = $4;
 
         cf_append_sequence_entry(&clean_utf_8, csopts);
@@ -156,16 +152,14 @@ safe: SAFE { cf_append_sequence_entry(&clean_safe, NULL); }
     SAFE OPEN CLOSE { cf_append_sequence_entry(&clean_safe, NULL); }
     |
     SAFE OPEN FILENAME string EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->filename = $4;
 
         cf_append_sequence_entry(&clean_safe, csopts);
     }
     |
     SAFE OPEN BUILTIN string EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->builtin = $4;
 
         cf_append_sequence_entry(&clean_safe, csopts);
@@ -181,8 +175,7 @@ wipeup:    WIPEUP {
     }
     |
     WIPEUP OPEN REMOVE_TRAILING EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->remove_trailing = 1;
 
         cf_append_sequence_entry(&clean_wipeup, csopts);
@@ -194,8 +187,7 @@ max_length: MAX_LENGTH    { cf_append_sequence_entry(&clean_max_length, NULL); }
     MAX_LENGTH OPEN CLOSE { cf_append_sequence_entry(&clean_max_length, NULL); }
     |
     MAX_LENGTH OPEN LENGTH NVALUE EOL CLOSE {
-        csopts = malloc(sizeof(struct clean_string_options));
-        memset(csopts, 0, sizeof(struct clean_string_options));
+        csopts = new_clean_string_options();
         csopts->max_length = (size_t)$4;
 
         cf_append_sequence_entry(&clean_max_length, csopts);

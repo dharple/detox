@@ -109,10 +109,7 @@ START_TEST(test_clean_wipeuprt)
     char *output;
     int i;
 
-    // Allocate an options struct
-    options = malloc(sizeof(struct clean_string_options));
-    ck_assert_msg((options != NULL), "options could not be allocated");
-    memset(options, 0, sizeof(struct clean_string_options));
+    options = new_clean_string_options();
     options->remove_trailing = 1;
 
     // legacy tests

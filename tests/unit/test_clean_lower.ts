@@ -7,12 +7,9 @@
  * file that was distributed with this source code.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 
 #include "../../src/clean_string.h"
-#include "../../src/detox_struct.h"
 
 #include "unit_struct.h"
 

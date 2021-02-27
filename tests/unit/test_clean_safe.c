@@ -71,10 +71,7 @@ START_TEST(test_clean_safe)
     char *output;
     int i;
 
-    // Allocate an options struct
-    options = malloc(sizeof(struct clean_string_options));
-    ck_assert_msg((options != NULL), "options could not be allocated");
-    memset(options, 0, sizeof(struct clean_string_options));
+    options = new_clean_string_options();
     options->translation_table = load_builtin_safe_table();
 
     // legacy tests
@@ -88,7 +85,7 @@ END_TEST
 
 START_TEST(test_clean_safe_missing_options)
 {
-#line 77
+#line 74
     clean_safe("what", NULL);
 }
 END_TEST

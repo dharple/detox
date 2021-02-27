@@ -43,6 +43,7 @@ detox_SOURCES = \
 	config_file_dump.c \
 	config_file_spoof.c \
 	detox.c \
+	detox_struct.c \
 	file.c \
 	parse_options.c \
 	parse_table.c \
