@@ -45,15 +45,25 @@ build it from scratch, you'll need the following tools:
 
 - autoconf
 - automake
-- gcc, or clang
-- libtool
+- bison / yacc / byacc
+- flex / lex
+- gcc / clang
 - make
-- pkg-config
+- pkg-config / pkgconf
 
-Additionally, you may need:
+## Prerequisites
 
-- bison, yacc, or byacc
-- flex, or lex
+To install the needed packages on Debian, Ubuntu, Mint, and other Debian
+derivatives, run:
+
+```
+sudo apt install autoconf automake bison flex gcc make pkg-config
+```
+
+To install the needed packages on FreeBSD, run:
+```
+sudo pkg install autoconf automake gcc pkgconf
+```
 
 ## Install Stable from GitHub Package
 
@@ -68,7 +78,7 @@ make
 make install
 ```
 
-If that during the configure or make steps, run
+If that fails during the configure or make steps, run
 ```
 autoreconf --install
 ./configure
@@ -91,8 +101,16 @@ make install
 
 ## Install Development from Repository
 
-To build the latest copy of `detox` from source, follow the instructions in
-`BUILD.md`.
+To build a development copy of `detox` from source, run:
+
+```
+git clone -b main https://github.com/dharple/detox.git
+cd detox
+autoreconf --install
+./configure
+make
+make install
+```
 
 ## Uninstall
 

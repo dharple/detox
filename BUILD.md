@@ -1,50 +1,6 @@
 # Build Instructions
 
-## Tools Needed
-
-Always:
-
-- autoconf
-- automake
-- gcc, or clang
-- make
-
-Sometimes:
-
-- bison, yacc, or byacc
-- flex, or lex
-
-## Compile
-
-To compile `detox`, run:
-
-```bash
-autoreconf --install
-./configure
-make
-```
-
-## Install
-
-To install `detox`, run:
-
-```bash
-make install
-```
-
-To force an overwrite of config files and translation tables, run:
-
-```bash
-make force-install
-```
-
-## Uninstall
-
-From the same directory, run:
-
-```bash
-make uninstall
-```
+For general instructions, please see the build instructions in `README.md`.
 
 # Development Instructions
 
@@ -55,9 +11,9 @@ Basic Development:
 - autoconf
 - automake
 - bash
-- bison
+- bison or yacc
 - flex
-- gcc, or clang
+- gcc
 - make
 
 Linting:
@@ -69,6 +25,7 @@ Linting:
 
 Testing:
 
+- check
 - printf
 - sed
 - strace
@@ -103,9 +60,10 @@ grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 
 ## Testing
 
-Regression testing:
+Unit and Regression testing:
 
 ```bash
+./configure --with-check
 make
 make internals
 make check
