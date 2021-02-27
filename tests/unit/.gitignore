@@ -8,3 +8,4 @@ test_clean_max_length
 test_clean_safe
 test_clean_wipeup
 test_table_regression
+test_table_resize

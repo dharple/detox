@@ -356,6 +356,10 @@ start
 0xCAFE		cafe	# testing value
 0xFACE		face	# testing value
 
+# 0xFACE		punim	# uncomment to break unit test
+
+# 0x4000		broken	# uncomment to break unit test
+
 #
 # REGRESSION TESTING SECTION
 #
