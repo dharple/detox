@@ -113,5 +113,9 @@ struct detox_options {
 };
 
 extern struct clean_string_options *new_clean_string_options();
+extern struct detox_ignore_entry *new_detox_ignore_entry();
+extern struct detox_parse_results *new_detox_parse_results();
+extern struct detox_sequence_entry *new_detox_sequence_entry();
+extern struct detox_sequence_list *new_detox_sequence_list();
 
 #endif /* __DETOX_STRUCT_H */

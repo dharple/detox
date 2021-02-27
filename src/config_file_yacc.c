@@ -1891,8 +1891,7 @@ struct detox_parse_results *parse_config_file(char *filename, struct detox_parse
         ret = previous_results;
     }
     else {
-        ret = malloc(sizeof(struct detox_parse_results));
-        memset(ret, 0, sizeof(struct detox_parse_results));
+        ret = new_detox_parse_results();
     }
 
     /*
@@ -1994,9 +1993,7 @@ void cf_append_sequence_list(void) {
          */
     }
     else {
-        work = malloc(sizeof(struct detox_sequence_list));
-        memset(work, 0, sizeof(struct detox_sequence_list));
-
+        work = new_detox_sequence_list();
         work->name = strdup(current_name);
 
         /*
@@ -2023,9 +2020,7 @@ void cf_append_sequence_list(void) {
 void cf_append_sequence_entry(void *ptr, struct clean_string_options *options) {
     struct detox_sequence_entry *work;
 
-    work = malloc(sizeof(struct detox_sequence_entry));
-    memset(work, 0, sizeof(struct detox_sequence_entry));
-
+    work = new_detox_sequence_entry();
     work->cleaner = ptr;
     work->options = options;
 
@@ -2042,8 +2037,7 @@ void cf_append_sequence_entry(void *ptr, struct clean_string_options *options) {
 void cf_append_ignore_entry(int token, void *str) {
     struct detox_ignore_entry *work;
 
-    work = malloc(sizeof(struct detox_ignore_entry));
-    memset(work, 0, sizeof(struct detox_ignore_entry));
+    work = new_detox_ignore_entry();
 
     switch(token) {
         case FILENAME:
