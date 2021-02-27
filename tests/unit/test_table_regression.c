@@ -48,6 +48,8 @@ static struct test_value values[9] = {
     { .value = 0 }
 };
 
+static char *fixture_regress_tbl = "fixtures/test_table_regression.tbl";
+
 static int regress_parse_table(int verbose)
 {
     struct translation_table *table;
@@ -62,7 +64,7 @@ static int regress_parse_table(int verbose)
     }
 
     for (use_hash = 0; use_hash <= 1; use_hash++) {
-        table = parse_table("regress.tbl");
+        table = parse_table(fixture_regress_tbl);
 
         for (i = 0; tests[i].pass != -1; i++) {
             if (verbose) {
@@ -138,7 +140,7 @@ int main(int argc, char **argv)
     while ((optcode = getopt(argc, argv, "v")) != -1) {
         switch (optcode) {
             case 'h':
-                printf("test-table-regression [-v]\n");
+                printf("test_table_regression [-v]\n");
                 return 0;
 
             case 'v':

@@ -31,8 +31,7 @@ bin_PROGRAMS = \
 
 noinst_PROGRAMS = \
 	check-table \
-	generate-builtin-table \
-	test-table-regression
+	generate-builtin-table
 
 detox_SOURCES = \
 	builtin_table.c \
@@ -62,12 +61,6 @@ generate_builtin_table_SOURCES = \
 	table.c \
 	generate_builtin_table.c
 
-test_table_regression_SOURCES = \
-	parse_table.c \
-	table.c \
-	table_dump.c \
-	test_table_regression.c
-
 #
 # code coverage rules
 #
@@ -91,3 +84,4 @@ endif # WITH_COVERAGE
 clean-local:
 	rm -f *.i *.s
 	rm -f *.gcov *.gcno *.gcda
+	rm -f test-table-regression

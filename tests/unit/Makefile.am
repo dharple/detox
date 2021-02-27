@@ -12,6 +12,8 @@ AM_LDFLAGS = \
 	$(top_builddir)/src/builtin_table.o \
 	$(top_builddir)/src/clean_string.o \
 	$(top_builddir)/src/detox_struct.o \
+	$(top_builddir)/src/parse_table.o \
+	$(top_builddir)/src/table_dump.o \
 	$(top_builddir)/src/table.o \
 	@CHECK_LIBS@
 
@@ -19,7 +21,8 @@ TESTS = \
 	test_clean_lower \
 	test_clean_max_length \
 	test_clean_safe \
-	test_clean_wipeup
+	test_clean_wipeup \
+	test_table_regression
 
 check_PROGRAMS = $(TESTS)
 
