@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: apt install
-      run: apt install check
+      run: sudo apt install check
     - name: autoreconf
       run: autoreconf --install
     - name: configure
