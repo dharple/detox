@@ -50,10 +50,36 @@ AC_CHECK_CFLAG([[-fstack-clash-protection]])
 AC_CHECK_CFLAG([[-fstack-protector-strong]])
 
 #
-#
+# Support for check
 #
 
-PKG_CHECK_MODULES([CHECK], [check >= 0.10.0])
+#
+# source: https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/External-Software.html
+#
+
+AC_ARG_WITH([check],
+	[AS_HELP_STRING([--with-check],
+		[enable experimental support for check])],
+	[],
+	[with_check=no]
+)
+
+USECHECK=
+AS_IF([test "x$with_check" != xno], [
+	PKG_CHECK_EXISTS([CHECK], [check >= 0.10.0],
+		[
+			# the name of this macro is deceiving, it checks to see
+			# if the module is available, and configures it
+
+			PKG_CHECK_MODULES([CHECK], [check >= 0.10.0])
+			AC_SUBST([USECHECK], ["unit"])
+			AC_DEFINE([HAVE_LIBCHECK], [1], [Define if you have libcheck])
+		],
+		[
+			AC_MSG_FAILURE([--with-check was given, but test for check failed])
+		]
+	)
+])
 
 #
 #

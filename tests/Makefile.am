@@ -1,1 +1,1 @@
-SUBDIRS = legacy unit
+SUBDIRS = legacy @USECHECK@

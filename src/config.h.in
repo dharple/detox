@@ -3,6 +3,9 @@
 /* Define to 1 if you have the `getopt_long' function. */
 #undef HAVE_GETOPT_LONG
 
+/* Define if you have libcheck */
+#undef HAVE_LIBCHECK
+
 /* Name of package */
 #undef PACKAGE
 
