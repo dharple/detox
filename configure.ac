@@ -57,5 +57,7 @@ AC_CONFIG_HEADER([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
+	tests/Makefile
+	tests/legacy/Makefile
 ])
 AC_OUTPUT
