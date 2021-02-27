@@ -24,3 +24,6 @@ TESTS = \
 check_PROGRAMS = $(TESTS)
 
 endif # BUILDCHECK
+
+clean-local:
+	rm -f *.gcov *.gcno *.gcda

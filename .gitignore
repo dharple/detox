@@ -40,3 +40,10 @@ test-table-regression
 
 # Built Packages
 /detox-*.tar.gz
+
+# Coverage files
+*.gcda
+*.gcno
+*.gcov
+/coverage.info
+/coverage/

@@ -28,3 +28,13 @@ internals:
 
 valgrind:
 	USE_VALGRIND=1 $(top_srcdir)/tests/test.sh src/detox
+
+coverage:
+	lcov --capture --directory src --output-file coverage.info
+	genhtml coverage.info --output-directory coverage
+
+coverge-text:
+	cd src && make coverage-text
+
+clean-local:
+	rm -rf coverage.info coverage/

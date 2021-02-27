@@ -67,3 +67,13 @@ test_table_regression_SOURCES = \
 	table.c \
 	table_dump.c \
 	test_table_regression.c
+
+#
+# code coverage rules
+#
+
+coverage-text:
+	gcov *.c
+
+clean-local:
+	rm -f *.gcov *.gcno *.gcda

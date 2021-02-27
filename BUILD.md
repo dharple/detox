@@ -60,22 +60,63 @@ grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 
 ## Testing
 
-Unit and Regression testing:
+### Unit and Regression Testing
 
 ```bash
 ./configure --with-check
+make clean
 make
-make internals
 make check
 ```
 
-Static Analysis:
+### Static Analysis
 
 ```bash
+make clean
 make
-make internals
 cppcheck src/*.[ch]
 sparse src/*.[ch]
+```
+
+### Code Coverage
+
+```bash
+./configure --with-coverage --with-check
+make clean
+make
+make check
+make coverage
+```
+
+A directory, `coverage/`, will be created.  Open index.html to see the code
+coverage report.  One of the following might work:
+
+```bash
+gio open coverage/index.html
+# or
+firefox  coverage/index.html
+# or
+chromium coverage/index.html
+```
+
+#### Code Coverage - Unit Tests Only
+
+```bash
+./configure --with-coverage --with-check
+make clean
+make
+( cd tests/unit/ && make check )
+make coverage
+```
+
+#### Code Coverage - Legacy Tests Only
+
+```bash
+./configure --with-coverage --with-check
+make clean
+make
+( cd tests/unit/ && make check )
+make coverage
 ```
 
 # Release Instructions

@@ -81,6 +81,22 @@ AS_IF([test "x$with_check" != xno], [
 AM_CONDITIONAL([BUILDCHECK], [test "x$with_check" != xno])
 
 #
+# Support for gcov
+#
+
+AC_ARG_WITH([gcov],
+	[AS_HELP_STRING([--with-gcov],
+		[enable experimental support for gcov])],
+	[],
+	[with_gcov=no]
+)
+
+AS_IF([test "x$with_gcov" != xno], [
+	AC_CHECK_CFLAG([[-fprofile-arcs]])
+	AC_CHECK_CFLAG([[-ftest-coverage]])
+])
+
+#
 #
 #
 
