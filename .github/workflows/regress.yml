@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: brew install
-      run: brew install automake
+      run: brew install automake coreutils bash
     - name: autoreconf
       run: autoreconf --install
     - name: configure
@@ -38,6 +38,10 @@ jobs:
       run: make
     - name: simple test
       run: bin/simple-test.sh
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
 
   build-ubuntu-unit-test:
     runs-on: ubuntu-20.04
