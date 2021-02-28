@@ -61,22 +61,3 @@ jobs:
       run: make check
     - name: make distcheck
       run: make distcheck
-
-  build-macos-unit-test:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: brew install
-      run: brew install automake coreutils bash check
-    - name: autoreconf
-      run: autoreconf --install
-    - name: configure
-      run: ./configure --with-check
-    - name: make
-      run: make
-    - name: simple test
-      run: bin/simple-test.sh
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
