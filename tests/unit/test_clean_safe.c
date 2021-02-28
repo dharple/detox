@@ -22,11 +22,14 @@
 #include "builtin_table.h"
 #include "clean_string.h"
 #include "detox_struct.h"
+#include "table.h"
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 35
+#define DATA_COUNT 44
 static struct test_filename data[DATA_COUNT] = {
+    // legacy
+
     { .filename = "lower",                      .expected = "lower" },
     { .filename = "^acute",                     .expected = "^acute" },
     { .filename = "&ampersand",                 .expected = "_and_ampersand" },
@@ -62,11 +65,34 @@ static struct test_filename data[DATA_COUNT] = {
     { .filename = "_-underscore_dash",          .expected = "_-underscore_dash" },
     { .filename = "_underscore",                .expected = "_underscore" },
     { .filename = "~tilde",                     .expected = "~tilde" },
+
+    // other
+
+    { .filename = "\u00C6 capital AE",          .expected = "\u00C6_capital_AE" },
+    { .filename = "\xC6 capital AE",            .expected = "\xC6_capital_AE" },
+    { .filename = "\u00DE capital thorn",       .expected = "\u00DE_capital_thorn" },
+    { .filename = "\xDE capital thorn",         .expected = "\xDE_capital_thorn" },
+    { .filename = "\u0172 capital U Ogonek",    .expected = "\u0172_capital_U_Ogonek" },
+    { .filename = "\x7E tilde",                 .expected = "~_tilde" },
+    { .filename = "\x7F delete",                .expected = "__delete" },
+
+    // other, with a/b rules
+
+    {
+        .filename   = "\x07 bell",
+        .expected   = "__bell",
+        .expected_b = "_beep__bell",
+    },
+    {
+        .filename   = "\x09 tab \x0A new line",
+        .expected   = "__tab___new_line",
+        .expected_b = "_tab__tab__nl__new_line",
+    },
 };
 
 START_TEST(test_clean_safe)
 {
-#line 60
+#line 86
     struct clean_string_options *options;
     char *output;
     int i;
@@ -89,8 +115,31 @@ END_TEST
 
 START_TEST(test_clean_safe_missing_options)
 {
-#line 78
+#line 104
     clean_safe("what", NULL);
+
+}
+END_TEST
+
+START_TEST(test_clean_safe_custom)
+{
+#line 107
+    struct clean_string_options *options;
+    char *output;
+    int i;
+
+    options = new_clean_string_options();
+    options->translation_table = load_builtin_safe_table();
+
+    table_put(options->translation_table, 0x07, "_beep_");
+    table_put(options->translation_table, 0x09, "_tab_");
+    table_put(options->translation_table, 0x0a, "_nl_");
+
+    // legacy tests
+    for (i = 0; i < DATA_COUNT; i++) {
+        output = clean_safe(data[i].filename, options);
+        ck_assert_str_eq(output, (data[i].expected_b != NULL) ? data[i].expected_b : data[i].expected);
+    }
 }
 END_TEST
 
@@ -104,6 +153,7 @@ int main(void)
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_safe);
     tcase_add_exit_test(tc1_1, test_clean_safe_missing_options, 1);
+    tcase_add_test(tc1_1, test_clean_safe_custom);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
