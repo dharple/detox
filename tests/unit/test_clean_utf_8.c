@@ -25,7 +25,7 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 15
+#define DATA_COUNT 16
 static struct test_filename data[DATA_COUNT] = {
     // legacy
 
@@ -52,11 +52,15 @@ static struct test_filename data[DATA_COUNT] = {
     { .filename = "\xC1\xBE tilde",                 .expected = "~ tilde" },
     // 2 byte UTF-8 encoded 0x7F (tilde)
     { .filename = "\xC1\xBF delete",                .expected = "_ delete" },
+
+    // github issue 33
+
+    { .filename = "\U00010348 hwair",               .expected = "hu hwair" },
 };
 
 START_TEST(test_clean_utf_8)
 {
-#line 50
+#line 54
     struct clean_string_options *options;
     char *output;
     int i;
@@ -79,7 +83,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_missing_options)
 {
-#line 68
+#line 72
     clean_utf_8("what", NULL);
 }
 END_TEST
