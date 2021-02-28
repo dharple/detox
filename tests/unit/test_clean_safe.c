@@ -80,12 +80,16 @@ START_TEST(test_clean_safe)
         ck_assert_str_eq(output, data[i].expected);
     }
 
+    // confirm NULL works
+    output = clean_safe(NULL, NULL);
+    ck_assert(output == NULL);
+
 }
 END_TEST
 
 START_TEST(test_clean_safe_missing_options)
 {
-#line 74
+#line 78
     clean_safe("what", NULL);
 }
 END_TEST

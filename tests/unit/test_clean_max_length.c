@@ -146,6 +146,10 @@ START_TEST(test_clean_max_length)
         output = clean_max_length(data[i].filename, options);
         ck_assert_str_eq(output, data[i].expected);
     }
+
+    // confirm NULL works
+    output = clean_max_length(NULL, NULL);
+    ck_assert(output == NULL);
 }
 END_TEST
 

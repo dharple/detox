@@ -26,6 +26,7 @@ Linting:
 Testing:
 
 - check
+- lcov
 - printf
 - sed
 - strace

@@ -23,7 +23,6 @@
 
 #include "parse_table.h"
 #include "table.h"
-#include "table_dump.h"
 
 struct test_definition {
     int pass;
@@ -63,7 +62,7 @@ static char *table_filename = "fixtures/test_table_resize.tbl";
 
 START_TEST(test_table_resize)
 {
-#line 57
+#line 56
     struct translation_table *table;
     struct translation_table *new_table;
     char *check;

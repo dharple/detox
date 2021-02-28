@@ -136,3 +136,7 @@ static struct test_filename data[DATA_COUNT] = {
         output = clean_max_length(data[i].filename, options);
         ck_assert_str_eq(output, data[i].expected);
     }
+
+    // confirm NULL works
+    output = clean_max_length(NULL, NULL);
+    ck_assert(output == NULL);
