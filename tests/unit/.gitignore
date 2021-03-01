@@ -9,5 +9,6 @@ test_clean_max_length
 test_clean_safe
 test_clean_utf_8
 test_clean_wipeup
+test_spoof_config_file
 test_table_regression
 test_table_resize

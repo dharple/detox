@@ -11,6 +11,9 @@ AM_CFLAGS = \
 AM_LDFLAGS = \
 	$(top_builddir)/src/builtin_table.o \
 	$(top_builddir)/src/clean_string.o \
+	$(top_builddir)/src/config_file_lex.o \
+	$(top_builddir)/src/config_file_spoof.o \
+	$(top_builddir)/src/config_file_yacc.o \
 	$(top_builddir)/src/detox_struct.o \
 	$(top_builddir)/src/parse_table.o \
 	$(top_builddir)/src/table.o \
@@ -23,6 +26,7 @@ TESTS = \
 	test_clean_safe \
 	test_clean_utf_8 \
 	test_clean_wipeup \
+	test_spoof_config_file \
 	test_table_resize
 
 check_PROGRAMS = $(TESTS)

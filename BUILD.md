@@ -15,6 +15,7 @@ Basic Development:
 - flex
 - gcc
 - make
+- php
 
 Linting:
 

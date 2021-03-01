@@ -3,7 +3,7 @@
 # Generate PDFs from man pages
 #
 
-PROJECT_ROOT=$(dirname $(dirname $0))
+PROJECT_ROOT=$(dirname $(dirname $(realpath $0)))
 cd $PROJECT_ROOT
 
 MANDIR=$PROJECT_ROOT/man

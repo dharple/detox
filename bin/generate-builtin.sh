@@ -3,7 +3,7 @@
 # Generate src/builtin_table.c
 #
 
-PROJECT_ROOT=$(dirname $(dirname $0))
+PROJECT_ROOT=$(dirname $(dirname $(realpath $0)))
 cd $PROJECT_ROOT
 
 SRCDIR=$PROJECT_ROOT/src

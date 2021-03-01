@@ -17,6 +17,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   the old behavior, use `detox -s utf_8`.  [#21]
 - PACKAGE MAINTAINERS: The default config file and translation tables no longer
   end with `.sample`.  [#59]
+- Builtin config file now matches the default supplied one.  [#42]
 - Builtin translation tables are generated from `table/*.tbl`.  [#21] [#29]
 - Cleaned up man pages.  PDF versions are automatically generated.  [#22]
 - Code uses spaces instead of tabs.  [#44]
@@ -224,6 +225,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#46]: https://github.com/dharple/detox/issues/46
 [#44]: https://github.com/dharple/detox/issues/44
 [#43]: https://github.com/dharple/detox/issues/43
+[#42]: https://github.com/dharple/detox/issues/42
 [#41]: https://github.com/dharple/detox/issues/41
 [#40]: https://github.com/dharple/detox/issues/40
 [#37]: https://github.com/dharple/detox/issues/37

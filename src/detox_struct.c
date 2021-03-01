@@ -42,6 +42,20 @@ struct detox_ignore_entry *new_detox_ignore_entry()
     return ret;
 }
 
+struct detox_options *new_detox_options()
+{
+    struct detox_options *ret;
+
+    ret = malloc(sizeof(struct detox_options));
+    if (ret == NULL) {
+        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    memset(ret, 0, sizeof(struct detox_options));
+
+    return ret;
+}
+
 struct detox_parse_results *new_detox_parse_results()
 {
     struct detox_parse_results *ret;

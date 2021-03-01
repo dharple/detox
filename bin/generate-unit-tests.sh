@@ -3,7 +3,7 @@
 # Generate tests/unit/*.c from .ts
 #
 
-PROJECT_ROOT=$(dirname $(dirname $0))
+PROJECT_ROOT=$(dirname $(dirname $(realpath $0)))
 cd $PROJECT_ROOT
 
 TESTDIR=$PROJECT_ROOT/tests/unit
