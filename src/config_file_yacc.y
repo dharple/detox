@@ -68,6 +68,9 @@ int yylex (void);
 
 %type <string> string
 
+%option nounput
+%option noinput
+
 %%
 
 configfile:
