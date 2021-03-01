@@ -56,16 +56,16 @@ struct detox_parse_results *new_detox_parse_results()
     return ret;
 }
 
-struct detox_sequence_entry *new_detox_sequence_entry()
+struct detox_sequence_filter *new_detox_sequence_filter()
 {
-    struct detox_sequence_entry *ret;
+    struct detox_sequence_filter *ret;
 
-    ret = malloc(sizeof(struct detox_sequence_entry));
+    ret = malloc(sizeof(struct detox_sequence_filter));
     if (ret == NULL) {
         fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
-    memset(ret, 0, sizeof(struct detox_sequence_entry));
+    memset(ret, 0, sizeof(struct detox_sequence_filter));
 
     return ret;
 }

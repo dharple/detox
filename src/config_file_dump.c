@@ -16,7 +16,7 @@
 void dump_config_file(struct detox_parse_results *parse_results, struct detox_options *main_options)
 {
     struct detox_sequence_list *list_work = NULL;
-    struct detox_sequence_entry *work = NULL;
+    struct detox_sequence_filter *work = NULL;
     struct detox_ignore_entry *ignore_walk = NULL;
     int count = 0;
 

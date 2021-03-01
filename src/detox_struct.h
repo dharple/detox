@@ -58,7 +58,7 @@ struct detox_sequence_list {
     /*
      * The top of the linked list of entries for this sequence
      */
-    struct detox_sequence_entry *head;
+    struct detox_sequence_filter *head;
 
     char *source_filename;
 };
@@ -66,8 +66,8 @@ struct detox_sequence_list {
 /*
  * Holds information about an entry within a specific sequence
  */
-struct detox_sequence_entry {
-    struct detox_sequence_entry *next;
+struct detox_sequence_filter{
+    struct detox_sequence_filter *next;
 
     char *(*cleaner) (char *filename, struct clean_string_options *options);
     struct clean_string_options *options;
@@ -102,7 +102,7 @@ struct detox_options {
     int special;
     int verbose;
 
-    struct detox_sequence_entry *sequence_to_use;
+    struct detox_sequence_filter *sequence_to_use;
     struct detox_ignore_entry *files_to_ignore;
 
     char *sequence_name;
@@ -115,7 +115,7 @@ struct detox_options {
 extern struct clean_string_options *new_clean_string_options();
 extern struct detox_ignore_entry *new_detox_ignore_entry();
 extern struct detox_parse_results *new_detox_parse_results();
-extern struct detox_sequence_entry *new_detox_sequence_entry();
+extern struct detox_sequence_filter *new_detox_sequence_filter();
 extern struct detox_sequence_list *new_detox_sequence_list();
 
 #endif /* __DETOX_STRUCT_H */

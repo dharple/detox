@@ -26,9 +26,9 @@
  *
  * @return The chosen sequence.
  */
-struct detox_sequence_entry *sequence_choose_default(struct detox_sequence_list *sequences, char *sequence_name)
+struct detox_sequence_filter *sequence_choose_default(struct detox_sequence_list *sequences, char *sequence_name)
 {
-    struct detox_sequence_entry *which = NULL;
+    struct detox_sequence_filter *which = NULL;
     struct detox_sequence_list *work = sequences;
 
     while (work != NULL) {
@@ -104,7 +104,7 @@ struct translation_table *sequence_find_table(const char *check_filename)
  *
  * @param sequence The sequence to load a builtin for.
  */
-struct translation_table *sequence_load_builtin(struct detox_sequence_entry *sequence)
+struct translation_table *sequence_load_builtin(struct detox_sequence_filter *sequence)
 {
     if (sequence->cleaner == &clean_iso8859_1) {
         return load_builtin_iso8859_1_table();
@@ -148,7 +148,7 @@ struct translation_table *sequence_load_builtin_by_filename(char *filename)
  *
  * @param sequence The sequence to check.
  */
-struct translation_table *sequence_load_table(struct detox_sequence_entry *sequence)
+struct translation_table *sequence_load_table(struct detox_sequence_filter *sequence)
 {
     struct translation_table *table = NULL;
     char *check_filename = NULL;
@@ -208,13 +208,13 @@ struct translation_table *sequence_load_table(struct detox_sequence_entry *seque
 /**
  * Reviews a sequence to confirm that it's valid.
  *
- * @param struct detox_sequence_entry *sequence
+ * @param struct detox_sequence_filter *sequence
  *
  * @return void
  */
-void sequence_review(struct detox_sequence_entry *sequence)
+void sequence_review(struct detox_sequence_filter *sequence)
 {
-    struct detox_sequence_entry *work = sequence;
+    struct detox_sequence_filter *work = sequence;
     struct translation_table *table = NULL;
 
     while (work != NULL) {

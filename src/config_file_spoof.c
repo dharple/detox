@@ -20,7 +20,7 @@ struct detox_parse_results *spoof_config_file(void)
 {
     struct detox_parse_results *ret = NULL;
     struct detox_sequence_list *sequences = NULL;
-    struct detox_sequence_entry *work = NULL;
+    struct detox_sequence_filter *filter = NULL;
 
     /*
      * Initialize return
@@ -40,21 +40,21 @@ struct detox_parse_results *spoof_config_file(void)
      * Step 1 - Safe
      */
 
-    sequences->head = new_detox_sequence_entry();
-    work = sequences->head;
-    work->cleaner = &clean_safe;
-    work->options = new_clean_string_options();
-    work->options->builtin = strdup("safe");
+    sequences->head = new_detox_sequence_filter();
+    filter = sequences->head;
+    filter->cleaner = &clean_safe;
+    filter->options = new_clean_string_options();
+    filter->options->builtin = strdup("safe");
 
     /*
      * Step 2 - Wipe Up
      */
 
-    work->next = new_detox_sequence_entry();
-    work = work->next;
-    work->cleaner = &clean_wipeup;
-    work->options = new_clean_string_options();
-    work->options->remove_trailing = 1;
+    filter->next = new_detox_sequence_filter();
+    filter = filter->next;
+    filter->cleaner = &clean_wipeup;
+    filter->options = new_clean_string_options();
+    filter->options->remove_trailing = 1;
 
     /*
      *

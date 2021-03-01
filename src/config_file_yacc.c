@@ -91,16 +91,16 @@
  * I must apologize in advance for the cryptic, global variable names.
  */
 
-static struct detox_sequence_list *cf_sl_ret, *cf_sl_current;
-static struct detox_sequence_entry *cf_seq_ret, *cf_seq_current;
+static struct detox_sequence_list *cf_sequence_ret, *cf_sequence_current;
+static struct detox_sequence_filter *cf_filter_ret, *cf_filter_current;
 static struct detox_ignore_entry *cf_ignore_ret, *cf_ignore_current;
-static struct clean_string_options *csopts;
+static struct clean_string_options *cs_options;
 static char *current_name = NULL;
 static char *current_filename = NULL;
 static struct detox_options *current_options;
 
 void cf_append_sequence_list(void);
-void cf_append_sequence_entry(void *ptr, struct clean_string_options *options);
+void cf_append_sequence_filter(void *ptr, struct clean_string_options *options);
 void cf_append_ignore_entry(int token, void *str);
 
 void yyerror (char *s);
@@ -204,12 +204,11 @@ union YYSTYPE
 {
 #line 43 "config_file_yacc.y"
 
-    char                        *string; /* string buffer */
-    int                          cmd;    /* command value */
-    struct detox_sequence_entry *seq;    /* sequence */
-    int                          nvalue; /* nvalue */
+    char *string; /* string buffer */
+    int   cmd;    /* command value */
+    int   nvalue; /* nvalue */
 
-#line 213 "config_file_yacc.c"
+#line 212 "config_file_yacc.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -586,11 +585,11 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    74,    74,    76,    79,    81,    84,    87,    90,    93,
-      94,    97,    99,   101,   103,   105,   107,   109,   112,   114,
-     116,   123,   131,   133,   135,   142,   150,   152,   154,   161,
-     169,   173,   177,   185,   187,   189,   197,   200,   203,   206,
-     207,   210,   215,   217
+       0,    73,    73,    75,    78,    80,    83,    86,    89,    92,
+      93,    96,    98,   100,   102,   104,   106,   108,   111,   113,
+     115,   122,   130,   132,   134,   141,   149,   151,   153,   160,
+     168,   172,   176,   184,   186,   188,   196,   199,   202,   205,
+     206,   209,   214,   216
 };
 #endif
 
@@ -1432,203 +1431,203 @@ yyreduce:
   switch (yyn)
     {
   case 7:
-#line 87 "config_file_yacc.y"
+#line 86 "config_file_yacc.y"
                                     { current_name = (yyvsp[-1].string); }
-#line 1438 "config_file_yacc.c"
+#line 1437 "config_file_yacc.c"
     break;
 
   case 8:
-#line 90 "config_file_yacc.y"
+#line 89 "config_file_yacc.y"
                           { cf_append_sequence_list(); }
-#line 1444 "config_file_yacc.c"
+#line 1443 "config_file_yacc.c"
     break;
 
   case 11:
-#line 97 "config_file_yacc.y"
-                     { cf_append_sequence_entry(&clean_uncgi, NULL); }
-#line 1450 "config_file_yacc.c"
+#line 96 "config_file_yacc.y"
+                     { cf_append_sequence_filter(&clean_uncgi, NULL); }
+#line 1449 "config_file_yacc.c"
     break;
 
   case 12:
-#line 99 "config_file_yacc.y"
-                 { cf_append_sequence_entry(&clean_lower, NULL); }
-#line 1456 "config_file_yacc.c"
+#line 98 "config_file_yacc.y"
+                 { cf_append_sequence_filter(&clean_lower, NULL); }
+#line 1455 "config_file_yacc.c"
     break;
 
   case 18:
-#line 112 "config_file_yacc.y"
-                     { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
-#line 1462 "config_file_yacc.c"
+#line 111 "config_file_yacc.y"
+                     { cf_append_sequence_filter(&clean_iso8859_1, NULL); }
+#line 1461 "config_file_yacc.c"
     break;
 
   case 19:
-#line 114 "config_file_yacc.y"
-                         { cf_append_sequence_entry(&clean_iso8859_1, NULL); }
-#line 1468 "config_file_yacc.c"
+#line 113 "config_file_yacc.y"
+                         { cf_append_sequence_filter(&clean_iso8859_1, NULL); }
+#line 1467 "config_file_yacc.c"
     break;
 
   case 20:
-#line 116 "config_file_yacc.y"
+#line 115 "config_file_yacc.y"
                                              {
-        csopts = new_clean_string_options();
-        csopts->filename = (yyvsp[-2].string);
+        cs_options = new_clean_string_options();
+        cs_options->filename = (yyvsp[-2].string);
 
-        cf_append_sequence_entry(&clean_iso8859_1, csopts);
+        cf_append_sequence_filter(&clean_iso8859_1, cs_options);
     }
-#line 1479 "config_file_yacc.c"
+#line 1478 "config_file_yacc.c"
     break;
 
   case 21:
-#line 123 "config_file_yacc.y"
+#line 122 "config_file_yacc.y"
                                             {
-        csopts = new_clean_string_options();
-        csopts->builtin = (yyvsp[-2].string);
+        cs_options = new_clean_string_options();
+        cs_options->builtin = (yyvsp[-2].string);
 
-        cf_append_sequence_entry(&clean_iso8859_1, csopts);
+        cf_append_sequence_filter(&clean_iso8859_1, cs_options);
     }
-#line 1490 "config_file_yacc.c"
+#line 1489 "config_file_yacc.c"
     break;
 
   case 22:
-#line 131 "config_file_yacc.y"
-             { cf_append_sequence_entry(&clean_utf_8, NULL); }
-#line 1496 "config_file_yacc.c"
+#line 130 "config_file_yacc.y"
+             { cf_append_sequence_filter(&clean_utf_8, NULL); }
+#line 1495 "config_file_yacc.c"
     break;
 
   case 23:
-#line 133 "config_file_yacc.y"
-                     { cf_append_sequence_entry(&clean_utf_8, NULL); }
-#line 1502 "config_file_yacc.c"
+#line 132 "config_file_yacc.y"
+                     { cf_append_sequence_filter(&clean_utf_8, NULL); }
+#line 1501 "config_file_yacc.c"
     break;
 
   case 24:
-#line 135 "config_file_yacc.y"
+#line 134 "config_file_yacc.y"
                                          {
-        csopts = new_clean_string_options();
-        csopts->filename = (yyvsp[-2].string);
+        cs_options = new_clean_string_options();
+        cs_options->filename = (yyvsp[-2].string);
 
-        cf_append_sequence_entry(&clean_utf_8, csopts);
+        cf_append_sequence_filter(&clean_utf_8, cs_options);
     }
-#line 1513 "config_file_yacc.c"
+#line 1512 "config_file_yacc.c"
     break;
 
   case 25:
-#line 142 "config_file_yacc.y"
+#line 141 "config_file_yacc.y"
                                         {
-        csopts = new_clean_string_options();
-        csopts->builtin = (yyvsp[-2].string);
+        cs_options = new_clean_string_options();
+        cs_options->builtin = (yyvsp[-2].string);
 
-        cf_append_sequence_entry(&clean_utf_8, csopts);
+        cf_append_sequence_filter(&clean_utf_8, cs_options);
     }
-#line 1524 "config_file_yacc.c"
+#line 1523 "config_file_yacc.c"
     break;
 
   case 26:
-#line 150 "config_file_yacc.y"
-           { cf_append_sequence_entry(&clean_safe, NULL); }
-#line 1530 "config_file_yacc.c"
+#line 149 "config_file_yacc.y"
+           { cf_append_sequence_filter(&clean_safe, NULL); }
+#line 1529 "config_file_yacc.c"
     break;
 
   case 27:
-#line 152 "config_file_yacc.y"
-                    { cf_append_sequence_entry(&clean_safe, NULL); }
-#line 1536 "config_file_yacc.c"
+#line 151 "config_file_yacc.y"
+                    { cf_append_sequence_filter(&clean_safe, NULL); }
+#line 1535 "config_file_yacc.c"
     break;
 
   case 28:
-#line 154 "config_file_yacc.y"
+#line 153 "config_file_yacc.y"
                                         {
-        csopts = new_clean_string_options();
-        csopts->filename = (yyvsp[-2].string);
+        cs_options = new_clean_string_options();
+        cs_options->filename = (yyvsp[-2].string);
 
-        cf_append_sequence_entry(&clean_safe, csopts);
+        cf_append_sequence_filter(&clean_safe, cs_options);
     }
-#line 1547 "config_file_yacc.c"
+#line 1546 "config_file_yacc.c"
     break;
 
   case 29:
-#line 161 "config_file_yacc.y"
+#line 160 "config_file_yacc.y"
                                        {
-        csopts = new_clean_string_options();
-        csopts->builtin = (yyvsp[-2].string);
+        cs_options = new_clean_string_options();
+        cs_options->builtin = (yyvsp[-2].string);
 
-        cf_append_sequence_entry(&clean_safe, csopts);
+        cf_append_sequence_filter(&clean_safe, cs_options);
     }
-#line 1558 "config_file_yacc.c"
+#line 1557 "config_file_yacc.c"
     break;
 
   case 30:
-#line 169 "config_file_yacc.y"
+#line 168 "config_file_yacc.y"
                   {
-        cf_append_sequence_entry(&clean_wipeup, NULL);
+        cf_append_sequence_filter(&clean_wipeup, NULL);
     }
-#line 1566 "config_file_yacc.c"
+#line 1565 "config_file_yacc.c"
     break;
 
   case 31:
-#line 173 "config_file_yacc.y"
+#line 172 "config_file_yacc.y"
                       {
-        cf_append_sequence_entry(&clean_wipeup, NULL);
+        cf_append_sequence_filter(&clean_wipeup, NULL);
     }
-#line 1574 "config_file_yacc.c"
+#line 1573 "config_file_yacc.c"
     break;
 
   case 32:
-#line 177 "config_file_yacc.y"
+#line 176 "config_file_yacc.y"
                                           {
-        csopts = new_clean_string_options();
-        csopts->remove_trailing = 1;
+        cs_options = new_clean_string_options();
+        cs_options->remove_trailing = 1;
 
-        cf_append_sequence_entry(&clean_wipeup, csopts);
+        cf_append_sequence_filter(&clean_wipeup, cs_options);
     }
-#line 1585 "config_file_yacc.c"
+#line 1584 "config_file_yacc.c"
     break;
 
   case 33:
-#line 185 "config_file_yacc.y"
-                          { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1591 "config_file_yacc.c"
+#line 184 "config_file_yacc.y"
+                          { cf_append_sequence_filter(&clean_max_length, NULL); }
+#line 1590 "config_file_yacc.c"
     break;
 
   case 34:
-#line 187 "config_file_yacc.y"
-                          { cf_append_sequence_entry(&clean_max_length, NULL); }
-#line 1597 "config_file_yacc.c"
+#line 186 "config_file_yacc.y"
+                          { cf_append_sequence_filter(&clean_max_length, NULL); }
+#line 1596 "config_file_yacc.c"
     break;
 
   case 35:
-#line 189 "config_file_yacc.y"
+#line 188 "config_file_yacc.y"
                                             {
-        csopts = new_clean_string_options();
-        csopts->max_length = (size_t)(yyvsp[-2].nvalue);
+        cs_options = new_clean_string_options();
+        cs_options->max_length = (size_t)(yyvsp[-2].nvalue);
 
-        cf_append_sequence_entry(&clean_max_length, csopts);
+        cf_append_sequence_filter(&clean_max_length, cs_options);
     }
-#line 1608 "config_file_yacc.c"
+#line 1607 "config_file_yacc.c"
     break;
 
   case 41:
-#line 210 "config_file_yacc.y"
+#line 209 "config_file_yacc.y"
                                      {
         cf_append_ignore_entry(FILENAME, (yyvsp[-1].string));
     }
-#line 1616 "config_file_yacc.c"
+#line 1615 "config_file_yacc.c"
     break;
 
   case 42:
-#line 215 "config_file_yacc.y"
+#line 214 "config_file_yacc.y"
                         { (yyval.string) = (yyvsp[0].string); }
-#line 1622 "config_file_yacc.c"
+#line 1621 "config_file_yacc.c"
     break;
 
   case 43:
-#line 217 "config_file_yacc.y"
+#line 216 "config_file_yacc.y"
                   { (yyval.string) = (yyvsp[0].string); }
-#line 1628 "config_file_yacc.c"
+#line 1627 "config_file_yacc.c"
     break;
 
 
-#line 1632 "config_file_yacc.c"
+#line 1631 "config_file_yacc.c"
 
       default: break;
     }
@@ -1860,7 +1859,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 220 "config_file_yacc.y"
+#line 219 "config_file_yacc.y"
 
 
 extern FILE *yyin;
@@ -1898,14 +1897,14 @@ struct detox_parse_results *parse_config_file(char *filename, struct detox_parse
      * Initialize the sequence list
      */
 
-    cf_sl_ret = NULL;
-    cf_sl_current = NULL;
+    cf_sequence_ret = NULL;
+    cf_sequence_current = NULL;
 
     if (previous_results && previous_results->sequences) {
-        cf_sl_ret = previous_results->sequences;
-        cf_sl_current = cf_sl_ret;
-        while (cf_sl_current->next != NULL) {
-            cf_sl_current = cf_sl_current->next;
+        cf_sequence_ret = previous_results->sequences;
+        cf_sequence_current = cf_sequence_ret;
+        while (cf_sequence_current->next != NULL) {
+            cf_sequence_current = cf_sequence_current->next;
         }
     }
 
@@ -1928,8 +1927,8 @@ struct detox_parse_results *parse_config_file(char *filename, struct detox_parse
      * Reset the sequence entry holding vars
      */
 
-    cf_seq_ret = NULL;
-    cf_seq_current = NULL;
+    cf_filter_ret = NULL;
+    cf_filter_current = NULL;
 
     do {
         yyparse();
@@ -1943,7 +1942,7 @@ struct detox_parse_results *parse_config_file(char *filename, struct detox_parse
      * Populate returns
      */
 
-    ret->sequences = cf_sl_ret;
+    ret->sequences = cf_sequence_ret;
     ret->files_to_ignore = cf_ignore_ret;
    
     return ret;
@@ -1974,8 +1973,8 @@ void cf_append_sequence_list(void) {
 
     work = NULL;
 
-    if (cf_sl_ret != NULL) {
-        work = cf_sl_ret;
+    if (cf_sequence_ret != NULL) {
+        work = cf_sequence_ret;
 
         while (work != NULL) {
             if (strcmp(work->name, current_name) == 0) {
@@ -2000,36 +1999,36 @@ void cf_append_sequence_list(void) {
          * Append to the tree first.  If we don't, we could create a
          * circular reference.
          */
-        if (cf_sl_ret == NULL) {
-            cf_sl_ret = cf_sl_current = work;
+        if (cf_sequence_ret == NULL) {
+            cf_sequence_ret = cf_sequence_current = work;
         }
         else {
-            cf_sl_current->next = work;
-            cf_sl_current = work;
+            cf_sequence_current->next = work;
+            cf_sequence_current = work;
         }
 
     }
 
-    work->head = cf_seq_ret;
+    work->head = cf_filter_ret;
     work->source_filename = strdup(current_filename);
-    cf_seq_ret = cf_seq_current = NULL;
+    cf_filter_ret = cf_filter_current = NULL;
 
 }
 
 
-void cf_append_sequence_entry(void *ptr, struct clean_string_options *options) {
-    struct detox_sequence_entry *work;
+void cf_append_sequence_filter(void *ptr, struct clean_string_options *options) {
+    struct detox_sequence_filter *work;
 
-    work = new_detox_sequence_entry();
+    work = new_detox_sequence_filter();
     work->cleaner = ptr;
     work->options = options;
 
-    if (cf_seq_ret == NULL) {
-        cf_seq_ret = cf_seq_current = work;
+    if (cf_filter_ret == NULL) {
+        cf_filter_ret = cf_filter_current = work;
     }
     else {
-        cf_seq_current->next = work;
-        cf_seq_current = work;
+        cf_filter_current->next = work;
+        cf_filter_current = work;
     }
 }
 

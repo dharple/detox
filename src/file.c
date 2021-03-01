@@ -74,7 +74,7 @@ char *parse_file(char *filename, struct detox_options *options)
     int err;
     size_t len;
 
-    struct detox_sequence_entry *sequence;
+    struct detox_sequence_filter *sequence;
 
     len = strlen(filename) + 1;
     old_filename = malloc(len);
@@ -258,7 +258,7 @@ void parse_dir(char *filename, struct detox_options *options)
  */
 void parse_inline(char *filename, struct detox_options *options)
 {
-    struct detox_sequence_entry *sequence;
+    struct detox_sequence_filter *sequence;
     FILE *fp;
     char *base, *work, *hold;
     size_t buf_size;
