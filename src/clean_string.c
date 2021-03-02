@@ -176,7 +176,7 @@ char *clean_uncgi(char *filename)
  * takes precedence.
  *
  * If remove_trailing is set, then periods are added to the set of characters
- * to work on.  The period then takes precendence, followed by the dash.
+ * to work on.  The period then takes precedence, followed by the dash.
  *
  * If a hash character, underscore, or dash are present at the start of the
  * filename, they will be removed.

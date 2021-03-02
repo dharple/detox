@@ -77,7 +77,7 @@ char *filelist_get(filelist_t *list)
  *
  * @return
  */
-filelist_t *filelist_init()
+filelist_t *filelist_init(void)
 {
     filelist_t *list;
 

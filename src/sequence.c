@@ -12,11 +12,9 @@
 #include <errno.h>
 #include <string.h>
 
-#include "builtin_table.h"
 #include "clean_string.h"
 #include "detox_struct.h"
 #include "filter.h"
-#include "parse_table.h"
 #include "sequence.h"
 
 /**
@@ -112,6 +110,7 @@ char *sequence_run_filters(sequence_t *sequence, char *in)
 
     filter = sequence->filters;
     work = strdup(in);
+    hold = NULL;
 
     while (filter != NULL) {
         switch (filter->cleaner) {
@@ -142,6 +141,10 @@ char *sequence_run_filters(sequence_t *sequence, char *in)
             case FILTER_WIPEUP:
                 hold = clean_wipeup(work, filter->remove_trailing);
                 break;
+
+            default:
+                fprintf(stderr, "detox: unknown filter %d\n", filter->cleaner);
+                exit(EXIT_FAILURE);
         }
 
         if (work != NULL) {

@@ -14,7 +14,7 @@
 
 extern int config_file_lineno;
 
-extern config_file_t *config_file_init();
+extern config_file_t *config_file_init(void);
 extern config_file_t *config_file_load(options_t *main_options);
 
 extern config_file_t *parse_config_file(char *filename, config_file_t *previous_list, options_t *main_options);

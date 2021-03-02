@@ -15,7 +15,7 @@
 #include "config_file.h"
 #include "config_file_spoof.h"
 
-config_file_t *config_file_init()
+config_file_t *config_file_init(void)
 {
     config_file_t *ret;
 

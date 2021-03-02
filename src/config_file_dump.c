@@ -9,7 +9,6 @@
 
 #include <stdio.h>
 
-#include "clean_string.h"
 #include "config_file_dump.h"
 #include "detox_struct.h"
 #include "filelist.h"

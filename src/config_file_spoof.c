@@ -9,7 +9,6 @@
 
 #include <string.h>
 
-#include "clean_string.h"
 #include "config_file.h"
 #include "config_file_spoof.h"
 #include "detox_struct.h"

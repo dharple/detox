@@ -110,7 +110,7 @@ char help_message_inline[] = {
 
 /* *INDENT-ON* */
 
-options_t *options_init()
+options_t *options_init(void)
 {
     options_t *ret;
 

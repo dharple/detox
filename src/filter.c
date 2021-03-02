@@ -15,8 +15,6 @@
 #include "detox_struct.h"
 #include "builtin_table.h"
 #include "parse_table.h"
-#include "clean_string.h"
-#include "sequence.h"
 
 /**
  * Attempts to find a translation table associated with a filter.
@@ -125,9 +123,9 @@ table_t *filter_load_builtin_by_filename(const char *filename)
 }
 
 /**
- * Loads the translation table associated with a sequence.
+ * Loads the translation table associated with a filter.
  *
- * @param sequence The sequence to check.
+ * @param filter The filter to check.
  */
 table_t *filter_load_table(filter_t *filter)
 {

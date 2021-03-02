@@ -19,7 +19,7 @@ extern char help_message[];
 extern char usage_message_inline[];
 extern char help_message_inline[];
 
-extern options_t *options_init();
+extern options_t *options_init(void);
 extern options_t *parse_options_getopt(int argc, char **argv);
 
 #endif /* __PARSE_OPTIONS_H */

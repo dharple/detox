@@ -15,7 +15,7 @@
 extern int filelist_count(filelist_t *list);
 extern void filelist_free(filelist_t *list);
 extern char *filelist_get(filelist_t *list);
-extern filelist_t *filelist_init();
+extern filelist_t *filelist_init(void);
 extern void filelist_put(filelist_t *list, const char *file);
 extern void filelist_reset(filelist_t *list);
 
