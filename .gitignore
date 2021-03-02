@@ -47,3 +47,7 @@ test-table-regression
 *.gcov
 /coverage.info
 /coverage/
+
+# CLion
+cmake-build-debug
+CMakeLists.txt
