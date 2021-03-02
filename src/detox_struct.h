@@ -85,10 +85,10 @@ struct detox_ignore_entry {
 /*
  * Holds the result of a config file parse
  */
-struct detox_parse_results {
+typedef struct {
     struct detox_sequence_list *sequences;
     struct detox_ignore_entry *files_to_ignore;
-};
+} config_file_t;
 
 /**
  * Holds options that affect the entire operation of the program.
@@ -114,7 +114,6 @@ typedef struct {
 
 extern struct clean_string_options *new_clean_string_options();
 extern struct detox_ignore_entry *new_detox_ignore_entry();
-extern struct detox_parse_results *new_detox_parse_results();
 extern struct detox_sequence_filter *new_detox_sequence_filter();
 extern struct detox_sequence_list *new_detox_sequence_list();
 

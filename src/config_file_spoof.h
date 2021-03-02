@@ -12,6 +12,6 @@
 
 #include "detox_struct.h"
 
-extern struct detox_parse_results *spoof_config_file(void);
+extern config_file_t *spoof_config_file(void);
 
 #endif /* __CONFIG_FILE_SPOOF_H */

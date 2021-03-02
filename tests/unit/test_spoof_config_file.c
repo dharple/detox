@@ -67,8 +67,8 @@ START_TEST(test_spoof_config_file)
 {
 #line 59
     options_t *main_options;
-    struct detox_parse_results *parsed;
-    struct detox_parse_results *spoofed;
+    config_file_t *parsed;
+    config_file_t *spoofed;
     struct detox_sequence_list *parsed_sequence;
     struct detox_sequence_list *spoofed_sequence;
     struct detox_sequence_filter *parsed_filter;

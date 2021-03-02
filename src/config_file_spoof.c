@@ -9,9 +9,10 @@
 
 #include <string.h>
 
-#include "detox_struct.h"
-#include "config_file_spoof.h"
 #include "clean_string.h"
+#include "config_file.h"
+#include "config_file_spoof.h"
+#include "detox_struct.h"
 
 /**
  * Generates an ISO8859-1 style filter.
@@ -126,9 +127,9 @@ static struct detox_sequence_filter *generate_wipeup_filter(int remove_trailing)
  *
  * @return
  */
-struct detox_parse_results *spoof_config_file(void)
+config_file_t *spoof_config_file(void)
 {
-    struct detox_parse_results *ret = NULL;
+    config_file_t *ret = NULL;
     struct detox_sequence_list *sequence = NULL;
     struct detox_sequence_filter *filter = NULL;
     struct detox_sequence_filter *safe_wipeup_filter = NULL;
@@ -138,7 +139,7 @@ struct detox_parse_results *spoof_config_file(void)
     safe_wipeup_filter->next = generate_wipeup_filter(1);
 
     // build containing structure
-    ret = new_detox_parse_results();
+    ret = config_file_init();
 
     // default sequence
     ret->sequences = sequence = generate_sequence("default");

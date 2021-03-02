@@ -12,6 +12,6 @@
 
 #include "detox_struct.h"
 
-extern void dump_config_file(struct detox_parse_results *parse_results, options_t *main_options);
+extern void dump_config_file(config_file_t *parse_results, options_t *main_options);
 
 #endif /* __CONFIG_FILE_DUMP_H */

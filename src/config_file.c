@@ -15,16 +15,30 @@
 #include "config_file.h"
 #include "config_file_spoof.h"
 
+config_file_t *config_file_init()
+{
+    config_file_t *ret;
+
+    ret = malloc(sizeof(config_file_t));
+    if (ret == NULL) {
+        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    memset(ret, 0, sizeof(config_file_t));
+
+    return ret;
+}
+
 /**
  * Loads a config file, any config file.
  *
  * @param options_t *main_options The options from the command line.
  *
- * @return struct detox_parse_results
+ * @return config_file_t
  */
-struct detox_parse_results *config_file_load(options_t *main_options)
+config_file_t *config_file_load(options_t *main_options)
 {
-    struct detox_parse_results *parse_results = NULL;
+    config_file_t *parse_results = NULL;
     char *check_config_file = NULL;
     char *file_work = NULL;
     int err;

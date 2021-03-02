@@ -12,6 +12,7 @@ AM_LDFLAGS = \
 	$(top_builddir)/src/builtin_table.o \
 	$(top_builddir)/src/clean_string.o \
 	$(top_builddir)/src/config_file_lex.o \
+	$(top_builddir)/src/config_file.o \
 	$(top_builddir)/src/config_file_spoof.o \
 	$(top_builddir)/src/config_file_yacc.o \
 	$(top_builddir)/src/detox_struct.o \

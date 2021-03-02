@@ -1865,8 +1865,8 @@ yyreturn:
 extern FILE *yyin;
 extern FILE *yyout;
 
-struct detox_parse_results *parse_config_file(char *filename, struct detox_parse_results *previous_results, options_t *main_options) {
-    struct detox_parse_results *ret = NULL;
+config_file_t *parse_config_file(char *filename, config_file_t *previous_results, options_t *main_options) {
+    config_file_t *ret = NULL;
 
     current_filename = filename;
     current_options = main_options;
@@ -1890,7 +1890,7 @@ struct detox_parse_results *parse_config_file(char *filename, struct detox_parse
         ret = previous_results;
     }
     else {
-        ret = new_detox_parse_results();
+        ret = config_file_init();
     }
 
     /*

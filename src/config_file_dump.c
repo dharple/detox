@@ -13,7 +13,7 @@
 #include "config_file_dump.h"
 #include "clean_string.h"
 
-void dump_config_file(struct detox_parse_results *parse_results, options_t *main_options)
+void dump_config_file(config_file_t *parse_results, options_t *main_options)
 {
     struct detox_sequence_list *list_work = NULL;
     struct detox_sequence_filter *work = NULL;

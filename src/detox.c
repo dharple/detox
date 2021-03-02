@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     struct stat stat_info;
     int err;
 
-    struct detox_parse_results *parse_results = NULL;
+    config_file_t *parse_results = NULL;
     options_t *main_options;
 
     char *file_work = NULL;
