@@ -109,40 +109,32 @@ char help_message_inline[] = {
 
 /* *INDENT-ON* */
 
-struct detox_options *initialize_main_options(void)
+options_t *options_init()
 {
-    struct detox_options *main_options;
+    options_t *ret;
 
-    main_options = malloc(sizeof(struct detox_options));
-    if (main_options == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
+    ret = malloc(sizeof(options_t));
+    if (ret == NULL) {
+        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
+        exit(EXIT_FAILURE);
     }
+    memset(ret, 0, sizeof(options_t));
 
-    memset(main_options, 0, sizeof(struct detox_options));
-
-    /*
-     * XXX - handle blank strings better
-     */
-    main_options->sequence_name = getenv("DETOX_SEQUENCE");
-
-    return main_options;
+    return ret;
 }
 
-struct detox_options *parse_options_getopt(int argc, char **argv)
+options_t *parse_options_getopt(int argc, char **argv)
 {
     int optcode;
 
-    struct detox_options *main_options;
+    options_t *main_options;
 
     int i;
     int max = 10;
     char *binname;
 
-    main_options = initialize_main_options();
-    if (main_options == NULL) {
-        return NULL;
-    }
+    main_options = options_init();
+    main_options->sequence_name = getenv("DETOX_SEQUENCE");
 
     binname = basename(argv[0]);
     main_options->is_inline_bin = main_options->is_inline_mode =

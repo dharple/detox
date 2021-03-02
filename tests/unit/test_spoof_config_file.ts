@@ -15,6 +15,7 @@
 #include "config_file_spoof.h"
 #include "config_file.h"
 #include "detox_struct.h"
+#include "parse_options.h"
 
 static char *detoxrc =
     "sequence default{safe{builtin \"safe\";};wipeup{remove_trailing;};};"
@@ -55,7 +56,7 @@ void teardown(void)
 }
 
 #test test_spoof_config_file
-    struct detox_options *main_options;
+    options_t *main_options;
     struct detox_parse_results *parsed;
     struct detox_parse_results *spoofed;
     struct detox_sequence_list *parsed_sequence;
@@ -65,7 +66,7 @@ void teardown(void)
     struct clean_string_options *parsed_options;
     struct clean_string_options *spoofed_options;
 
-    main_options = new_detox_options();
+    main_options = options_init();
     parsed = parse_config_file(tempfile, NULL, main_options);
     spoofed = spoof_config_file();
 

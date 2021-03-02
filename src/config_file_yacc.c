@@ -97,7 +97,7 @@ static struct detox_ignore_entry *cf_ignore_ret, *cf_ignore_current;
 static struct clean_string_options *cs_options;
 static char *current_name = NULL;
 static char *current_filename = NULL;
-static struct detox_options *current_options;
+static options_t *current_options;
 
 void cf_append_sequence_list(void);
 void cf_append_sequence_filter(void *ptr, struct clean_string_options *options);
@@ -1865,7 +1865,7 @@ yyreturn:
 extern FILE *yyin;
 extern FILE *yyout;
 
-struct detox_parse_results *parse_config_file(char *filename, struct detox_parse_results *previous_results, struct detox_options *main_options) {
+struct detox_parse_results *parse_config_file(char *filename, struct detox_parse_results *previous_results, options_t *main_options) {
     struct detox_parse_results *ret = NULL;
 
     current_filename = filename;

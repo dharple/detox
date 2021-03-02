@@ -19,7 +19,7 @@ extern char help_message[];
 extern char usage_message_inline[];
 extern char help_message_inline[];
 
-extern struct detox_options *initialize_main_options(void);
-extern struct detox_options *parse_options_getopt(int argc, char **argv);
+extern options_t *options_init();
+extern options_t *parse_options_getopt(int argc, char **argv);
 
 #endif /* __PARSE_OPTIONS_H */

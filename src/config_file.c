@@ -18,11 +18,11 @@
 /**
  * Loads a config file, any config file.
  *
- * @param struct detox_options *main_options The options from the command line.
+ * @param options_t *main_options The options from the command line.
  *
  * @return struct detox_parse_results
  */
-struct detox_parse_results *config_file_load(struct detox_options *main_options)
+struct detox_parse_results *config_file_load(options_t *main_options)
 {
     struct detox_parse_results *parse_results = NULL;
     char *check_config_file = NULL;

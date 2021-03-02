@@ -26,7 +26,7 @@
  *
  * @return bool
  */
-static int ignore_file(const char *filename, const struct detox_options *options)
+static int ignore_file(const char *filename, const options_t *options)
 {
     struct detox_ignore_entry *ignore_walk;
 
@@ -64,7 +64,7 @@ static int is_protected(const char *filename)
 /*
  * Renames file to a safe filename.
  */
-char *parse_file(char *filename, struct detox_options *options)
+char *parse_file(char *filename, options_t *options)
 {
     char *old_filename, *old_filename_ptr, *new_filename;
     char *work, *hold;
@@ -178,7 +178,7 @@ char *parse_file(char *filename, struct detox_options *options)
 /*
  * Handles directory.
  */
-void parse_dir(char *filename, struct detox_options *options)
+void parse_dir(char *filename, options_t *options)
 {
     char *new_file, *work;
     DIR *dir_handle;
@@ -256,7 +256,7 @@ void parse_dir(char *filename, struct detox_options *options)
 /*
  * Renames file to a safe filename.
  */
-void parse_inline(char *filename, struct detox_options *options)
+void parse_inline(char *filename, options_t *options)
 {
     struct detox_sequence_filter *sequence;
     FILE *fp;

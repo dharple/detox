@@ -23,6 +23,7 @@
 #include "config_file_spoof.h"
 #include "config_file.h"
 #include "detox_struct.h"
+#include "parse_options.h"
 
 static char *detoxrc =
     "sequence default{safe{builtin \"safe\";};wipeup{remove_trailing;};};"
@@ -64,8 +65,8 @@ void teardown(void)
 
 START_TEST(test_spoof_config_file)
 {
-#line 58
-    struct detox_options *main_options;
+#line 59
+    options_t *main_options;
     struct detox_parse_results *parsed;
     struct detox_parse_results *spoofed;
     struct detox_sequence_list *parsed_sequence;
@@ -75,7 +76,7 @@ START_TEST(test_spoof_config_file)
     struct clean_string_options *parsed_options;
     struct clean_string_options *spoofed_options;
 
-    main_options = new_detox_options();
+    main_options = options_init();
     parsed = parse_config_file(tempfile, NULL, main_options);
     spoofed = spoof_config_file();
 
@@ -150,7 +151,7 @@ int main(void)
     int nf;
 
     /* User-specified pre-run code */
-#line 133
+#line 134
     tcase_add_checked_fixture(tc1_1, setup, teardown);
 
     suite_add_tcase(s1, tc1_1);

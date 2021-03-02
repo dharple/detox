@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     int err;
 
     struct detox_parse_results *parse_results = NULL;
-    struct detox_options *main_options;
+    options_t *main_options;
 
     char *file_work = NULL;
     char **file_walk;

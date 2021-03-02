@@ -12,10 +12,10 @@
 
 #include "detox_struct.h"
 
-extern char *parse_file(char *filename, struct detox_options *options);
+extern char *parse_file(char *filename, options_t *options);
 
-extern void parse_dir(char *filename, struct detox_options *options);
+extern void parse_dir(char *filename, options_t *options);
 
-extern void parse_inline(char *filename, struct detox_options *options);
+extern void parse_inline(char *filename, options_t *options);
 
 #endif /* __FILE_H */

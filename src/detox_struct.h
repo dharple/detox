@@ -90,10 +90,10 @@ struct detox_parse_results {
     struct detox_ignore_entry *files_to_ignore;
 };
 
-/*
- * Holds command line options
+/**
+ * Holds options that affect the entire operation of the program.
  */
-struct detox_options {
+typedef struct {
     int dry_run;
     int is_inline_bin;
     int is_inline_mode;
@@ -110,11 +110,10 @@ struct detox_options {
     char *check_config_file;
 
     char **files;
-};
+} options_t;
 
 extern struct clean_string_options *new_clean_string_options();
 extern struct detox_ignore_entry *new_detox_ignore_entry();
-extern struct detox_options *new_detox_options();
 extern struct detox_parse_results *new_detox_parse_results();
 extern struct detox_sequence_filter *new_detox_sequence_filter();
 extern struct detox_sequence_list *new_detox_sequence_list();
