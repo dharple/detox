@@ -14,6 +14,16 @@
 
 #define MAX_PATH_LEN 256
 
+enum {
+    FILTER_ISO8859_1 = 1,
+    FILTER_LOWER,
+    FILTER_MAX_LENGTH,
+    FILTER_SAFE,
+    FILTER_UNCGI,
+    FILTER_UTF_8,
+    FILTER_WIPEUP
+};
+
 typedef struct {
     char **files;
     int max;
@@ -46,45 +56,31 @@ typedef struct {
     int max_key;
 } table_t;
 
-struct clean_string_options {
+typedef struct filter_t_ref {
+    struct filter_t_ref *next;
+    int cleaner;
     char *filename;
     char *builtin;
     int remove_trailing;
     size_t max_length;
     table_t *table;
-};
+} filter_t;
 
 /*
  * Holds information about all of the defined sequences
  */
-struct detox_sequence_list {
-    struct detox_sequence_list *next;
-
+typedef struct sequence_t_ref {
+    struct sequence_t_ref *next;
     char *name;
-
-    /*
-     * The top of the linked list of entries for this sequence
-     */
-    struct detox_sequence_filter *head;
-
+    filter_t *filters;
     char *source_filename;
-};
-
-/*
- * Holds information about an entry within a specific sequence
- */
-struct detox_sequence_filter {
-    struct detox_sequence_filter *next;
-
-    char *(*cleaner) (char *filename, struct clean_string_options *options);
-    struct clean_string_options *options;
-};
+} sequence_t;
 
 /*
  * Holds the result of a config file parse
  */
 typedef struct {
-    struct detox_sequence_list *sequences;
+    sequence_t *sequences;
     filelist_t *files_to_ignore;
 } config_file_t;
 
@@ -100,7 +96,7 @@ typedef struct {
     int special;
     int verbose;
 
-    struct detox_sequence_filter *sequence_to_use;
+    sequence_t *sequence_to_use;
     filelist_t *files_to_ignore;
 
     char *sequence_name;
@@ -109,9 +105,5 @@ typedef struct {
 
     filelist_t *files;
 } options_t;
-
-extern struct clean_string_options *new_clean_string_options();
-extern struct detox_sequence_filter *new_detox_sequence_filter();
-extern struct detox_sequence_list *new_detox_sequence_list();
 
 #endif /* __DETOX_STRUCT_H */

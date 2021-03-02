@@ -21,23 +21,19 @@
 /*
  * Translates ISO 8859-1 characters (Latin-1) into lower ASCII characters.
  */
-char *clean_iso8859_1(char *filename, struct clean_string_options *options)
+char *clean_iso8859_1(char *filename, table_t *table)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
     int new_value;
-
-    table_t *table = NULL;
 
     if (filename == NULL) {
         return NULL;
     }
 
-    if (options == NULL || options->table == NULL) {
+    if (table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
-
-    table = options->table;
 
     output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
@@ -85,22 +81,18 @@ char *clean_iso8859_1(char *filename, struct clean_string_options *options)
 /*
  * Translates unsafe characters using a translation table.
  */
-char *clean_safe(char *filename, struct clean_string_options *options)
+char *clean_safe(char *filename, table_t *table)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
-
-    table_t *table = NULL;
 
     if (filename == NULL) {
         return NULL;
     }
 
-    if (options == NULL || options->table == NULL) {
+    if (table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
-
-    table = options->table;
 
     output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
@@ -143,7 +135,7 @@ char *clean_safe(char *filename, struct clean_string_options *options)
  * Cleans up any CGI encoded characters, in the form "%" followed by 2 hex
  * digits.
  */
-char *clean_uncgi(char *filename, struct clean_string_options *options)
+char *clean_uncgi(char *filename)
 {
     char *output, *input_walk, *output_walk;
     char conv[3];
@@ -189,19 +181,13 @@ char *clean_uncgi(char *filename, struct clean_string_options *options)
  * If a hash character, underscore, or dash are present at the start of the
  * filename, they will be removed.
  */
-char *clean_wipeup(char *filename, struct clean_string_options *options)
+char *clean_wipeup(char *filename, int remove_trailing)
 {
     char *output, *input_walk, *output_walk;
-    int remove_trailing;
     char *search, *seek, *current;
 
     if (filename == NULL) {
         return NULL;
-    }
-
-    remove_trailing = 0;
-    if (options != NULL) {
-        remove_trailing = options->remove_trailing;
     }
 
     /* remove any -, _, or # at beginning of string */
@@ -263,12 +249,10 @@ char *clean_wipeup(char *filename, struct clean_string_options *options)
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
  * Unicode and then runs the translation table.
  */
-char *clean_utf_8(char *filename, struct clean_string_options *options)
+char *clean_utf_8(char *filename, table_t *table)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
     int new_value, expected_chars;
-
-    table_t *table = NULL;
 
     int characters_eaten;
 
@@ -276,12 +260,10 @@ char *clean_utf_8(char *filename, struct clean_string_options *options)
         return NULL;
     }
 
-    if (options == NULL || options->table == NULL) {
+    if (table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
-
-    table = options->table;
 
     output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
@@ -402,26 +384,23 @@ char *clean_utf_8(char *filename, struct clean_string_options *options)
     return output;
 }
 
-
 /*
  * Trims a file down to specified length.
  */
-char *clean_max_length(char *filename, struct clean_string_options *options)
+char *clean_max_length(char *filename, size_t max_length)
 {
     char *extension;
     char *input_walk;
     char *output;
     size_t body_length;
     size_t extension_length;
-    size_t max_length;
 
     if (filename == NULL) {
         return NULL;
     }
 
-    max_length = 256;
-    if (options != NULL) {
-        max_length = options->max_length;
+    if (max_length <= 0) {
+        max_length = 256;
     }
 
     // check to see if the file is smaller than the max length
@@ -475,7 +454,7 @@ char *clean_max_length(char *filename, struct clean_string_options *options)
 /*
  * Converts all characters to lowercase.
  */
-char *clean_lower(char *filename, struct clean_string_options *options)
+char *clean_lower(char *filename)
 {
     char *output, *input_walk, *output_walk;
 

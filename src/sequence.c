@@ -12,28 +12,29 @@
 #include <errno.h>
 #include <string.h>
 
-#include "detox_struct.h"
 #include "builtin_table.h"
-#include "parse_table.h"
 #include "clean_string.h"
+#include "detox_struct.h"
+#include "filter.h"
+#include "parse_table.h"
 #include "sequence.h"
 
 /**
  * Chooses which sequence to use.
  *
- * @param sequences     Sequences from the config file.
- * @param sequence_name The sequence name from the command line, if any.
+ * @param sequences Sequences from the config file.
+ * @param name      The sequence name from the command line, if any.
  *
  * @return The chosen sequence.
  */
-struct detox_sequence_filter *sequence_choose_default(struct detox_sequence_list *sequences, char *sequence_name)
+sequence_t *sequence_choose_default(sequence_t *sequences, const char *name)
 {
-    struct detox_sequence_filter *which = NULL;
-    struct detox_sequence_list *work = sequences;
+    sequence_t *which = NULL;
+    sequence_t *work = sequences;
 
     while (work != NULL) {
-        if (strcmp(work->name, (sequence_name == NULL) ? "default" : sequence_name) == 0) {
-            which = work->head;
+        if (strcmp(work->name, (name == NULL) ? "default" : name) == 0) {
+            which = work;
             break;
         }
 
@@ -45,189 +46,116 @@ struct detox_sequence_filter *sequence_choose_default(struct detox_sequence_list
      * to use, just use the first sequence.
      */
 
-    if (which == NULL && sequence_name == NULL) {
+    if (which == NULL && name == NULL) {
         if (sequences != NULL) {
-            which = sequences->head;
+            which = sequences;
         }
     }
 
     return which;
 }
 
-/**
- * Attempts to find a translation table associated with a sequence.
- *
- * @param check_filename The filename to look for.
- *
- * @return
- */
-table_t *sequence_find_table(const char *check_filename)
+sequence_t *sequence_init(const char *name)
 {
-    table_t *table = NULL;
-    int err;
-    char *check_config_file;
+    sequence_t *ret;
 
-    check_config_file = alloca(MAX_PATH_LEN);
-    if (check_config_file == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
+    ret = malloc(sizeof(sequence_t));
+    if (ret == NULL) {
+        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
+    memset(ret, 0, sizeof(sequence_t));
 
-#ifdef DATADIR
-    err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detox/%s", DATADIR, check_filename);
-    if (err < MAX_PATH_LEN) {
-        table = parse_table(check_config_file);
-        if (table != NULL) {
-            return table;
-        }
-    }
-#endif
+    ret->name = strdup(name);
 
-    err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/share/detox/%s", check_filename);
-    if (err < MAX_PATH_LEN) {
-        table = parse_table(check_config_file);
-        if (table != NULL) {
-            return table;
-        }
-    }
-
-    err = snprintf(check_config_file, MAX_PATH_LEN, "/usr/local/share/detox/%s", check_filename);
-    if (err < MAX_PATH_LEN) {
-        table = parse_table(check_config_file);
-    }
-
-    return table;
-}
-
-/**
- * Uses a builtin table for a sequence.
- *
- * @param sequence The sequence to load a builtin for.
- */
-table_t *sequence_load_builtin(struct detox_sequence_filter *sequence)
-{
-    if (sequence->cleaner == &clean_iso8859_1) {
-        return load_builtin_iso8859_1_table();
-    } else if (sequence->cleaner == &clean_utf_8) {
-        return load_builtin_unicode_table();
-    } else if (sequence->cleaner == &clean_safe) {
-        return load_builtin_safe_table();
-    }
-
-    return NULL;
-}
-
-/**
- * Uses a builtin table for a sequence.
- *
- * Valid values:
- * - builtin:cp1252
- * - builtin:iso8859_1
- * - builtin:safe
- * - builtin:unicode
- *
- * @param filename Builtin filename to use
- */
-table_t *sequence_load_builtin_by_filename(char *filename)
-{
-    if (strcmp(filename, "iso8859_1") == 0) {
-        return load_builtin_iso8859_1_table();
-    } else if (strcmp(filename, "unicode") == 0) {
-        return load_builtin_unicode_table();
-    } else if (strcmp(filename, "safe") == 0) {
-        return load_builtin_safe_table();
-    } else if (strcmp(filename, "cp1252") == 0) {
-        return load_builtin_cp1252_table();
-    }
-
-    return NULL;
-}
-
-/**
- * Loads the translation table associated with a sequence.
- *
- * @param sequence The sequence to check.
- */
-table_t *sequence_load_table(struct detox_sequence_filter *sequence)
-{
-    table_t *table = NULL;
-    char *check_filename = NULL;
-    int do_search = 1;
-
-    if (sequence->cleaner == &clean_iso8859_1) {
-        check_filename = "iso8859_1.tbl";
-    } else if (sequence->cleaner == &clean_utf_8) {
-        check_filename = "unicode.tbl";
-    } else if (sequence->cleaner == &clean_safe) {
-        check_filename = "safe.tbl";
-    } else {
-        return NULL;
-    }
-
-    if (sequence->options != NULL) {
-        if (sequence->options->builtin != NULL) {
-            table = sequence_load_builtin_by_filename(sequence->options->builtin);
-            if (table == NULL) {
-                fprintf(stderr, "detox: unable to locate builtin table \"%s\"\n", sequence->options->builtin);
-                exit(EXIT_FAILURE);
-            }
-            return table;
-        }
-
-        if (sequence->options->filename != NULL) {
-            check_filename = sequence->options->filename;
-            do_search = 0;
-        }
-    }
-
-    if (do_search) {
-        table = sequence_find_table(check_filename);
-        if (table != NULL) {
-            return table;
-        }
-
-        // load builtin translation tables
-        table = sequence_load_builtin(sequence);
-
-        if (table == NULL) {
-            fprintf(stderr, "detox: unable to locate translation table or fall back\n");
-            exit(EXIT_FAILURE);
-        }
-    } else {
-        table = parse_table(check_filename);
-
-        if (table == NULL) {
-            fprintf(stderr, "detox: unable to parse file: \"%s\"\n", check_filename);
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    return table;
+    return ret;
 }
 
 /**
  * Reviews a sequence to confirm that it's valid.
  *
- * @param struct detox_sequence_filter *sequence
+ * @param sequence_t *sequence
  *
  * @return void
  */
-void sequence_review(struct detox_sequence_filter *sequence)
+void sequence_review(sequence_t *sequence)
 {
-    struct detox_sequence_filter *work = sequence;
+    filter_t *filter = sequence->filters;
     table_t *table = NULL;
 
-    while (work != NULL) {
-        table = sequence_load_table(work);
+    while (filter != NULL) {
+        table = filter_load_table(filter);
 
         if (table != NULL) {
-            if (work->options == NULL) {
-                // Allocate an options struct
-                work->options = new_clean_string_options();
-            }
-
-            work->options->table = table;
+            filter->table = table;
         }
-        work = work->next;
+        filter = filter->next;
     }
+}
+
+/**
+ *
+ */
+char *sequence_run_filters(sequence_t *sequence, char *in)
+{
+    filter_t *filter;
+    char *work, *hold;
+
+    if (sequence == NULL) {
+        fprintf(stderr, "internal error\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (in == NULL) {
+        return NULL;
+    }
+
+    filter = sequence->filters;
+    work = strdup(in);
+
+    while (filter != NULL) {
+        switch (filter->cleaner) {
+            case FILTER_ISO8859_1:
+                hold = clean_iso8859_1(work, filter->table);
+                break;
+
+            case FILTER_LOWER:
+                hold = clean_lower(work);
+                break;
+
+            case FILTER_MAX_LENGTH:
+                hold = clean_max_length(work, filter->max_length);
+                break;
+
+            case FILTER_SAFE:
+                hold = clean_safe(work, filter->table);
+                break;
+
+            case FILTER_UNCGI:
+                hold = clean_uncgi(work);
+                break;
+
+            case FILTER_UTF_8:
+                hold = clean_utf_8(work, filter->table);
+                break;
+
+            case FILTER_WIPEUP:
+                hold = clean_wipeup(work, filter->remove_trailing);
+                break;
+        }
+
+        if (work != NULL) {
+            free(work);
+        }
+
+        if (hold == NULL) {
+            return NULL;
+        }
+
+        work = hold;
+
+        filter = filter->next;
+    }
+
+    return work;
 }

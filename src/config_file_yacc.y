@@ -18,21 +18,22 @@
 #include "config_file.h"
 #include "detox_struct.h"
 #include "filelist.h"
+#include "filter.h"
+#include "sequence.h"
 
 /*
  * I must apologize in advance for the cryptic, global variable names.
  */
 
-static struct detox_sequence_list *cf_sequence_ret, *cf_sequence_current;
-static struct detox_sequence_filter *cf_filter_ret, *cf_filter_current;
-static struct clean_string_options *cs_options;
+static sequence_t *cf_sequence_ret, *cf_sequence_current;
+static filter_t *cf_filter_ret, *cf_filter_current;
 static char *current_name = NULL;
 static char *current_filename = NULL;
 static options_t *current_options;
 static filelist_t *files_to_ignore;
 
 void cf_append_sequence_list(void);
-void cf_append_sequence_filter(void *ptr, struct clean_string_options *options);
+void cf_append_filter(int cleaner, char *builtin, char *filename, int max_length, int remove_trailing);
 void cf_append_ignore_entry(int token, void *str);
 
 void yyerror (char *s);
@@ -94,9 +95,9 @@ method_list: method |
     method_list method
     ;
 
-method: UNCGI EOL    { cf_append_sequence_filter(&clean_uncgi, NULL); }
+method: UNCGI EOL    { cf_append_filter(FILTER_UNCGI, NULL, NULL, 0, 0); }
     |
-    LOWER EOL    { cf_append_sequence_filter(&clean_lower, NULL); }
+    LOWER EOL    { cf_append_filter(FILTER_LOWER, NULL, NULL, 0, 0); }
     |
     wipeup EOL
     |
@@ -109,89 +110,45 @@ method: UNCGI EOL    { cf_append_sequence_filter(&clean_uncgi, NULL); }
     max_length EOL
     ;
 
-iso8859_1: ISO8859_1 { cf_append_sequence_filter(&clean_iso8859_1, NULL); }
+iso8859_1: ISO8859_1 { cf_append_filter(FILTER_ISO8859_1, NULL, NULL, 0, 0); }
     |
-    ISO8859_1 OPEN CLOSE { cf_append_sequence_filter(&clean_iso8859_1, NULL); }
+    ISO8859_1 OPEN CLOSE { cf_append_filter(FILTER_ISO8859_1, NULL, NULL, 0, 0); }
     |
-    ISO8859_1 OPEN FILENAME string EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->filename = $4;
-
-        cf_append_sequence_filter(&clean_iso8859_1, cs_options);
-    }
+    ISO8859_1 OPEN FILENAME string EOL CLOSE { cf_append_filter(FILTER_ISO8859_1, NULL, $4, 0, 0); }
     |
-    ISO8859_1 OPEN BUILTIN string EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->builtin = $4;
-
-        cf_append_sequence_filter(&clean_iso8859_1, cs_options);
-    }
+    ISO8859_1 OPEN BUILTIN string EOL CLOSE { cf_append_filter(FILTER_ISO8859_1, $4, NULL, 0, 0); }
     ;
 
-utf_8: UTF_8 { cf_append_sequence_filter(&clean_utf_8, NULL); }
+utf_8: UTF_8 { cf_append_filter(FILTER_UTF_8, NULL, NULL, 0, 0); }
     |
-    UTF_8 OPEN CLOSE { cf_append_sequence_filter(&clean_utf_8, NULL); }
+    UTF_8 OPEN CLOSE { cf_append_filter(FILTER_UTF_8, NULL, NULL, 0, 0); }
     |
-    UTF_8 OPEN FILENAME string EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->filename = $4;
-
-        cf_append_sequence_filter(&clean_utf_8, cs_options);
-    }
+    UTF_8 OPEN FILENAME string EOL CLOSE { cf_append_filter(FILTER_UTF_8, NULL, $4, 0, 0); }
     |
-    UTF_8 OPEN BUILTIN string EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->builtin = $4;
-
-        cf_append_sequence_filter(&clean_utf_8, cs_options);
-    }
+    UTF_8 OPEN BUILTIN string EOL CLOSE { cf_append_filter(FILTER_UTF_8, $4, NULL, 0, 0); }
     ;
 
-safe: SAFE { cf_append_sequence_filter(&clean_safe, NULL); }
+safe: SAFE { cf_append_filter(FILTER_SAFE, NULL, NULL, 0, 0); }
     |
-    SAFE OPEN CLOSE { cf_append_sequence_filter(&clean_safe, NULL); }
+    SAFE OPEN CLOSE { cf_append_filter(FILTER_SAFE, NULL, NULL, 0, 0); }
     |
-    SAFE OPEN FILENAME string EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->filename = $4;
-
-        cf_append_sequence_filter(&clean_safe, cs_options);
-    }
+    SAFE OPEN FILENAME string EOL CLOSE { cf_append_filter(FILTER_SAFE, NULL, $4, 0, 0); }
     |
-    SAFE OPEN BUILTIN string EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->builtin = $4;
-
-        cf_append_sequence_filter(&clean_safe, cs_options);
-    }
+    SAFE OPEN BUILTIN string EOL CLOSE { cf_append_filter(FILTER_SAFE, $4, NULL, 0, 0); }
     ;
 
-wipeup:    WIPEUP {
-        cf_append_sequence_filter(&clean_wipeup, NULL);
-    }
+wipeup:    WIPEUP { cf_append_filter(FILTER_WIPEUP, NULL, NULL, 0, 0); }
     |
-    WIPEUP OPEN CLOSE {
-        cf_append_sequence_filter(&clean_wipeup, NULL);
-    }
+    WIPEUP OPEN CLOSE { cf_append_filter(FILTER_WIPEUP, NULL, NULL, 0, 0); }
     |
-    WIPEUP OPEN REMOVE_TRAILING EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->remove_trailing = 1;
-
-        cf_append_sequence_filter(&clean_wipeup, cs_options);
-    }
+    WIPEUP OPEN REMOVE_TRAILING EOL CLOSE { cf_append_filter(FILTER_WIPEUP, NULL, NULL, 0, 1); }
     ;
 
-max_length: MAX_LENGTH    { cf_append_sequence_filter(&clean_max_length, NULL); }
+max_length: MAX_LENGTH    { cf_append_filter(FILTER_MAX_LENGTH, NULL, NULL, 0, 0); }
     |
-    MAX_LENGTH OPEN CLOSE { cf_append_sequence_filter(&clean_max_length, NULL); }
+    MAX_LENGTH OPEN CLOSE { cf_append_filter(FILTER_MAX_LENGTH, NULL, NULL, 0, 0); }
     |
-    MAX_LENGTH OPEN LENGTH NVALUE EOL CLOSE {
-        cs_options = new_clean_string_options();
-        cs_options->max_length = (size_t)$4;
-
-        cf_append_sequence_filter(&clean_max_length, cs_options);
-    }
+    MAX_LENGTH OPEN LENGTH NVALUE EOL CLOSE { cf_append_filter(FILTER_MAX_LENGTH, NULL, NULL, $4, 0); }
     ;
 
 ignore: ignore_open ignore_list ignore_close
@@ -317,7 +274,7 @@ void yyerror(char *s) {
 
 
 void cf_append_sequence_list(void) {
-    struct detox_sequence_list *work;
+    sequence_t *work;
 
     if (current_name == NULL) {
         current_name = strdup("default");
@@ -344,8 +301,7 @@ void cf_append_sequence_list(void) {
          */
     }
     else {
-        work = new_detox_sequence_list();
-        work->name = strdup(current_name);
+        work = sequence_init(current_name);
 
         /*
          * Append to the tree first.  If we don't, we could create a
@@ -361,19 +317,22 @@ void cf_append_sequence_list(void) {
 
     }
 
-    work->head = cf_filter_ret;
+    work->filters = cf_filter_ret;
     work->source_filename = strdup(current_filename);
     cf_filter_ret = cf_filter_current = NULL;
 
 }
 
 
-void cf_append_sequence_filter(void *ptr, struct clean_string_options *options) {
-    struct detox_sequence_filter *work;
+void cf_append_filter(int cleaner, char *builtin, char *filename, int max_length, int remove_trailing)
+{
+    filter_t *work;
 
-    work = new_detox_sequence_filter();
-    work->cleaner = ptr;
-    work->options = options;
+    work = filter_init(cleaner);
+    work->builtin = (builtin == NULL) ? NULL : strdup(builtin);
+    work->filename = (filename == NULL) ? NULL : strdup(filename);
+    work->max_length = (size_t) max_length;
+    work->remove_trailing = remove_trailing;
 
     if (cf_filter_ret == NULL) {
         cf_filter_ret = cf_filter_current = work;

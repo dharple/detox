@@ -29,16 +29,15 @@ static struct test_filename data[DATA_COUNT] = {
 };
 
 #test test_clean_iso8859_1
-    struct clean_string_options *options;
+    table_t *table;
     char *output;
     int i;
 
-    options = new_clean_string_options();
-    options->table = load_builtin_iso8859_1_table();
+    table = load_builtin_iso8859_1_table();
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_iso8859_1(data[i].filename, options);
+        output = clean_iso8859_1(data[i].filename, table);
         ck_assert_str_eq(output, data[i].expected);
     }
 
@@ -46,5 +45,5 @@ static struct test_filename data[DATA_COUNT] = {
     output = clean_iso8859_1(NULL, NULL);
     ck_assert(output == NULL);
 
-#test-exit(1) test_clean_iso8859_1_missing_options
+#test-exit(1) test_clean_iso8859_1_missing_table
     clean_iso8859_1("what", NULL);

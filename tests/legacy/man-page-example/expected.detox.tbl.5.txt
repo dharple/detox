@@ -4,3 +4,4 @@ sequence name: default (*)
 		translation table: /home/MYUSERNAME/.local/share/detox/safe.tbl
 	cleaner: safe
 	cleaner: wipeup
+		remove trailing: no

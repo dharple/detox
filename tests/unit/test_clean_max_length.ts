@@ -124,19 +124,15 @@ static struct test_filename data[DATA_COUNT] = {
 };
 
 #test test_clean_max_length
-    struct clean_string_options *options;
     char *output;
     int i;
 
-    options = new_clean_string_options();
-
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        options->max_length = data[i].max_length;
-        output = clean_max_length(data[i].filename, options);
+        output = clean_max_length(data[i].filename, data[i].max_length);
         ck_assert_str_eq(output, data[i].expected);
     }
 
     // confirm NULL works
-    output = clean_max_length(NULL, NULL);
+    output = clean_max_length(NULL, 0);
     ck_assert(output == NULL);

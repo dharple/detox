@@ -59,12 +59,10 @@ void teardown(void)
     options_t *main_options;
     config_file_t *parsed;
     config_file_t *spoofed;
-    struct detox_sequence_list *parsed_sequence;
-    struct detox_sequence_list *spoofed_sequence;
-    struct detox_sequence_filter *parsed_filter;
-    struct detox_sequence_filter *spoofed_filter;
-    struct clean_string_options *parsed_options;
-    struct clean_string_options *spoofed_options;
+    sequence_t *parsed_sequence;
+    sequence_t *spoofed_sequence;
+    filter_t *parsed_filter;
+    filter_t *spoofed_filter;
 
     main_options = options_init();
     parsed = parse_config_file(tempfile, NULL, main_options);
@@ -86,8 +84,8 @@ void teardown(void)
         //
         //
 
-        parsed_filter = parsed_sequence->head;
-        spoofed_filter = spoofed_sequence->head;
+        parsed_filter = parsed_sequence->filters;
+        spoofed_filter = spoofed_sequence->filters;
 
         do {
             if (parsed_filter == NULL || spoofed_filter == NULL) {
@@ -96,24 +94,16 @@ void teardown(void)
 
             ck_assert_msg(parsed_filter->cleaner == spoofed_filter->cleaner, "unit test cleaner doesn't match spoofed cleaner");
 
-            parsed_options = parsed_filter->options;
-            spoofed_options = spoofed_filter->options;
-
-            if (parsed_options != NULL && spoofed_options != NULL) {
-                ck_assert_str_eq(
-                    parsed_options->filename ? parsed_options->filename : "...NULL...",
-                    spoofed_options->filename ? spoofed_options->filename : "...NULL..."
-                );
-                ck_assert_str_eq(
-                    parsed_options->builtin ? parsed_options->builtin : "...NULL...",
-                    spoofed_options->builtin ? spoofed_options->builtin : "...NULL..."
-                );
-                ck_assert_int_eq(parsed_options->remove_trailing, spoofed_options->remove_trailing);
-                ck_assert_int_eq(parsed_options->max_length, spoofed_options->max_length);
-            } else if (parsed_options != NULL || spoofed_options != NULL) {
-                ck_assert_msg(parsed_options == NULL, "unit test options has options but the spoofed version doesn't");
-                ck_assert_msg(spoofed_options == NULL, "spoofed options has options but the unit test version doesn't");
-            }
+            ck_assert_str_eq(
+                parsed_filter->filename ? parsed_filter->filename : "...NULL...",
+                spoofed_filter->filename ? spoofed_filter->filename : "...NULL..."
+            );
+            ck_assert_str_eq(
+                parsed_filter->builtin ? parsed_filter->builtin : "...NULL...",
+                spoofed_filter->builtin ? spoofed_filter->builtin : "...NULL..."
+            );
+            ck_assert_int_eq(parsed_filter->remove_trailing, spoofed_filter->remove_trailing);
+            ck_assert_int_eq(parsed_filter->max_length, spoofed_filter->max_length);
 
             parsed_filter = parsed_filter->next;
             spoofed_filter = spoofed_filter->next;

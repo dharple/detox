@@ -27,10 +27,10 @@ static struct test_filename data[DATA_COUNT] = {
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_lower(data[i].filename, NULL);
+        output = clean_lower(data[i].filename);
         ck_assert_str_eq(output, data[i].expected);
     }
 
     // confirm NULL works
-    output = clean_lower(NULL, NULL);
+    output = clean_lower(NULL);
     ck_assert(output == NULL);

@@ -14,49 +14,36 @@
 #include "config_file_spoof.h"
 #include "detox_struct.h"
 #include "filelist.h"
+#include "filter.h"
+#include "sequence.h"
 
 /**
- * Generates an ISO8859-1 style filter.
+ * Generates a filter that uses a builtin table.
  *
  * @param builtin The name of the builtin table to use.
  *
  * @return
  */
-static struct detox_sequence_filter *generate_iso8859_1_filter(char *builtin)
+static filter_t *generate_builtin_filter(int cleaner, char *builtin)
 {
-    struct detox_sequence_filter *filter;
-    filter = new_detox_sequence_filter();
-    filter->cleaner = &clean_iso8859_1;
-    filter->options = new_clean_string_options();
-    filter->options->builtin = strdup(builtin);
+    filter_t *filter;
+    filter = filter_init(cleaner);
+    filter->builtin = strdup(builtin);
     return filter;
 }
 
 /**
- * Generates a lower filter.
+ * Generates a filter.
  *
  * @return
  */
-static struct detox_sequence_filter *generate_lower_filter(void)
+static filter_t *generate_filter(int cleaner)
 {
-    struct detox_sequence_filter *filter;
-    filter = new_detox_sequence_filter();
-    filter->cleaner = &clean_lower;
-    return filter;
-}
-
-/**
- * Generates a safe filter.
- *
- * @return
- */
-static struct detox_sequence_filter *generate_safe_filter(void)
-{
-    struct detox_sequence_filter *filter;
-    filter = new_detox_sequence_filter();
-    filter->cleaner = &clean_safe;
-    filter->options = new_clean_string_options();
-    filter->options->builtin = strdup("safe");
+    filter_t *filter;
+    filter = filter_init(cleaner);
+    if (cleaner == FILTER_SAFE) {
+        filter->builtin = strdup("safe");
+    }
     return filter;
 }
 
@@ -67,43 +54,12 @@ static struct detox_sequence_filter *generate_safe_filter(void)
  *
  * @return
  */
-static struct detox_sequence_list *generate_sequence(char *name)
+static sequence_t *generate_sequence(char *name)
 {
-    struct detox_sequence_list *sequence;
-    sequence = new_detox_sequence_list();
-    sequence->name = strdup(name);
+    sequence_t *sequence;
+    sequence = sequence_init(name);
     sequence->source_filename = strdup("built-in config file");
     return sequence;
-}
-
-/**
- * Generates an UNCGI filter.
- *
- * @return
- */
-static struct detox_sequence_filter *generate_uncgi_filter(void)
-{
-    struct detox_sequence_filter *filter;
-    filter = new_detox_sequence_filter();
-    filter->cleaner = &clean_uncgi;
-    return filter;
-}
-
-/**
- * Generates an UTF-8 style filter.
- *
- * @param builtin The name of the builtin table to use.
- *
- * @return
- */
-static struct detox_sequence_filter *generate_utf_8_filter(char *builtin)
-{
-    struct detox_sequence_filter *filter;
-    filter = new_detox_sequence_filter();
-    filter->cleaner = &clean_utf_8;
-    filter->options = new_clean_string_options();
-    filter->options->builtin = strdup(builtin);
-    return filter;
 }
 
 /**
@@ -113,13 +69,11 @@ static struct detox_sequence_filter *generate_utf_8_filter(char *builtin)
  *
  * @return
  */
-static struct detox_sequence_filter *generate_wipeup_filter(int remove_trailing)
+static filter_t *generate_wipeup_filter(int remove_trailing)
 {
-    struct detox_sequence_filter *filter;
-    filter = new_detox_sequence_filter();
-    filter->cleaner = &clean_wipeup;
-    filter->options = new_clean_string_options();
-    filter->options->remove_trailing = remove_trailing;
+    filter_t *filter;
+    filter = filter_init(FILTER_WIPEUP);
+    filter->remove_trailing = remove_trailing;
     return filter;
 }
 
@@ -131,12 +85,12 @@ static struct detox_sequence_filter *generate_wipeup_filter(int remove_trailing)
 config_file_t *spoof_config_file(void)
 {
     config_file_t *ret = NULL;
-    struct detox_sequence_list *sequence = NULL;
-    struct detox_sequence_filter *filter = NULL;
-    struct detox_sequence_filter *safe_wipeup_filter = NULL;
+    sequence_t *sequence = NULL;
+    filter_t *filter = NULL;
+    filter_t *safe_wipeup_filter = NULL;
 
     // generate safe_wipeup_filter
-    safe_wipeup_filter = generate_safe_filter();
+    safe_wipeup_filter = generate_filter(FILTER_SAFE);
     safe_wipeup_filter->next = generate_wipeup_filter(1);
 
     // build containing structure
@@ -144,60 +98,60 @@ config_file_t *spoof_config_file(void)
 
     // default sequence
     ret->sequences = sequence = generate_sequence("default");
-    sequence->head = safe_wipeup_filter;
+    sequence->filters = safe_wipeup_filter;
 
     // iso8859_1
     sequence = sequence->next = generate_sequence("iso8859_1");
-    sequence->head = filter = generate_iso8859_1_filter("iso8859_1");
+    sequence->filters = filter = generate_builtin_filter(FILTER_ISO8859_1, "iso8859_1");
     filter->next = safe_wipeup_filter;
 
     // iso8859_1-legacy
     sequence = sequence->next = generate_sequence("iso8859_1-legacy");
-    sequence->head = filter = generate_iso8859_1_filter("cp1252");
-    filter = filter->next = generate_iso8859_1_filter("iso8859_1");
+    sequence->filters = filter = generate_builtin_filter(FILTER_ISO8859_1, "cp1252");
+    filter = filter->next = generate_builtin_filter(FILTER_ISO8859_1, "iso8859_1");
     filter->next = safe_wipeup_filter;
 
     // utf_8
     sequence = sequence->next = generate_sequence("utf_8");
-    sequence->head = filter = generate_utf_8_filter("unicode");
+    sequence->filters = filter = generate_builtin_filter(FILTER_UTF_8, "unicode");
     filter->next = safe_wipeup_filter;
 
     // utf_8-legacy
     sequence = sequence->next = generate_sequence("utf_8-legacy");
-    sequence->head = filter = generate_utf_8_filter("cp1252");
-    filter = filter->next = generate_utf_8_filter("unicode");
+    sequence->filters = filter = generate_builtin_filter(FILTER_UTF_8, "cp1252");
+    filter = filter->next = generate_builtin_filter(FILTER_UTF_8, "unicode");
     filter->next = safe_wipeup_filter;
 
     // uncgi
     sequence = sequence->next = generate_sequence("uncgi");
-    sequence->head = filter = generate_uncgi_filter();
+    sequence->filters = filter = generate_filter(FILTER_UNCGI);
     filter->next = safe_wipeup_filter;
 
     // lower
     sequence = sequence->next = generate_sequence("lower");
-    sequence->head = filter = generate_safe_filter();
-    filter = filter->next = generate_lower_filter();
+    sequence->filters = filter = generate_filter(FILTER_SAFE);
+    filter = filter->next = generate_filter(FILTER_LOWER);
     filter->next = generate_wipeup_filter(1);
 
     // iso8859_1-only
     sequence = sequence->next = generate_sequence("iso8859_1-only");
-    sequence->head = generate_iso8859_1_filter("iso8859_1");
+    sequence->filters = generate_builtin_filter(FILTER_ISO8859_1, "iso8859_1");
 
     // cp1252-only
     sequence = sequence->next = generate_sequence("cp1252-only");
-    sequence->head = generate_iso8859_1_filter("cp1252");
+    sequence->filters = generate_builtin_filter(FILTER_ISO8859_1, "cp1252");
 
     // utf_8-only
     sequence = sequence->next = generate_sequence("utf_8-only");
-    sequence->head = generate_utf_8_filter("unicode");
+    sequence->filters = generate_builtin_filter(FILTER_UTF_8, "unicode");
 
     // uncgi-only
     sequence = sequence->next = generate_sequence("uncgi-only");
-    sequence->head = generate_uncgi_filter();
+    sequence->filters = generate_filter(FILTER_UNCGI);
 
     // lower-only
     sequence = sequence->next = generate_sequence("lower-only");
-    sequence->head = generate_lower_filter();
+    sequence->filters = generate_filter(FILTER_LOWER);
 
     // files to ignore
     ret->files_to_ignore = filelist_init();

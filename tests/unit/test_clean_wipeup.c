@@ -91,12 +91,12 @@ START_TEST(test_clean_wipeup)
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_wipeup(data[i].filename, NULL);
+        output = clean_wipeup(data[i].filename, 0);
         ck_assert_str_eq(output, data[i].expected_a);
     }
 
     // confirm NULL works
-    output = clean_wipeup(NULL, NULL);
+    output = clean_wipeup(NULL, 0);
     ck_assert(output == NULL);
 
 }
@@ -105,16 +105,12 @@ END_TEST
 START_TEST(test_clean_wipeuprt)
 {
 #line 93
-    struct clean_string_options *options;
     char *output;
     int i;
 
-    options = new_clean_string_options();
-    options->remove_trailing = 1;
-
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_wipeup(data[i].filename, options);
+        output = clean_wipeup(data[i].filename, 1);
         ck_assert_str_eq(output, data[i].expected_b);
     }
 }

@@ -35,16 +35,16 @@ noinst_PROGRAMS = \
 
 detox_SOURCES = \
 	builtin_table.c \
-	config_file.c \
-	config_file_yacc.y \
-	config_file_lex.l \
 	clean_string.c \
+	config_file.c \
 	config_file_dump.c \
+	config_file_lex.l \
 	config_file_spoof.c \
+	config_file_yacc.y \
 	detox.c \
-	detox_struct.c \
 	file.c \
 	filelist.c \
+	filter.c \
 	parse_options.c \
 	parse_table.c \
 	sequence.c \

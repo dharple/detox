@@ -16,6 +16,7 @@
 
 #include "file.h"
 #include "filelist.h"
+#include "sequence.h"
 
 #define BUF_SIZE 1024
 
@@ -73,8 +74,6 @@ char *parse_file(char *filename, options_t *options)
     int err;
     size_t len;
 
-    struct detox_sequence_filter *sequence;
-
     len = strlen(filename) + 1;
     old_filename = malloc(len);
     if (old_filename == NULL) {
@@ -94,23 +93,17 @@ char *parse_file(char *filename, options_t *options)
      * Do the actual filename cleaning
      */
 
-    sequence = options->sequence_to_use;
-
     work = strdup(old_filename_ptr);
 
     if (is_protected(work)) {
         work = NULL;
     }
 
-    while (sequence != NULL && work != NULL) {
-        hold = sequence->cleaner(work, sequence->options);
-        if (work != NULL) {
-            free(work);
-        }
-        work = hold;
-
-        sequence = sequence->next;
+    hold = sequence_run_filters(options->sequence_to_use, work);
+    if (work != NULL) {
+        free(work);
     }
+    work = hold;
 
     if (work == NULL) {
         return old_filename;
@@ -257,7 +250,6 @@ void parse_dir(char *filename, options_t *options)
  */
 void parse_inline(char *filename, options_t *options)
 {
-    struct detox_sequence_filter *sequence;
     FILE *fp;
     char *base, *work, *hold;
     size_t buf_size;
@@ -296,26 +288,21 @@ void parse_inline(char *filename, options_t *options)
         }
         *hold = '\0';
 
-        sequence = options->sequence_to_use;
-
         work = strdup(base);
 
         if (is_protected(work)) {
             work = NULL;
         }
 
-        while (sequence != NULL && work != NULL) {
-            hold = sequence->cleaner(work, sequence->options);
-            if (work != NULL) {
-                free(work);
-            }
-            work = hold;
-
-            sequence = sequence->next;
+        hold = sequence_run_filters(options->sequence_to_use, work);
+        if (work != NULL) {
+            free(work);
         }
+        work = hold;
 
         if (work != NULL) {
             printf("%s\n", work);
+            free(work);
         } else {
             printf("%s\n", base);
         }

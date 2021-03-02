@@ -16,8 +16,8 @@
 
 void dump_config_file(config_file_t *config_file, options_t *main_options)
 {
-    struct detox_sequence_list *list_work = NULL;
-    struct detox_sequence_filter *work = NULL;
+    sequence_t *sequence = NULL;
+    filter_t *filter = NULL;
     char *file_walk;
     int count = 0;
 
@@ -25,9 +25,9 @@ void dump_config_file(config_file_t *config_file, options_t *main_options)
         printf("available sequences:\n");
     }
 
-    list_work = config_file->sequences;
+    sequence = config_file->sequences;
 
-    while (list_work != NULL) {
+    while (sequence != NULL) {
         if (main_options->verbose) {
             if (count++ > 0) {
                 printf("\n");
@@ -36,61 +36,41 @@ void dump_config_file(config_file_t *config_file, options_t *main_options)
         } else {
             printf("\t");
         }
-        printf("%s%s\n", list_work->name, (main_options->sequence_to_use == list_work->head) ? " (*)" : "");
+        printf("%s%s\n", sequence->name, (main_options->sequence_to_use == sequence) ? " (*)" : "");
         if (main_options->verbose) {
-            printf("\tsource file: %s\n", list_work->source_filename);
+            printf("\tsource file: %s\n", sequence->source_filename);
 
-            work = list_work->head;
-            while (work != NULL) {
-                if (work->cleaner == &clean_uncgi) {
+            filter = sequence->filters;
+            while (filter != NULL) {
+                if (filter->cleaner == FILTER_UNCGI) {
                     printf("\tcleaner: uncgi\n");
-                } else if (work->cleaner == &clean_safe) {
+                } else if (filter->cleaner == FILTER_SAFE) {
                     printf("\tcleaner: safe\n");
-                    if (work->options != NULL) {
-                        if (work->options->builtin != NULL) {
-                            printf("\t\tbuiltin table: %s\n", work->options->builtin);
-                        } else if (work->options->filename != NULL) {
-                            printf("\t\ttranslation table: %s\n", work->options->filename);
-                        }
-                    }
-                } else if (work->cleaner == &clean_wipeup) {
+                } else if (filter->cleaner == FILTER_WIPEUP) {
                     printf("\tcleaner: wipeup\n");
-                    if (work->options != NULL) {
-                        printf("\t\tremove trailing: %s\n", work->options->remove_trailing ? "yes" : "no");
-                    }
-                } else if (work->cleaner == &clean_iso8859_1) {
+                    printf("\t\tremove trailing: %s\n", filter->remove_trailing ? "yes" : "no");
+                } else if (filter->cleaner == FILTER_ISO8859_1) {
                     printf("\tcleaner: iso8859_1\n");
-                    if (work->options != NULL) {
-                        if (work->options->builtin != NULL) {
-                            printf("\t\tbuiltin table: %s\n", work->options->builtin);
-                        } else if (work->options->filename != NULL) {
-                            printf("\t\ttranslation table: %s\n", work->options->filename);
-                        }
-                    }
-                } else if (work->cleaner == &clean_utf_8) {
+                } else if (filter->cleaner == FILTER_UTF_8) {
                     printf("\tcleaner: utf_8\n");
-                    if (work->options != NULL) {
-                        if (work->options->builtin != NULL) {
-                            printf("\t\tbuiltin table: %s\n", work->options->builtin);
-                        } else if (work->options->filename != NULL) {
-                            printf("\t\ttranslation table: %s\n", work->options->filename);
-                        }
-                    }
-                } else if (work->cleaner == &clean_max_length) {
+                } else if (filter->cleaner == FILTER_MAX_LENGTH) {
                     printf("\tcleaner: max length\n");
-                    if (work->options != NULL) {
-                        printf("\t\tlength: %d\n", (unsigned int) work->options->max_length);
-                    }
-                }
-                if (work->cleaner == &clean_lower) {
+                    printf("\t\tlength: %d\n", (unsigned int) filter->max_length);
+                } else if (filter->cleaner == FILTER_LOWER) {
                     printf("\tcleaner: lower\n");
                 }
 
-                work = work->next;
+                if (filter->builtin != NULL) {
+                    printf("\t\tbuiltin table: %s\n", filter->builtin);
+                } else if (filter->filename != NULL) {
+                    printf("\t\ttranslation table: %s\n", filter->filename);
+                }
+
+                filter = filter->next;
             }
         }
 
-        list_work = list_work->next;
+        sequence = sequence->next;
     }
 
     if (filelist_count(config_file->files_to_ignore) > 0) {

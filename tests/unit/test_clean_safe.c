@@ -93,16 +93,15 @@ static struct test_filename data[DATA_COUNT] = {
 START_TEST(test_clean_safe)
 {
 #line 86
-    struct clean_string_options *options;
+    table_t *table;
     char *output;
     int i;
 
-    options = new_clean_string_options();
-    options->table = load_builtin_safe_table();
+    table = load_builtin_safe_table();
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_safe(data[i].filename, options);
+        output = clean_safe(data[i].filename, table);
         ck_assert_str_eq(output, data[i].expected);
     }
 
@@ -113,9 +112,9 @@ START_TEST(test_clean_safe)
 }
 END_TEST
 
-START_TEST(test_clean_safe_missing_options)
+START_TEST(test_clean_safe_missing_table)
 {
-#line 104
+#line 103
     clean_safe("what", NULL);
 
 }
@@ -123,21 +122,20 @@ END_TEST
 
 START_TEST(test_clean_safe_custom)
 {
-#line 107
-    struct clean_string_options *options;
+#line 106
+    table_t *table;
     char *output;
     int i;
 
-    options = new_clean_string_options();
-    options->table = load_builtin_safe_table();
+    table = load_builtin_safe_table();
 
-    table_put(options->table, 0x07, "_beep_");
-    table_put(options->table, 0x09, "_tab_");
-    table_put(options->table, 0x0a, "_nl_");
+    table_put(table, 0x07, "_beep_");
+    table_put(table, 0x09, "_tab_");
+    table_put(table, 0x0a, "_nl_");
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_safe(data[i].filename, options);
+        output = clean_safe(data[i].filename, table);
         ck_assert_str_eq(output, (data[i].expected_b != NULL) ? data[i].expected_b : data[i].expected);
     }
 }
@@ -152,7 +150,7 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_safe);
-    tcase_add_exit_test(tc1_1, test_clean_safe_missing_options, 1);
+    tcase_add_exit_test(tc1_1, test_clean_safe_missing_table, 1);
     tcase_add_test(tc1_1, test_clean_safe_custom);
 
     srunner_run_all(sr, CK_ENV);

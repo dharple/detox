@@ -15,10 +15,11 @@ AM_LDFLAGS = \
 	$(top_builddir)/src/config_file.o \
 	$(top_builddir)/src/config_file_spoof.o \
 	$(top_builddir)/src/config_file_yacc.o \
-	$(top_builddir)/src/detox_struct.o \
 	$(top_builddir)/src/filelist.o \
+	$(top_builddir)/src/filter.o \
 	$(top_builddir)/src/parse_options.o \
 	$(top_builddir)/src/parse_table.o \
+	$(top_builddir)/src/sequence.o \
 	$(top_builddir)/src/table.o \
 	@CHECK_LIBS@
 

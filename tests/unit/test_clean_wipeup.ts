@@ -81,24 +81,20 @@ static struct test_filename data[DATA_COUNT] = {
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_wipeup(data[i].filename, NULL);
+        output = clean_wipeup(data[i].filename, 0);
         ck_assert_str_eq(output, data[i].expected_a);
     }
 
     // confirm NULL works
-    output = clean_wipeup(NULL, NULL);
+    output = clean_wipeup(NULL, 0);
     ck_assert(output == NULL);
 
 #test test_clean_wipeuprt
-    struct clean_string_options *options;
     char *output;
     int i;
 
-    options = new_clean_string_options();
-    options->remove_trailing = 1;
-
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_wipeup(data[i].filename, options);
+        output = clean_wipeup(data[i].filename, 1);
         ck_assert_str_eq(output, data[i].expected_b);
     }
