@@ -12,8 +12,8 @@
 
 #include "detox_struct.h"
 
-extern void table_dump(struct translation_table *table, int verbose);
-extern void table_stats(struct translation_table *table);
+extern void table_dump(table_t *table, int verbose);
+extern void table_stats(table_t *table);
 
 #endif /*  __TABLE_DUMP_H */
 

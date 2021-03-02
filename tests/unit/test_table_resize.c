@@ -63,8 +63,8 @@ static char *table_filename = "fixtures/test_table_resize.tbl";
 START_TEST(test_table_resize)
 {
 #line 56
-    struct translation_table *table;
-    struct translation_table *new_table;
+    table_t *table;
+    table_t *new_table;
     char *check;
     char *header;
     char *message;

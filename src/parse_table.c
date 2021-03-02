@@ -21,7 +21,7 @@ enum {
     INSIDE_STATE
 };
 
-struct translation_table *parse_table(char *filename)
+table_t *parse_table(char *filename)
 {
     FILE *table_file;
     char *work;
@@ -35,7 +35,7 @@ struct translation_table *parse_table(char *filename)
     int state;
     char *system_ctype;
 
-    struct translation_table *table;
+    table_t *table;
 
     struct stat table_stat;
 

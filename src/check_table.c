@@ -28,7 +28,7 @@ enum {
     INSIDE_STATE
 };
 
-static struct translation_table *check_table(char *filename, int use_hash)
+static table_t *check_table(char *filename, int use_hash)
 {
     FILE *table_file;
     char *work;
@@ -43,7 +43,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
     int last;
     char *check;
 
-    struct translation_table *table;
+    table_t *table;
 
     struct stat table_stat;
 
@@ -239,7 +239,7 @@ static struct translation_table *check_table(char *filename, int use_hash)
     return table;
 }
 
-static struct translation_table *check_table_again(char *filename, struct translation_table *source)
+static table_t *check_table_again(char *filename, table_t *source)
 {
     FILE *table_file;
     char *work;
@@ -251,7 +251,7 @@ static struct translation_table *check_table_again(char *filename, struct transl
     int state;
     char *check;
 
-    struct translation_table *table;
+    table_t *table;
 
     struct stat table_stat;
 
@@ -388,8 +388,8 @@ static struct translation_table *check_table_again(char *filename, struct transl
 
 int main(int argc, char **argv)
 {
-    struct translation_table *table;
-    struct translation_table *new_table;
+    table_t *table;
+    table_t *new_table;
     int optcode;
     int builtin = 0;
     int dump = 0;

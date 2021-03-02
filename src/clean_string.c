@@ -26,18 +26,18 @@ char *clean_iso8859_1(char *filename, struct clean_string_options *options)
     char *output, *input_walk, *output_walk, *replace_walk;
     int new_value;
 
-    struct translation_table *table = NULL;
+    table_t *table = NULL;
 
     if (filename == NULL) {
         return NULL;
     }
 
-    if (options == NULL || options->translation_table == NULL) {
+    if (options == NULL || options->table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
 
-    table = options->translation_table;
+    table = options->table;
 
     output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
@@ -89,18 +89,18 @@ char *clean_safe(char *filename, struct clean_string_options *options)
 {
     char *output, *input_walk, *output_walk, *replace_walk;
 
-    struct translation_table *table = NULL;
+    table_t *table = NULL;
 
     if (filename == NULL) {
         return NULL;
     }
 
-    if (options == NULL || options->translation_table == NULL) {
+    if (options == NULL || options->table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
 
-    table = options->translation_table;
+    table = options->table;
 
     output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {
@@ -268,7 +268,7 @@ char *clean_utf_8(char *filename, struct clean_string_options *options)
     char *output, *input_walk, *output_walk, *replace_walk;
     int new_value, expected_chars;
 
-    struct translation_table *table = NULL;
+    table_t *table = NULL;
 
     int characters_eaten;
 
@@ -276,12 +276,12 @@ char *clean_utf_8(char *filename, struct clean_string_options *options)
         return NULL;
     }
 
-    if (options == NULL || options->translation_table == NULL) {
+    if (options == NULL || options->table == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
 
-    table = options->translation_table;
+    table = options->table;
 
     output = malloc((strlen(filename) * table->max_data_length) + 1);
     if (output == NULL) {

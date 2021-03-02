@@ -14,12 +14,12 @@
 
 #define MAX_PATH_LEN 256
 
-struct translation_table_row {
+typedef struct {
     unsigned int key;
     char *data;
-};
+} table_row_t;
 
-struct translation_table {
+typedef struct {
     int length;
     int used;
 
@@ -27,7 +27,7 @@ struct translation_table {
 
     char *default_translation;
 
-    struct translation_table_row *rows;
+    table_row_t *rows;
 
     int hits;
     int misses;
@@ -37,14 +37,14 @@ struct translation_table {
     int use_hash;
     int builtin;
     int max_key;
-};
+} table_t;
 
 struct clean_string_options {
     char *filename;
     char *builtin;
     int remove_trailing;
     size_t max_length;
-    struct translation_table *translation_table;
+    table_t *table;
 };
 
 /*

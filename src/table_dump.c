@@ -15,7 +15,7 @@
 
 #include "table_dump.h"
 
-void table_dump(struct translation_table *table, int verbose)
+void table_dump(table_t *table, int verbose)
 {
     int i;
 
@@ -34,7 +34,7 @@ void table_dump(struct translation_table *table, int verbose)
     }
 }
 
-void table_stats(struct translation_table *table)
+void table_stats(table_t *table)
 {
     printf("used: %d\n", table->used);
     printf("available: %d\n", table->length);

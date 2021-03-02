@@ -12,10 +12,10 @@
 
 #include "detox_struct.h"
 
-extern struct translation_table *table_init(int max_rows);
-extern struct translation_table *table_resize(struct translation_table *table, int rows, int use_hash);
-extern void table_free(struct translation_table *table);
-extern int table_put(struct translation_table *table, unsigned int key, char *data);
-extern char *table_get(struct translation_table *table, unsigned int key);
+extern table_t *table_init(int max_rows);
+extern table_t *table_resize(table_t *table, int rows, int use_hash);
+extern void table_free(table_t *table);
+extern int table_put(table_t *table, unsigned int key, char *data);
+extern char *table_get(table_t *table, unsigned int key);
 
 #endif /* __TABLE_H */

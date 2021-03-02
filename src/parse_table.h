@@ -13,6 +13,6 @@
 
 #include "detox_struct.h"
 
-extern struct translation_table *parse_table(char *filename);
+extern table_t *parse_table(char *filename);
 
 #endif /* __PARSE_TABLE_H */

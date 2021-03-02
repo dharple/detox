@@ -53,8 +53,8 @@ static char *escape_string(char *in)
 
 static void generate_loader(char *filename)
 {
-    struct translation_table *table;
-    struct translation_table *hold_table;
+    table_t *table;
+    table_t *hold_table;
     int i;
 
     hold_table = parse_table(filename);
@@ -72,7 +72,7 @@ static void generate_loader(char *filename)
     //
 
     printf(
-        "static struct translation_table_row builtin_NEW_rows[%d] = {\n",
+        "static table_row_t builtin_NEW_rows[%d] = {\n",
         table->used
     );
 
@@ -98,7 +98,7 @@ static void generate_loader(char *filename)
     //
 
     printf(
-        "static struct translation_table builtin_NEW_table = {\n"
+        "static table_t builtin_NEW_table = {\n"
         "    .length              = %d,\n"
         "    .used                = %d,\n"
         "    .max_data_length     = %d,\n"
@@ -135,7 +135,7 @@ static void generate_loader(char *filename)
     //
 
     printf(
-        "struct translation_table *load_builtin_NEW_table(void)\n"
+        "table_t *load_builtin_NEW_table(void)\n"
         "{\n"
         "    return table_resize(&builtin_NEW_table, %d, 1);\n"
         "}\n",

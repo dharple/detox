@@ -15,7 +15,7 @@
  * Generated from safe.tbl
  */
 
-static struct translation_table_row builtin_safe_rows[55] = {
+static table_row_t builtin_safe_rows[55] = {
     { .key  = 0x0001, .data = "_" },
     { .key  = 0x0002, .data = "_" },
     { .key  = 0x0003, .data = "_" },
@@ -73,7 +73,7 @@ static struct translation_table_row builtin_safe_rows[55] = {
     { .key  = 0x007f, .data = "_" },
 };
 
-static struct translation_table builtin_safe_table = {
+static table_t builtin_safe_table = {
     .length              = 55,
     .used                = 55,
     .max_data_length     = 5,
@@ -88,7 +88,7 @@ static struct translation_table builtin_safe_table = {
     .default_translation = NULL,
 };
 
-struct translation_table *load_builtin_safe_table(void)
+table_t *load_builtin_safe_table(void)
 {
     return table_resize(&builtin_safe_table, 256, 1);
 }
@@ -97,7 +97,7 @@ struct translation_table *load_builtin_safe_table(void)
  * Generated from iso8859_1.tbl
  */
 
-static struct translation_table_row builtin_iso8859_1_rows[88] = {
+static table_row_t builtin_iso8859_1_rows[88] = {
     { .key  = 0x00a0, .data = " " },
     { .key  = 0x00a1, .data = "!" },
     { .key  = 0x00a2, .data = "_cent_" },
@@ -188,7 +188,7 @@ static struct translation_table_row builtin_iso8859_1_rows[88] = {
     { .key  = 0x00ff, .data = "y" },
 };
 
-static struct translation_table builtin_iso8859_1_table = {
+static table_t builtin_iso8859_1_table = {
     .length              = 88,
     .used                = 88,
     .max_data_length     = 7,
@@ -203,7 +203,7 @@ static struct translation_table builtin_iso8859_1_table = {
     .default_translation = "_",
 };
 
-struct translation_table *load_builtin_iso8859_1_table(void)
+table_t *load_builtin_iso8859_1_table(void)
 {
     return table_resize(&builtin_iso8859_1_table, 256, 1);
 }
@@ -212,7 +212,7 @@ struct translation_table *load_builtin_iso8859_1_table(void)
  * Generated from unicode.tbl
  */
 
-static struct translation_table_row builtin_unicode_rows[616] = {
+static table_row_t builtin_unicode_rows[616] = {
     { .key  = 0x0020, .data = " " },
     { .key  = 0x0021, .data = "!" },
     { .key  = 0x0022, .data = "\"" },
@@ -831,7 +831,7 @@ static struct translation_table_row builtin_unicode_rows[616] = {
     { .key  = 0x1f37a, .data = "_beer_" },
 };
 
-static struct translation_table builtin_unicode_table = {
+static table_t builtin_unicode_table = {
     .length              = 616,
     .used                = 616,
     .max_data_length     = 7,
@@ -846,7 +846,7 @@ static struct translation_table builtin_unicode_table = {
     .default_translation = "_",
 };
 
-struct translation_table *load_builtin_unicode_table(void)
+table_t *load_builtin_unicode_table(void)
 {
     return table_resize(&builtin_unicode_table, 768, 1);
 }
@@ -855,7 +855,7 @@ struct translation_table *load_builtin_unicode_table(void)
  * Generated from cp1252.tbl
  */
 
-static struct translation_table_row builtin_cp1252_rows[25] = {
+static table_row_t builtin_cp1252_rows[25] = {
     { .key  = 0x0080, .data = "EUR" },
     { .key  = 0x0082, .data = "'" },
     { .key  = 0x0083, .data = "f" },
@@ -883,7 +883,7 @@ static struct translation_table_row builtin_cp1252_rows[25] = {
     { .key  = 0x009f, .data = "Y" },
 };
 
-static struct translation_table builtin_cp1252_table = {
+static table_t builtin_cp1252_table = {
     .length              = 25,
     .used                = 25,
     .max_data_length     = 4,
@@ -898,7 +898,7 @@ static struct translation_table builtin_cp1252_table = {
     .default_translation = NULL,
 };
 
-struct translation_table *load_builtin_cp1252_table(void)
+table_t *load_builtin_cp1252_table(void)
 {
     return table_resize(&builtin_cp1252_table, 256, 1);
 }

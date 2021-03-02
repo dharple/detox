@@ -61,9 +61,9 @@ struct detox_sequence_filter *sequence_choose_default(struct detox_sequence_list
  *
  * @return
  */
-struct translation_table *sequence_find_table(const char *check_filename)
+table_t *sequence_find_table(const char *check_filename)
 {
-    struct translation_table *table = NULL;
+    table_t *table = NULL;
     int err;
     char *check_config_file;
 
@@ -104,7 +104,7 @@ struct translation_table *sequence_find_table(const char *check_filename)
  *
  * @param sequence The sequence to load a builtin for.
  */
-struct translation_table *sequence_load_builtin(struct detox_sequence_filter *sequence)
+table_t *sequence_load_builtin(struct detox_sequence_filter *sequence)
 {
     if (sequence->cleaner == &clean_iso8859_1) {
         return load_builtin_iso8859_1_table();
@@ -128,7 +128,7 @@ struct translation_table *sequence_load_builtin(struct detox_sequence_filter *se
  *
  * @param filename Builtin filename to use
  */
-struct translation_table *sequence_load_builtin_by_filename(char *filename)
+table_t *sequence_load_builtin_by_filename(char *filename)
 {
     if (strcmp(filename, "iso8859_1") == 0) {
         return load_builtin_iso8859_1_table();
@@ -148,9 +148,9 @@ struct translation_table *sequence_load_builtin_by_filename(char *filename)
  *
  * @param sequence The sequence to check.
  */
-struct translation_table *sequence_load_table(struct detox_sequence_filter *sequence)
+table_t *sequence_load_table(struct detox_sequence_filter *sequence)
 {
-    struct translation_table *table = NULL;
+    table_t *table = NULL;
     char *check_filename = NULL;
     int do_search = 1;
 
@@ -215,7 +215,7 @@ struct translation_table *sequence_load_table(struct detox_sequence_filter *sequ
 void sequence_review(struct detox_sequence_filter *sequence)
 {
     struct detox_sequence_filter *work = sequence;
-    struct translation_table *table = NULL;
+    table_t *table = NULL;
 
     while (work != NULL) {
         table = sequence_load_table(work);
@@ -226,7 +226,7 @@ void sequence_review(struct detox_sequence_filter *sequence)
                 work->options = new_clean_string_options();
             }
 
-            work->options->translation_table = table;
+            work->options->table = table;
         }
         work = work->next;
     }

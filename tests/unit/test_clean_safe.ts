@@ -88,7 +88,7 @@ static struct test_filename data[DATA_COUNT] = {
     int i;
 
     options = new_clean_string_options();
-    options->translation_table = load_builtin_safe_table();
+    options->table = load_builtin_safe_table();
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
@@ -109,11 +109,11 @@ static struct test_filename data[DATA_COUNT] = {
     int i;
 
     options = new_clean_string_options();
-    options->translation_table = load_builtin_safe_table();
+    options->table = load_builtin_safe_table();
 
-    table_put(options->translation_table, 0x07, "_beep_");
-    table_put(options->translation_table, 0x09, "_tab_");
-    table_put(options->translation_table, 0x0a, "_nl_");
+    table_put(options->table, 0x07, "_beep_");
+    table_put(options->table, 0x09, "_tab_");
+    table_put(options->table, 0x0a, "_nl_");
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {

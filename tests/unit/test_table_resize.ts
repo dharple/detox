@@ -53,8 +53,8 @@ static char *table_filename = "fixtures/test_table_resize.tbl";
 #define MESSAGE_LEN 1024
 
 #test test_table_resize
-    struct translation_table *table;
-    struct translation_table *new_table;
+    table_t *table;
+    table_t *new_table;
     char *check;
     char *header;
     char *message;

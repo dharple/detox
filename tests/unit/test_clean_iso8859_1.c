@@ -44,7 +44,7 @@ START_TEST(test_clean_iso8859_1)
     int i;
 
     options = new_clean_string_options();
-    options->translation_table = load_builtin_iso8859_1_table();
+    options->table = load_builtin_iso8859_1_table();
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {

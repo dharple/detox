@@ -17,23 +17,23 @@
  */
 static int table_hash(int table_length, unsigned int key);
 
-struct translation_table *table_init(int max_rows)
+table_t *table_init(int max_rows)
 {
-    struct translation_table *ret;
+    table_t *ret;
     size_t row_length;
 
     if (max_rows <= 0) {
         max_rows = 500;
     }
 
-    row_length = max_rows * sizeof(struct translation_table_row);
+    row_length = max_rows * sizeof(table_row_t);
 
-    ret = malloc(sizeof(struct translation_table));
+    ret = malloc(sizeof(table_t));
     if (ret == NULL) {
         return NULL;
     }
 
-    memset(ret, 0, sizeof(struct translation_table));
+    memset(ret, 0, sizeof(table_t));
 
     ret->rows = malloc(row_length);
     if (ret->rows == NULL) {
@@ -49,9 +49,9 @@ struct translation_table *table_init(int max_rows)
     return ret;
 }
 
-struct translation_table *table_resize(struct translation_table *table, int rows, int use_hash)
+table_t *table_resize(table_t *table, int rows, int use_hash)
 {
-    struct translation_table *ret;
+    table_t *ret;
     int i;
 
     ret = table_init(rows);
@@ -82,7 +82,7 @@ struct translation_table *table_resize(struct translation_table *table, int rows
     return ret;
 }
 
-void table_free(struct translation_table *table)
+void table_free(table_t *table)
 {
     int i;
 
@@ -114,13 +114,13 @@ static int table_hash(int table_length, unsigned int key)
  *
  * Key cannot be zero.
  *
- * @param struct translation_table * table The table to use.
+ * @param table_t * table The table to use.
  * @param unsigned int               key   The key for the table.
  * @param char *                     data  The data to store for the key.
  *
  * @return int The stored location, or -1 if an error occurred.
  */
-int table_put(struct translation_table *table, unsigned int key, char *data)
+int table_put(table_t *table, unsigned int key, char *data)
 {
     int offset;
     int seek;
@@ -177,12 +177,12 @@ int table_put(struct translation_table *table, unsigned int key, char *data)
  *
  * Key cannot be zero.
  *
- * @param struct translation_table * table The table to use.
+ * @param table_t * table The table to use.
  * @param unsigned int               key   The key for the table.
  *
  * @return char * The value from the table, or NULL if it could not be found.
  */
-char *table_get(struct translation_table *table, unsigned int key)
+char *table_get(table_t *table, unsigned int key)
 {
     int offset;
     int seek;
