@@ -12,10 +12,11 @@
 #include <errno.h>
 #include <string.h>
 
-#include "clean_string.h"
 #include "detox_struct.h"
 #include "filter.h"
 #include "sequence.h"
+
+char *filter_run(filter_t *filter, char *work);
 
 /**
  * Chooses which sequence to use.
@@ -92,71 +93,35 @@ void sequence_review(sequence_t *sequence)
 }
 
 /**
+ * Runs the filters associated with a sequence.
  *
+ * @param sequence The sequence of filters to run.
+ * @param filename The filename to run through the filters.
+ *
+ * @return The filtered filename, or NULL if a problem was encountered.
  */
-char *sequence_run_filters(sequence_t *sequence, char *in)
+char *sequence_run_filters(sequence_t *sequence, char *filename)
 {
     filter_t *filter;
-    char *work, *hold;
+    char *hold;
+    char *work;
 
     if (sequence == NULL) {
         fprintf(stderr, "internal error\n");
         exit(EXIT_FAILURE);
     }
 
-    if (in == NULL) {
+    if (filename == NULL) {
         return NULL;
     }
 
     filter = sequence->filters;
-    work = strdup(in);
-    hold = NULL;
+    work = strdup(filename);
 
-    while (filter != NULL) {
-        switch (filter->cleaner) {
-            case FILTER_ISO8859_1:
-                hold = clean_iso8859_1(work, filter->table);
-                break;
-
-            case FILTER_LOWER:
-                hold = clean_lower(work);
-                break;
-
-            case FILTER_MAX_LENGTH:
-                hold = clean_max_length(work, filter->max_length);
-                break;
-
-            case FILTER_SAFE:
-                hold = clean_safe(work, filter->table);
-                break;
-
-            case FILTER_UNCGI:
-                hold = clean_uncgi(work);
-                break;
-
-            case FILTER_UTF_8:
-                hold = clean_utf_8(work, filter->table);
-                break;
-
-            case FILTER_WIPEUP:
-                hold = clean_wipeup(work, filter->remove_trailing);
-                break;
-
-            default:
-                fprintf(stderr, "detox: unknown filter %d\n", filter->cleaner);
-                exit(EXIT_FAILURE);
-        }
-
-        if (work != NULL) {
-            free(work);
-        }
-
-        if (hold == NULL) {
-            return NULL;
-        }
-
+    while (filter != NULL && work != NULL) {
+        hold = filter_run(filter, work);
+        free(work);
         work = hold;
-
         filter = filter->next;
     }
 

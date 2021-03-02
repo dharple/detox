@@ -17,5 +17,6 @@ extern filter_t *filter_init(int cleaner);
 extern table_t *filter_load_builtin_by_filename(const char *filename);
 extern table_t *filter_load_builtin(filter_t *filter);
 extern table_t *filter_load_table(filter_t *filter);
+extern char *filter_run(filter_t *filter, char *work);
 
 #endif //FILTER_H

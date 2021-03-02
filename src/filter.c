@@ -12,8 +12,9 @@
 #include <errno.h>
 #include <string.h>
 
-#include "detox_struct.h"
 #include "builtin_table.h"
+#include "clean_string.h"
+#include "detox_struct.h"
 #include "parse_table.h"
 
 /**
@@ -180,4 +181,62 @@ table_t *filter_load_table(filter_t *filter)
     }
 
     return table;
+}
+
+/**
+ * Runs a filter.
+ *
+ * @param filter   The filter to run.
+ * @param filename The filename to run through the filter.
+ *
+ * @return The filtered filename, or NULL if a problem was encountered.
+ */
+char *filter_run(filter_t *filter, char *filename)
+{
+    char *ret;
+
+    if (filter == NULL) {
+        fprintf(stderr, "internal error\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (filename == NULL) {
+        return NULL;
+    }
+
+    switch (filter->cleaner) {
+        case FILTER_ISO8859_1:
+            ret = clean_iso8859_1(filename, filter->table);
+            break;
+
+        case FILTER_LOWER:
+            ret = clean_lower(filename);
+            break;
+
+        case FILTER_MAX_LENGTH:
+            ret = clean_max_length(filename, filter->max_length);
+            break;
+
+        case FILTER_SAFE:
+            ret = clean_safe(filename, filter->table);
+            break;
+
+        case FILTER_UNCGI:
+            ret = clean_uncgi(filename);
+            break;
+
+        case FILTER_UTF_8:
+            ret = clean_utf_8(filename, filter->table);
+            break;
+
+        case FILTER_WIPEUP:
+            ret = clean_wipeup(filename, filter->remove_trailing);
+            break;
+
+        default:
+            fprintf(stderr, "detox: unknown filter %d\n", filter->cleaner);
+            exit(EXIT_FAILURE);
+    }
+
+    return ret;
 }
