@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     struct stat stat_info;
     int err;
 
-    config_file_t *parse_results = NULL;
+    config_file_t *config_file = NULL;
     options_t *main_options;
 
     char *file_work = NULL;
@@ -40,9 +40,9 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    parse_results = config_file_load(main_options);
+    config_file = config_file_load(main_options);
 
-    if (parse_results == NULL) {
+    if (config_file == NULL) {
         fprintf(stderr, "detox: no config file to work with\n");
         exit(EXIT_FAILURE);
     }
@@ -52,18 +52,18 @@ int main(int argc, char **argv)
      * parse_dir/file/special
      */
 
-    main_options->files_to_ignore = parse_results->files_to_ignore;
+    main_options->files_to_ignore = config_file->files_to_ignore;
 
     /*
      * Determine which sequence to use
      */
-    main_options->sequence_to_use = sequence_choose_default(parse_results->sequences, main_options->sequence_name);
+    main_options->sequence_to_use = sequence_choose_default(config_file->sequences, main_options->sequence_name);
 
     /*
      * List sequences
      */
     if (main_options->list_sequences) {
-        dump_config_file(parse_results, main_options);
+        dump_config_file(config_file, main_options);
         exit(EXIT_SUCCESS);
     }
 

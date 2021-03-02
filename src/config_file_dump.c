@@ -13,7 +13,7 @@
 #include "config_file_dump.h"
 #include "clean_string.h"
 
-void dump_config_file(config_file_t *parse_results, options_t *main_options)
+void dump_config_file(config_file_t *config_file, options_t *main_options)
 {
     struct detox_sequence_list *list_work = NULL;
     struct detox_sequence_filter *work = NULL;
@@ -24,7 +24,7 @@ void dump_config_file(config_file_t *parse_results, options_t *main_options)
         printf("available sequences:\n");
     }
 
-    list_work = parse_results->sequences;
+    list_work = config_file->sequences;
 
     while (list_work != NULL) {
         if (main_options->verbose) {
@@ -93,10 +93,10 @@ void dump_config_file(config_file_t *parse_results, options_t *main_options)
     }
 
 
-    if (parse_results->files_to_ignore) {
+    if (config_file->files_to_ignore) {
         printf("\nfiles to ignore:\n");
 
-        ignore_walk = parse_results->files_to_ignore;
+        ignore_walk = config_file->files_to_ignore;
 
         while (ignore_walk != NULL) {
             printf("\t%s\n", ignore_walk->filename);

@@ -38,7 +38,7 @@ config_file_t *config_file_init()
  */
 config_file_t *config_file_load(options_t *main_options)
 {
-    config_file_t *parse_results = NULL;
+    config_file_t *config_file = NULL;
     char *check_config_file = NULL;
     char *file_work = NULL;
     int err;
@@ -48,8 +48,8 @@ config_file_t *config_file_load(options_t *main_options)
     }
 
     if (check_config_file != NULL) {
-        parse_results = parse_config_file(check_config_file, NULL, main_options);
-        if (parse_results == NULL) {
+        config_file = parse_config_file(check_config_file, NULL, main_options);
+        if (config_file == NULL) {
             fprintf(stderr, "detox: unable to open: %s\n", check_config_file);
             exit(EXIT_FAILURE);
         }
@@ -63,32 +63,32 @@ config_file_t *config_file_load(options_t *main_options)
 #ifdef SYSCONFDIR
         err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detoxrc", SYSCONFDIR);
         if (err < MAX_PATH_LEN) {
-            parse_results = parse_config_file(check_config_file, NULL, main_options);
+            config_file = parse_config_file(check_config_file, NULL, main_options);
         }
 #endif
 
-        if (parse_results == NULL) {
-            parse_results = parse_config_file("/etc/detoxrc", NULL, main_options);
+        if (config_file == NULL) {
+            config_file = parse_config_file("/etc/detoxrc", NULL, main_options);
         }
 
-        if (parse_results == NULL) {
-            parse_results = parse_config_file("/usr/local/etc/detoxrc", NULL, main_options);
+        if (config_file == NULL) {
+            config_file = parse_config_file("/usr/local/etc/detoxrc", NULL, main_options);
         }
 
         file_work = getenv("HOME");
         if (file_work != NULL) {
             err = snprintf(check_config_file, MAX_PATH_LEN, "%s/.detoxrc", file_work);
             if (err < MAX_PATH_LEN) {
-                parse_results = parse_config_file(check_config_file, parse_results, main_options);
+                config_file = parse_config_file(check_config_file, config_file, main_options);
             }
         }
 
-        if (parse_results == NULL) {
-            parse_results = spoof_config_file();
+        if (config_file == NULL) {
+            config_file = spoof_config_file();
         }
 
         free(check_config_file);
     }
 
-    return parse_results;
+    return config_file;
 }
