@@ -144,7 +144,7 @@ struct detox_parse_results *spoof_config_file(void)
     ret->sequences = sequence = generate_sequence("default");
     sequence->head = safe_wipeup_filter;
 
-    // iso8859_1 
+    // iso8859_1
     sequence = sequence->next = generate_sequence("iso8859_1");
     sequence->head = filter = generate_iso8859_1_filter("iso8859_1");
     filter->next = safe_wipeup_filter;
@@ -155,7 +155,7 @@ struct detox_parse_results *spoof_config_file(void)
     filter = filter->next = generate_iso8859_1_filter("iso8859_1");
     filter->next = safe_wipeup_filter;
 
-    // utf_8 
+    // utf_8
     sequence = sequence->next = generate_sequence("utf_8");
     sequence->head = filter = generate_utf_8_filter("unicode");
     filter->next = safe_wipeup_filter;

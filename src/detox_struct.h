@@ -66,7 +66,7 @@ struct detox_sequence_list {
 /*
  * Holds information about an entry within a specific sequence
  */
-struct detox_sequence_filter{
+struct detox_sequence_filter {
     struct detox_sequence_filter *next;
 
     char *(*cleaner) (char *filename, struct clean_string_options *options);

@@ -38,7 +38,7 @@ static struct test_filename data[DATA_COUNT] = {
     { .filename = "\xC0\x80 null",                  .expected = "_hidden_null_ null" },
     // 2 byte UTF-8 encoded 0x20 (space)
     { .filename = "\xC0\xA0 space",                 .expected = "  space" },
-    // 2 byte UTF-8 encoded 0x30 (zero) 
+    // 2 byte UTF-8 encoded 0x30 (zero)
     { .filename = "\xC0\xB0 zero",                  .expected = "0 zero" },
     // 2 byte UTF-8 encoded 0x7E (tilde)
     { .filename = "\xC1\xBE tilde",                 .expected = "~ tilde" },

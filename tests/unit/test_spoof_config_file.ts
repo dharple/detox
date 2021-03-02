@@ -112,7 +112,7 @@ void teardown(void)
                 ck_assert_int_eq(parsed_options->max_length, spoofed_options->max_length);
             } else if (parsed_options != NULL || spoofed_options != NULL) {
                 ck_assert_msg(parsed_options == NULL, "unit test options has options but the spoofed version doesn't");
-                ck_assert_msg(spoofed_options == NULL,"spoofed options has options but the unit test version doesn't"); 
+                ck_assert_msg(spoofed_options == NULL, "spoofed options has options but the unit test version doesn't");
             }
 
             parsed_filter = parsed_filter->next;
