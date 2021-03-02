@@ -95,7 +95,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 43 "config_file_yacc.y"
+#line 44 "config_file_yacc.y"
 
     char *string; /* string buffer */
     int   cmd;    /* command value */

@@ -15,6 +15,7 @@
 #include <errno.h>
 
 #include "file.h"
+#include "filelist.h"
 
 #define BUF_SIZE 1024
 
@@ -28,18 +29,16 @@
  */
 static int ignore_file(const char *filename, const options_t *options)
 {
-    struct detox_ignore_entry *ignore_walk;
+    char *file_walk;
 
     if (filename[0] == '.') {
         return 1;
     }
 
-    ignore_walk = options->files_to_ignore;
-    while (ignore_walk != NULL) {
-        if (strcmp(filename, ignore_walk->filename) == 0) {
+    while ((file_walk = filelist_get(options->files_to_ignore))) {
+        if (strcmp(filename, file_walk) == 0) {
             return 1;
         }
-        ignore_walk = ignore_walk->next;
     }
 
     return 0;

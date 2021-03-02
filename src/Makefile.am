@@ -44,6 +44,7 @@ detox_SOURCES = \
 	detox.c \
 	detox_struct.c \
 	file.c \
+	filelist.c \
 	parse_options.c \
 	parse_table.c \
 	sequence.c \

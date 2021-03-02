@@ -14,9 +14,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "detox_struct.h"
 #include "clean_string.h"
 #include "config_file.h"
+#include "detox_struct.h"
+#include "filelist.h"
 
 /*
  * I must apologize in advance for the cryptic, global variable names.
@@ -24,11 +25,11 @@
 
 static struct detox_sequence_list *cf_sequence_ret, *cf_sequence_current;
 static struct detox_sequence_filter *cf_filter_ret, *cf_filter_current;
-static struct detox_ignore_entry *cf_ignore_ret, *cf_ignore_current;
 static struct clean_string_options *cs_options;
 static char *current_name = NULL;
 static char *current_filename = NULL;
 static options_t *current_options;
+static filelist_t *files_to_ignore;
 
 void cf_append_sequence_list(void);
 void cf_append_sequence_filter(void *ptr, struct clean_string_options *options);
@@ -268,15 +269,10 @@ config_file_t *parse_config_file(char *filename, config_file_t *previous_results
      * Initialize the ignore list
      */
 
-    cf_ignore_ret = NULL;
-    cf_ignore_current = NULL;
-
-    if (previous_results && previous_results->files_to_ignore) {
-        cf_ignore_ret = previous_results->files_to_ignore;
-        cf_ignore_current = cf_ignore_ret;
-        while (cf_ignore_current->next != NULL) {
-            cf_ignore_current = cf_ignore_current->next;
-        }
+    if (previous_results && filelist_count(previous_results->files_to_ignore) > 0) {
+        files_to_ignore = previous_results->files_to_ignore;
+    } else {
+        files_to_ignore = filelist_init();
     }
 
     /*
@@ -299,7 +295,7 @@ config_file_t *parse_config_file(char *filename, config_file_t *previous_results
      */
 
     ret->sequences = cf_sequence_ret;
-    ret->files_to_ignore = cf_ignore_ret;
+    ret->files_to_ignore = files_to_ignore;
    
     return ret;
 }
@@ -390,24 +386,5 @@ void cf_append_sequence_filter(void *ptr, struct clean_string_options *options) 
 
 
 void cf_append_ignore_entry(int token, void *str) {
-    struct detox_ignore_entry *work;
-
-    work = new_detox_ignore_entry();
-
-    switch(token) {
-        case FILENAME:
-            work->filename = str;
-            break;
-
-        default:
-            break;
-    }
-
-    if (cf_ignore_ret == NULL) {
-        cf_ignore_ret = cf_ignore_current = work;
-    }
-    else {
-        cf_ignore_current->next = work;
-        cf_ignore_current = work;
-    }
+    filelist_put(files_to_ignore, str);
 }

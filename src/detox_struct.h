@@ -15,6 +15,13 @@
 #define MAX_PATH_LEN 256
 
 typedef struct {
+    char **files;
+    int max;
+    int count;
+    int ptr;
+} filelist_t;
+
+typedef struct {
     unsigned int key;
     char *data;
 } table_row_t;
@@ -74,20 +81,11 @@ struct detox_sequence_filter {
 };
 
 /*
- * Holds information about files the user has asked us to ignore
- */
-struct detox_ignore_entry {
-    struct detox_ignore_entry *next;
-
-    char *filename;
-};
-
-/*
  * Holds the result of a config file parse
  */
 typedef struct {
     struct detox_sequence_list *sequences;
-    struct detox_ignore_entry *files_to_ignore;
+    filelist_t *files_to_ignore;
 } config_file_t;
 
 /**
@@ -103,17 +101,16 @@ typedef struct {
     int verbose;
 
     struct detox_sequence_filter *sequence_to_use;
-    struct detox_ignore_entry *files_to_ignore;
+    filelist_t *files_to_ignore;
 
     char *sequence_name;
 
     char *check_config_file;
 
-    char **files;
+    filelist_t *files;
 } options_t;
 
 extern struct clean_string_options *new_clean_string_options();
-extern struct detox_ignore_entry *new_detox_ignore_entry();
 extern struct detox_sequence_filter *new_detox_sequence_filter();
 extern struct detox_sequence_list *new_detox_sequence_list();
 

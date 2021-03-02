@@ -16,6 +16,7 @@
 #include <libgen.h>
 
 #include "detox_struct.h"
+#include "filelist.h"
 #include "parse_options.h"
 
 #ifdef HAVE_GETOPT_LONG
@@ -126,11 +127,7 @@ options_t *options_init()
 options_t *parse_options_getopt(int argc, char **argv)
 {
     int optcode;
-
     options_t *main_options;
-
-    int i;
-    int max = 10;
     char *binname;
 
     main_options = options_init();
@@ -231,24 +228,13 @@ options_t *parse_options_getopt(int argc, char **argv)
         return main_options;
     }
 
-    main_options->files = malloc(sizeof(char *) * 10);
-
-    i = 0;
+    main_options->files = filelist_init();
 
     if (optind < argc) {
         while (optind < argc) {
-            /* not enough space for the next file and
-               possible ending NULL -> realloc */
-            if (i + 2 > max) {
-                main_options->files = realloc(main_options->files, sizeof(char *) * (10 + max));
-                max += 10;
-            }
-            main_options->files[i++] = strdup(argv[optind]);
-
+            filelist_put(main_options->files, argv[optind]);
             optind++;
         }
-
-        main_options->files[i] = NULL;
     } else if (!main_options->is_inline_mode) {
         printf("%s", !main_options->is_inline_bin ? usage_message :
                usage_message_inline);

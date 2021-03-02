@@ -19,6 +19,7 @@
 
 #include "config_file.h"
 #include "config_file_dump.h"
+#include "filelist.h"
 #include "parse_options.h"
 #include "sequence.h"
 
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
     options_t *main_options;
 
     char *file_work = NULL;
-    char **file_walk;
+    char *file_walk;
 
     main_options = parse_options_getopt(argc, argv);
 
@@ -89,45 +90,39 @@ int main(int argc, char **argv)
      */
 
     if (!main_options->is_inline_mode) {
-        file_walk = main_options->files;
-        while (*file_walk) {
+        while ((file_walk = filelist_get(main_options->files))) {
             if (main_options->verbose) {
-                printf("Scanning: %s\n", *file_walk);
+                printf("Scanning: %s\n", file_walk);
             }
 
-            err = lstat(*file_walk, &stat_info);
+            err = lstat(file_walk, &stat_info);
             if (err == -1) {
-                fprintf(stderr, "%s: %s\n", *file_walk, strerror(errno));
+                fprintf(stderr, "%s: %s\n", file_walk, strerror(errno));
             } else {
                 if (S_ISDIR(stat_info.st_mode)) {
-                    file_work = parse_file(*file_walk, main_options);
+                    file_work = parse_file(file_walk, main_options);
                     parse_dir(file_work, main_options);
                     free(file_work);
                 } else if (S_ISREG(stat_info.st_mode)) {
-                    parse_file(*file_walk, main_options);
+                    parse_file(file_walk, main_options);
                 } else if (main_options->special) {
-                    parse_file(*file_walk, main_options);
+                    parse_file(file_walk, main_options);
                 }
             }
-
-            file_walk++;
         }
     } else {
-        if (main_options->files[0] != NULL) {
-            file_walk = main_options->files;
-            while (*file_walk) {
-                err = lstat(*file_walk, &stat_info);
+        if (filelist_count(main_options->files) > 0) {
+            while ((file_walk = filelist_get(main_options->files))) {
+                err = lstat(file_walk, &stat_info);
                 if (err == -1) {
-                    fprintf(stderr, "%s: %s\n", *file_walk, strerror(errno));
+                    fprintf(stderr, "%s: %s\n", file_walk, strerror(errno));
                 } else {
                     if (S_ISDIR(stat_info.st_mode)) {
-                        fprintf(stderr, "%s: is a directory\n", *file_walk);
+                        fprintf(stderr, "%s: is a directory\n", file_walk);
                     } else {
-                        parse_inline(*file_walk, main_options);
+                        parse_inline(file_walk, main_options);
                     }
                 }
-
-                file_walk++;
             }
         } else {
             parse_inline(NULL, main_options);

@@ -13,6 +13,7 @@
 #include "config_file.h"
 #include "config_file_spoof.h"
 #include "detox_struct.h"
+#include "filelist.h"
 
 /**
  * Generates an ISO8859-1 style filter.
@@ -199,8 +200,8 @@ config_file_t *spoof_config_file(void)
     sequence->head = generate_lower_filter();
 
     // files to ignore
-    ret->files_to_ignore = new_detox_ignore_entry();
-    ret->files_to_ignore->filename = strdup("{arch}");
+    ret->files_to_ignore = filelist_init();
+    filelist_put(ret->files_to_ignore, "{arch}");
 
     return ret;
 }

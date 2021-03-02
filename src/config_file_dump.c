@@ -9,15 +9,16 @@
 
 #include <stdio.h>
 
-#include "detox_struct.h"
-#include "config_file_dump.h"
 #include "clean_string.h"
+#include "config_file_dump.h"
+#include "detox_struct.h"
+#include "filelist.h"
 
 void dump_config_file(config_file_t *config_file, options_t *main_options)
 {
     struct detox_sequence_list *list_work = NULL;
     struct detox_sequence_filter *work = NULL;
-    struct detox_ignore_entry *ignore_walk = NULL;
+    char *file_walk;
     int count = 0;
 
     if (!main_options->verbose) {
@@ -92,16 +93,11 @@ void dump_config_file(config_file_t *config_file, options_t *main_options)
         list_work = list_work->next;
     }
 
-
-    if (config_file->files_to_ignore) {
+    if (filelist_count(config_file->files_to_ignore) > 0) {
         printf("\nfiles to ignore:\n");
 
-        ignore_walk = config_file->files_to_ignore;
-
-        while (ignore_walk != NULL) {
-            printf("\t%s\n", ignore_walk->filename);
-            ignore_walk = ignore_walk->next;
+        while ((file_walk = filelist_get(config_file->files_to_ignore))) {
+            printf("\t%s\n", file_walk);
         }
     }
-
 }
