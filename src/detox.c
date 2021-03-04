@@ -15,10 +15,9 @@
 
 #include "detox_struct.h"
 
-#include "file.h"
-
-#include "config_file.h"
 #include "config_file_dump.h"
+#include "config_file.h"
+#include "file.h"
 #include "filelist.h"
 #include "parse_options.h"
 #include "sequence.h"

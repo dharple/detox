@@ -12,10 +12,12 @@
 #include <errno.h>
 #include <string.h>
 
+#include "detox_struct.h"
+
 #include "builtin_table.h"
 #include "clean_string.h"
-#include "detox_struct.h"
 #include "parse_table.h"
+#include "wrapped.h"
 
 /**
  * Attempts to find a translation table associated with a filter.
@@ -67,11 +69,8 @@ filter_t *filter_init(int cleaner)
 {
     filter_t *ret;
 
-    ret = malloc(sizeof(filter_t));
-    if (ret == NULL) {
-        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-    }
+    ret = wrapped_malloc(sizeof(filter_t));
+
     memset(ret, 0, sizeof(filter_t));
 
     ret->cleaner = cleaner;

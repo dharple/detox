@@ -83,12 +83,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "detox_struct.h"
+
 #include "clean_string.h"
 #include "config_file.h"
-#include "detox_struct.h"
 #include "filelist.h"
 #include "filter.h"
 #include "sequence.h"
+#include "wrapped.h"
 
 /*
  * I must apologize in advance for the cryptic, global variable names.
@@ -110,7 +112,7 @@ void yyerror (char *s);
 int yylex (void);
 
 
-#line 114 "config_file_yacc.c"
+#line 116 "config_file_yacc.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -204,13 +206,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 45 "config_file_yacc.y"
+#line 47 "config_file_yacc.y"
 
     char *string; /* string buffer */
     int   cmd;    /* command value */
     int   nvalue; /* nvalue */
 
-#line 214 "config_file_yacc.c"
+#line 216 "config_file_yacc.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -587,11 +589,11 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    75,    75,    77,    80,    82,    85,    88,    91,    94,
-      95,    98,   100,   102,   104,   106,   108,   110,   113,   115,
-     117,   119,   122,   124,   126,   128,   131,   133,   135,   137,
-     140,   142,   144,   147,   149,   151,   154,   157,   160,   163,
-     164,   167,   172,   174
+       0,    77,    77,    79,    82,    84,    87,    90,    93,    96,
+      97,   100,   102,   104,   106,   108,   110,   112,   115,   117,
+     119,   121,   124,   126,   128,   130,   133,   135,   137,   139,
+     142,   144,   146,   149,   151,   153,   156,   159,   162,   165,
+     166,   169,   174,   176
 };
 #endif
 
@@ -1433,159 +1435,159 @@ yyreduce:
   switch (yyn)
     {
   case 7:
-#line 88 "config_file_yacc.y"
+#line 90 "config_file_yacc.y"
                                     { current_name = (yyvsp[-1].string); }
-#line 1439 "config_file_yacc.c"
+#line 1441 "config_file_yacc.c"
     break;
 
   case 8:
-#line 91 "config_file_yacc.y"
+#line 93 "config_file_yacc.y"
                           { cf_append_sequence_list(); }
-#line 1445 "config_file_yacc.c"
+#line 1447 "config_file_yacc.c"
     break;
 
   case 11:
-#line 98 "config_file_yacc.y"
+#line 100 "config_file_yacc.y"
                      { cf_append_filter(FILTER_UNCGI, NULL, NULL, 0, 0); }
-#line 1451 "config_file_yacc.c"
+#line 1453 "config_file_yacc.c"
     break;
 
   case 12:
-#line 100 "config_file_yacc.y"
+#line 102 "config_file_yacc.y"
                  { cf_append_filter(FILTER_LOWER, NULL, NULL, 0, 0); }
-#line 1457 "config_file_yacc.c"
+#line 1459 "config_file_yacc.c"
     break;
 
   case 18:
-#line 113 "config_file_yacc.y"
+#line 115 "config_file_yacc.y"
                      { cf_append_filter(FILTER_ISO8859_1, NULL, NULL, 0, 0); }
-#line 1463 "config_file_yacc.c"
+#line 1465 "config_file_yacc.c"
     break;
 
   case 19:
-#line 115 "config_file_yacc.y"
+#line 117 "config_file_yacc.y"
                          { cf_append_filter(FILTER_ISO8859_1, NULL, NULL, 0, 0); }
-#line 1469 "config_file_yacc.c"
+#line 1471 "config_file_yacc.c"
     break;
 
   case 20:
-#line 117 "config_file_yacc.y"
+#line 119 "config_file_yacc.y"
                                              { cf_append_filter(FILTER_ISO8859_1, NULL, (yyvsp[-2].string), 0, 0); }
-#line 1475 "config_file_yacc.c"
+#line 1477 "config_file_yacc.c"
     break;
 
   case 21:
-#line 119 "config_file_yacc.y"
+#line 121 "config_file_yacc.y"
                                             { cf_append_filter(FILTER_ISO8859_1, (yyvsp[-2].string), NULL, 0, 0); }
-#line 1481 "config_file_yacc.c"
+#line 1483 "config_file_yacc.c"
     break;
 
   case 22:
-#line 122 "config_file_yacc.y"
+#line 124 "config_file_yacc.y"
              { cf_append_filter(FILTER_UTF_8, NULL, NULL, 0, 0); }
-#line 1487 "config_file_yacc.c"
+#line 1489 "config_file_yacc.c"
     break;
 
   case 23:
-#line 124 "config_file_yacc.y"
+#line 126 "config_file_yacc.y"
                      { cf_append_filter(FILTER_UTF_8, NULL, NULL, 0, 0); }
-#line 1493 "config_file_yacc.c"
+#line 1495 "config_file_yacc.c"
     break;
 
   case 24:
-#line 126 "config_file_yacc.y"
+#line 128 "config_file_yacc.y"
                                          { cf_append_filter(FILTER_UTF_8, NULL, (yyvsp[-2].string), 0, 0); }
-#line 1499 "config_file_yacc.c"
+#line 1501 "config_file_yacc.c"
     break;
 
   case 25:
-#line 128 "config_file_yacc.y"
+#line 130 "config_file_yacc.y"
                                         { cf_append_filter(FILTER_UTF_8, (yyvsp[-2].string), NULL, 0, 0); }
-#line 1505 "config_file_yacc.c"
+#line 1507 "config_file_yacc.c"
     break;
 
   case 26:
-#line 131 "config_file_yacc.y"
+#line 133 "config_file_yacc.y"
            { cf_append_filter(FILTER_SAFE, NULL, NULL, 0, 0); }
-#line 1511 "config_file_yacc.c"
+#line 1513 "config_file_yacc.c"
     break;
 
   case 27:
-#line 133 "config_file_yacc.y"
+#line 135 "config_file_yacc.y"
                     { cf_append_filter(FILTER_SAFE, NULL, NULL, 0, 0); }
-#line 1517 "config_file_yacc.c"
+#line 1519 "config_file_yacc.c"
     break;
 
   case 28:
-#line 135 "config_file_yacc.y"
+#line 137 "config_file_yacc.y"
                                         { cf_append_filter(FILTER_SAFE, NULL, (yyvsp[-2].string), 0, 0); }
-#line 1523 "config_file_yacc.c"
+#line 1525 "config_file_yacc.c"
     break;
 
   case 29:
-#line 137 "config_file_yacc.y"
+#line 139 "config_file_yacc.y"
                                        { cf_append_filter(FILTER_SAFE, (yyvsp[-2].string), NULL, 0, 0); }
-#line 1529 "config_file_yacc.c"
+#line 1531 "config_file_yacc.c"
     break;
 
   case 30:
-#line 140 "config_file_yacc.y"
+#line 142 "config_file_yacc.y"
                   { cf_append_filter(FILTER_WIPEUP, NULL, NULL, 0, 0); }
-#line 1535 "config_file_yacc.c"
+#line 1537 "config_file_yacc.c"
     break;
 
   case 31:
-#line 142 "config_file_yacc.y"
+#line 144 "config_file_yacc.y"
                       { cf_append_filter(FILTER_WIPEUP, NULL, NULL, 0, 0); }
-#line 1541 "config_file_yacc.c"
+#line 1543 "config_file_yacc.c"
     break;
 
   case 32:
-#line 144 "config_file_yacc.y"
+#line 146 "config_file_yacc.y"
                                           { cf_append_filter(FILTER_WIPEUP, NULL, NULL, 0, 1); }
-#line 1547 "config_file_yacc.c"
+#line 1549 "config_file_yacc.c"
     break;
 
   case 33:
-#line 147 "config_file_yacc.y"
+#line 149 "config_file_yacc.y"
                           { cf_append_filter(FILTER_MAX_LENGTH, NULL, NULL, 0, 0); }
-#line 1553 "config_file_yacc.c"
+#line 1555 "config_file_yacc.c"
     break;
 
   case 34:
-#line 149 "config_file_yacc.y"
+#line 151 "config_file_yacc.y"
                           { cf_append_filter(FILTER_MAX_LENGTH, NULL, NULL, 0, 0); }
-#line 1559 "config_file_yacc.c"
+#line 1561 "config_file_yacc.c"
     break;
 
   case 35:
-#line 151 "config_file_yacc.y"
+#line 153 "config_file_yacc.y"
                                             { cf_append_filter(FILTER_MAX_LENGTH, NULL, NULL, (yyvsp[-2].nvalue), 0); }
-#line 1565 "config_file_yacc.c"
+#line 1567 "config_file_yacc.c"
     break;
 
   case 41:
-#line 167 "config_file_yacc.y"
+#line 169 "config_file_yacc.y"
                                      {
         cf_append_ignore_entry(FILENAME, (yyvsp[-1].string));
     }
-#line 1573 "config_file_yacc.c"
+#line 1575 "config_file_yacc.c"
     break;
 
   case 42:
-#line 172 "config_file_yacc.y"
+#line 174 "config_file_yacc.y"
                         { (yyval.string) = (yyvsp[0].string); }
-#line 1579 "config_file_yacc.c"
+#line 1581 "config_file_yacc.c"
     break;
 
   case 43:
-#line 174 "config_file_yacc.y"
+#line 176 "config_file_yacc.y"
                   { (yyval.string) = (yyvsp[0].string); }
-#line 1585 "config_file_yacc.c"
+#line 1587 "config_file_yacc.c"
     break;
 
 
-#line 1589 "config_file_yacc.c"
+#line 1591 "config_file_yacc.c"
 
       default: break;
     }
@@ -1817,7 +1819,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 177 "config_file_yacc.y"
+#line 179 "config_file_yacc.y"
 
 
 extern FILE *yyin;
@@ -1921,7 +1923,7 @@ void cf_append_sequence_list(void) {
     sequence_t *work;
 
     if (current_name == NULL) {
-        current_name = strdup("default");
+        current_name = wrapped_strdup("default");
     }
 
     work = NULL;
@@ -1962,7 +1964,7 @@ void cf_append_sequence_list(void) {
     }
 
     work->filters = cf_filter_ret;
-    work->source_filename = strdup(current_filename);
+    work->source_filename = wrapped_strdup(current_filename);
     cf_filter_ret = cf_filter_current = NULL;
 
 }
@@ -1973,8 +1975,8 @@ void cf_append_filter(int cleaner, char *builtin, char *filename, int max_length
     filter_t *work;
 
     work = filter_init(cleaner);
-    work->builtin = (builtin == NULL) ? NULL : strdup(builtin);
-    work->filename = (filename == NULL) ? NULL : strdup(filename);
+    work->builtin = (builtin == NULL) ? NULL : wrapped_strdup(builtin);
+    work->filename = (filename == NULL) ? NULL : wrapped_strdup(filename);
     work->max_length = (size_t) max_length;
     work->remove_trailing = remove_trailing;
 

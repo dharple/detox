@@ -11,19 +11,19 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+
 #include "detox_struct.h"
+
 #include "config_file.h"
 #include "config_file_spoof.h"
+#include "wrapped.h"
 
 config_file_t *config_file_init(void)
 {
     config_file_t *ret;
 
-    ret = malloc(sizeof(config_file_t));
-    if (ret == NULL) {
-        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-    }
+    ret = wrapped_malloc(sizeof(config_file_t));
+
     memset(ret, 0, sizeof(config_file_t));
 
     return ret;
@@ -44,7 +44,7 @@ config_file_t *config_file_load(options_t *main_options)
     int err;
 
     if (main_options->check_config_file) {
-        check_config_file = strdup(main_options->check_config_file);
+        check_config_file = wrapped_strdup(main_options->check_config_file);
     }
 
     if (check_config_file != NULL) {
@@ -54,11 +54,7 @@ config_file_t *config_file_load(options_t *main_options)
             exit(EXIT_FAILURE);
         }
     } else {
-        check_config_file = malloc(MAX_PATH_LEN);
-        if (check_config_file == NULL) {
-            fprintf(stderr, "out of memory: %s\n", strerror(errno));
-            exit(EXIT_FAILURE);
-        }
+        check_config_file = wrapped_malloc(MAX_PATH_LEN);
 
 #ifdef SYSCONFDIR
         err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detoxrc", SYSCONFDIR);

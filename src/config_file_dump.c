@@ -9,8 +9,9 @@
 
 #include <stdio.h>
 
-#include "config_file_dump.h"
 #include "detox_struct.h"
+
+#include "config_file_dump.h"
 #include "filelist.h"
 
 void dump_config_file(config_file_t *config_file, options_t *main_options)

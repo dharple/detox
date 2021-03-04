@@ -56,12 +56,14 @@ inline_detox_SOURCES = $(detox_SOURCES)
 check_table_SOURCES = \
 	check_table.c \
 	table.c \
-	table_dump.c
+	table_dump.c \
+	wrapped.c
 
 generate_builtin_table_SOURCES = \
 	parse_table.c \
 	table.c \
-	generate_builtin_table.c
+	generate_builtin_table.c \
+	wrapped.c
 
 #
 # code coverage rules

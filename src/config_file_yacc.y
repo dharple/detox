@@ -14,12 +14,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "detox_struct.h"
+
 #include "clean_string.h"
 #include "config_file.h"
-#include "detox_struct.h"
 #include "filelist.h"
 #include "filter.h"
 #include "sequence.h"
+#include "wrapped.h"
 
 /*
  * I must apologize in advance for the cryptic, global variable names.
@@ -277,7 +279,7 @@ void cf_append_sequence_list(void) {
     sequence_t *work;
 
     if (current_name == NULL) {
-        current_name = strdup("default");
+        current_name = wrapped_strdup("default");
     }
 
     work = NULL;
@@ -318,7 +320,7 @@ void cf_append_sequence_list(void) {
     }
 
     work->filters = cf_filter_ret;
-    work->source_filename = strdup(current_filename);
+    work->source_filename = wrapped_strdup(current_filename);
     cf_filter_ret = cf_filter_current = NULL;
 
 }
@@ -329,8 +331,8 @@ void cf_append_filter(int cleaner, char *builtin, char *filename, int max_length
     filter_t *work;
 
     work = filter_init(cleaner);
-    work->builtin = (builtin == NULL) ? NULL : strdup(builtin);
-    work->filename = (filename == NULL) ? NULL : strdup(filename);
+    work->builtin = (builtin == NULL) ? NULL : wrapped_strdup(builtin);
+    work->filename = (filename == NULL) ? NULL : wrapped_strdup(filename);
     work->max_length = (size_t) max_length;
     work->remove_trailing = remove_trailing;
 

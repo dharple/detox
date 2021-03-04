@@ -17,9 +17,10 @@
 #include <math.h>
 #include <libgen.h>
 
-#include "table.h"
-#include "parse_table.h"
 #include "builtin_table.h"
+#include "parse_table.h"
+#include "table.h"
+#include "wrapped.h"
 
 /**
  * Escapes a string for this particular case.
@@ -32,7 +33,7 @@ static char *escape_string(char *in)
 {
     char *ret, *work;
 
-    ret = work = malloc((strlen(in) * 2) + 1);
+    ret = work = wrapped_malloc((strlen(in) * 2) + 1);
     while (*in != '\0') {
         switch (*in) {
             case '"':

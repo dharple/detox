@@ -15,6 +15,7 @@
 #include <locale.h>
 
 #include "table.h"
+#include "wrapped.h"
 
 enum {
     BASE_STATE,
@@ -72,20 +73,9 @@ table_t *parse_table(char *filename)
         return NULL;
     }
 
-    work = malloc(1024);
-    if (work == NULL) {
-        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(table_file);
-        return NULL;
-    }
+    work = wrapped_malloc(1024);
 
-    parsed = malloc(1024);
-    if (parsed == NULL) {
-        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(table_file);
-        free(work);
-        return NULL;
-    }
+    parsed = wrapped_malloc(1024);
 
     max_data_length = 1;
     state = BASE_STATE;
@@ -146,7 +136,7 @@ table_t *parse_table(char *filename)
                     sscanf(work + offset, "%s", parsed);
                 }
 
-                table->default_translation = strdup(parsed);
+                table->default_translation = wrapped_strdup(parsed);
 
                 if (strlen(parsed) > max_data_length) {
                     max_data_length = strlen(parsed);

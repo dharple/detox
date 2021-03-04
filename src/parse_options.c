@@ -16,8 +16,10 @@
 #include <libgen.h>
 
 #include "detox_struct.h"
+
 #include "filelist.h"
 #include "parse_options.h"
+#include "wrapped.h"
 
 #ifdef HAVE_GETOPT_LONG
 #include <getopt.h>
@@ -114,11 +116,8 @@ options_t *options_init(void)
 {
     options_t *ret;
 
-    ret = malloc(sizeof(options_t));
-    if (ret == NULL) {
-        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-    }
+    ret = wrapped_malloc(sizeof(options_t));
+
     memset(ret, 0, sizeof(options_t));
 
     return ret;
@@ -155,7 +154,7 @@ options_t *parse_options_getopt(int argc, char **argv)
                 /*
                  * XXX - free multiple check_config_files
                  */
-                main_options->check_config_file = strdup(optarg);
+                main_options->check_config_file = wrapped_strdup(optarg);
                 break;
 
             case 'L':
@@ -174,7 +173,7 @@ options_t *parse_options_getopt(int argc, char **argv)
                 /*
                  * XXX - free multiple sequence name opts
                  */
-                main_options->sequence_name = strdup(optarg);
+                main_options->sequence_name = wrapped_strdup(optarg);
                 break;
 
             case 'v':

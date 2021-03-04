@@ -9,12 +9,14 @@
 
 #include <string.h>
 
+#include "detox_struct.h"
+
 #include "config_file.h"
 #include "config_file_spoof.h"
-#include "detox_struct.h"
 #include "filelist.h"
 #include "filter.h"
 #include "sequence.h"
+#include "wrapped.h"
 
 /**
  * Generates a filter that uses a builtin table.
@@ -27,7 +29,7 @@ static filter_t *generate_builtin_filter(int cleaner, char *builtin)
 {
     filter_t *filter;
     filter = filter_init(cleaner);
-    filter->builtin = strdup(builtin);
+    filter->builtin = wrapped_strdup(builtin);
     return filter;
 }
 
@@ -41,7 +43,7 @@ static filter_t *generate_filter(int cleaner)
     filter_t *filter;
     filter = filter_init(cleaner);
     if (cleaner == FILTER_SAFE) {
-        filter->builtin = strdup("safe");
+        filter->builtin = wrapped_strdup("safe");
     }
     return filter;
 }
@@ -57,7 +59,7 @@ static sequence_t *generate_sequence(char *name)
 {
     sequence_t *sequence;
     sequence = sequence_init(name);
-    sequence->source_filename = strdup("built-in config file");
+    sequence->source_filename = wrapped_strdup("built-in config file");
     return sequence;
 }
 

@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include "table.h"
+#include "wrapped.h"
 
 /*
  * Internal function declarations
@@ -28,18 +29,11 @@ table_t *table_init(int max_rows)
 
     row_length = max_rows * sizeof(table_row_t);
 
-    ret = malloc(sizeof(table_t));
-    if (ret == NULL) {
-        return NULL;
-    }
+    ret = wrapped_malloc(sizeof(table_t));
 
     memset(ret, 0, sizeof(table_t));
 
-    ret->rows = malloc(row_length);
-    if (ret->rows == NULL) {
-        free(ret);
-        return NULL;
-    }
+    ret->rows = wrapped_malloc(row_length);
 
     memset(ret->rows, 0, row_length);
 
@@ -67,7 +61,7 @@ table_t *table_resize(table_t *table, int rows, int use_hash)
     }
 
     if (table->default_translation != NULL) {
-        ret->default_translation = strdup(table->default_translation);
+        ret->default_translation = wrapped_strdup(table->default_translation);
     }
 
     ret->max_data_length = table->max_data_length;
@@ -162,7 +156,7 @@ int table_put(table_t *table, unsigned int key, char *data)
     }
 
     table->rows[offset].key = key;
-    table->rows[offset].data = strdup(data);
+    table->rows[offset].data = wrapped_strdup(data);
     table->used++;
 
     if (table->max_key < key) {

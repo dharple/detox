@@ -17,6 +17,7 @@
 #include "file.h"
 #include "filelist.h"
 #include "sequence.h"
+#include "wrapped.h"
 
 #define BUF_SIZE 1024
 
@@ -75,11 +76,8 @@ char *parse_file(char *filename, options_t *options)
     size_t len;
 
     len = strlen(filename) + 1;
-    old_filename = malloc(len);
-    if (old_filename == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    old_filename = wrapped_malloc(len);
+
     memcpy(old_filename, filename, len);
 
     old_filename_ptr = strrchr(old_filename, '/');
@@ -93,7 +91,7 @@ char *parse_file(char *filename, options_t *options)
      * Do the actual filename cleaning
      */
 
-    work = strdup(old_filename_ptr);
+    work = wrapped_strdup(old_filename_ptr);
 
     if (is_protected(work)) {
         work = NULL;
@@ -115,13 +113,7 @@ char *parse_file(char *filename, options_t *options)
     }
 
     len = (old_filename_ptr - old_filename);
-    new_filename = malloc(len + strlen(work) + 1);
-    if (new_filename == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        free(work);
-        free(old_filename);
-        return NULL;
-    }
+    new_filename = wrapped_malloc(len + strlen(work) + 1);
 
     strncpy(new_filename, old_filename, len);
     strcpy(new_filename + len, work);
@@ -190,11 +182,7 @@ void parse_dir(char *filename, options_t *options)
     }
 
     new_file_length = strlen(filename) + 1024;
-    new_file = malloc(new_file_length);
-    if (new_file == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return;
-    }
+    new_file = wrapped_malloc(new_file_length);
 
     /*
      * Parse directory
@@ -264,11 +252,7 @@ void parse_inline(char *filename, options_t *options)
     }
 
     buf_size = BUF_SIZE;
-    base = malloc(buf_size);
-    if (base == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return;
-    }
+    base = wrapped_malloc(buf_size);
 
     while (fgets(base, buf_size, fp)) {
         while (strrchr(base, '\n') == NULL) {
@@ -288,7 +272,7 @@ void parse_inline(char *filename, options_t *options)
         }
         *hold = '\0';
 
-        work = strdup(base);
+        work = wrapped_strdup(base);
 
         if (is_protected(work)) {
             work = NULL;

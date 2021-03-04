@@ -13,8 +13,10 @@
 #include <string.h>
 
 #include "detox_struct.h"
+
 #include "filter.h"
 #include "sequence.h"
+#include "wrapped.h"
 
 char *filter_run(filter_t *filter, char *work);
 
@@ -58,14 +60,10 @@ sequence_t *sequence_init(const char *name)
 {
     sequence_t *ret;
 
-    ret = malloc(sizeof(sequence_t));
-    if (ret == NULL) {
-        fprintf(stderr, "detox: out of memory: %s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-    }
+    ret = wrapped_malloc(sizeof(sequence_t));
     memset(ret, 0, sizeof(sequence_t));
 
-    ret->name = strdup(name);
+    ret->name = wrapped_strdup(name);
 
     return ret;
 }
@@ -116,7 +114,7 @@ char *sequence_run_filters(sequence_t *sequence, char *filename)
     }
 
     filter = sequence->filters;
-    work = strdup(filename);
+    work = wrapped_strdup(filename);
 
     while (filter != NULL && work != NULL) {
         hold = filter_run(filter, work);

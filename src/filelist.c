@@ -12,6 +12,7 @@
 #include <string.h>
 
 #include "filelist.h"
+#include "wrapped.h"
 
 #define FILELIST_CHUNK 16
 
@@ -81,11 +82,11 @@ filelist_t *filelist_init(void)
 {
     filelist_t *list;
 
-    list = malloc(sizeof(filelist_t));
+    list = wrapped_malloc(sizeof(filelist_t));
     memset(list, 0, sizeof(filelist_t));
 
     list->max = FILELIST_CHUNK;
-    list->files = malloc(sizeof(char *) * list->max);
+    list->files = wrapped_malloc(sizeof(char *) * list->max);
 
     return list;
 }
@@ -111,7 +112,7 @@ void filelist_put(filelist_t *list, const char *file)
 
         new_max = list->max + FILELIST_CHUNK;
         new_size = sizeof(char *) * new_max;
-        new_files = malloc(new_size);
+        new_files = wrapped_malloc(new_size);
         memset(new_files, 0, new_size);
 
         for (i = 0; i < list->count; i++) {
@@ -124,7 +125,7 @@ void filelist_put(filelist_t *list, const char *file)
         list->max = new_max;
     }
 
-    list->files[list->count++] = strdup(file);
+    list->files[list->count++] = wrapped_strdup(file);
     filelist_reset(list);
 }
 

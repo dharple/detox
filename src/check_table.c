@@ -19,9 +19,10 @@
 #include <errno.h>
 #include <math.h>
 
-#include "table.h"
-#include "table_dump.h"
 #include "builtin_table.h"
+#include "table_dump.h"
+#include "table.h"
+#include "wrapped.h"
 
 enum {
     BASE_STATE,
@@ -77,20 +78,9 @@ static table_t *check_table(char *filename, int use_hash)
         return NULL;
     }
 
-    work = malloc(1024);
-    if (work == NULL) {
-        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(table_file);
-        return NULL;
-    }
+    work = wrapped_malloc(1024);
 
-    parsed = malloc(1024);
-    if (parsed == NULL) {
-        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(table_file);
-        free(work);
-        return NULL;
-    }
+    parsed = wrapped_malloc(1024);
 
     last = 0;
 
@@ -152,7 +142,7 @@ static table_t *check_table(char *filename, int use_hash)
                     sscanf(work + offset, "%s", parsed);
                 }
 
-                table->default_translation = strdup(parsed);
+                table->default_translation = wrapped_strdup(parsed);
 
                 if (strlen(parsed) > max_data_length) {
                     max_data_length = strlen(parsed);
@@ -272,20 +262,9 @@ static table_t *check_table_again(char *filename, table_t *source)
         return NULL;
     }
 
-    work = malloc(1024);
-    if (work == NULL) {
-        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(table_file);
-        return NULL;
-    }
+    work = wrapped_malloc(1024);
 
-    parsed = malloc(1024);
-    if (parsed == NULL) {
-        fprintf(stderr, "Unable to allocate memory: %s\n", strerror(errno));
-        fclose(table_file);
-        free(work);
-        return NULL;
-    }
+    parsed = wrapped_malloc(1024);
 
     state = BASE_STATE;
 
