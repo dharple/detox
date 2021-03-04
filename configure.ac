@@ -96,6 +96,8 @@ AS_IF([test "x$with_coverage" != xno], [
 
 	# see src/Makefile.am
 	# AC_CHECK_CFLAG([[-ftest-coverage]])
+
+	AC_DEFINE([SUPPORT_COVERAGE], [1], [Define if you want to support coverage tests])
 ])
 AM_CONDITIONAL([WITH_COVERAGE], [test "x$with_coverage" != xno])
 

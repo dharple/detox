@@ -9,6 +9,9 @@
 
 #include <string.h>
 
+// need defines first
+#include "config.h"
+
 #include "clean_string.h"
 
 #include "unit_struct.h"

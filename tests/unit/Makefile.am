@@ -21,6 +21,7 @@ AM_LDFLAGS = \
 	$(top_builddir)/src/parse_table.o \
 	$(top_builddir)/src/sequence.o \
 	$(top_builddir)/src/table.o \
+	$(top_builddir)/src/wrapped.o \
 	@CHECK_LIBS@
 
 TESTS = \
@@ -33,7 +34,8 @@ TESTS = \
 	test_clean_wipeup \
 	test_filelist \
 	test_spoof_config_file \
-	test_table_resize
+	test_table_resize \
+	test_wrapped
 
 check_PROGRAMS = $(TESTS)
 

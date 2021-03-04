@@ -27,6 +27,9 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
+/* Define if you want to support coverage tests */
+#undef SUPPORT_COVERAGE
+
 /* Version number of package */
 #undef VERSION
 

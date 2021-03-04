@@ -27,12 +27,17 @@ for FILE in *.ts ; do
 	OUTPUT="${INPUT%.ts}.c"
 	echo -n "process check file $INPUT... "
 	$CHECKMK $INPUT > $WORK/$OUTPUT
-	diff -q $WORK/$OUTPUT $OUTPUT 2>&1 > /dev/null
-	if [ "$?" -eq "0" ] ; then
-		echo
-		rm $WORK/$OUTPUT
-	else
-		echo "updated"
+	if [ ! -f $OUTPUT ] ; then
+		echo "created"
 		mv $WORK/$OUTPUT $OUTPUT
+	else
+		diff -q $WORK/$OUTPUT $OUTPUT 2>&1 > /dev/null
+		if [ "$?" -eq "0" ] ; then
+			echo
+			rm $WORK/$OUTPUT
+		else
+			echo "updated"
+			mv $WORK/$OUTPUT $OUTPUT
+		fi
 	fi
 done

@@ -48,7 +48,8 @@ detox_SOURCES = \
 	parse_options.c \
 	parse_table.c \
 	sequence.c \
-	table.c
+	table.c \
+	wrapped.c
 
 inline_detox_SOURCES = $(detox_SOURCES)
 

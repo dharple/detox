@@ -14,6 +14,7 @@
 #include <errno.h>
 
 #include "clean_string.h"
+#include "wrapped.h"
 #include "table.h"
 
 #define ISO8859_1_UPPER_BIT 0x80
@@ -40,11 +41,7 @@ char *clean_iso8859_1(char *filename, table_t *table)
         exit(EXIT_FAILURE);
     }
 
-    output = malloc((strlen(filename) * table->max_data_length) + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc((strlen(filename) * table->max_data_length) + 1);
 
     input_walk = filename;
     output_walk = output;
@@ -104,11 +101,7 @@ char *clean_safe(char *filename, table_t *table)
         exit(EXIT_FAILURE);
     }
 
-    output = malloc((strlen(filename) * table->max_data_length) + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc((strlen(filename) * table->max_data_length) + 1);
 
     input_walk = filename;
     output_walk = output;
@@ -157,11 +150,7 @@ char *clean_uncgi(char *filename)
         return NULL;
     }
 
-    output = malloc(strlen(filename) + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc(strlen(filename) + 1);
 
     input_walk = filename;
     output_walk = output;
@@ -217,13 +206,9 @@ char *clean_wipeup(char *filename, int remove_trailing)
         filename++;
     }
 
-    output = malloc(strlen(filename) + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc(strlen(filename) + 1);
 
-    search = strdup(remove_trailing ? ".-_" : "-_");
+    search = wrapped_strdup(remove_trailing ? ".-_" : "-_");
 
     input_walk = filename;
     output_walk = output;
@@ -292,11 +277,7 @@ char *clean_utf_8(char *filename, table_t *table)
         exit(EXIT_FAILURE);
     }
 
-    output = malloc((strlen(filename) * table->max_data_length) + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc((strlen(filename) * table->max_data_length) + 1);
 
     input_walk = filename;
     output_walk = output;
@@ -433,14 +414,11 @@ char *clean_max_length(char *filename, size_t max_length)
 
     // check to see if the file is smaller than the max length
     if (strlen(filename) <= max_length) {
-        return strdup(filename);
+        return wrapped_strdup(filename);
     }
 
-    output = malloc(max_length + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc(max_length + 1);
+
     snprintf(output, max_length + 1, "%s", filename);
 
     // check to see if the file has no extension
@@ -469,7 +447,7 @@ char *clean_max_length(char *filename, size_t max_length)
     if (max_length <= extension_length) {
         fprintf(stderr, "warning: max_length %d is less than required file length for '%s'.  giving up.\n", (int) max_length, filename);
         free(output);
-        return strdup(filename);
+        return wrapped_strdup(filename);
     }
 
     body_length = max_length - extension_length;
@@ -494,11 +472,7 @@ char *clean_lower(char *filename)
         return NULL;
     }
 
-    output = malloc(strlen(filename) + 1);
-    if (output == NULL) {
-        fprintf(stderr, "out of memory: %s\n", strerror(errno));
-        return NULL;
-    }
+    output = wrapped_malloc(strlen(filename) + 1);
 
     input_walk = filename;
     output_walk = output;

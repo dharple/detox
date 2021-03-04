@@ -47,6 +47,7 @@ test-table-regression
 *.gcov
 /coverage.info
 /coverage/
+mallocfail_hashes
 
 # CLion
 cmake-build-debug
