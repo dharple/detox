@@ -44,6 +44,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The `max_length` filter recognizes files with two extensions.  [#46]
 - The `safe` filter converts all ASCII control characters to `_`.  [#21] [#29]
 - The `safe` filter ignores characters between 0x80 and 0xFF.  [#21] [#29]
+- The `uncgi` filter converts `+` to a space as expected. [#72]
+- The `utf_8` filter no longer eats a byte if an invalid Unicode sequence is
+  encountered. [#72]
 
 ### Security
 - Added additional compiler protection flags.  [#31]
@@ -215,6 +218,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#72]: https://github.com/dharple/detox/issues/72
 [#64]: https://github.com/dharple/detox/issues/64
 [#59]: https://github.com/dharple/detox/issues/59
 [#56]: https://github.com/dharple/detox/issues/56

@@ -16,9 +16,23 @@ if [ ! -x "$CHECKMK" ] ; then
 	exit 1
 fi
 
+BASE=/tmp/detoxtest/
+if [ ! -d $BASE ] ; then
+	mkdir $BASE
+fi
+WORK=$(realpath $(mktemp -d $BASE/work-XXXXXX))
+
 for FILE in *.ts ; do
 	INPUT=$(basename $FILE)
 	OUTPUT="${INPUT%.ts}.c"
-	echo "process check file $INPUT"
-	$CHECKMK $INPUT > $OUTPUT
+	echo -n "process check file $INPUT... "
+	$CHECKMK $INPUT > $WORK/$OUTPUT
+	diff -q $WORK/$OUTPUT $OUTPUT 2>&1 > /dev/null
+	if [ "$?" -eq "0" ] ; then
+		echo
+		rm $WORK/$OUTPUT
+	else
+		echo "updated"
+		mv $WORK/$OUTPUT $OUTPUT
+	fi
 done

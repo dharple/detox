@@ -16,9 +16,11 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 17
+#define DATA_COUNT 18
 static struct test_filename data[DATA_COUNT] = {
+
     // legacy tests
+
     {
         .filename   = "___________underscore_______________________.x",
         .expected   = "___________underscore_________.x",
@@ -121,17 +123,25 @@ static struct test_filename data[DATA_COUNT] = {
         .expected   = "safe and stuff.tar.gz",
         .max_length = 7,
     },
+
+    {
+        .filename   = "safe and stuff.tar.gz",
+        .expected   = "safe and stuff.tar.gz",
+        .max_length = 0,
+    },
 };
 
 #test test_clean_max_length
     char *output;
     int i;
 
-    // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
         output = clean_max_length(data[i].filename, data[i].max_length);
         ck_assert_str_eq(output, data[i].expected);
     }
+
+#test test_clean_max_length_null
+    char *output;
 
     // confirm NULL works
     output = clean_max_length(NULL, 0);

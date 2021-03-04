@@ -85,6 +85,9 @@ static struct test_filename data[DATA_COUNT] = {
         ck_assert_str_eq(output, data[i].expected_a);
     }
 
+#test test_clean_wipeup_null
+    char *output;
+
     // confirm NULL works
     output = clean_wipeup(NULL, 0);
     ck_assert(output == NULL);

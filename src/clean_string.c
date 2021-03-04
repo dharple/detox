@@ -18,8 +18,13 @@
 
 #define ISO8859_1_UPPER_BIT 0x80
 
-/*
- * Translates ISO 8859-1 characters (Latin-1) into lower ASCII characters.
+/**
+ * Transliterates ISO 8859-1 characters (Latin-1) into lower ASCII characters.
+ *
+ * @param filename The filename to clean.
+ * @param table_t  The transliteration table to use.
+ *
+ * @return The updated filename or NULL if an error occurred.
  */
 char *clean_iso8859_1(char *filename, table_t *table)
 {
@@ -78,8 +83,13 @@ char *clean_iso8859_1(char *filename, table_t *table)
     return output;
 }
 
-/*
- * Translates unsafe characters using a translation table.
+/**
+ * Replaces difficult-to-work-with characters with underscores and dashes.
+ *
+ * @param filename The filename to clean.
+ * @param table_t  The replacement table to use.
+ *
+ * @return The updated filename or NULL if an error occurred.
  */
 char *clean_safe(char *filename, table_t *table)
 {
@@ -130,10 +140,13 @@ char *clean_safe(char *filename, table_t *table)
     return output;
 }
 
-
-/*
+/**
  * Cleans up any CGI encoded characters, in the form "%" followed by 2 hex
  * digits.
+ *
+ * @param filename The filename to clean.
+ *
+ * @return The updated filename or NULL if an error occurred.
  */
 char *clean_uncgi(char *filename)
 {
@@ -160,6 +173,9 @@ char *clean_uncgi(char *filename)
             conv[2] = 0;
             *output_walk++ = (char) strtol(conv, NULL, 16);
             input_walk += 3;
+        } else if (input_walk[0] == '+') {
+            *output_walk++ = ' ';
+            input_walk++;
         } else {
             *output_walk++ = *input_walk++;
         }
@@ -180,6 +196,12 @@ char *clean_uncgi(char *filename)
  *
  * If a hash character, underscore, or dash are present at the start of the
  * filename, they will be removed.
+ *
+ * @param filename        The filename to clean.
+ * @param remove_trailing Whether or not to include periods in the set of
+ *                        characters to operate on.
+ *
+ * @return The updated filename or NULL if an error occurred.
  */
 char *clean_wipeup(char *filename, int remove_trailing)
 {
@@ -245,9 +267,14 @@ char *clean_wipeup(char *filename, int remove_trailing)
 
 #define NULL_REPLACEMENT "_hidden_null_"
 
-/*
+/**
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
  * Unicode and then runs the translation table.
+ *
+ * @param filename The filename to clean.
+ * @param table_t  The transliteration table to use.
+ *
+ * @return The updated filename or NULL if an error occurred.
  */
 char *clean_utf_8(char *filename, table_t *table)
 {
@@ -339,11 +366,12 @@ char *clean_utf_8(char *filename, table_t *table)
 
             expected_chars--;
         }
-        input_walk++;
 
         if (new_value == -1) {
             continue;
         }
+
+        input_walk++;
 
         replace_walk = table_get(table, new_value);
 
@@ -451,8 +479,12 @@ char *clean_max_length(char *filename, size_t max_length)
     return output;
 }
 
-/*
+/**
  * Converts all characters to lowercase.
+ *
+ * @param filename        The filename to clean.
+ *
+ * @return The updated filename or NULL if an error occurred.
  */
 char *clean_lower(char *filename)
 {

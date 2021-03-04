@@ -24,9 +24,11 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 17
+#define DATA_COUNT 18
 static struct test_filename data[DATA_COUNT] = {
+
     // legacy tests
+
     {
         .filename   = "___________underscore_______________________.x",
         .expected   = "___________underscore_________.x",
@@ -129,19 +131,32 @@ static struct test_filename data[DATA_COUNT] = {
         .expected   = "safe and stuff.tar.gz",
         .max_length = 7,
     },
+
+    {
+        .filename   = "safe and stuff.tar.gz",
+        .expected   = "safe and stuff.tar.gz",
+        .max_length = 0,
+    },
 };
 
 START_TEST(test_clean_max_length)
 {
-#line 127
+#line 135
     char *output;
     int i;
 
-    // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
         output = clean_max_length(data[i].filename, data[i].max_length);
         ck_assert_str_eq(output, data[i].expected);
     }
+
+}
+END_TEST
+
+START_TEST(test_clean_max_length_null)
+{
+#line 144
+    char *output;
 
     // confirm NULL works
     output = clean_max_length(NULL, 0);
@@ -158,6 +173,7 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_max_length);
+    tcase_add_test(tc1_1, test_clean_max_length_null);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

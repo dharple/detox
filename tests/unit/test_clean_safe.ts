@@ -18,66 +18,83 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 44
+#define DATA_COUNT 46
 static struct test_filename data[DATA_COUNT] = {
-    // legacy
 
-    { .filename = "lower",                      .expected = "lower" },
-    { .filename = "^acute",                     .expected = "^acute" },
-    { .filename = "&ampersand",                 .expected = "_and_ampersand" },
-    { .filename = "<angle bracket left",        .expected = "_angle_bracket_left" },
-    { .filename = ">angle bracket right",       .expected = "_angle_bracket_right" },
-    { .filename = "\\back slash",               .expected = "_back_slash" },
-    { .filename = "`back tick",                 .expected = "_back_tick" },
-    { .filename = "|bar",                       .expected = "_bar" },
-    { .filename = "{brace left",                .expected = "-brace_left" },
-    { .filename = "}brace right",               .expected = "-brace_right" },
-    { .filename = ":colon",                     .expected = "_colon" },
-    { .filename = ",comma",                     .expected = ",comma" },
-    { .filename = "@commercial at",             .expected = "_commercial_at" },
-    { .filename = "dash-",                      .expected = "dash-" },
-    { .filename = "#dash_octothorpe-",          .expected = "#dash_octothorpe-" },
-    { .filename = "_dash_underscore-",          .expected = "_dash_underscore-" },
-    { .filename = "$dollar sign",               .expected = "_dollar_sign" },
-    { .filename = "\"double quote",             .expected = "_double_quote" },
-    { .filename = "ends with octothorpe#",      .expected = "ends_with_octothorpe#" },
-    { .filename = "!exclamation point",         .expected = "_exclamation_point" },
-    { .filename = "#octothorpe",                .expected = "#octothorpe" },
-    { .filename = "#-octothorpe_dash",          .expected = "#-octothorpe_dash" },
-    { .filename = "(parenthesis left",          .expected = "-parenthesis_left" },
-    { .filename = ")parenthesis right",         .expected = "-parenthesis_right" },
-    { .filename = "%percent",                   .expected = "%percent" },
-    { .filename = "+plus",                      .expected = "+plus" },
-    { .filename = "?question mark",             .expected = "_question_mark" },
-    { .filename = ";semi colon",                .expected = "_semi_colon" },
-    { .filename = "'single quote",              .expected = "_single_quote" },
-    { .filename = " space",                     .expected = "_space" },
-    { .filename = "[square bracket left",       .expected = "-square_bracket_left" },
-    { .filename = "]square bracket right",      .expected = "-square_bracket_right" },
-    { .filename = "_-underscore_dash",          .expected = "_-underscore_dash" },
-    { .filename = "_underscore",                .expected = "_underscore" },
-    { .filename = "~tilde",                     .expected = "~tilde" },
+    // legacy tests
+
+    { .filename = "lower",                      .expected_a = "lower" },
+    { .filename = "^acute",                     .expected_a = "^acute" },
+    { .filename = "&ampersand",                 .expected_a = "_and_ampersand" },
+    { .filename = "<angle bracket left",        .expected_a = "_angle_bracket_left" },
+    { .filename = ">angle bracket right",       .expected_a = "_angle_bracket_right" },
+    { .filename = "\\back slash",               .expected_a = "_back_slash" },
+    { .filename = "`back tick",                 .expected_a = "_back_tick" },
+    { .filename = "|bar",                       .expected_a = "_bar" },
+    { .filename = "{brace left",                .expected_a = "-brace_left" },
+    { .filename = "}brace right",               .expected_a = "-brace_right" },
+    { .filename = ":colon",                     .expected_a = "_colon" },
+    { .filename = ",comma",                     .expected_a = ",comma" },
+    { .filename = "@commercial at",             .expected_a = "_commercial_at" },
+    { .filename = "dash-",                      .expected_a = "dash-" },
+    { .filename = "#dash_octothorpe-",          .expected_a = "#dash_octothorpe-" },
+    { .filename = "_dash_underscore-",          .expected_a = "_dash_underscore-" },
+    { .filename = "$dollar sign",               .expected_a = "_dollar_sign" },
+    { .filename = "\"double quote",             .expected_a = "_double_quote" },
+    { .filename = "ends with octothorpe#",      .expected_a = "ends_with_octothorpe#" },
+    { .filename = "!exclamation point",         .expected_a = "_exclamation_point" },
+    { .filename = "#octothorpe",                .expected_a = "#octothorpe" },
+    { .filename = "#-octothorpe_dash",          .expected_a = "#-octothorpe_dash" },
+    { .filename = "(parenthesis left",          .expected_a = "-parenthesis_left" },
+    { .filename = ")parenthesis right",         .expected_a = "-parenthesis_right" },
+    { .filename = "%percent",                   .expected_a = "%percent" },
+    { .filename = "+plus",                      .expected_a = "+plus" },
+    { .filename = "?question mark",             .expected_a = "_question_mark" },
+    { .filename = ";semi colon",                .expected_a = "_semi_colon" },
+    { .filename = "'single quote",              .expected_a = "_single_quote" },
+    { .filename = " space",                     .expected_a = "_space" },
+    { .filename = "[square bracket left",       .expected_a = "-square_bracket_left" },
+    { .filename = "]square bracket right",      .expected_a = "-square_bracket_right" },
+    { .filename = "_-underscore_dash",          .expected_a = "_-underscore_dash" },
+    { .filename = "_underscore",                .expected_a = "_underscore" },
+    { .filename = "~tilde",                     .expected_a = "~tilde" },
 
     // other
 
-    { .filename = "\u00C6 capital AE",          .expected = "\u00C6_capital_AE" },
-    { .filename = "\xC6 capital AE",            .expected = "\xC6_capital_AE" },
-    { .filename = "\u00DE capital thorn",       .expected = "\u00DE_capital_thorn" },
-    { .filename = "\xDE capital thorn",         .expected = "\xDE_capital_thorn" },
-    { .filename = "\u0172 capital U Ogonek",    .expected = "\u0172_capital_U_Ogonek" },
-    { .filename = "\x7E tilde",                 .expected = "~_tilde" },
-    { .filename = "\x7F delete",                .expected = "__delete" },
+    { .filename = "\u00C6 capital AE",          .expected_a = "\u00C6_capital_AE" },
+    { .filename = "\xC6 capital AE",            .expected_a = "\xC6_capital_AE" },
+    { .filename = "\u00DE capital thorn",       .expected_a = "\u00DE_capital_thorn" },
+    { .filename = "\xDE capital thorn",         .expected_a = "\xDE_capital_thorn" },
+    { .filename = "\u0172 capital U Ogonek",    .expected_a = "\u0172_capital_U_Ogonek" },
+    { .filename = "\x7E tilde",                 .expected_a = "~_tilde" },
+    { .filename = "\x7F delete",                .expected_a = "__delete" },
+
+    // github issue 9
+
+    {
+        .filename   = "hi\tthere",
+        .expected_a = "hi_there",
+        .expected_b = "hi_tab_there",
+    },
+
+    // github issue 17
+
+    {
+        .filename   = "new\nline",
+        .expected_a = "new_line",
+        .expected_b = "new_nl_line",
+    },
 
     // other, with a/b rules
 
     {
         .filename   = "\x07 bell",
-        .expected   = "__bell",
+        .expected_a = "__bell",
         .expected_b = "_beep__bell",
     },
     {
         .filename   = "\x09 tab \x0A new line",
-        .expected   = "__tab___new_line",
+        .expected_a = "__tab___new_line",
         .expected_b = "_tab__tab__nl__new_line",
     },
 };
@@ -89,11 +106,13 @@ static struct test_filename data[DATA_COUNT] = {
 
     table = load_builtin_safe_table();
 
-    // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
         output = clean_safe(data[i].filename, table);
-        ck_assert_str_eq(output, data[i].expected);
+        ck_assert_str_eq(output, data[i].expected_a);
     }
+
+#test test_clean_safe_null
+    char *output;
 
     // confirm NULL works
     output = clean_safe(NULL, NULL);
@@ -116,5 +135,5 @@ static struct test_filename data[DATA_COUNT] = {
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
         output = clean_safe(data[i].filename, table);
-        ck_assert_str_eq(output, (data[i].expected_b != NULL) ? data[i].expected_b : data[i].expected);
+        ck_assert_str_eq(output, (data[i].expected_b != NULL) ? data[i].expected_b : data[i].expected_a);
     }

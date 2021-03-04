@@ -177,10 +177,10 @@ int table_put(table_t *table, unsigned int key, char *data)
  *
  * Key cannot be zero.
  *
- * @param table_t * table The table to use.
- * @param unsigned int               key   The key for the table.
+ * @param table The table to use.
+ * @param key   The key for the table.
  *
- * @return char * The value from the table, or NULL if it could not be found.
+ * @return The value from the table, or NULL if it could not be found.
  */
 char *table_get(table_t *table, unsigned int key)
 {

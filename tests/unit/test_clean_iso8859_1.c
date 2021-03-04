@@ -22,34 +22,82 @@
 #include "builtin_table.h"
 #include "clean_string.h"
 #include "detox_struct.h"
+#include "table.h"
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 5
+#define DATA_COUNT 6
 static struct test_filename data[DATA_COUNT] = {
-    // legacy
 
-    { .filename = "safe string",            .expected = "safe string" },
-    { .filename = "\xAE reg",               .expected = "_reg_ reg" },
-    { .filename = "\xA9 copy",              .expected = "_copy_ copy" },
-    { .filename = "\xC6 capital AE",        .expected = "AE capital AE" },
-    { .filename = "\xDE capital thorn",     .expected = "TH capital thorn" },
+    // legacy tests
+
+    {
+        .filename   = "safe string",
+        .expected_a = "safe string",
+        .expected_b = "safe string",
+    },
+    {
+        .filename = "\xAE reg",
+        .expected_a = "_reg_ reg",
+        .expected_b = "_reg_ reg",
+    },
+    {
+        .filename   = "\xA9 copy",
+        .expected_a = "_copy_ copy",
+        .expected_b = "_copy_ copy",
+    },
+    {
+        .filename   = "\xC6 capital AE",
+        .expected_a = "AE capital AE",
+        .expected_b = "AE capital AE",
+    },
+    {
+        .filename   = "\xDE capital thorn",
+        .expected_a = "TH capital thorn",
+        .expected_b = "TH capital thorn",
+    },
+
+    // full coverage - test default translation rules
+
+    {
+        .filename   = "\x80 not in table",
+        .expected_a = "_ not in table",
+        .expected_b = "\x80 not in table",
+    },
 };
 
 START_TEST(test_clean_iso8859_1)
 {
-#line 32
-    table_t *table;
+#line 62
+    table_t *table_a;
+    table_t *table_b;
     char *output;
     int i;
 
-    table = load_builtin_iso8859_1_table();
+    table_a = load_builtin_iso8859_1_table();
+    table_b = load_builtin_iso8859_1_table();
 
-    // legacy tests
+    table_a->default_translation = strdup("_");
+    table_b->default_translation = NULL;
+
+    // confirm that our a/b test is still valid
+    ck_assert(table_get(table_b, 0x80) == NULL);
+
     for (i = 0; i < DATA_COUNT; i++) {
-        output = clean_iso8859_1(data[i].filename, table);
-        ck_assert_str_eq(output, data[i].expected);
+        output = clean_iso8859_1(data[i].filename, table_a);
+        ck_assert_str_eq(output, data[i].expected_a);
+
+        output = clean_iso8859_1(data[i].filename, table_b);
+        ck_assert_str_eq(output, data[i].expected_b);
     }
+
+}
+END_TEST
+
+START_TEST(test_clean_iso8859_1_null)
+{
+#line 85
+    char *output;
 
     // confirm NULL works
     output = clean_iso8859_1(NULL, NULL);
@@ -60,7 +108,7 @@ END_TEST
 
 START_TEST(test_clean_iso8859_1_missing_table)
 {
-#line 49
+#line 92
     clean_iso8859_1("what", NULL);
 }
 END_TEST
@@ -74,6 +122,7 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_iso8859_1);
+    tcase_add_test(tc1_1, test_clean_iso8859_1_null);
     tcase_add_exit_test(tc1_1, test_clean_iso8859_1_missing_table, 1);
 
     srunner_run_all(sr, CK_ENV);

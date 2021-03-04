@@ -23,23 +23,34 @@
 
 #define DATA_COUNT 4
 static struct test_filename data[DATA_COUNT] = {
+
+    // legacy tests
+
     { .filename = "lower",      .expected = "lower" },
     { .filename = "L0W3R",      .expected = "l0w3r" },
     { .filename = "UPPER",      .expected = "upper" },
     { .filename = "UPPer_2",    .expected = "upper_2" },
+
 };
 
 START_TEST(test_clean_lower)
 {
-#line 25
+#line 29
     char *output;
     int i;
 
-    // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
         output = clean_lower(data[i].filename);
         ck_assert_str_eq(output, data[i].expected);
     }
+
+}
+END_TEST
+
+START_TEST(test_clean_lower_null)
+{
+#line 38
+    char *output;
 
     // confirm NULL works
     output = clean_lower(NULL);
@@ -56,6 +67,7 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_lower);
+    tcase_add_test(tc1_1, test_clean_lower_null);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

@@ -95,6 +95,14 @@ START_TEST(test_clean_wipeup)
         ck_assert_str_eq(output, data[i].expected_a);
     }
 
+}
+END_TEST
+
+START_TEST(test_clean_wipeup_null)
+{
+#line 89
+    char *output;
+
     // confirm NULL works
     output = clean_wipeup(NULL, 0);
     ck_assert(output == NULL);
@@ -104,7 +112,7 @@ END_TEST
 
 START_TEST(test_clean_wipeuprt)
 {
-#line 93
+#line 96
     char *output;
     int i;
 
@@ -125,6 +133,7 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_wipeup);
+    tcase_add_test(tc1_1, test_clean_wipeup_null);
     tcase_add_test(tc1_1, test_clean_wipeuprt);
 
     srunner_run_all(sr, CK_ENV);
