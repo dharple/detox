@@ -16,6 +16,7 @@
 
 #include "builtin_table.h"
 #include "clean_string.h"
+#include "clean_utf_8.h"
 #include "parse_table.h"
 #include "wrapped.h"
 

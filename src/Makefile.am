@@ -36,6 +36,7 @@ noinst_PROGRAMS = \
 detox_SOURCES = \
 	builtin_table.c \
 	clean_string.c \
+	clean_utf_8.c \
 	config_file.c \
 	config_file_dump.c \
 	config_file_lex.l \

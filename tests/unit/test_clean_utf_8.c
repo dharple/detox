@@ -20,13 +20,13 @@
 #include <string.h>
 
 #include "builtin_table.h"
-#include "clean_string.h"
+#include "clean_utf_8.h"
 #include "detox_struct.h"
 #include "table.h"
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 16
+#define DATA_COUNT 17
 static struct test_filename data[DATA_COUNT] = {
     // legacy
 
@@ -127,11 +127,19 @@ static struct test_filename data[DATA_COUNT] = {
         .expected_a = "hu hwair",
         .expected_b = "hu hwair",
     },
+
+    // confirm invalid single-byte character sequence
+
+    {
+        .filename   = "\x80 delete",
+        .expected_a = "_ delete",
+        .expected_b = "_ delete",
+    },
 };
 
 START_TEST(test_clean_utf_8)
 {
-#line 125
+#line 133
     table_t *table_a;
     table_t *table_b;
     char *output;
@@ -161,7 +169,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_null)
 {
-#line 150
+#line 158
     char *output;
 
     // confirm NULL works
@@ -173,7 +181,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_missing_table)
 {
-#line 157
+#line 165
     clean_utf_8("what", NULL);
 
 }
@@ -181,7 +189,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_invalid)
 {
-#line 160
+#line 168
     table_t *table;
     char *output;
 
@@ -189,20 +197,20 @@ START_TEST(test_clean_utf_8_invalid)
     table->default_translation = strdup("_");
 
     // test an invalid UTF-8 sequence
-    // the cleaner should discard the invalid sequence
+    // the cleaner should replace the invalid sequence with an underscore
 
     output = clean_utf_8("\xC0" "blah", table);
-    ck_assert_str_eq(output, "blah");
+    ck_assert_str_eq(output, "_blah");
 
     output = clean_utf_8("blah" "\xC0", table);
-    ck_assert_str_eq(output, "blah");
+    ck_assert_str_eq(output, "blah_");
 
 }
 END_TEST
 
-START_TEST(test_clean_utf_8_invalid_5_byte)
+START_TEST(test_clean_utf_8_beyond_unicode_max)
 {
-#line 176
+#line 184
     table_t *table;
     char *output;
 
@@ -220,10 +228,20 @@ START_TEST(test_clean_utf_8_invalid_5_byte)
     ck_assert_str_eq(output, "6blah");
 
     // 5-byte encoding a lower ASCII "6"
-    // this should fail
 
     output = clean_utf_8("\xF8\x80\x80\x80\xB6" "blah", table);
     ck_assert_str_eq(output, "6blah");
+
+    // 6-byte encoding a lower ASCII "6"
+
+    output = clean_utf_8("\xF8\x80\x80\x80\xB6" "blah", table);
+    ck_assert_str_eq(output, "6blah");
+
+    // 6-byte max on Ubuntu 20.04
+
+    // Unicode 0x7FFFFFFF
+    output = clean_utf_8("\xFD\xBF\xBF\xBF\xBF\xBF" "blah", table);
+    ck_assert_str_eq(output, "_blah");
 }
 END_TEST
 
@@ -239,7 +257,7 @@ int main(void)
     tcase_add_test(tc1_1, test_clean_utf_8_null);
     tcase_add_exit_test(tc1_1, test_clean_utf_8_missing_table, 1);
     tcase_add_test(tc1_1, test_clean_utf_8_invalid);
-    tcase_add_exit_test(tc1_1, test_clean_utf_8_invalid_5_byte, 1);
+    tcase_add_test(tc1_1, test_clean_utf_8_beyond_unicode_max);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

@@ -8,6 +8,12 @@
 ROOT=$(dirname "$(dirname "$(realpath "$0")")")
 SLEEP=0.5s
 
+DETOX="$ROOT/src/detox"
+if [ ! -f "$DETOX" ] ; then
+	cd $ROOT
+	make
+fi
+
 # --------------------------------------------------------
 # onboard mallocfail
 # --------------------------------------------------------
@@ -61,7 +67,10 @@ while [ 1 ] ; do
 	OUTPUT="$WORK/pass-$(printf "%04d" $COUNT).txt"
 
 	echo "iteration $COUNT"
-	LD_PRELOAD=$MALLOCFAILSO $ROOT/src/detox -L -v > $OUTPUT
+	# LD_PRELOAD=$MALLOCFAILSO $DETOX -L -v > $OUTPUT
+	# LD_PRELOAD=$MALLOCFAILSO $DETOX -f $ROOT/etc/detoxrc -L -v > $OUTPUT
+	# dmesg | LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f $ROOT/etc/detoxrc --inline > $OUTPUT
+	LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f $ROOT/etc/detoxrc --dry-run --recursive /tmp > $OUTPUT
 	EXIT=$?
 
 	if [ "$EXIT" -eq "139" ] ; then

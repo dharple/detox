@@ -11,6 +11,7 @@ AM_CFLAGS = \
 AM_LDFLAGS = \
 	$(top_builddir)/src/builtin_table.o \
 	$(top_builddir)/src/clean_string.o \
+	$(top_builddir)/src/clean_utf_8.o \
 	$(top_builddir)/src/config_file_lex.o \
 	$(top_builddir)/src/config_file.o \
 	$(top_builddir)/src/config_file_spoof.o \
