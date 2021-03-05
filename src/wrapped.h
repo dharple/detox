@@ -10,6 +10,8 @@
 #ifndef __WRAPPED_H
 #define __WRAPPED_H
 
+#include <stdio.h>
+
 #ifdef SUPPORT_COVERAGE
 extern int wrapped_malloc_failure;
 extern int wrapped_strdup_failure;

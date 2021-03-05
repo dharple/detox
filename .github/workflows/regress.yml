@@ -74,6 +74,8 @@ jobs:
       run: make maintainer-clean
     - name: autoreconf
       run: autoreconf --install
+    - name: apt install
+      run: sudo apt install check
     - name: configure
       run: ./configure --with-check
     - name: make

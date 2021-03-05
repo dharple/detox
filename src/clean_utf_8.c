@@ -87,7 +87,7 @@ char *clean_utf_8(char *filename, table_t *table)
 
         switch (utf_8_width) {
             case 1: // 0aaaaaaa
-                new_value = (unsigned char) *input_walk;
+                new_value = (unsigned char) input_walk[0];
                 break;
 
             case 2: // 110aaaaa 10bbbbbb

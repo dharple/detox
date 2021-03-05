@@ -57,7 +57,7 @@ mandoc -T lint man/*.[15]
 Confirm tests reference correct GitHub issue:
 
 ```bash
-grep -ri github tests/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
+grep -ri github tests/legacy/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 ```
 
 ## Testing
@@ -117,7 +117,7 @@ make coverage
 ./configure --with-coverage --with-check
 make clean
 make
-( cd tests/unit/ && make check )
+( cd tests/legacy/ && make check )
 make coverage
 ```
 

@@ -30,6 +30,7 @@ void *wrapped_malloc(size_t size)
 
 #ifdef SUPPORT_COVERAGE
     if (wrapped_malloc_failure != 0) {
+        free(ret);
         ret = NULL;
     }
 #endif
@@ -52,6 +53,7 @@ char *wrapped_strdup(const char *s)
 
 #ifdef SUPPORT_COVERAGE
     if (wrapped_strdup_failure != 0) {
+        free(ret);
         ret = NULL;
     }
 #endif
