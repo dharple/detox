@@ -45,10 +45,11 @@ START_TEST(test_filelist)
     char *work;
     filelist_t *test_list;
     int i;
-    int j = 1024;
+    int j;
     char *check, *last;
 
     work = alloca(STRLEN);
+    last = NULL;
 
     for (i = 0; tests[i].pass != -1; i++) {
         test_list = filelist_init();
@@ -87,7 +88,7 @@ END_TEST
 
 START_TEST(test_filelist_get_null)
 {
-#line 76
+#line 77
     filelist_get(NULL);
     ck_assert_int_eq(filelist_count(NULL), 0);
 
@@ -96,7 +97,7 @@ END_TEST
 
 START_TEST(test_filelist_get_empty)
 {
-#line 80
+#line 81
     char *work;
     filelist_t *test_list;
 
@@ -115,7 +116,7 @@ END_TEST
 
 START_TEST(test_filelist_get_one)
 {
-#line 94
+#line 95
     filelist_t *test_list;
 
     test_list = filelist_init();
@@ -137,7 +138,7 @@ END_TEST
 
 START_TEST(test_filelist_put_null)
 {
-#line 111
+#line 112
     filelist_put(NULL, NULL);
 }
 END_TEST

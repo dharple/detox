@@ -35,10 +35,11 @@ static struct test_definition tests[8] = {
     char *work;
     filelist_t *test_list;
     int i;
-    int j = 1024;
+    int j;
     char *check, *last;
 
     work = alloca(STRLEN);
+    last = NULL;
 
     for (i = 0; tests[i].pass != -1; i++) {
         test_list = filelist_init();

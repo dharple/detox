@@ -9,7 +9,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
 #include <string.h>
 
 #include "detox_struct.h"
@@ -17,8 +16,6 @@
 #include "filter.h"
 #include "sequence.h"
 #include "wrapped.h"
-
-char *filter_run(filter_t *filter, char *work);
 
 /**
  * Chooses which sequence to use.

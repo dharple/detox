@@ -10,14 +10,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <errno.h>
 
 #include "clean_utf_8.h"
 #include "table.h"
 #include "wrapped.h"
 
-static int get_utf8_width(char c);
+static int get_utf_8_width(char c);
 
 #define UNICODE_MAX_VALUE 0x10FFFF
 
@@ -47,10 +45,10 @@ static char *invalid_replacement = "_";
 
 #define check_width(chr, size) if ((chr & UTF_8_ENCODED_ ## size ## _BYTES_MASK) == UTF_8_ENCODED_ ## size ## _BYTES) { return size; }
 #define is_upper_bit_set(chr) ((chr & UPPER_BIT) == UPPER_BIT)
-#define is_utf8_cont(chr) ((chr & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_CONT)
-#define is_utf8_start(chr) ((chr & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_START)
-#define unpack_cont(chr) ((unsigned char)chr & ~UTF_8_ENCODED_MASK)
-#define unpack_start(chr, size) ((unsigned char)chr & ~UTF_8_ENCODED_ ## size ## _BYTES_MASK)
+#define is_utf_8_cont(chr) ((chr & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_CONT)
+#define is_utf_8_start(chr) ((chr & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_START)
+#define unpack_cont(chr) ((unsigned char) chr & ~UTF_8_ENCODED_MASK)
+#define unpack_start(chr, size) ((unsigned char) chr & ~UTF_8_ENCODED_ ## size ## _BYTES_MASK)
 
 /**
  * Translates UTF-8 characters (Unicode Translation Format - 8 Bit) into
@@ -67,7 +65,8 @@ char *clean_utf_8(char *filename, table_t *table)
     unsigned int new_value;
     int expected_chars;
     int characters_eaten;
-    int utf8_width;
+    int utf_8_width;
+    int failed;
 
     if (filename == NULL) {
         return NULL;
@@ -84,13 +83,11 @@ char *clean_utf_8(char *filename, table_t *table)
     output_walk = output;
 
     while (*input_walk != '\0') {
-        new_value = 0;
+        utf_8_width = get_utf_8_width(*input_walk);
 
-        utf8_width = get_utf8_width(*input_walk);
-
-        switch (utf8_width) {
+        switch (utf_8_width) {
             case 1: // 0aaaaaaa
-                new_value = *input_walk;
+                new_value = (unsigned char) *input_walk;
                 break;
 
             case 2: // 110aaaaa 10bbbbbb
@@ -120,8 +117,10 @@ char *clean_utf_8(char *filename, table_t *table)
                 continue;
         }
 
-        expected_chars = utf8_width - 1;
-        characters_eaten = utf8_width;
+        expected_chars = utf_8_width - 1;
+        characters_eaten = utf_8_width;
+
+        failed = 0;
 
         while (expected_chars > 0) {
             new_value <<= 6;
@@ -130,13 +129,13 @@ char *clean_utf_8(char *filename, table_t *table)
 
             if (*input_walk == '\0') {
                 fprintf(stderr, "detox: warning: UTF-8 sequence ended unexpectedly (null)\n");
-                new_value = -1;
+                failed = 1;
                 break;
             }
 
-            if (!is_utf8_cont(*input_walk)) {
+            if (!is_utf_8_cont(*input_walk)) {
                 fprintf(stderr, "detox: warning: UTF-8 sequence ended unexpectedly (missing con't)\n");
-                new_value = -1;
+                failed = 1;
                 break;
             }
 
@@ -145,7 +144,7 @@ char *clean_utf_8(char *filename, table_t *table)
             expected_chars--;
         }
 
-        if (new_value == -1) {
+        if (failed) {
             *output_walk++ = invalid_replacement[0];
             continue;
         }
@@ -211,9 +210,9 @@ char *clean_utf_8(char *filename, table_t *table)
  * @return An integer between 1 and 6.  If the character is invalid, -1 will be
  *         returned.
  */
-static int get_utf8_width(char c)
+static int get_utf_8_width(char c)
 {
-    if (is_utf8_start(c)) {
+    if (is_utf_8_start(c)) {
         check_width(c, 2);
         check_width(c, 3);
         check_width(c, 4);

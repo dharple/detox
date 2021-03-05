@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include <errno.h>
 
 #include "clean_string.h"
 #include "wrapped.h"

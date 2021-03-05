@@ -8,15 +8,12 @@
  * file that was distributed with this source code.
  */
 
-#include "config.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "detox_struct.h"
 
-#include "clean_string.h"
 #include "config_file.h"
 #include "filelist.h"
 #include "filter.h"
@@ -31,12 +28,11 @@ static sequence_t *cf_sequence_ret, *cf_sequence_current;
 static filter_t *cf_filter_ret, *cf_filter_current;
 static char *current_name = NULL;
 static char *current_filename = NULL;
-static options_t *current_options;
 static filelist_t *files_to_ignore;
 
 void cf_append_sequence_list(void);
 void cf_append_filter(int cleaner, char *builtin, char *filename, int max_length, int remove_trailing);
-void cf_append_ignore_entry(int token, void *str);
+void cf_append_ignore_entry(void *str);
 
 void yyerror (char *s);
 
@@ -167,7 +163,7 @@ ignore_list: ignore_filename |
     ;
 
 ignore_filename: FILENAME string EOL {
-        cf_append_ignore_entry(FILENAME, $2);
+        cf_append_ignore_entry($2);
     }
     ;
 
@@ -185,7 +181,6 @@ config_file_t *parse_config_file(char *filename, config_file_t *previous_results
     config_file_t *ret = NULL;
 
     current_filename = filename;
-    current_options = main_options;
 
     /*
      * XXX - Should we be closing the default yyin/yyout?  If so, should we
@@ -346,6 +341,6 @@ void cf_append_filter(int cleaner, char *builtin, char *filename, int max_length
 }
 
 
-void cf_append_ignore_entry(int token, void *str) {
+void cf_append_ignore_entry(void *str) {
     filelist_put(files_to_ignore, str);
 }

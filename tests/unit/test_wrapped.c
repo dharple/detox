@@ -15,6 +15,7 @@
  * file that was distributed with this source code.
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -25,11 +26,12 @@
 
 START_TEST(test_wrapped_malloc_fail)
 {
-#line 19
-#ifdef SUPPORTS_COVERAGE
+#line 20
+#ifdef SUPPORT_COVERAGE
     wrapped_malloc_failure = 1;
     wrapped_malloc(5);
 # else
+    fprintf(stderr, "warning: not testing malloc failure\n");
     exit(EXIT_FAILURE);
 #endif
 
@@ -38,11 +40,12 @@ END_TEST
 
 START_TEST(test_wrapped_strdup_fail)
 {
-#line 27
-#ifdef SUPPORTS_COVERAGE
+#line 29
+#ifdef SUPPORT_COVERAGE
     wrapped_strdup_failure = 1;
     wrapped_strdup("test");
 # else
+    fprintf(stderr, "warning: not testing malloc failure\n");
     exit(EXIT_FAILURE);
 #endif
 
@@ -51,7 +54,7 @@ END_TEST
 
 START_TEST(test_wrapped_malloc)
 {
-#line 35
+#line 38
     void *test;
 
     test = wrapped_malloc(16);
@@ -62,7 +65,7 @@ END_TEST
 
 START_TEST(test_wrapped_strdup)
 {
-#line 41
+#line 44
     char *check;
 
     check = wrapped_strdup("so broken");

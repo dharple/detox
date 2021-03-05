@@ -7,8 +7,6 @@
  * file that was distributed with this source code.
  */
 
-#include <string.h>
-
 #include "detox_struct.h"
 
 #include "config_file.h"

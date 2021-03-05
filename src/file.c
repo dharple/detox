@@ -220,10 +220,7 @@ void parse_dir(char *filename, options_t *options)
                     parse_dir(work, options);
                 }
                 free(work);
-            } else if (S_ISREG(stat_info.st_mode)) {
-                work = parse_file(new_file, options);
-                free(work);
-            } else if (options->special) {
+            } else if (S_ISREG(stat_info.st_mode) || options->special) {
                 work = parse_file(new_file, options);
                 free(work);
             }
