@@ -21,7 +21,6 @@
 #include "config.h"
 
 #include "clean_string.h"
-#include "wrapped.h"
 
 #include "unit_struct.h"
 
@@ -39,7 +38,7 @@ static struct test_filename data[DATA_COUNT] = {
 
 START_TEST(test_clean_lower)
 {
-#line 33
+#line 32
     char *output;
     int i;
 
@@ -53,21 +52,12 @@ END_TEST
 
 START_TEST(test_clean_lower_null)
 {
-#line 42
+#line 41
     char *output;
 
     // confirm NULL works
     output = clean_lower(NULL);
     ck_assert(output == NULL);
-
-}
-END_TEST
-
-START_TEST(test_clean_lower_malloc_fail)
-{
-#line 49
-    wrapped_malloc_failure = 1;
-    clean_lower("test");
 }
 END_TEST
 
@@ -81,7 +71,6 @@ int main(void)
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, test_clean_lower);
     tcase_add_test(tc1_1, test_clean_lower_null);
-    tcase_add_exit_test(tc1_1, test_clean_lower_malloc_fail, 1);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

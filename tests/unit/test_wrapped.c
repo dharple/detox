@@ -15,6 +15,7 @@
  * file that was distributed with this source code.
  */
 
+#include <stdlib.h>
 #include <string.h>
 
 // need defines first
@@ -24,25 +25,33 @@
 
 START_TEST(test_wrapped_malloc_fail)
 {
-#line 18
+#line 19
+#ifdef SUPPORTS_COVERAGE
     wrapped_malloc_failure = 1;
     wrapped_malloc(5);
+# else
+    exit(EXIT_FAILURE);
+#endif
 
 }
 END_TEST
 
 START_TEST(test_wrapped_strdup_fail)
 {
-#line 22
+#line 27
+#ifdef SUPPORTS_COVERAGE
     wrapped_strdup_failure = 1;
     wrapped_strdup("test");
+# else
+    exit(EXIT_FAILURE);
+#endif
 
 }
 END_TEST
 
 START_TEST(test_wrapped_malloc)
 {
-#line 26
+#line 35
     void *test;
 
     test = wrapped_malloc(16);
@@ -53,7 +62,7 @@ END_TEST
 
 START_TEST(test_wrapped_strdup)
 {
-#line 32
+#line 41
     char *check;
 
     check = wrapped_strdup("so broken");
