@@ -34,14 +34,14 @@ noinst_PROGRAMS = \
 	generate-builtin-table
 
 detox_SOURCES = \
+	config_file_yacc.y \
+	config_file_lex.l \
 	builtin_table.c \
 	clean_string.c \
 	clean_utf_8.c \
 	config_file.c \
 	config_file_dump.c \
-	config_file_lex.l \
 	config_file_spoof.c \
-	config_file_yacc.y \
 	detox.c \
 	file.c \
 	filelist.c \
