@@ -55,6 +55,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - UTF-8 encoded NULL (0x0000) values are converted to `_hidden_null_` to make
   them obvious. [#40]
 
+## [1.4.2] - 2021-03-06
+### Fixed
+- Replaced instances of `cp -an` with `test` and `install` in the Makefile rule
+  that copies `yyz.sample` to `yyz`. [#73]
+- Fixed `make distcheck`. [#73]
+
 ## [1.4.1] - 2021-02-20
 ### Fixed
 - Fixed a memory overflow bug while reading files from the command line, using
@@ -209,7 +215,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial release
 
 [Unreleased]: https://github.com/dharple/detox/compare/v2.0.0-beta1...main
-[2.0.0-beta1]: https://github.com/dharple/detox/compare/v1.4.1...v2.0.0-beta1
+[2.0.0-beta1]: https://github.com/dharple/detox/compare/v1.4.2...v2.0.0-beta1
+[1.4.2]: https://github.com/dharple/detox/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/dharple/detox/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/dharple/detox/compare/v1.3.3...v1.4.0
 [1.3.3]: https://github.com/dharple/detox/compare/v1.3.2...v1.3.3
@@ -219,6 +226,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#73]: https://github.com/dharple/detox/issues/73
 [#72]: https://github.com/dharple/detox/issues/72
 [#64]: https://github.com/dharple/detox/issues/64
 [#59]: https://github.com/dharple/detox/issues/59

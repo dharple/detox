@@ -2,6 +2,8 @@
 
 *If I missed you, please let me know!*
 
+Thomas Klausner reminded me that `cp -n` does not work on NetBSD.
+
 Sean M. Burke for [Text::Unidecode], which helped with Unicode transliteration
 and became a new table, `unidecode.tbl`.  Additionally, Behat's [PHP
 transliteration library] put Text::Unidecode in a format I was comfortable
