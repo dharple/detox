@@ -16,6 +16,7 @@ Basic Development:
 - gcc
 - make
 - php
+- pkg-config or pkgconf
 
 Linting:
 
@@ -124,7 +125,7 @@ make coverage
 #### Caveats
 
 For some reason, if you pass `-ftest-coverage` to gcc when you're linking
-objects into an exectuable, whichever object is first on the command line will
+objects into an executable, whichever object is first on the command line will
 have its `.gcno` file wiped out.  There is a hack in `src/Makefile.am` that
 puts `-ftest-coverage` on the `DEFS` variable.
 
@@ -135,8 +136,7 @@ puts `-ftest-coverage` on the `DEFS` variable.
 1. Update version at head of `CHANGELOG.md`.
 2. Update version link at footer of `CHANGELOG.md`.
 3. Update version in `configure.ac`.
-4. Run `autoconf` or `make` to rebuild `configure`.
-5. Commit and push.
+4. Commit and push.
 
 ```bash
 git diff
@@ -148,14 +148,14 @@ git push
 git push --tags
 ```
 
-6. Build a package.
+5. Build a package.
 
 ```bash
 TAR_OPTIONS="--owner=0 --group=0 --numeric-owner" make dist
 ```
 
-7. Create a new release on GitHub, using the rendered contents of the
+6. Create a new release on GitHub, using the rendered contents of the
    CHANGELOG.
-8. Play [Alwa's Legacy].
+7. Play [Alwa's Legacy].
 
 [Alwa's Legacy]: https://eldenpixels.com/alwas-legacy/

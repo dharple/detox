@@ -5,7 +5,7 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0-beta1] - 2021-03-05
 ### Added
 - Added a new transliteration table, `unidecode.tbl`, based on
   [Text:Unidecode].  [#47] [#53]
@@ -208,7 +208,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/dharple/detox/compare/v1.4.1...main
+[Unreleased]: https://github.com/dharple/detox/compare/v2.0.0-beta1...main
+[2.0.0-beta1]: https://github.com/dharple/detox/compare/v1.4.1...v2.0.0-beta1
 [1.4.1]: https://github.com/dharple/detox/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/dharple/detox/compare/v1.3.3...v1.4.0
 [1.3.3]: https://github.com/dharple/detox/compare/v1.3.2...v1.3.3

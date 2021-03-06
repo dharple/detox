@@ -1,17 +1,32 @@
-# Notice
-
-I have renamed the `master` branch to `main`.  If you have a copy of detox
-checked out, you can update your code to point at the new branch using
-[these steps](https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9).
-Alternatively, you can clone a fresh copy of the repo.
-
 # Overview
 
 `detox` is a program that renames files to make them easier to work with under
 Unix and related operating systems.  Spaces and various other unsafe
 characters (such as "$") get replaced with "_".  ISO 8859-1 (Latin-1)
 characters can be transliterated to ASCII, as can UTF-8 characters.
-More details are contained in the `detox.1` man page.
+More details are contained in the `detox.1` [man page].
+
+---
+
+# Notice for Package Maintainers
+
+Version 2 adds a new dependency for package builds: `pkg-config` or `pkgconf`.
+
+You may also need to add a dependency on `libtool`.  Please let me know if you
+do, by creating an [issue].  I'll update the docs accordingly.
+
+Also, the default config file and translation tables are no longer prefixed
+with `.sample`.
+
+Please open an [issue] for any build problems encountered.  Thanks!
+
+# Notice for Everyone
+
+I have renamed the `master` branch to `main`.  If you have a copy of detox
+checked out, you can update your code to point at the new branch using
+[these steps].  Alternatively, you can clone a fresh copy of the repo.
+
+---
 
 # Runtime Notes
 
@@ -127,3 +142,6 @@ For support, to report a defect, or to request a new feature, please use the
 [GitHub Issues system].
 
 [GitHub Issues system]: https://github.com/dharple/detox/issues/
+[issue]: https://github.com/dharple/detox/issues/
+[man page]: https://raw.githubusercontent.com/dharple/detox/main/man/detox.1.pdf
+[these steps]: https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9
