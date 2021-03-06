@@ -2,6 +2,8 @@
 
 *If I missed you, please let me know!*
 
+Thomas Klausner reminded me that `cp -n` does not work on NetBSD.
+
 David Tardon fixed a memory overflow bug, which was passed to me by
 UsernameRandomlyGenerated.
 

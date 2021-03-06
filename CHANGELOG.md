@@ -5,6 +5,12 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Replaced instances of `cp -an` with `test` and `install` in the Makefile rule
+  that copies `yyz.sample` to `yyz`. [#73]
+- Fixed `make distcheck`. [#73]
+
 ## [1.4.1] - 2021-02-20
 ### Fixed
 - Fixed a memory overflow bug while reading files from the command line, using
@@ -168,6 +174,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#73]: https://github.com/dharple/detox/issues/73
 [#56]: https://github.com/dharple/detox/issues/56
 [#30]: https://github.com/dharple/detox/issues/30
 [#19]: https://github.com/dharple/detox/issues/19
