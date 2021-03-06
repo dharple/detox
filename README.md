@@ -77,7 +77,13 @@ sudo apt install autoconf automake bison flex gcc make pkg-config
 
 To install the needed packages on FreeBSD, run:
 ```
-sudo pkg install autoconf automake gcc pkgconf
+sudo pkg install autoconf automake gcc pkgconf wget
+```
+
+NetBSD:
+```
+sudo pkgin install autoconf automake mozilla-rootcerts pkgconf wget
+sudo mozilla-rootcerts install
 ```
 
 ## Install Stable from GitHub Package
@@ -103,7 +109,8 @@ make install
 
 ## Install Stable from Repository
 
-To build a stable copy of `detox` from source, run:
+To build a stable copy of `detox` from source, install the package `git`, then
+run:
 
 ```
 git clone -b 1.x https://github.com/dharple/detox.git
@@ -116,7 +123,8 @@ make install
 
 ## Install Development from Repository
 
-To build a development copy of `detox` from source, run:
+To build a development copy of `detox` from source, install the package `git`,
+then run:
 
 ```
 git clone -b main https://github.com/dharple/detox.git
