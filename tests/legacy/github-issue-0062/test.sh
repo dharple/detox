@@ -12,8 +12,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
@@ -25,7 +25,7 @@ WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
 
 # -----
 
-cd $WORK
+cd "$WORK"
 
 mkdir 1 2 3 4 5
 
@@ -55,9 +55,9 @@ touch "$INPUT"
 
 # -----
 
-cd $TESTBASE
-$DETOX --recursive $WORK
-cd $WORK
+cd "$TESTBASE"
+$DETOX --recursive "$WORK"
+cd "$WORK"
 
 # -----
 

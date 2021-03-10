@@ -11,8 +11,8 @@
 
 set -e
 
-DETOX=$(dirname $(dirname $0))/src/detox
-DETOXRC=$(dirname $(dirname $0))/etc/detoxrc
+DETOX=$(dirname $(dirname "$0"))/src/detox
+DETOXRC=$(dirname $(dirname "$0"))/etc/detoxrc
 
 if [ ! -x "$DETOX" ] ; then
 	echo please complie detox first
@@ -33,7 +33,7 @@ $DETOX -L -v > /dev/null
 # still just checking for errors
 
 if [ -f "$DETOXRC" ] ; then
-	$DETOX -f $DETOXRC -L -v > /dev/null
+	$DETOX -f "$DETOXRC" -L -v > /dev/null
 else
 	echo "couldn't find detoxrc"
 fi
@@ -43,7 +43,7 @@ fi
 INPUT="hi there"
 OUTPUT="hi_there"
 
-CHECK=$(echo $INPUT | $DETOX --inline)
+CHECK=$(echo "$INPUT" | $DETOX --inline)
 if [ "$CHECK" != "$OUTPUT" ] ; then
 	echo failed to rename "INPUT" to "$OUTPUT"
 	exit 1
@@ -54,7 +54,7 @@ fi
 INPUT="hi - - - there"
 OUTPUT="hi-there"
 
-CHECK=$(echo $INPUT | $DETOX --inline)
+CHECK=$(echo "$INPUT" | $DETOX --inline)
 if [ "$CHECK" != "$OUTPUT" ] ; then
 	echo failed to rename "INPUT" to "$OUTPUT"
 	exit 1

@@ -4,7 +4,7 @@
 # Wikipedia which lists Unicode equivalents for CP-1252 characters.
 #
 
-TABLEPATH=$(dirname $(dirname $(realpath $0)))/table/
+TABLEPATH=$(dirname $(dirname $(realpath "$0")))/table/
 
 TABLE1=$TABLEPATH/unicode.tbl
 TABLE2=$TABLEPATH/unidecode.tbl
@@ -60,17 +60,17 @@ undef
 CURRENT=$(printf "%d" $START_HEX)
 
 for CHAR in $CHARS ; do
-	CURRENT_HEX=$(printf "0x%04X" $CURRENT)
+	CURRENT_HEX=$(printf "0x%04X" "$CURRENT")
 
 	if [ "$CHAR" = "undef" ] ; then
 		echo "# $CURRENT_HEX		undef"
 	else
-		CHECK=$(grep -c 0x$CHAR $TABLE1)
+		CHECK=$(grep -c 0x"$CHAR" "$TABLE1")
 		if [ "$CHECK" -eq "1" ] ; then
-			grep 0x$CHAR $TABLE1 | sed -e"s/^0x[0-9A-F]\{4,\}/$CURRENT_HEX/"
+			grep 0x"$CHAR" "$TABLE1" | sed -e"s/^0x[0-9A-F]\{4,\}/$CURRENT_HEX/"
 		else
 			echo -n "# "
-			grep 0x$CHAR $TABLE2 | sed -e"s/^0x[0-9A-F]\{4,\}/$CURRENT_HEX/"
+			grep 0x"$CHAR" "$TABLE2" | sed -e"s/^0x[0-9A-F]\{4,\}/$CURRENT_HEX/"
 		fi
 	fi
 

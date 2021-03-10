@@ -12,12 +12,12 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
-TABLEPATH=$(dirname $(dirname $TESTBASE))/table
+TABLEPATH=$(dirname $(dirname "$TESTBASE"))/table
 
 # ------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ OUTPUT="hi_there.txt"
 for METHOD1 in safe safe-basic safe-search ; do
 	CHECK="$HOLD/strace.$METHOD1.txt"
 	SCRIPT="$HOLD/check.$METHOD1.sh"
-	cat <<- DONE >> $SCRIPT
+	cat <<- DONE >> "$SCRIPT"
 		#!/usr/bin/env bash
 		. $TESTBASE/test-functions.sh
 		. $TESTBASE/character-helper.sh
@@ -56,30 +56,30 @@ for METHOD1 in safe safe-basic safe-search ; do
 		METHOD1="$METHOD1"
 		test_sequence "\$DETOX" "\$INPUT" "\$OUTPUT" "\$TABLEPATH" "\$METHOD1"
 	DONE
-	chmod +x $SCRIPT
-	$STRACE -f -o "$CHECK" -s 1024 -e trace=file $SCRIPT
+	chmod +x "$SCRIPT"
+	$STRACE -f -o "$CHECK" -s 1024 -e trace=file "$SCRIPT"
 
 	case "$METHOD1" in
 		safe | safe-basic )
-			COUNT=$(grep -c 'usr.share.detox.safe.tbl' $CHECK || true)
-			if [ $COUNT -gt 0 ] ; then
+			COUNT=$(grep -c 'usr.share.detox.safe.tbl' "$CHECK" || true)
+			if [ "$COUNT" -gt 0 ] ; then
 				echo "Found evidence of searching for safe.tbl when using $METHOD1"
 				exit 1
 			fi
-			COUNT=$(grep -c 'usr.local.share.detox.safe.tbl' $CHECK || true)
-			if [ $COUNT -gt 0 ] ; then
+			COUNT=$(grep -c 'usr.local.share.detox.safe.tbl' "$CHECK" || true)
+			if [ "$COUNT" -gt 0 ] ; then
 				echo "Found evidence of searching for safe.tbl when using $METHOD1"
 				exit 1
 			fi
 			;;
 		safe-search )
-			COUNT=$(grep -c 'usr.share.detox.safe.tbl' $CHECK || true)
-			if [ $COUNT -eq 0 ] ; then
+			COUNT=$(grep -c 'usr.share.detox.safe.tbl' "$CHECK" || true)
+			if [ "$COUNT" -eq 0 ] ; then
 				echo "Found NO evidence of searching for safe.tbl when using $METHOD1"
 				exit 1
 			fi
-			COUNT=$(grep -c 'usr.local.share.detox.safe.tbl' $CHECK || true)
-			if [ $COUNT -eq 0 ] ; then
+			COUNT=$(grep -c 'usr.local.share.detox.safe.tbl' "$CHECK" || true)
+			if [ "$COUNT" -eq 0 ] ; then
 				echo "Found NO evidence of searching for safe.tbl when using $METHOD1"
 				exit 1
 			fi

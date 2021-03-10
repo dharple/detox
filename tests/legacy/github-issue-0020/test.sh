@@ -12,8 +12,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
@@ -25,7 +25,7 @@ fi
 # -------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 SOURCE=fool
 INPUT="hi there"
@@ -59,7 +59,7 @@ fi
 # repeat these tests, in a subdirectory
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 mkdir test
 cd test
@@ -69,7 +69,7 @@ INPUT="test/hi there"
 OUTPUT="$INPUT"
 
 touch "$SOURCE"
-cd $WORK
+cd "$WORK"
 ln -s "$SOURCE" "$INPUT"
 
 $DETOX -r "$INPUT"

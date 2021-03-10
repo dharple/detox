@@ -3,11 +3,11 @@
 # Generate tests/unit/*.c from .ts
 #
 
-PROJECT_ROOT=$(dirname $(dirname $(realpath $0)))
-cd $PROJECT_ROOT
+PROJECT_ROOT=$(dirname $(dirname $(realpath "$0")))
+cd "$PROJECT_ROOT" || exit
 
 TESTDIR=$PROJECT_ROOT/tests/unit
-cd $TESTDIR
+cd "$TESTDIR" || exit
 
 CHECKMK=$(command -v checkmk)
 
@@ -23,21 +23,21 @@ fi
 WORK=$(realpath $(mktemp -d $BASE/work-XXXXXX))
 
 for FILE in *.ts ; do
-	INPUT=$(basename $FILE)
+	INPUT=$(basename "$FILE")
 	OUTPUT="${INPUT%.ts}.c"
 	echo -n "process check file $INPUT... "
-	$CHECKMK $INPUT > $WORK/$OUTPUT
-	if [ ! -f $OUTPUT ] ; then
+	$CHECKMK "$INPUT" > "$WORK"/"$OUTPUT"
+	if [ ! -f "$OUTPUT" ] ; then
 		echo "created"
-		mv $WORK/$OUTPUT $OUTPUT
+		mv "$WORK"/"$OUTPUT" "$OUTPUT"
 	else
-		diff -q $WORK/$OUTPUT $OUTPUT 2>&1 > /dev/null
+		diff -q "$WORK"/"$OUTPUT" "$OUTPUT" 2>&1 > /dev/null
 		if [ "$?" -eq "0" ] ; then
 			echo
-			rm $WORK/$OUTPUT
+			rm "$WORK"/"$OUTPUT"
 		else
 			echo "updated"
-			mv $WORK/$OUTPUT $OUTPUT
+			mv "$WORK"/"$OUTPUT" "$OUTPUT"
 		fi
 	fi
 done

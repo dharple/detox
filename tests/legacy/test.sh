@@ -8,34 +8,34 @@ if [ -z "$1" ] ; then
 	exit 1
 fi
 
-. $(dirname $0)/test-functions.sh
+. $(dirname "$0")/test-functions.sh
 
-DETOX=$(realpath $1)
+DETOX=$(realpath "$1")
 if [ ! -x "$DETOX" ] ; then
-	echo cannot find detox at $1
+	echo cannot find detox at "$1"
 	exit 1
 fi
 
-cd $(dirname $0)
+cd $(dirname "$0") || exit
 
 TESTBASE=$(pwd)
 export TESTBASE
 
-echo DETOX=$DETOX
-echo TESTBASE=$TESTBASE
+echo DETOX="$DETOX"
+echo TESTBASE="$TESTBASE"
 
 SUCCESS=1
 
 for DIR in github-* legacy-* man-page-* ; do
 	echo "------------------------------------------------------"
-	echo running test $(basename $DIR)
-	cd $DIR
-	./test.sh $DETOX
+	echo running test $(basename "$DIR")
+	cd "$DIR" || exit
+	./test.sh "$DETOX"
 	if [ $? -ne 0 ] ; then
 		SUCCESS=0
 		echo FAILED
 	fi
-	cd $TESTBASE
+	cd "$TESTBASE" || exit
 done
 
 echo "------------------------------------------------------"

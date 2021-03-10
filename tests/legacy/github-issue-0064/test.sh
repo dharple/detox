@@ -12,8 +12,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
@@ -22,13 +22,13 @@ if [ ! -d $BASE ] ; then
 	mkdir $BASE
 fi
 
-DETOXRC1=$(dirname $(realpath $0))/detoxrc.base
-DETOXRC2=$(dirname $(realpath $0))/detoxrc.remove_trailing
+DETOXRC1=$(dirname $(realpath "$0"))/detoxrc.base
+DETOXRC2=$(dirname $(realpath "$0"))/detoxrc.remove_trailing
 
 # -------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 mkdir test
 
@@ -36,11 +36,11 @@ INPUT="test/.hi there"
 OUTPUT="$INPUT"
 
 touch "$INPUT"
-cd $WORK
+cd "$WORK"
 
 $DETOX -r test
-$DETOX -f $DETOXRC1 -r .
-$DETOX -f $DETOXRC2 -r .
+$DETOX -f "$DETOXRC1" -r .
+$DETOX -f "$DETOXRC2" -r .
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo "Expected $OUTPUT is not present"
@@ -50,7 +50,7 @@ fi
 # -------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 mkdir .git
 
@@ -58,11 +58,11 @@ INPUT=".git/.hi there"
 OUTPUT="$INPUT"
 
 touch "$INPUT"
-cd $WORK
+cd "$WORK"
 
 $DETOX -r .
-$DETOX -f $DETOXRC1 -r .
-$DETOX -f $DETOXRC2 -r .
+$DETOX -f "$DETOXRC1" -r .
+$DETOX -f "$DETOXRC2" -r .
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo "Expected $OUTPUT is not present"
@@ -72,7 +72,7 @@ fi
 # -------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 mkdir -p .git/objects/
 
@@ -80,11 +80,11 @@ INPUT=".git/objects/hi there"
 OUTPUT="$INPUT"
 
 touch "$INPUT"
-cd $WORK
+cd "$WORK"
 
 $DETOX -r .
-$DETOX -f $DETOXRC1 -r .
-$DETOX -f $DETOXRC2 -r .
+$DETOX -f "$DETOXRC1" -r .
+$DETOX -f "$DETOXRC2" -r .
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo "Expected $OUTPUT is not present"
@@ -94,7 +94,7 @@ fi
 # -------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 mkdir -p {arch}/objects/
 
@@ -102,11 +102,11 @@ INPUT="{arch}/objects/hi there"
 OUTPUT="$INPUT"
 
 touch "$INPUT"
-cd $WORK
+cd "$WORK"
 
 # {arch} isn't built in to the base config
-$DETOX -f $DETOXRC1 -r .
-$DETOX -f $DETOXRC2 -r .
+$DETOX -f "$DETOXRC1" -r .
+$DETOX -f "$DETOXRC2" -r .
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo "Expected $OUTPUT is not present"
@@ -116,7 +116,7 @@ fi
 # -------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 mkdir -p {arch}/objects/
 
@@ -127,10 +127,10 @@ touch "$INPUT"
 cd "$WORK/{arch}"
 
 # {arch} isn't built in to the base config
-$DETOX -f $DETOXRC1 -r ..
-$DETOX -f $DETOXRC2 -r ..
+$DETOX -f "$DETOXRC1" -r ..
+$DETOX -f "$DETOXRC2" -r ..
 
-cd $WORK
+cd "$WORK"
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo "Expected $OUTPUT is not present"

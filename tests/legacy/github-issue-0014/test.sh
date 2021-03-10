@@ -12,8 +12,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 # Run the test based on data from
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=861537
@@ -31,6 +31,6 @@ test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 # Run the same test, based on the default table
 
 OUTPUT="mE AE.txt"
-TABLE=$(dirname $(dirname $TESTBASE))/table/unicode.tbl
+TABLE=$(dirname $(dirname "$TESTBASE"))/table/unicode.tbl
 
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"

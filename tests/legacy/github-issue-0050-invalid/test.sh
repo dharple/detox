@@ -10,8 +10,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
@@ -25,8 +25,8 @@ WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
 
 # ----
 
-cp detoxrc.invalid_builtin $WORK/detoxrc
-cd $WORK
+cp detoxrc.invalid_builtin "$WORK"/detoxrc
+cd "$WORK" || exit
 
 INPUT="random filename.txt"
 

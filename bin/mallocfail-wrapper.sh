@@ -10,7 +10,7 @@ SLEEP=0.5s
 
 DETOX="$ROOT/src/detox"
 if [ ! -f "$DETOX" ] ; then
-	cd $ROOT
+	cd "$ROOT" || exit
 	make
 fi
 
@@ -22,15 +22,15 @@ MALLOCFAIL=/tmp/detoxtest/mallocfail/
 MALLOCFAILSO=$MALLOCFAIL/mallocfail.so
 
 if [ ! -d "$MALLOCFAIL" ] ; then
-	cd /tmp
+	cd /tmp || exit
 	mkdir -p detoxtest
-	cd detoxtest
+	cd detoxtest || exit
 	git clone https://github.com/ralight/mallocfail.git
-	cd mallocfail
+	cd mallocfail || exit
 	make
 else
 	if [ ! -f "$MALLOCFAILSO" ] ; then
-		cd "$MALLOCFAIL"
+		cd "$MALLOCFAIL" || exit
 		make clean && make
 	fi
 fi
@@ -40,17 +40,17 @@ if [ ! -f "$MALLOCFAILSO" ] ; then
 	exit 1
 fi
 
-cd $ROOT
+cd "$ROOT" || exit
 
 # --------------------------------------------------------
 
 BASE="/tmp/detoxtest/$(date +"%Y%m%d")"
-if [ ! -d $BASE ] ; then
-	mkdir -p $BASE
+if [ ! -d "$BASE" ] ; then
+	mkdir -p "$BASE"
 fi
-WORK=$(realpath $(mktemp -d $BASE/test-mallocfail-XXXXXX))
+WORK=$(realpath $(mktemp -d "$BASE"/test-mallocfail-XXXXXX))
 FAIL=$WORK/fail
-mkdir -p $FAIL
+mkdir -p "$FAIL"
 
 MALLOCFAIL_FILE=$WORK/hashes.txt
 export MALLOCFAIL_FILE
@@ -70,24 +70,24 @@ while [ 1 ] ; do
 	# LD_PRELOAD=$MALLOCFAILSO $DETOX -L -v > $OUTPUT
 	# LD_PRELOAD=$MALLOCFAILSO $DETOX -f $ROOT/etc/detoxrc -L -v > $OUTPUT
 	# dmesg | LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f $ROOT/etc/detoxrc --inline > $OUTPUT
-	LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f $ROOT/etc/detoxrc --dry-run --recursive /tmp > $OUTPUT
+	LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f "$ROOT"/etc/detoxrc --dry-run --recursive /tmp > "$OUTPUT"
 	EXIT=$?
 
 	if [ "$EXIT" -eq "139" ] ; then
-		cat $OUTPUT
+		cat "$OUTPUT"
 		echo "segfault"
-		cp $OUTPUT $FAIL/
+		cp "$OUTPUT" "$FAIL"/
 		sleep $SLEEP
 	fi
 
 	if [ "$EXIT" -eq "0" ] ; then
-		cat $OUTPUT
-		if [ "$(grep -ci "Start trace" $OUTPUT)" -gt "0" ] ; then
+		cat "$OUTPUT"
+		if [ "$(grep -ci "Start trace" "$OUTPUT")" -gt "0" ] ; then
 			echo "malloc failed but the script didn't exit"
-			if [ "$(grep -ci "stdio2/printf" $OUTPUT)" -gt "0" ] ; then
+			if [ "$(grep -ci "stdio2/printf" "$OUTPUT")" -gt "0" ] ; then
 				echo "printf caused this one..."
 			fi
-			cp $OUTPUT $FAIL/
+			cp "$OUTPUT" "$FAIL"/
 			sleep $SLEEP
 		else
 			echo "all tests passed"
@@ -98,4 +98,4 @@ while [ 1 ] ; do
 	COUNT=$(($COUNT+1))
 done
 
-ls -al $FAIL
+ls -al "$FAIL"

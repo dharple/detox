@@ -12,8 +12,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
@@ -25,7 +25,7 @@ fi
 # ------------------------------------------------------------------------
 
 WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-cd $WORK
+cd "$WORK"
 
 VALGRIND=$(command -v valgrind || true)
 
@@ -34,7 +34,7 @@ touch a b c d e f g h i j k
 if [ -z "$VALGRIND" ] ; then
 	echo WARNING: valgrind is not installed
 else
-	$VALGRIND --quiet --error-exitcode=1 --track-origins=yes $DETOX a b c d e f g h i j k
+	$VALGRIND --quiet --error-exitcode=1 --track-origins=yes "$DETOX" a b c d e f g h i j k
 fi
 
 # ------------------------------------------------------------------------
@@ -44,7 +44,7 @@ OUTPUT="has_space"
 
 for COUNT in 10 100 1000 ; do
 	WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
-	cd $WORK
+	cd "$WORK"
 
 	touch $(seq 1 $COUNT) "$INPUT"
 	$DETOX $(seq 1 $COUNT) "$INPUT"

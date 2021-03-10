@@ -11,15 +11,15 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
-MANPATH=$(dirname $(dirname $TESTBASE))/man
+MANPATH=$(dirname $(dirname "$TESTBASE"))/man
 
-sed -n '/START SAMPLE/,/END SAMPLE/p' $MANPATH/detoxrc.5 | sed -e's/^[.]." /# /' | diff - detoxrc.detoxrc.5
-sed -n '/START SAMPLE/,/END SAMPLE/p' $MANPATH/detox.tbl.5 | sed -e's/^[.]." /# /' | diff - detoxrc.detox.tbl.5
+sed -n '/START SAMPLE/,/END SAMPLE/p' "$MANPATH"/detoxrc.5 | sed -e's/^[.]." /# /' | diff - detoxrc.detoxrc.5
+sed -n '/START SAMPLE/,/END SAMPLE/p' "$MANPATH"/detox.tbl.5 | sed -e's/^[.]." /# /' | diff - detoxrc.detox.tbl.5
 
 $DETOX -f detoxrc.detoxrc.5 -L -v | diff - expected.detoxrc.5.txt
 $DETOX -f detoxrc.detox.tbl.5 -L -v | diff - expected.detox.tbl.5.txt

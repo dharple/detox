@@ -12,11 +12,11 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
-TABLEPATH=$(dirname $(dirname $TESTBASE))/table
+TABLEPATH=$(dirname $(dirname "$TESTBASE"))/table
 METHOD1a=wipeup
 METHOD1b=wipeup-remove-trailing
 

@@ -12,21 +12,21 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 INPUT=$(printf '     '$'\n\n''song name'$'\n''by band'$'\n''/')
 OUTPUT="_______song_name_by_band_"
 METHOD="safe"
-TABLE=$(dirname $(dirname $TESTBASE))/table/safe.tbl
+TABLE=$(dirname $(dirname "$TESTBASE"))/table/safe.tbl
 
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 
 # ---------------------------------------------------------------------------
 
 METHOD1=safe
-TABLEPATH=$(dirname $(dirname $TESTBASE))/table
+TABLEPATH=$(dirname $(dirname "$TESTBASE"))/table
 
 test_sequence "$DETOX" "$INPUT" "$OUTPUT" "$TABLEPATH" "$METHOD1"
 

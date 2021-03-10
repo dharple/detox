@@ -12,8 +12,8 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
@@ -29,7 +29,7 @@ CHECK=$WORK/artephius.txt
 # set up symlink loops within the testing directory
 # create a single file to work on
 
-cd $WORK
+cd "$WORK"
 mkdir test
 cd test
 ln -s .. simple_loop
@@ -40,12 +40,12 @@ touch 'hi there'
 mkdir further
 cd further
 
-cd $TESTBASE
-$DETOX -n -r --special $WORK > $CHECK 2>&1
-COUNT=$(wc -l $CHECK | sed -e's/^ *//g' | cut -f 1 -d ' ')
+cd "$TESTBASE"
+$DETOX -n -r --special "$WORK" > "$CHECK" 2>&1
+COUNT=$(wc -l "$CHECK" | sed -e's/^ *//g' | cut -f 1 -d ' ')
 
 if [ "$COUNT" -ne "1" ] ; then
-	echo expected 1 line of output from detox, found $COUNT instead
+	echo expected 1 line of output from detox, found "$COUNT" instead
 	exit 1
 fi
 
@@ -54,11 +54,11 @@ fi
 # run again with no changes to confirm that the next test won't hit a false
 # positive
 
-$DETOX -n -r --special $WORK > $CHECK 2>&1
-COUNT=$(wc -l $CHECK | sed -e's/^ *//g' | cut -f 1 -d ' ')
+$DETOX -n -r --special "$WORK" > "$CHECK" 2>&1
+COUNT=$(wc -l "$CHECK" | sed -e's/^ *//g' | cut -f 1 -d ' ')
 
 if [ "$COUNT" -ne "1" ] ; then
-	echo expected 1 line of output from detox, found $COUNT instead
+	echo expected 1 line of output from detox, found "$COUNT" instead
 	exit 1
 fi
 
@@ -66,20 +66,20 @@ fi
 
 # set up a recursive loop
 
-cd $WORK/test/deeper-test/further/
+cd "$WORK"/test/deeper-test/further/
 ln -s ../.. long_loop
 
-cd $TESTBASE
+cd "$TESTBASE"
 
-if [ ! -d $WORK/test/deeper-test/further/long_loop/deeper-test/ ] ; then
+if [ ! -d "$WORK"/test/deeper-test/further/long_loop/deeper-test/ ] ; then
 	echo test design failed
 	exit 1
 fi
 
-$DETOX -n -r --special $WORK > $CHECK 2>&1
-COUNT=$(wc -l $CHECK | sed -e's/^ *//g' | cut -f 1 -d ' ')
+$DETOX -n -r --special "$WORK" > "$CHECK" 2>&1
+COUNT=$(wc -l "$CHECK" | sed -e's/^ *//g' | cut -f 1 -d ' ')
 
 if [ "$COUNT" -ne "1" ] ; then
-	echo expected 1 line of output from detox, found $COUNT instead
+	echo expected 1 line of output from detox, found "$COUNT" instead
 	exit 1
 fi

@@ -12,14 +12,14 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
-TABLEPATH=$(dirname $(dirname $TESTBASE))/table
+TABLEPATH=$(dirname $(dirname "$TESTBASE"))/table
 
 # used for test_detoxrc
-DETOXRC=$(dirname $(dirname $TESTBASE))/etc/detoxrc
+DETOXRC=$(dirname $(dirname "$TESTBASE"))/etc/detoxrc
 SEQUENCE=default
 
 # used for test_sequence

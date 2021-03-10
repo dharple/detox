@@ -12,12 +12,12 @@ if [ -z "$TESTBASE" ] ; then
 	exit 1
 fi
 
-. $TESTBASE/test-functions.sh
-. $TESTBASE/character-helper.sh
+. "$TESTBASE"/test-functions.sh
+. "$TESTBASE"/character-helper.sh
 
 DETOX=$1
 
-CONFIGPATH=$(dirname $(dirname $TESTBASE))/etc
+CONFIGPATH=$(dirname $(dirname "$TESTBASE"))/etc
 
 BASE=/tmp/detoxtest/
 if [ ! -d $BASE ] ; then
@@ -27,7 +27,7 @@ WORK=$(realpath $(mktemp -d $BASE/test-custom-XXXXXX))
 
 # -----
 
-cd $WORK
+cd "$WORK"
 touch "hi there" "another test" "wow"
 EXPECTED="hi_there another_test wow"
 
@@ -42,13 +42,13 @@ done
 
 # -----
 
-cd $WORK
+cd "$WORK"
 touch "hi there2" "another test2" "wow2"
 EXPECTED="hi_there2 another_test2 wow2"
 
-cd $TESTBASE
-$DETOX -r $WORK
-cd $WORK
+cd "$TESTBASE"
+$DETOX -r "$WORK"
+cd "$WORK"
 
 for OUTPUT in $EXPECTED ; do
 	if [ ! -f "$OUTPUT" ] ; then
@@ -59,15 +59,15 @@ done
 
 # -----
 
-cd $WORK
+cd "$WORK"
 mkdir 3 confirm.3
 cd 3
 touch "hi there3" "another test3" "wow3"
 EXPECTED="hi_there3 another_test3 wow3"
 
-cd $TESTBASE
-$DETOX -r $WORK/confirm.3/..
-cd $WORK/3
+cd "$TESTBASE"
+$DETOX -r "$WORK"/confirm.3/..
+cd "$WORK"/3
 
 for OUTPUT in $EXPECTED ; do
 	if [ ! -f "$OUTPUT" ] ; then
@@ -81,11 +81,11 @@ done
 INPUT="4/.gnome/ignore me"
 OUTPUT="$INPUT"
 
-cd $WORK
+cd "$WORK"
 mkdir -p 4/.gnome
 touch "$INPUT"
 
-$DETOX -f $CONFIGPATH/detoxrc -r 4/
+$DETOX -f "$CONFIGPATH"/detoxrc -r 4/
 
 if [ ! -f "$OUTPUT" ] ; then
 	echo expected "$OUTPUT" not found
