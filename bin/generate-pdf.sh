@@ -3,7 +3,7 @@
 # Generate PDFs from man pages
 #
 
-PROJECT_ROOT=$(dirname $(dirname $(realpath "$0")))
+PROJECT_ROOT=$(dirname "$(dirname "$(realpath "$0")")")
 cd "$PROJECT_ROOT" || exit
 
 MANDIR=$PROJECT_ROOT/man
@@ -14,7 +14,7 @@ if [ ! -x "$MANDOC" ] ; then
 	exit 1
 fi
 
-for FILE in $MANDIR/*.[15] ; do
-	echo process man page $(basename "$FILE")
+for FILE in "$MANDIR"/*.[15] ; do
+	echo process man page "$(basename "$FILE")"
 	$MANDOC -T pdf "$FILE" > "$FILE".pdf
 done

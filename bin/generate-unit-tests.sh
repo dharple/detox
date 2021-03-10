@@ -3,7 +3,7 @@
 # Generate tests/unit/*.c from .ts
 #
 
-PROJECT_ROOT=$(dirname $(dirname $(realpath "$0")))
+PROJECT_ROOT=$(dirname "$(dirname "$(realpath "$0")")")
 cd "$PROJECT_ROOT" || exit
 
 TESTDIR=$PROJECT_ROOT/tests/unit
@@ -20,7 +20,7 @@ BASE=/tmp/detoxtest/
 if [ ! -d $BASE ] ; then
 	mkdir $BASE
 fi
-WORK=$(realpath $(mktemp -d $BASE/work-XXXXXX))
+WORK=$(realpath "$(mktemp -d $BASE/work-XXXXXX)")
 
 for FILE in *.ts ; do
 	INPUT=$(basename "$FILE")
@@ -31,7 +31,7 @@ for FILE in *.ts ; do
 		echo "created"
 		mv "$WORK"/"$OUTPUT" "$OUTPUT"
 	else
-		diff -q "$WORK"/"$OUTPUT" "$OUTPUT" 2>&1 > /dev/null
+		diff -q "$WORK"/"$OUTPUT" "$OUTPUT" > /dev/null 2>&1
 		if [ "$?" -eq "0" ] ; then
 			echo
 			rm "$WORK"/"$OUTPUT"

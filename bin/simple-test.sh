@@ -11,8 +11,9 @@
 
 set -e
 
-DETOX=$(dirname $(dirname "$0"))/src/detox
-DETOXRC=$(dirname $(dirname "$0"))/etc/detoxrc
+PROJECT_ROOT=$(dirname "$(dirname "$(realpath "$0")")")
+DETOX="$PROJECT_ROOT/src/detox"
+DETOXRC="$PROJECT_ROOT/etc/detoxrc"
 
 if [ ! -x "$DETOX" ] ; then
 	echo please complie detox first

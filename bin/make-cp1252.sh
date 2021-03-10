@@ -4,7 +4,8 @@
 # Wikipedia which lists Unicode equivalents for CP-1252 characters.
 #
 
-TABLEPATH=$(dirname $(dirname $(realpath "$0")))/table/
+PROJECT_ROOT=$(dirname "$(dirname "$(realpath "$0")")")
+TABLEPATH="$PROJECT_ROOT/table"
 
 TABLE1=$TABLEPATH/unicode.tbl
 TABLE2=$TABLEPATH/unidecode.tbl
@@ -74,5 +75,5 @@ for CHAR in $CHARS ; do
 		fi
 	fi
 
-	CURRENT=$(($CURRENT + 1))
+	CURRENT=$((CURRENT + 1))
 done

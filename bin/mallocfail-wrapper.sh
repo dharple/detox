@@ -5,12 +5,12 @@
 # This is still experimental and most likely will not work on your system.
 #
 
-ROOT=$(dirname "$(dirname "$(realpath "$0")")")
+PROJECT_ROOT=$(dirname "$(dirname "$(realpath "$0")")")
 SLEEP=0.5s
 
-DETOX="$ROOT/src/detox"
+DETOX="$PROJECT_ROOT/src/detox"
 if [ ! -f "$DETOX" ] ; then
-	cd "$ROOT" || exit
+	cd "$PROJECT_ROOT" || exit
 	make
 fi
 
@@ -40,7 +40,7 @@ if [ ! -f "$MALLOCFAILSO" ] ; then
 	exit 1
 fi
 
-cd "$ROOT" || exit
+cd "$PROJECT_ROOT" || exit
 
 # --------------------------------------------------------
 
@@ -48,7 +48,7 @@ BASE="/tmp/detoxtest/$(date +"%Y%m%d")"
 if [ ! -d "$BASE" ] ; then
 	mkdir -p "$BASE"
 fi
-WORK=$(realpath $(mktemp -d "$BASE"/test-mallocfail-XXXXXX))
+WORK=$(realpath "$(mktemp -d "$BASE"/test-mallocfail-XXXXXX)")
 FAIL=$WORK/fail
 mkdir -p "$FAIL"
 
@@ -63,14 +63,14 @@ export MALLOCFAIL_FAIL_COUNT
 
 COUNT=0
 
-while [ 1 ] ; do
+while true ; do
 	OUTPUT="$WORK/pass-$(printf "%04d" $COUNT).txt"
 
 	echo "iteration $COUNT"
 	# LD_PRELOAD=$MALLOCFAILSO $DETOX -L -v > $OUTPUT
-	# LD_PRELOAD=$MALLOCFAILSO $DETOX -f $ROOT/etc/detoxrc -L -v > $OUTPUT
-	# dmesg | LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f $ROOT/etc/detoxrc --inline > $OUTPUT
-	LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f "$ROOT"/etc/detoxrc --dry-run --recursive /tmp > "$OUTPUT"
+	# LD_PRELOAD=$MALLOCFAILSO $DETOX -f "$PROJECT_ROOT"/etc/detoxrc -L -v > $OUTPUT
+	# dmesg | LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f "$PROJECT_ROOT"/etc/detoxrc --inline > $OUTPUT
+	LD_PRELOAD=$MALLOCFAILSO $DETOX -s utf_8-legacy -f "$PROJECT_ROOT"/etc/detoxrc --dry-run --recursive /tmp > "$OUTPUT"
 	EXIT=$?
 
 	if [ "$EXIT" -eq "139" ] ; then
@@ -95,7 +95,7 @@ while [ 1 ] ; do
 		fi
 	fi
 
-	COUNT=$(($COUNT+1))
+	COUNT=$((COUNT+1))
 done
 
 ls -al "$FAIL"
