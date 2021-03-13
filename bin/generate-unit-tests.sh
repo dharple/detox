@@ -37,6 +37,7 @@ for FILE in *.ts ; do
 			rm "$WORK"/"$OUTPUT"
 		else
 			echo "updated"
+			mv "$OUTPUT" "$OUTPUT".bak
 			mv "$WORK"/"$OUTPUT" "$OUTPUT"
 		fi
 	fi

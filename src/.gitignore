@@ -1,0 +1,7 @@
+# Built Binaries
+check-table
+detox
+escape-utf-8
+generate-builtin-table
+inline-detox
+test-table-regression

@@ -64,7 +64,6 @@ table_t *table_resize(table_t *table, int rows, int use_hash)
         ret->default_translation = wrapped_strdup(table->default_translation);
     }
 
-    ret->max_data_length = table->max_data_length;
     ret->overwrites = table->overwrites;
 
     for (i = 0; i < table->length; i++) {
@@ -161,6 +160,10 @@ int table_put(table_t *table, unsigned int key, char *data)
 
     if (table->max_key < key) {
         table->max_key = key;
+    }
+
+    if (table->max_data_length < strlen(data)) {
+        table->max_data_length = strlen(data);
     }
 
     return offset;

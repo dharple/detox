@@ -212,7 +212,7 @@ table_t *load_builtin_iso8859_1_table(void)
  * Generated from unicode.tbl
  */
 
-static table_row_t builtin_unicode_rows[616] = {
+static table_row_t builtin_unicode_rows[627] = {
     { .key  = 0x0020, .data = " " },
     { .key  = 0x0021, .data = "!" },
     { .key  = 0x0022, .data = "\"" },
@@ -728,6 +728,13 @@ static table_row_t builtin_unicode_rows[616] = {
     { .key  = 0x024f, .data = "y" },
     { .key  = 0x02c6, .data = "^" },
     { .key  = 0x02dc, .data = "~" },
+    { .key  = 0x03a1, .data = "P" },
+    { .key  = 0x03c1, .data = "p" },
+    { .key  = 0x1952, .data = "n" },
+    { .key  = 0x1959, .data = "u" },
+    { .key  = 0x1963, .data = "l" },
+    { .key  = 0x1971, .data = "e" },
+    { .key  = 0x1974, .data = "c" },
     { .key  = 0x1e9e, .data = "SS" },
     { .key  = 0x2000, .data = " " },
     { .key  = 0x2001, .data = " " },
@@ -740,7 +747,11 @@ static table_row_t builtin_unicode_rows[616] = {
     { .key  = 0x2008, .data = " " },
     { .key  = 0x2009, .data = " " },
     { .key  = 0x200a, .data = " " },
-    { .key  = 0x200b, .data = " " },
+    { .key  = 0x200b, .data = "" },
+    { .key  = 0x200c, .data = "" },
+    { .key  = 0x200d, .data = "" },
+    { .key  = 0x200e, .data = "" },
+    { .key  = 0x200f, .data = "" },
     { .key  = 0x2010, .data = "-" },
     { .key  = 0x2011, .data = "-" },
     { .key  = 0x2012, .data = "-" },
@@ -832,8 +843,8 @@ static table_row_t builtin_unicode_rows[616] = {
 };
 
 static table_t builtin_unicode_table = {
-    .length              = 616,
-    .used                = 616,
+    .length              = 627,
+    .used                = 627,
     .max_data_length     = 7,
     .max_key             = 0x1f37a,
     .hits                = 0,

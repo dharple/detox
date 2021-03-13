@@ -1,4 +1,5 @@
 # Maintainer files
+*.bak
 *.orig
 *.patch
 *.rej
@@ -30,13 +31,6 @@ a.out
 
 # Built Objects
 *.o
-
-# Built Binaries
-check-table
-detox
-generate-builtin-table
-inline-detox
-test-table-regression
 
 # Built Packages
 /detox-*.tar.gz

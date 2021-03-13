@@ -149,6 +149,10 @@ char *clean_utf_8(char *filename, table_t *table)
             continue;
         }
 
+#ifdef DEBUG
+        fprintf(stderr, "detox: debug: found character 0x%04x, width: %d\n", new_value, utf_8_width);
+#endif
+
         input_walk++;
 
         replace_walk = table_get(table, new_value);

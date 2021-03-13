@@ -35,6 +35,7 @@ TESTS = \
 	test_clean_wipeup \
 	test_filelist \
 	test_spoof_config_file \
+	test_table_max_length \
 	test_table_resize \
 	test_wrapped
 

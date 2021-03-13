@@ -31,7 +31,6 @@ table_t *parse_table(char *filename)
     char *parsed;
     int err;
     int size;
-    int max_data_length;
     int ret;
     int state;
     char *system_ctype;
@@ -77,7 +76,6 @@ table_t *parse_table(char *filename)
 
     parsed = wrapped_malloc(1024);
 
-    max_data_length = 1;
     state = BASE_STATE;
 
     while (fgets(work, 1024, table_file) != NULL) {
@@ -138,10 +136,6 @@ table_t *parse_table(char *filename)
 
                 table->default_translation = wrapped_strdup(parsed);
 
-                if (strlen(parsed) > max_data_length) {
-                    max_data_length = strlen(parsed);
-                }
-
                 continue;
             }
 
@@ -191,14 +185,7 @@ table_t *parse_table(char *filename)
             free(parsed);
             return NULL;
         }
-
-        if (strlen(parsed) > max_data_length) {
-            max_data_length = strlen(parsed);
-        }
-
     }
-
-    table->max_data_length = max_data_length;
 
     free(work);
     free(parsed);

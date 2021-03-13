@@ -613,6 +613,28 @@ start
 0x02DC		~	# SMALL TILDE
 
 #
+# Greek and Coptic - 0x0370–0x03FF
+#
+# https://unicode.org/charts/PDF/U0370.pdf
+#
+
+0x03A1		P	# GREEK CAPITAL LETTER RHO
+
+0x03C1		p	# GREEK SMALL LETTER RHO
+
+#
+# Tai Le - 0x1950–0x197F
+#
+# https://unicode.org/charts/PDF/U1950.pdf
+#
+
+0x1952      	n	# TAI LE LETTER NG
+0x1959      	u	# TAI LE LETTER PA
+0x1963      	l	# TAI LE LETTER A
+0x1971      	e	# TAI LE LETTER TONE-3
+0x1974      	c	# TAI LE LETTER TONE-6
+
+#
 # ...
 #
 
@@ -635,7 +657,11 @@ start
 0x2008		" "	# PUNCTUATION SPACE
 0x2009		" "	# THIN SPACE
 0x200A		" "	# HAIR SPACE
-0x200B		" "	# ZERO WIDTH SPACE
+0x200B		""	# ZERO WIDTH SPACE
+0x200C		""	# ZERO WIDTH NON-JOINER
+0x200D		""	# ZERO NON-JOINER
+0x200E		""	# LEFT-TO-RIGHT MARK
+0x200F		""	# RIGHT-TO-LEFT MARK
 
 0x2010		-	# HYPHEN
 0x2011		-	# NON-BREAKING HYPHEN

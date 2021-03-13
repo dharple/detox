@@ -31,6 +31,7 @@ bin_PROGRAMS = \
 
 noinst_PROGRAMS = \
 	check-table \
+	escape-utf-8 \
 	generate-builtin-table
 
 detox_SOURCES = \
@@ -56,6 +57,18 @@ inline_detox_SOURCES = $(detox_SOURCES)
 
 check_table_SOURCES = \
 	check_table.c \
+	table.c \
+	table_dump.c \
+	wrapped.c
+
+escape_utf_8_SOURCES = \
+	clean_string.c \
+	clean_utf_8.c \
+	escape_utf_8.c \
+	file.c \
+	filter.c \
+	parse_options.c \
+	sequence.c \
 	table.c \
 	table_dump.c \
 	wrapped.c

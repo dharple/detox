@@ -38,7 +38,7 @@ static table_t *check_table(char *filename, int use_hash)
     char *parsed;
     int err;
     int size;
-    int max_data_length;
+    int check_max_data_length;
     int ret;
     int state;
     int last;
@@ -84,7 +84,7 @@ static table_t *check_table(char *filename, int use_hash)
 
     last = 0;
 
-    max_data_length = 1;
+    check_max_data_length = 1;
     state = BASE_STATE;
 
     while (fgets(work, 1024, table_file) != NULL) {
@@ -144,8 +144,8 @@ static table_t *check_table(char *filename, int use_hash)
 
                 table->default_translation = wrapped_strdup(parsed);
 
-                if (strlen(parsed) > max_data_length) {
-                    max_data_length = strlen(parsed);
+                if (strlen(parsed) > check_max_data_length) {
+                    check_max_data_length = strlen(parsed);
                 }
 
                 continue;
@@ -208,8 +208,8 @@ static table_t *check_table(char *filename, int use_hash)
             return NULL;
         }
 
-        if (strlen(parsed) > max_data_length) {
-            max_data_length = strlen(parsed);
+        if (strlen(parsed) > check_max_data_length) {
+            check_max_data_length = strlen(parsed);
         }
 
         if (code < last) {
@@ -220,7 +220,9 @@ static table_t *check_table(char *filename, int use_hash)
         last = code;
     }
 
-    table->max_data_length = max_data_length;
+    if (table->max_data_length != check_max_data_length) {
+        printf("warning - table max length (%d) doesn't match our calculation (%d)\n", table->max_data_length, check_max_data_length);
+    }
 
     free(work);
     free(parsed);
