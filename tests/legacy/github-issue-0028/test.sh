@@ -39,6 +39,20 @@ fi
 
 # ---------------------------------------------------------------------------
 
+FILE=/usr/share/detox/safe.tbl
+if [ -f $FILE ] ; then
+	echo "WARNING: $FILE is on the filesystem.  skipping..."
+	exit 0
+fi
+
+FILE=/usr/local/share/detox/safe.tbl
+if [ -f $FILE ] ; then
+	echo "WARNING: $FILE is on the filesystem.  skipping..."
+	exit 0
+fi
+
+# ---------------------------------------------------------------------------
+
 INPUT="hi there.txt"
 OUTPUT="hi_there.txt"
 
