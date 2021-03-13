@@ -338,8 +338,8 @@ void parse_inline(char *in_filename, char *out_filename, options_t *options)
                         if (err == EOF) {
 #ifdef DEBUG
                             fprintf(stderr, "detox: debug: hit EOF\n");
-                            break;
 #endif
+                            break;
                         }
 
                         *seek = err;
@@ -355,12 +355,9 @@ void parse_inline(char *in_filename, char *out_filename, options_t *options)
 #endif
                             // try to push it back on to the buffer
                             err = ungetc(*seek, in_fp);
-                            if (err == 0) {
-#ifdef DEBUG
-                                fprintf(stderr, "detox: debug: push back worked\n");
-#endif
-                                // ungetc worked
-                                seek--;
+                            if (err == EOF) {
+                                fprintf(stderr, "detox: warning: stream push back failed\n");
+                                seek++;
                             }
                             remaining = 0;
                             break;
@@ -378,7 +375,7 @@ void parse_inline(char *in_filename, char *out_filename, options_t *options)
             }
         }
 
-        // if we did fgetc(), and unfgetc() failed, this might return
+        // if we did fgetc(), and ungetc() failed, this might return
         // differently from before
 
         hold = strrchr(base, '\n');
