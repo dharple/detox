@@ -62,12 +62,15 @@ check_table_SOURCES = \
 	wrapped.c
 
 escape_utf_8_SOURCES = \
+	builtin_table.c \
 	clean_string.c \
 	clean_utf_8.c \
 	escape_utf_8.c \
 	file.c \
+	filelist.c \
 	filter.c \
 	parse_options.c \
+	parse_table.c \
 	sequence.c \
 	table.c \
 	table_dump.c \
