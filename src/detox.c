@@ -119,12 +119,12 @@ int main(int argc, char **argv)
                     if (S_ISDIR(stat_info.st_mode)) {
                         fprintf(stderr, "%s: is a directory\n", file_walk);
                     } else {
-                        parse_inline(file_walk, main_options);
+                        parse_inline(file_walk, NULL, main_options);
                     }
                 }
             }
         } else {
-            parse_inline(NULL, main_options);
+            parse_inline(NULL, NULL, main_options);
         }
     }
 

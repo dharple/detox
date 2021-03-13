@@ -16,6 +16,7 @@ AM_LDFLAGS = \
 	$(top_builddir)/src/config_file.o \
 	$(top_builddir)/src/config_file_spoof.o \
 	$(top_builddir)/src/config_file_yacc.o \
+	$(top_builddir)/src/file.o \
 	$(top_builddir)/src/filelist.o \
 	$(top_builddir)/src/filter.o \
 	$(top_builddir)/src/parse_options.o \
@@ -34,6 +35,7 @@ TESTS = \
 	test_clean_utf_8 \
 	test_clean_wipeup \
 	test_filelist \
+	test_parse_inline \
 	test_spoof_config_file \
 	test_table_max_length \
 	test_table_resize \

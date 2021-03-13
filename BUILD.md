@@ -61,6 +61,16 @@ Confirm tests reference correct GitHub issue:
 grep -ri github tests/legacy/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+//'
 ```
 
+## Debugging
+
+```bash
+./configure --enable-debug --with-check
+make clean
+make
+make check
+cat tests/unit/*.log
+```
+
 ## Testing
 
 ### Unit and Regression Testing

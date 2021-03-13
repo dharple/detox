@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+#include "config.h"
+
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,12 +16,11 @@
 #include <string.h>
 #include <errno.h>
 
+#include "clean_utf_8.h"
 #include "file.h"
 #include "filelist.h"
 #include "sequence.h"
 #include "wrapped.h"
-
-#define BUF_SIZE 1024
 
 /**
  * Determines if the file should be ignored
@@ -230,44 +231,164 @@ void parse_dir(char *filename, options_t *options)
     closedir(dir_handle);
 }
 
-/*
- * Renames file to a safe filename.
+/**
+ * Parses files in a stream, either read from STDIN, or a filename.  Writes the
+ * results to a stream, either STDOUT, or a filename.
+ *
+ * @param in_filename  Filename to read from.  Set to NULL to use STDIN.
+ * @param out_filename Filename to write to.  Set to NULL to use STDOUT.
+ * @param options      Detox options.
  */
-void parse_inline(char *filename, options_t *options)
+void parse_inline(char *in_filename, char *out_filename, options_t *options)
 {
-    FILE *fp;
-    char *base, *work, *hold;
+    FILE *in_fp;
+    FILE *out_fp;
     size_t buf_size;
+    size_t padding;
 
-    if (filename != NULL) {
-        if (!(fp = fopen(filename, "r"))) {
-            fprintf(stderr, "%s: %s\n", filename, strerror(errno));
+    char *base;
+    char *hold;
+    char *seek;
+    char *work;
+    int err;
+    int has_newline;
+    int remaining;
+
+    if (in_filename != NULL) {
+        if (!(in_fp = fopen(in_filename, "r"))) {
+            fprintf(stderr, "%s: %s\n", in_filename, strerror(errno));
             return;
         }
     } else {
-        fp = stdin;
+        in_fp = stdin;
     }
 
-    buf_size = BUF_SIZE;
+    if (out_filename != NULL) {
+        if (!(out_fp = fopen(out_filename, "w"))) {
+            fprintf(stderr, "%s: %s\n", out_filename, strerror(errno));
+            return;
+        }
+    } else {
+        out_fp = stdout;
+    }
+
+    buf_size = INLINE_BUF_SIZE;
+    padding = INLINE_BUF_PADDING;
     base = wrapped_malloc(buf_size);
 
-    while (fgets(base, buf_size, fp)) {
-        while (strrchr(base, '\n') == NULL) {
-            work = realloc(base, buf_size + BUF_SIZE - 1);
-            if (!fgets(work + buf_size - 1, BUF_SIZE, fp)) {
-                base = work;
-                break;
-            }
-            base = work;
-            buf_size += BUF_SIZE - 1;
-        }
+    while (fgets(base, buf_size - padding, in_fp)) {
 
         hold = strrchr(base, '\n');
+
         if (hold == NULL) {
-            fprintf(stderr, "Unable to parse input\n");
-            exit(EXIT_FAILURE);
+
+#ifdef DEBUG
+            fprintf(stderr, "detox: debug: fgets() didn't find a new line\n");
+#endif
+
+            //
+            // Check to see if we stopped in the middle of a UTF-8 character.
+            //
+
+            hold = seek = strchr(base, '\0');
+            seek--;
+
+#ifdef DEBUG
+            if (is_utf_8_cont(*seek)) {
+                fprintf(stderr, "detox: debug: looks like we're in the middle of a UTF-8 character\n");
+            }
+#endif
+
+            while (is_utf_8_cont(*seek) && (hold - seek) < UTF_8_MAX_LENGTH) {
+#ifdef DEBUG
+                fprintf(stderr, "detox: debug: at %02x, moving back one\n", (unsigned char) *seek);
+#endif
+                seek--;
+            }
+
+#ifdef DEBUG
+            fprintf(stderr, "detox: debug: now at %02x\n", (unsigned char) *seek);
+#endif
+
+            if (is_utf_8_start(*seek)) {
+#ifdef DEBUG
+                fprintf(stderr, "detox: debug: at %02x, this is the start of a UTF-8 char, seeking ahead\n", (unsigned char) *seek);
+#endif
+                remaining = get_utf_8_width(*seek);
+                do {
+#ifdef DEBUG
+                    fprintf(stderr, "detox: debug: at %02x\n", (unsigned char) *seek);
+#endif
+                    seek++;
+                    remaining--;
+                } while (remaining > 0 && is_utf_8_cont(*seek));
+
+#ifdef DEBUG
+                fprintf(stderr, "detox: debug: done with initial seek at %02x\n", (unsigned char) *seek);
+#endif
+
+                if (remaining > 0 && *seek == '\0') {
+#ifdef DEBUG
+                    fprintf(stderr, "detox: debug: we still need more data\n");
+#endif
+
+                    // try bringing bytes in one at a time
+                    while (remaining > 0) {
+                        err = fgetc(in_fp);
+                        if (err == EOF) {
+#ifdef DEBUG
+                            fprintf(stderr, "detox: debug: hit EOF\n");
+                            break;
+#endif
+                        }
+
+                        *seek = err;
+
+#ifdef DEBUG
+                        fprintf(stderr, "detox: debug: read %02x\n", (unsigned char) *seek);
+#endif
+
+                        // but if it isn't a UTF-8 continuation byte
+                        if (!is_utf_8_cont(*seek)) {
+#ifdef DEBUG
+                            fprintf(stderr, "detox: debug: %02x is not a UTF-8 continuation byte\n", (unsigned char) *seek);
+#endif
+                            // try to push it back on to the buffer
+                            err = ungetc(*seek, in_fp);
+                            if (err == 0) {
+#ifdef DEBUG
+                                fprintf(stderr, "detox: debug: push back worked\n");
+#endif
+                                // ungetc worked
+                                seek--;
+                            }
+                            remaining = 0;
+                            break;
+                        }
+
+                        seek++;
+                        remaining--;
+                    }
+                    *seek = '\0';
+                }
+
+#ifdef DEBUG
+                fprintf(stderr, "detox: debug: done with secondary seek at %02x\n", (unsigned char) *seek);
+#endif
+            }
         }
-        *hold = '\0';
+
+        // if we did fgetc(), and unfgetc() failed, this might return
+        // differently from before
+
+        hold = strrchr(base, '\n');
+
+        if (hold == NULL) {
+            has_newline = 0;
+        } else {
+            has_newline = 1;
+            *hold = '\0';
+        }
 
         work = wrapped_strdup(base);
 
@@ -281,11 +402,28 @@ void parse_inline(char *filename, options_t *options)
         }
         work = hold;
 
+        //
+        // we're using printf("%s", ...) because don't know what is in the
+        // string...
+        //
+
         if (work != NULL) {
-            printf("%s\n", work);
+            fprintf(out_fp, "%s", work);
             free(work);
         } else {
-            printf("%s\n", base);
+            fprintf(out_fp, "%s", base);
         }
+
+        if (has_newline) {
+            fprintf(out_fp, "\n");
+        }
+    }
+
+    if (in_filename != NULL) {
+        fclose(in_fp);
+    }
+
+    if (out_filename != NULL) {
+        fclose(out_fp);
     }
 }

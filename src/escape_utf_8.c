@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+#include "config.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -67,7 +69,7 @@ int main(void)
     filter->filename = wrapped_strdup(__FILE__);
     filter->table = table;
 
-    parse_inline(NULL, options);
+    parse_inline(NULL, NULL, options);
 
 #ifdef DEBUG
     table_stats(table);

@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+#include "config.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,8 +16,6 @@
 #include "clean_utf_8.h"
 #include "table.h"
 #include "wrapped.h"
-
-static int get_utf_8_width(char c);
 
 #define UNICODE_MAX_VALUE 0x10FFFF
 
@@ -45,8 +45,6 @@ static char *invalid_replacement = "_";
 
 #define check_width(chr, size) if ((chr & UTF_8_ENCODED_ ## size ## _BYTES_MASK) == UTF_8_ENCODED_ ## size ## _BYTES) { return size; }
 #define is_upper_bit_set(chr) ((chr & UPPER_BIT) == UPPER_BIT)
-#define is_utf_8_cont(chr) ((chr & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_CONT)
-#define is_utf_8_start(chr) ((chr & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_START)
 #define unpack_cont(chr) ((unsigned char) chr & ~UTF_8_ENCODED_MASK)
 #define unpack_start(chr, size) ((unsigned char) chr & ~UTF_8_ENCODED_ ## size ## _BYTES_MASK)
 
@@ -150,7 +148,9 @@ char *clean_utf_8(char *filename, table_t *table)
         }
 
 #ifdef DEBUG
-        fprintf(stderr, "detox: debug: found character 0x%04x, width: %d\n", new_value, utf_8_width);
+        if (utf_8_width > 1) {
+            fprintf(stderr, "detox: debug: found character 0x%04x, width: %d\n", new_value, utf_8_width);
+        }
 #endif
 
         input_walk++;
@@ -214,7 +214,7 @@ char *clean_utf_8(char *filename, table_t *table)
  * @return An integer between 1 and 6.  If the character is invalid, -1 will be
  *         returned.
  */
-static int get_utf_8_width(char c)
+int get_utf_8_width(char c)
 {
     if (is_utf_8_start(c)) {
         check_width(c, 2);
@@ -229,4 +229,29 @@ static int get_utf_8_width(char c)
     }
 
     return 1;
+}
+
+/**
+ * Returns true if the character is part of a UTF-8 sequence, but not the first
+ * byte.
+ *
+ * @param c The character to examine.
+ *
+ * @return bool
+ */
+int is_utf_8_cont(char c)
+{
+    return ((c & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_CONT);
+}
+
+/**
+ * Returns true if the character is the start of a UTF-8 sequence.
+ *
+ * @param c The character to examine.
+ *
+ * @return bool
+ */
+int is_utf_8_start(char c)
+{
+    return ((c & UTF_8_ENCODED_MASK) == UTF_8_ENCODED_START);
 }

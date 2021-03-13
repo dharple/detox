@@ -102,6 +102,22 @@ AS_IF([test "x$with_coverage" != xno], [
 AM_CONDITIONAL([WITH_COVERAGE], [test "x$with_coverage" != xno])
 
 #
+# Support for debugging
+#
+
+AC_ARG_ENABLE([debug],
+	[AS_HELP_STRING([--enable-debug], [Turn on debugging])],
+	[case "${enableval}" in
+	  yes) debug=true ;;
+	  no)  debug=false ;;
+	  *) AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
+	esac],[debug=false])
+AM_CONDITIONAL([DEBUG], [test x$debug = xtrue])
+AM_COND_IF([DEBUG], [
+	AC_DEFINE([DEBUG], [1], [Enables verbose debugging in key points])
+]);
+
+#
 #
 #
 

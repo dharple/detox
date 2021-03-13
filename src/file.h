@@ -12,10 +12,13 @@
 
 #include "detox_struct.h"
 
+#define INLINE_BUF_SIZE 1024
+#define INLINE_BUF_PADDING 16
+
 extern char *parse_file(char *filename, options_t *options);
 
 extern void parse_dir(char *filename, options_t *options);
 
-extern void parse_inline(char *filename, options_t *options);
+extern void parse_inline(char *in_filename, char *out_filename, options_t *options);
 
 #endif /* __FILE_H */

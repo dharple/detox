@@ -11,6 +11,7 @@ test_clean_uncgi
 test_clean_utf_8
 test_clean_wipeup
 test_filelist
+test_parse_inline
 test_spoof_config_file
 test_table_regression
 test_table_max_length

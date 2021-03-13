@@ -15,6 +15,8 @@
  * file that was distributed with this source code.
  */
 
+#include "config.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -62,7 +64,7 @@ static char *table_filename = "fixtures/test_table_resize.tbl";
 
 START_TEST(test_table_resize)
 {
-#line 56
+#line 58
     table_t *table;
     table_t *new_table;
     char *check;
