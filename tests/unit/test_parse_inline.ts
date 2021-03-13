@@ -117,6 +117,39 @@ static struct test_values data[DATA_COUNT] = {
     },
 };
 
+#define BAD_FILES_DATA_COUNT 6
+static struct test_values bad_files_data[BAD_FILES_DATA_COUNT] = {
+    {
+        .input          = "..",
+        .expected       = "..",
+    },
+
+    {
+        .input          = ".git",
+        .expected       = ".git",
+    },
+
+    {
+        .input          = ".UPPER",
+        .expected       = ".upper",
+    },
+
+    {
+        .input          = "not.UPPER",
+        .expected       = "not.upper",
+    },
+
+    {
+        .input          = ".wipeup------no",
+        .expected       = ".wipeup-no",
+    },
+
+    {
+        .input          = "wipeup------yes",
+        .expected       = "wipeup-yes",
+    },
+};
+
 #test test_parse_inline
     FILE *in_fp;
     FILE *out_fp;
@@ -143,7 +176,7 @@ static struct test_values data[DATA_COUNT] = {
 
     options = options_init();
 
-    options->sequence_to_use = sequence = sequence_init("lower-only");
+    options->sequence_to_use = sequence = sequence_init("utf_8-and-lower");
     sequence->source_filename = wrapped_strdup(__FILE__);
 
     sequence->filters = filter = filter_init(FILTER_UTF_8);
@@ -260,3 +293,111 @@ static struct test_values data[DATA_COUNT] = {
             }
         }
     }
+
+#test test_parse_inline_protected_file
+    FILE *in_fp;
+    FILE *out_fp;
+
+    options_t *options;
+    sequence_t *sequence;
+    filter_t *filter;
+
+    char *expected;
+    char *input;
+    char *input_filename;
+    char *output;
+    char *output_filename;
+    char *walk;
+    int buffer_size;
+    int i;
+
+    //
+
+    options = options_init();
+
+    options->sequence_to_use = sequence = sequence_init("wipeup-lower");
+    sequence->source_filename = wrapped_strdup(__FILE__);
+
+    sequence->filters = filter = filter_init(FILTER_WIPEUP);
+    filter->remove_trailing = 1;
+
+    filter->next = filter_init(FILTER_LOWER);
+
+    //
+
+    buffer_size = INLINE_BUF_SIZE * 2;
+
+    expected = wrapped_malloc(buffer_size);
+    input    = wrapped_malloc(buffer_size);
+    output   = wrapped_malloc(buffer_size);
+
+    input_filename  = wrapped_malloc(buffer_size);
+    output_filename = wrapped_malloc(buffer_size);
+
+    // prep
+
+    sprintf(input_filename,  "/tmp/detoxtest-in--XXXXXX");
+    sprintf(output_filename, "/tmp/detoxtest-out-XXXXXX");
+
+    mktemp(input_filename);
+    mktemp(output_filename);
+
+#ifdef DEBUG
+    fprintf(stderr, "in: %s, out: %s\n", input_filename, output_filename);
+#endif
+
+    // wipe memory
+
+    memset(expected, 0, buffer_size);
+    memset(input,    0, buffer_size);
+    memset(output,   0, buffer_size);
+
+    // ---------------------------------------------------------
+    // BUILD INPUT
+    // ---------------------------------------------------------
+
+    walk = input;
+    for (i = 0; i < BAD_FILES_DATA_COUNT; i++) {
+        sprintf(walk, "%s\n", bad_files_data[i].input);
+        walk = strchr(walk, '\0');
+    }
+
+    // ---------------------------------------------------------
+    // BUILD EXPECTED
+    // ---------------------------------------------------------
+
+    walk = expected;
+    for (i = 0; i < BAD_FILES_DATA_COUNT; i++) {
+        sprintf(walk, "%s\n", bad_files_data[i].expected);
+        walk = strchr(walk, '\0');
+    }
+
+    // ---------------------------------------------------------
+
+    // write the string to a file
+
+    in_fp = fopen(input_filename, "w");
+    fputs(input, in_fp);
+    fclose(in_fp);
+
+    // pass the file to parse_inline
+
+    parse_inline(input_filename, output_filename, options);
+
+    // read the output file
+
+    out_fp = fopen(output_filename, "r");
+    walk = output;
+    while (fgets(walk, buffer_size, out_fp) != NULL) {
+        walk += strlen(walk);
+    }
+    fclose(out_fp);
+
+    // compare
+
+    ck_assert_str_eq(expected, output);
+
+    // cleanup
+
+    unlink(output_filename);
+    unlink(input_filename);
