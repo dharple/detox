@@ -133,7 +133,7 @@ START_TEST(test_table_resize)
             }
         }
 
-        free(table);
+        table_free(table);
     }
 }
 END_TEST

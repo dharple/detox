@@ -123,5 +123,5 @@ static char *table_filename = "fixtures/test_table_resize.tbl";
             }
         }
 
-        free(table);
+        table_free(table);
     }
