@@ -12,6 +12,8 @@
 
 #include "detox_struct.h"
 
+#define table_reset(t) t->hits = t->misses = t->seeks = 0;
+
 extern table_t *table_init(int max_rows);
 extern table_t *table_resize(table_t *table, int rows, int use_hash);
 extern void table_free(table_t *table);
