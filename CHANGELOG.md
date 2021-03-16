@@ -5,6 +5,10 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- `inline-detox` no longer chokes when a stream doesn't end in a newline. [#74]
+
 ## [2.0.0-beta1] - 2021-03-05
 ### Added
 - Added a new transliteration table, `unidecode.tbl`, based on
@@ -226,6 +230,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#74]: https://github.com/dharple/detox/issues/74
 [#73]: https://github.com/dharple/detox/issues/73
 [#72]: https://github.com/dharple/detox/issues/72
 [#64]: https://github.com/dharple/detox/issues/64
