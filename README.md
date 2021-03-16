@@ -91,9 +91,9 @@ sudo mozilla-rootcerts install
 To build a stable copy of `detox`, run:
 
 ```
-wget https://github.com/dharple/detox/releases/download/v1.4.1/detox-1.4.1.tar.gz
-tar xzvf detox-1.4.1.tar.gz
-cd detox-1.4.1
+wget https://github.com/dharple/detox/releases/download/v1.4.2/detox-1.4.2.tar.gz
+tar xzvf detox-1.4.2.tar.gz
+cd detox-1.4.2
 ./configure
 make
 make install

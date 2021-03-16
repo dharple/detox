@@ -166,6 +166,7 @@ TAR_OPTIONS="--owner=0 --group=0 --numeric-owner" make dist
 
 6. Create a new release on GitHub, using the rendered contents of the
    CHANGELOG.
-7. Play [Alwa's Legacy].
+7. Update the "latest stable" version in README.md, if appropriate.
+8. Play [Alwa's Legacy].
 
 [Alwa's Legacy]: https://eldenpixels.com/alwas-legacy/
