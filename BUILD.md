@@ -158,15 +158,19 @@ git push
 git push --tags
 ```
 
-5. Build a package.
+5. Build tarballs.
 
 ```bash
-TAR_OPTIONS="--owner=0 --group=0 --numeric-owner" make dist
+TAR_OPTIONS="--owner=0 --group=0 --numeric-owner"
+export TAR_OPTIONS
+make dist
+make dist-bzip2
 ```
 
 6. Create a new release on GitHub, using the rendered contents of the
-   CHANGELOG.
-7. Update the "latest stable" version in README.md, if appropriate.
-8. Play [Alwa's Legacy].
+   CHANGELOG, and attaching the release files.
+7. Create a new release on Sourceforge, using the same items.
+8. Update the "latest stable" version in README.md, if appropriate.
+9. Play [Alwa's Legacy].
 
 [Alwa's Legacy]: https://eldenpixels.com/alwas-legacy/
