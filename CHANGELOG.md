@@ -5,6 +5,10 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Fixed build when the `stat` struct is missing `st_blocks`. [#77]
+
 ## [1.4.2] - 2021-03-06
 ### Fixed
 - Replaced instances of `cp -an` with `test` and `install` in the Makefile rule
@@ -175,6 +179,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#77]: https://github.com/dharple/detox/issues/77
 [#73]: https://github.com/dharple/detox/issues/73
 [#56]: https://github.com/dharple/detox/issues/56
 [#30]: https://github.com/dharple/detox/issues/30

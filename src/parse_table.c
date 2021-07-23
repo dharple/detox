@@ -20,6 +20,8 @@
 
 #include "table.h"
 
+#define LINE_LENGTH 6
+
 enum {
 	BASE_STATE,
 	INSIDE_STATE
@@ -53,14 +55,16 @@ struct translation_table *parse_table(char *filename)
 		system_ctype = "";	// I don't think we can free the return from setlocale()
 	}
 
-	if (ttable_stat.st_size > 0) {
-		size = ttable_stat.st_size;
-	}
-	else {
-		size = (512 * ttable_stat.st_blocks);
-	}
+	size = 0;
 
-	size /= 6;
+	if (ttable_stat.st_size > 0) {
+		size = ttable_stat.st_size / LINE_LENGTH;
+	}
+#ifdef HAVE_STRUCT_STAT_ST_BLOCKS
+	else {
+		size = (512 * ttable_stat.st_blocks) / LINE_LENGTH;
+	}
+#endif
 
 	if (size < 500) {
 		size = 500;
