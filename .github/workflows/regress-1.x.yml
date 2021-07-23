@@ -47,10 +47,14 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        update: true
+        msystem: mingw64
         install: >-
           autoconf
-          automake-wrapper
+          automake1.16
+          base-devel
+          bison
+          flex
+          mingw-w64-x86_64-toolchain
     - uses: actions/checkout@v2
     - name: autoreconf
       run: autoreconf --install
