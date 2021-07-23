@@ -83,23 +83,35 @@ jobs:
     - name: make check
       run: make check
 
-  build-windows-msys-mingw64:
-    runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
-    steps:
-    - uses: msys2/setup-msys2@v2
-    - uses: actions/checkout@v2
-    - name: autoreconf
-      run: autoreconf --install
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: simple test
-      run: bin/simple-test.sh
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+#  build-windows:
+#    runs-on: windows-latest
+#    defaults:
+#      run:
+#        shell: msys2 {0}
+#    steps:
+#    - uses: msys2/setup-msys2@v2
+#      with:
+#        msystem: mingw64
+#        install: >-
+#          autoconf
+#          automake1.16
+#          base-devel
+#          bison
+#          flex
+#          # mingw-w64-check
+#          mingw-w64-x86_64-toolchain
+#          pkg-config
+#          # pkgconf
+#    - uses: actions/checkout@v2
+#    - name: autoreconf
+#      run: autoreconf --install
+#    - name: configure
+#      run: ./configure
+#    - name: make
+#      run: make
+#    - name: simple test
+#      run: bin/simple-test.sh
+#    - name: make check
+#      run: make check
+#    - name: make distcheck
+#      run: make distcheck
