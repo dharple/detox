@@ -165,6 +165,7 @@ TAR_OPTIONS="--owner=0 --group=0 --numeric-owner"
 export TAR_OPTIONS
 make dist
 make dist-bzip2
+make dist-zip
 ```
 
 6. Create a new release on GitHub, using the rendered contents of the
