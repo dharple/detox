@@ -19,6 +19,8 @@ jobs:
       run: make
     - name: make check
       run: make check
+    - name: legacy unit tests
+      run: ./tests/test.sh src/detox
     - name: make distcheck
       run: make distcheck
 
@@ -34,6 +36,8 @@ jobs:
       run: ./configure
     - name: make
       run: make
+    - name: legacy unit tests
+      run: ./tests/test.sh src/detox
     - name: make check
       run: make check
     - name: make distcheck
