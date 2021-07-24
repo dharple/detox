@@ -24,6 +24,8 @@
 #include "table.h"
 #include "wrapped.h"
 
+#define LINE_LENGTH 6
+
 enum {
     BASE_STATE,
     INSIDE_STATE
@@ -53,17 +55,21 @@ static table_t *check_table(char *filename, int use_hash)
         return NULL;
     }
 
-    if (table_stat.st_size > 0) {
-        size = table_stat.st_size;
-    } else {
-        size = (512 * table_stat.st_blocks);
-    }
+    size = 0;
 
-    size /= 6;
+    if (table_stat.st_size > 0) {
+        size = table_stat.st_size / LINE_LENGTH;
+    }
+#ifdef HAVE_STRUCT_STAT_ST_BLOCKS
+    else {
+        size = (512 * table_stat.st_blocks) / LINE_LENGTH;
+    }
+#endif
 
     if (size < 500) {
         size = 500;
     }
+
 
     table = table_init(size);
     if (table == NULL) {
