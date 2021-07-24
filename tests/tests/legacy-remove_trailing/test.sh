@@ -1,7 +1,9 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 #
 # Subset of legacy regression tests: remove_trailing
 #
+
+set -e
 
 if [ -z "$TESTBASE" ] ; then
 	echo TESTBASE needs to be passed via the env
