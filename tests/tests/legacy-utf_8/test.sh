@@ -12,6 +12,9 @@ fi
 
 . $TESTBASE/test-functions
 
+LC_ALL=en_US.UTF-8
+export LC_ALL
+
 DETOX=$1
 TABLEPATH=$(dirname $TESTBASE)/table
 METHOD1=utf_8
