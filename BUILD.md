@@ -61,8 +61,18 @@ you'll want to specify the base path to libpopt.  So, if popt.h is in
         git push
         git push --tags
 
-6. Create a new release on GitHub, using the rendered contents of the
-   CHANGELOG.
-7. Play [Alwa's Legacy].
+6. Build tarballs.
+
+        TAR_OPTIONS="--owner=0 --group=0 --numeric-owner"
+        export TAR_OPTIONS
+        make dist
+        make dist-bzip2
+        make dist-zip
+
+7. Create a new release on GitHub, using the rendered contents of the
+   CHANGELOG, and attaching the release files.
+8. Create a new release on Sourceforge, using the same items.
+9. Update the "latest stable" version in README.md, if appropriate.
+10. Play [Alwa's Legacy].
 
 [Alwa's Legacy]: https://eldenpixels.com/alwas-legacy/
