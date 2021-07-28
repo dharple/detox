@@ -80,10 +80,15 @@ To install the needed packages on FreeBSD, run:
 sudo pkg install autoconf automake gcc pkgconf wget
 ```
 
-NetBSD:
+On NetBSD, run:
 ```
 sudo pkgin install autoconf automake mozilla-rootcerts pkgconf wget
 sudo mozilla-rootcerts install
+```
+
+On MSYS2, run:
+```
+pacman -S --needed base-devel gcc git mingw-w64-x86_64-toolchain
 ```
 
 ## Install Stable from GitHub Package
@@ -99,7 +104,7 @@ make
 make install
 ```
 
-If that fails during the configure or make steps, run
+If that fails during the configure or make steps, run:
 ```
 autoreconf --install
 ./configure
