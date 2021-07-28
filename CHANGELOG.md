@@ -8,6 +8,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 ### Fixed
 - `inline-detox` no longer chokes when a stream doesn't end in a newline. [#74]
+- Compilation works under msys2. [#80]
 
 ## [2.0.0-beta1] - 2021-03-05
 ### Added
@@ -235,6 +236,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#80]: https://github.com/dharple/detox/issues/80
 [#77]: https://github.com/dharple/detox/issues/77
 [#74]: https://github.com/dharple/detox/issues/74
 [#73]: https://github.com/dharple/detox/issues/73

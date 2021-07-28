@@ -155,7 +155,7 @@ char *clean_uncgi(char *filename)
     output_walk = output;
 
     while (*input_walk != '\0') {
-        if (input_walk[0] == '%' && isxdigit(input_walk[1]) && isxdigit(input_walk[2])) {
+        if (input_walk[0] == '%' && isxdigit((int) input_walk[1]) && isxdigit((int) input_walk[2])) {
             conv[0] = input_walk[1];
             conv[1] = input_walk[2];
             conv[2] = 0;
@@ -329,8 +329,8 @@ char *clean_lower(char *filename)
     output_walk = output;
 
     while (*input_walk != '\0') {
-        if (isupper(*input_walk)) {
-            *output_walk++ = tolower(*input_walk++);
+        if (isupper((int) *input_walk)) {
+            *output_walk++ = tolower((int) *input_walk++);
         } else {
             *output_walk++ = *input_walk++;
         }
