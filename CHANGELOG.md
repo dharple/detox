@@ -5,7 +5,7 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.4] - 2021-08-14
 ### Fixed
 - Add explicit large file support via autoconf. [#81]
 
@@ -172,7 +172,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/dharple/detox/compare/v1.4.3...1.x
+[Unreleased]: https://github.com/dharple/detox/compare/v1.4.4...1.x
+[1.4.4]: https://github.com/dharple/detox/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/dharple/detox/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/dharple/detox/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/dharple/detox/compare/v1.4.0...v1.4.1
