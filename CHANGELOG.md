@@ -5,10 +5,15 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0-beta2] - 2021-08-14
 ### Fixed
 - `inline-detox` no longer chokes when a stream doesn't end in a newline. [#74]
 - Compilation works under msys2. [#80]
+
+### Merged
+- detox v1.4.4
+- detox v1.4.3
+- detox v1.4.2
 
 ## [2.0.0-beta1] - 2021-03-05
 ### Added
@@ -227,7 +232,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/dharple/detox/compare/v2.0.0-beta1...main
+[Unreleased]: https://github.com/dharple/detox/compare/v2.0.0-beta2...main
+[2.0.0-beta2]: https://github.com/dharple/detox/compare/v2.0.0-beta1...v2.0.0-beta2
 [2.0.0-beta1]: https://github.com/dharple/detox/compare/v1.4.1...v2.0.0-beta1
 [1.4.4]: https://github.com/dharple/detox/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/dharple/detox/compare/v1.4.2...v1.4.3
