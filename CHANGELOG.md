@@ -5,6 +5,10 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Add explicit large file support via autoconf. [#81]
+
 ## [1.4.3] - 2021-07-24
 ### Fixed
 - Fixed build when the `stat` struct is missing `st_blocks`. [#77]
@@ -180,6 +184,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#81]: https://github.com/dharple/detox/issues/81
 [#77]: https://github.com/dharple/detox/issues/77
 [#73]: https://github.com/dharple/detox/issues/73
 [#56]: https://github.com/dharple/detox/issues/56
