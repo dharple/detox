@@ -5,7 +5,7 @@ AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_PROG_CC
 #AC_PROG_CC_STDC
 AC_PROG_CC_C99
-AM_PROG_LEX
+AC_PROG_LEX([noyywrap])
 AC_PROG_YACC
 
 AC_CHECK_FUNCS([getopt_long])
@@ -124,7 +124,7 @@ AM_COND_IF([DEBUG], [
 #
 #
 
-AC_CONFIG_HEADER([src/config.h])
+AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile

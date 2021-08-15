@@ -65,6 +65,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - UTF-8 encoded NULL (0x0000) values are converted to `_hidden_null_` to make
   them obvious. [#40]
 
+## [1.4.5] - 2021-08-15
+### Fixed
+- Autoconf macros have been updated to support 2.70 changes. [#82]
+
 ## [1.4.4] - 2021-08-14
 ### Fixed
 - Add explicit large file support via autoconf. [#81]
@@ -235,6 +239,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [Unreleased]: https://github.com/dharple/detox/compare/v2.0.0-beta2...main
 [2.0.0-beta2]: https://github.com/dharple/detox/compare/v2.0.0-beta1...v2.0.0-beta2
 [2.0.0-beta1]: https://github.com/dharple/detox/compare/v1.4.1...v2.0.0-beta1
+[1.4.5]: https://github.com/dharple/detox/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/dharple/detox/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/dharple/detox/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/dharple/detox/compare/v1.4.1...v1.4.2
@@ -247,6 +252,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#82]: https://github.com/dharple/detox/issues/82
 [#81]: https://github.com/dharple/detox/issues/81
 [#80]: https://github.com/dharple/detox/issues/80
 [#77]: https://github.com/dharple/detox/issues/77
