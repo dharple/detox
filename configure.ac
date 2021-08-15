@@ -3,7 +3,7 @@ AC_INIT([detox], [1.4.4], [detox.dharple at gmail.com], [], [https://github.com/
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
 AC_PROG_CC
-AM_PROG_LEX([noyywrap])
+AC_PROG_LEX([noyywrap])
 AC_PROG_YACC
 
 AC_CHECK_FUNCS([getopt_long])
