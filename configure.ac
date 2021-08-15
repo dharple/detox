@@ -3,8 +3,6 @@ AC_INIT([detox], [2.0.0-beta2], [detox.dharple at gmail.com], [], [https://githu
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 
 AC_PROG_CC
-#AC_PROG_CC_STDC
-AC_PROG_CC_C99
 AC_PROG_LEX([noyywrap])
 AC_PROG_YACC
 
