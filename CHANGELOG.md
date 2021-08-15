@@ -5,6 +5,10 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Merged
+- detox v1.4.5
+
 ## [2.0.0-beta2] - 2021-08-14
 ### Fixed
 - `inline-detox` no longer chokes when a stream doesn't end in a newline. [#74]

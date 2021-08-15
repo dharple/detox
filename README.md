@@ -96,9 +96,9 @@ pacman -S --needed base-devel gcc git mingw-w64-x86_64-toolchain
 To build a stable copy of `detox`, run:
 
 ```
-wget https://github.com/dharple/detox/releases/download/v1.4.4/detox-1.4.4.tar.gz
-tar xzvf detox-1.4.4.tar.gz
-cd detox-1.4.4
+wget https://github.com/dharple/detox/releases/download/v1.4.5/detox-1.4.5.tar.gz
+tar xzvf detox-1.4.5.tar.gz
+cd detox-1.4.5
 ./configure
 make
 make install
