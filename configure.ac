@@ -32,7 +32,7 @@ AC_DEFUN([AC_CHECK_CFLAG], [
 	CFLAGS="$HOLD $1"
 	AC_COMPILE_IFELSE(
 		[AC_LANG_PROGRAM(
-			[[]], 
+			[[]],
 			[[]]
 		)],
 		[
