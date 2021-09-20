@@ -5,8 +5,8 @@ set -ex
 # set up working dir
 
 WORK="/tmp/detox-build-test-$RANDOM"
-mkdir $WORK
-cd $WORK
+mkdir "$WORK"
+cd "$WORK"
 
 # git
 
@@ -34,4 +34,4 @@ make distcheck
 # cleanup
 
 cd
-rm -rf $WORK
+rm -rf "$WORK"

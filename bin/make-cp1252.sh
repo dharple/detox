@@ -58,7 +58,7 @@ undef
 0178
 "
 
-CURRENT=$(printf "%d" $START_HEX)
+CURRENT=$(printf "%d" "$START_HEX")
 
 for CHAR in $CHARS ; do
 	CURRENT_HEX=$(printf "0x%04X" "$CURRENT")

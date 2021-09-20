@@ -17,10 +17,10 @@ if [ ! -x "$CHECKMK" ] ; then
 fi
 
 BASE=/tmp/detoxtest/
-if [ ! -d $BASE ] ; then
-	mkdir $BASE
+if [ ! -d "$BASE" ] ; then
+	mkdir "$BASE"
 fi
-WORK=$(realpath "$(mktemp -d $BASE/work-XXXXXX)")
+WORK=$(realpath "$(mktemp -d "$BASE"/work-XXXXXX)")
 
 for FILE in *.ts ; do
 	INPUT=$(basename "$FILE")
