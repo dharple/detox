@@ -16,7 +16,7 @@ DETOX="$PROJECT_ROOT/src/detox"
 DETOXRC="$PROJECT_ROOT/etc/detoxrc"
 
 if [ ! -x "$DETOX" ] ; then
-	echo please complie detox first
+	echo please compile detox first
 	exit 1
 fi
 
