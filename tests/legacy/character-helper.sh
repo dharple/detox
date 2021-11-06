@@ -87,4 +87,3 @@ export UTF8_10348;
 # Unicode: 0x1f37a / Hex: \xf0\x9f\x8d\xba
 UTF8_1F37A=$(printf "\360\237\215\272")
 export UTF8_1F37A;
-

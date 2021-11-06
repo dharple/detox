@@ -46,7 +46,7 @@ make internals
 Check code formatting:
 
 ```bash
-astyle --style=kr --indent-switches --add-braces --pad-oper --pad-header $(ls src/*.[ch] | egrep -v 'config_file_(lex|yacc)')
+astyle --style=kr --indent-switches --add-braces --pad-oper --pad-header $(ls src/*.[ch] | grep -E -v 'config_file_(lex|yacc)')
 ```
 
 Check formatting on man pages:

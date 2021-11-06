@@ -16,7 +16,7 @@ DETOX="$PROJECT_ROOT/src/detox"
 DETOXRC="$PROJECT_ROOT/etc/detoxrc"
 
 if [ ! -x "$DETOX" ] ; then
-	echo please complie detox first
+	echo "please compile detox first"
 	exit 1
 fi
 
@@ -46,7 +46,7 @@ OUTPUT="hi_there"
 
 CHECK=$(echo "$INPUT" | $DETOX --inline)
 if [ "$CHECK" != "$OUTPUT" ] ; then
-	echo failed to rename "INPUT" to "$OUTPUT"
+	echo "failed to rename \"$INPUT\" to \"$OUTPUT\""
 	exit 1
 fi
 
@@ -57,7 +57,7 @@ OUTPUT="hi-there"
 
 CHECK=$(echo "$INPUT" | $DETOX --inline)
 if [ "$CHECK" != "$OUTPUT" ] ; then
-	echo failed to rename "INPUT" to "$OUTPUT"
+	echo "failed to rename \"$INPUT\" to \"$OUTPUT\""
 	exit 1
 fi
 

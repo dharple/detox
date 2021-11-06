@@ -15,6 +15,6 @@ if [ ! -x "$MANDOC" ] ; then
 fi
 
 for FILE in "$MANDIR"/*.[15] ; do
-	echo process man page "$(basename "$FILE")"
+	echo "process man page $(basename "$FILE")"
 	$MANDOC -T pdf "$FILE" > "$FILE".pdf
 done

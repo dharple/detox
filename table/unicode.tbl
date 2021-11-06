@@ -5,7 +5,7 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-# 
+#
 # Special thanks to:
 # - https://www.unicode.org/Public/5.2.0/ucd/UnicodeData.txt
 # - https://metacpan.org/pod/Text::Unidecode
@@ -26,7 +26,7 @@
 #
 # Germanic:
 # - http://www.wordiq.com/definition/%DF
-# 
+#
 # Currency:
 # - # https://www.xe.com/symbols.php
 #
@@ -796,6 +796,6 @@ start		de
 
 0x00E4		ae	# LATIN SMALL LETTER A WITH UMLAUT
 0x00F6		oe	# LATIN SMALL LETTER O WITH UMLAUT
-0x00FC		ue	# LATIN SMALL LETTER U WITH UMLAUT 
+0x00FC		ue	# LATIN SMALL LETTER U WITH UMLAUT
 
 end
