@@ -2,6 +2,8 @@
 
 *If I missed you, please let me know!*
 
+a1346054 on github contributed maintenance improvments.
+
 Thomas Klausner reminded me that `cp -n` does not work on NetBSD.
 
 Sean M. Burke for [Text::Unidecode], which helped with Unicode transliteration
