@@ -6,6 +6,9 @@ For releases after 1.3.0, the format is based on
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Enabling verbose mode is now done with either `-v` or `--verbose`.
+
 ### Merged
 - detox v1.4.5
 

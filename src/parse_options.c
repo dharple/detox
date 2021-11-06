@@ -39,8 +39,9 @@ static int long_option = 0;
 static struct option longopts[] = {
 
     /* long options with equivalents */
-    {"help", no_argument, NULL, 'h'},
     {"dry-run", no_argument, NULL, 'n'},
+    {"help", no_argument, NULL, 'h'},
+    {"verbose", no_argument, NULL, 'v'},
 
     /* long options without */
     {"inline", no_argument, &long_option, LONG_OPTION_INLINE},
@@ -58,7 +59,7 @@ static struct option longopts[] = {
 char usage_message[] = {
      "usage: detox [-hLnrvV] [-f configfile] [-s sequence]"
 #ifdef HAVE_GETOPT_LONG
-     " [--dry-run] [--help] [--inline] [--recursive] [--special]"
+     " [--dry-run] [--help] [--inline] [--recursive] [--special] [--verbose]"
      "\n\t "
 #endif
      " file [file ...]\n"
@@ -87,7 +88,7 @@ char help_message[] = {
 #ifdef HAVE_GETOPT_LONG
     "	--special	work on links and special files\n"
 #endif
-    "	-v 		be verbose\n"
+    "	-v --verbose 	be verbose\n"
     "	-V 		show the current version\n"
 };
 
@@ -105,7 +106,7 @@ char help_message_inline[] = {
     "	-L		list available sequences and exit\n"
     "			with -v ... dump sequence contents\n"
     "	-s sequence	choose which sequence to detox with\n"
-    "	-v 		be verbose\n"
+    "	-v --verbose 	be verbose\n"
     "	-V 		show the current version\n"
 };
 
