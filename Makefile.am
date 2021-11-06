@@ -1,5 +1,10 @@
 SUBDIRS = src
-dist_doc_DATA = README.md
+dist_doc_DATA = \
+	BUILD.md \
+	CHANGELOG.md \
+	LICENSE \
+	README.md \
+	THANKS.md
 
 dist_man1_MANS = man/detox.1 man/inline-detox.1
 dist_man5_MANS = man/detox.tbl.5 man/detoxrc.5
