@@ -25,7 +25,7 @@ jobs:
       run: make distcheck
 
   build-macos:
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
     - name: brew install
