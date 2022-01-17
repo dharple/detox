@@ -22,11 +22,12 @@ if [ ! -d "$BASE" ] ; then
 fi
 WORK=$(realpath "$(mktemp -d "$BASE"/work-XXXXXX)")
 
-for FILE in *.ts ; do
+for FILE in *.template ; do
 	INPUT=$(basename "$FILE")
-	OUTPUT="${INPUT%.ts}.c"
+	OUTPUT="${INPUT%.template}.c"
 	echo -n "process check file $INPUT... "
 	$CHECKMK "$INPUT" > "$WORK"/"$OUTPUT"
+	sed -i -e 's/^ . Edit the original.*/\0\n * Run `make internals` from the base of the project to regenerate this file./' "$WORK"/"$OUTPUT"
 	if [ ! -f "$OUTPUT" ] ; then
 		echo "created"
 		mv "$WORK"/"$OUTPUT" "$OUTPUT"

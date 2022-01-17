@@ -8,6 +8,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 ### Changed
 - Enabling verbose mode is now done with either `-v` or `--verbose`.
+- Renamed `.ts` files to `.template` so they don't appear as TypeScript files.
 
 ### Merged
 - detox v1.4.5
