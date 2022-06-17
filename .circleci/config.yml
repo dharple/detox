@@ -44,8 +44,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "autoreconf (fails once)"
-          command: "autoreconf || true"
+          name: "install missing packages"
+          command: "brew install pkg-config"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
