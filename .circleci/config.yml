@@ -9,9 +9,12 @@ executors:
   linux: # a Linux VM running Ubuntu 20.04
     machine:
       image: ubuntu-2004:current
-  macos: # macos executor running Xcode
+  macos-12: # macos executor running Xcode
     macos:
       xcode: 12.5.1
+  macos-13: # macos executor running Xcode
+    macos:
+      xcode: 13.4.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -41,7 +44,7 @@ jobs:
           command: "./bin/simple-test.sh"
       - run:
           name: "install"
-          command: "make install"
+          command: "sudo make install"
 
   ubuntu-test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -79,5 +82,5 @@ workflows:
       - build:
           matrix:
             parameters:
-              os: ["docker", "linux", "macos"]
+              os: ["docker", "linux", "macos-12", "macos-13"]
       - ubuntu-test
