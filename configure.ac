@@ -29,7 +29,7 @@ AC_SEARCH_LIBS([ceil], [m])
 AC_DEFUN([AC_CHECK_CFLAG], [
 	HOLD="$CFLAGS"
 	AC_MSG_CHECKING(whether compiler supports $1)
-	CFLAGS="$HOLD $1"
+	CFLAGS="$HOLD $1 -Werror"
 	AC_COMPILE_IFELSE(
 		[AC_LANG_PROGRAM(
 			[[]],
