@@ -15,6 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
           name: "configure"
           command: "./configure --with-check"
       - run:
