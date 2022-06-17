@@ -2,14 +2,27 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+executors:
+  docker: # Docker using the Base Convenience Image
+    docker:
+      - image: cimg/base:stable
+  linux: # a Linux VM running Ubuntu 20.04
+    machine:
+      image: ubuntu-2004:current
+  macos: # macos executor running Xcode
+    macos:
+      xcode: 12.5.1
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  ubuntu-build:
+  build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -63,4 +76,8 @@ jobs:
 workflows:
   test-workflow:
     jobs:
+      - build:
+          matrix:
+            parameters:
+              os: ["docker", "linux", "macos"]
       - ubuntu-test
