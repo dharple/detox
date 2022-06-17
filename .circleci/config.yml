@@ -9,25 +9,17 @@ executors:
   linux: # a Linux VM running Ubuntu 20.04
     machine:
       image: ubuntu-2004:current
-  macos-12: # macos executor running Xcode
+  macos: # macos executor running Xcode
     macos:
       xcode: 12.5.1
-  macos-13: # macos executor running Xcode
-    macos:
-      xcode: 13.4.0
 
 # Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     parameters:
       os:
         type: executor
     executor: << parameters.os >>
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
       - run:
@@ -46,7 +38,31 @@ jobs:
           name: "install"
           command: "sudo make install"
 
-  ubuntu-test:
+  build-macos:
+    macos: # macos executor running Xcode
+      xcode: 12.5.1
+    steps:
+      - checkout
+      - run:
+          name: "autoreconf (fails once)"
+          command: "autoreconf || true"
+      - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
+          name: "configure"
+          command: "./configure"
+      - run:
+          name: "make"
+          command: "make"
+      - run:
+          name: "simple test"
+          command: "./bin/simple-test.sh"
+      - run:
+          name: "install"
+          command: "sudo make install"
+
+  test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -77,10 +93,11 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  test-workflow:
+  workflow:
     jobs:
       - build:
           matrix:
             parameters:
-              os: ["docker", "linux", "macos-12", "macos-13"]
-      - ubuntu-test
+              os: ["docker", "linux"]
+      - build-macos
+      - test
