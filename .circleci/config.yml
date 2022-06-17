@@ -45,7 +45,7 @@ jobs:
       - checkout
       - run:
           name: "install missing packages"
-          command: "brew install pkg-config"
+          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install pkg-config coreutils"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
