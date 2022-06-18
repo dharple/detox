@@ -1,5 +1,3 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
 executors:
@@ -9,9 +7,6 @@ executors:
   linux: # a Linux VM running Ubuntu 20.04
     machine:
       image: ubuntu-2004:current
-  macos: # macos executor running Xcode
-    macos:
-      xcode: 12.5.1
 
 # Define a job to be invoked later in a workflow.
 jobs:
@@ -62,13 +57,9 @@ jobs:
           name: "install"
           command: "sudo make install"
 
-  test:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  unit-test:
     docker:
       - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
       - run:
@@ -90,8 +81,39 @@ jobs:
           name: "distcheck"
           command: "make distcheck"
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  maintainer-clean:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "install"
+          command: "sudo apt update && sudo apt install -y check"
+      - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
+          name: "configure"
+          command: "./configure"
+      - run:
+          name: "maintainer clean"
+          command: "make maintainer-clean"
+      - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
+          name: "configure"
+          command: "./configure"
+      - run:
+          name: "make"
+          command: "make"
+      - run:
+          name: "check"
+          command: "make check"
+      - run:
+          name: "distcheck"
+          command: "make distcheck"
+
 workflows:
   workflow:
     jobs:
@@ -100,4 +122,5 @@ workflows:
             parameters:
               os: ["docker", "linux"]
       - build-macos
-      - test
+      - unit-test
+      - maintainer-clean
