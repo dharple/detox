@@ -88,7 +88,7 @@ jobs:
       - checkout
       - run:
           name: "install"
-          command: "sudo apt update && sudo apt install -y check"
+          command: "sudo apt update && sudo apt install -y flex bison"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
