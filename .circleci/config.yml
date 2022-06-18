@@ -1,0 +1,56 @@
+version: 2.1
+
+jobs:
+  build-linux:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
+          name: "configure"
+          command: "./configure"
+      - run:
+          name: "make"
+          command: "make"
+      - run:
+          name: "check"
+          command: "make check"
+      - run:
+          name: "legacy unit tests"
+          command: "./tests/test.sh src/detox"
+      - run:
+          name: "distcheck"
+          command: "make distcheck"
+
+  build-macos:
+    macos:
+      xcode: 12.5.1
+    steps:
+      - checkout
+      - run:
+          name: "install missing package(s)"
+          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install coreutils"
+      - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
+          name: "configure"
+          command: "./configure"
+      - run:
+          name: "make"
+          command: "make"
+      - run:
+          name: "check"
+          command: "make check"
+      - run:
+          name: "distcheck"
+          command: "make distcheck"
+
+workflows:
+  workflow:
+    jobs:
+      - build-linux
+      - build-macos
