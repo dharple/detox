@@ -75,7 +75,12 @@ derivatives, run:
 sudo apt install autoconf automake bison flex gcc make pkg-config
 ```
 
-To install the needed packages on FreeBSD, run:
+To install the needed packages on macOS, run:
+```
+brew install autoconf automake bison flex gcc make pkg-config
+```
+
+On FreeBSD, run:
 ```
 sudo pkg install autoconf automake gcc pkgconf wget
 ```
