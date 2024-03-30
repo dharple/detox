@@ -78,6 +78,14 @@ config_file_t *config_file_load(options_t *main_options)
             }
         }
 
+        file_work = getenv("XDG_CONFIG_HOME");
+        if (file_work != NULL) {
+            err = snprintf(check_config_file, MAX_PATH_LEN, "%s/detox/detoxrc", file_work);
+            if (err < MAX_PATH_LEN) {
+                config_file = parse_config_file(check_config_file, config_file, main_options);
+            }
+        }
+
         if (config_file == NULL) {
             config_file = spoof_config_file();
         }
