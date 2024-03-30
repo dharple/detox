@@ -2,6 +2,9 @@
 
 *If I missed you, please let me know!*
 
+ninedotnine on github added the ability to load config files from
+$XDG_CONFIG_HOME.
+
 a1346054 on github contributed maintenance improvments.
 
 Thomas Klausner reminded me that `cp -n` does not work on NetBSD.

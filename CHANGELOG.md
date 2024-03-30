@@ -6,6 +6,9 @@ For releases after 1.3.0, the format is based on
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Look for detoxrc in $XDG_CONFIG_HOME. [#101]
+
 ### Changed
 - Enabling verbose mode is now done with either `-v` or `--verbose`.
 - Renamed `.ts` files to `.template` so they don't appear as TypeScript files.
@@ -260,6 +263,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#101]: https://github.com/dharple/detox/pull/101
 [#82]: https://github.com/dharple/detox/issues/82
 [#81]: https://github.com/dharple/detox/issues/81
 [#80]: https://github.com/dharple/detox/issues/80
