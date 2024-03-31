@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.5.1.  */
+/* A Bison parser, made by GNU Bison 3.8.2.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
    Inc.
 
    This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -31,8 +31,9 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Undocumented macros, especially those whose name start with YY_,
-   are private implementation details.  Do not rely on them.  */
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
 
 #ifndef YY_YY_CONFIG_FILE_YACC_H_INCLUDED
 # define YY_YY_CONFIG_FILE_YACC_H_INCLUDED
@@ -44,33 +45,42 @@
 extern int yydebug;
 #endif
 
-/* Token type.  */
+/* Token kinds.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
   enum yytokentype
   {
-    BUILTIN = 258,
-    CLOSE = 259,
-    EOL = 260,
-    FILENAME = 261,
-    IGNORE = 262,
-    ISO8859_1 = 263,
-    LENGTH = 264,
-    LOWER = 265,
-    MAX_LENGTH = 266,
-    OPEN = 267,
-    REMOVE_TRAILING = 268,
-    SAFE = 269,
-    SEQUENCE = 270,
-    UNCGI = 271,
-    UTF_8 = 272,
-    WIPEUP = 273,
-    NVALUE = 274,
-    ID = 275,
-    QSTRING = 276
+    YYEMPTY = -2,
+    YYEOF = 0,                     /* "end of file"  */
+    YYerror = 256,                 /* error  */
+    YYUNDEF = 257,                 /* "invalid token"  */
+    BUILTIN = 258,                 /* BUILTIN  */
+    CLOSE = 259,                   /* CLOSE  */
+    EOL = 260,                     /* EOL  */
+    FILENAME = 261,                /* FILENAME  */
+    IGNORE = 262,                  /* IGNORE  */
+    ISO8859_1 = 263,               /* ISO8859_1  */
+    LENGTH = 264,                  /* LENGTH  */
+    LOWER = 265,                   /* LOWER  */
+    MAX_LENGTH = 266,              /* MAX_LENGTH  */
+    OPEN = 267,                    /* OPEN  */
+    REMOVE_TRAILING = 268,         /* REMOVE_TRAILING  */
+    SAFE = 269,                    /* SAFE  */
+    SEQUENCE = 270,                /* SEQUENCE  */
+    UNCGI = 271,                   /* UNCGI  */
+    UTF_8 = 272,                   /* UTF_8  */
+    WIPEUP = 273,                  /* WIPEUP  */
+    NVALUE = 274,                  /* NVALUE  */
+    ID = 275,                      /* ID  */
+    QSTRING = 276                  /* QSTRING  */
   };
+  typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Tokens.  */
+/* Token kinds.  */
+#define YYEMPTY -2
+#define YYEOF 0
+#define YYerror 256
+#define YYUNDEF 257
 #define BUILTIN 258
 #define CLOSE 259
 #define EOL 260
@@ -101,7 +111,7 @@ union YYSTYPE
     int   cmd;    /* command value */
     int   nvalue; /* nvalue */
 
-#line 105 "config_file_yacc.h"
+#line 115 "config_file_yacc.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -112,6 +122,8 @@ typedef union YYSTYPE YYSTYPE;
 
 extern YYSTYPE yylval;
 
+
 int yyparse (void);
+
 
 #endif /* !YY_YY_CONFIG_FILE_YACC_H_INCLUDED  */
