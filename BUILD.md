@@ -170,8 +170,10 @@ make dist-zip
 
 6. Create a new release on GitHub, using the rendered contents of the
    CHANGELOG, and attaching the release files.
-7. Create a new release on Sourceforge, using the same items.
+7. Create a new release on Sourceforge, using the same items.  In the project,
+   click on Files, then the `detox` folder.  Click on Add Folder, add a version
+   folder, then click in to it.  Add files to the folder.
 8. Update the "latest stable" version in README.md, if appropriate.
-9. Play [Alwa's Legacy].
+9. Play [A Void Hope].
 
-[Alwa's Legacy]: https://eldenpixels.com/alwas-legacy/
+[A Void Hope]: https://eldenpixels.com/a-void-hope/
