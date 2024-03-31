@@ -15,7 +15,11 @@ dist_pkgdata_DATA = \
 	table/cp1252.tbl \
 	table/iso8859_1.tbl \
 	table/safe.tbl \
-	table/unicode.tbl \
+	table/unicode.tbl
+
+legacydir = $(pkgdatadir)/legacy
+
+dist_legacy_DATA = \
 	table/legacy/cp1252.tbl \
 	table/legacy/iso8859_1.tbl \
 	table/legacy/unicode.tbl \
