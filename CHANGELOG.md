@@ -9,7 +9,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- The translation table for CP-1252 now transcodes characters to UTF-8. [#112]
+- The translation tables for CP-1252 and ISO-8859-1 now transcode characters to
+  UTF-8. [#112]
 
 ## [2.0.0] - 2024-03-30
 ### Added
