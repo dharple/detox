@@ -39,23 +39,23 @@ static struct test_filename data[DATA_COUNT] = {
     },
     {
         .filename = "\xAE reg",
-        .expected_a = "_reg_ reg",
-        .expected_b = "_reg_ reg",
+        .expected_a = "\u00AE reg",
+        .expected_b = "\u00AE reg",
     },
     {
         .filename   = "\xA9 copy",
-        .expected_a = "_copy_ copy",
-        .expected_b = "_copy_ copy",
+        .expected_a = "\u00A9 copy",
+        .expected_b = "\u00A9 copy",
     },
     {
         .filename   = "\xC6 capital AE",
-        .expected_a = "AE capital AE",
-        .expected_b = "AE capital AE",
+        .expected_a = "\u00C6 capital AE",
+        .expected_b = "\u00C6 capital AE",
     },
     {
         .filename   = "\xDE capital thorn",
-        .expected_a = "TH capital thorn",
-        .expected_b = "TH capital thorn",
+        .expected_a = "\u00DE capital thorn",
+        .expected_b = "\u00DE capital thorn",
     },
 
     // full coverage - test default translation rules
