@@ -21,7 +21,7 @@ sequence default {
 # Sequences meant primarily for detox
 #
 
-# transliterates ISO 8859-1 into ASCII
+# transcodes ISO-8859-1 into UTF-8
 sequence "iso8859_1" {
 	iso8859_1 {
 		builtin "iso8859_1";
@@ -34,7 +34,7 @@ sequence "iso8859_1" {
 	};
 };
 
-# transliterates CP-1252 and ISO8859-1 into ASCII
+# transcodes CP-1252 and ISO-8859-1 into UTF-8
 sequence "iso8859_1-legacy" {
 	iso8859_1 {
 		builtin "cp1252";
@@ -50,25 +50,8 @@ sequence "iso8859_1-legacy" {
 	};
 };
 
-# transliterates UTF-8 into ASCII
+# handles UTF-8 control codes
 sequence "utf_8" {
-	utf_8 {
-		builtin "unicode";
-	};
-	safe {
-		builtin "safe";
-	};
-	wipeup {
-		remove_trailing;
-	};
-};
-
-# transliterates CP-1252 and UTF-8 into ASCII
-# this is *very* rare
-sequence "utf_8-legacy" {
-	utf_8 {
-		builtin "cp1252";
-	};
 	utf_8 {
 		builtin "unicode";
 	};
@@ -106,21 +89,21 @@ sequence "lower" {
 # Sequences meant primarily for inline-detox
 #
 
-# transliterates ISO 8859-1 to ASCII
+# transcodes ISO-8859-1 to ASCII
 sequence "iso8859_1-only" {
 	iso8859_1 {
 		builtin "iso8859_1";
 	};
 };
 
-# transliterates CP-1252 to ASCII
+# transcodes CP-1252 to ASCII
 sequence "cp1252-only" {
 	iso8859_1 {
 		builtin "cp1252";
 	};
 };
 
-# transliterates UTF-8 to ASCII
+# handles UTF-8 control codes
 sequence "utf_8-only" {
 	utf_8 {
 		builtin "unicode";

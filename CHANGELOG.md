@@ -9,8 +9,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Moved legacy translation tables to `tables/legacy/`. [#112]
+- Removed the transliteration attempts in `unicode.tbl`, as well as the default
+  value, so most Unicode will just pass through unchanged. [#112]
 - The translation tables for CP-1252 and ISO-8859-1 now transcode characters to
   UTF-8. [#112]
+
+### Removed
+
+- Removed `utf_8-legacy` sequence (use `iso8859_1-legacy` instead). [#112]
 
 ## [2.0.0] - 2024-03-30
 ### Added

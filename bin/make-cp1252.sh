@@ -7,8 +7,8 @@
 PROJECT_ROOT=$(dirname "$(dirname "$(realpath "$0")")")
 TABLEPATH="$PROJECT_ROOT/table"
 
-TABLE1=$TABLEPATH/unicode.tbl
-TABLE2=$TABLEPATH/unidecode.tbl
+TABLE1=$TABLEPATH/legacy/unicode.tbl
+TABLE2=$TABLEPATH/legacy/unidecode.tbl
 
 START_HEX=0x0080
 
