@@ -3,7 +3,7 @@
 *If I missed you, please let me know!*
 
 ninedotnine on github added the ability to load config files from
-$XDG_CONFIG_HOME.
+`$XDG_CONFIG_HOME`.
 
 a1346054 on github contributed maintenance improvments.
 
@@ -14,7 +14,7 @@ and became a new table, `unidecode.tbl`.  Additionally, Behat's [PHP
 transliteration library] put Text::Unidecode in a format I was comfortable
 working with.
 
-K Lange's awesome AC_C_COMPILE_FLAGS macro helped me write my own, updated
+K Lange's awesome `AC_C_COMPILE_FLAGS` macro helped me write my own, updated
 version of the same feature.
 
 Hans-Peter Jansen gave me the impetus I needed to finally fix the char /

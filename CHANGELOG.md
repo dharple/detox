@@ -7,7 +7,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Added
-- Look for detoxrc in $XDG_CONFIG_HOME. [#101]
+- Look for detoxrc in `$XDG_CONFIG_HOME`. [#101]
 
 ### Changed
 - Enabling verbose mode is now done with either `-v` or `--verbose`.
