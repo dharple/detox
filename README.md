@@ -1,16 +1,18 @@
 # Overview
 
 `detox` is a program that renames files to make them easier to work with under
-Unix and related operating systems.  Spaces and various other unsafe
-characters (such as "`$`") get replaced with "`_`".  ISO 8859-1 (Latin-1)
-characters can be transliterated to ASCII, as can UTF-8 characters.
+Linux and other Unix-like operating systems.  Spaces and various other unsafe
+characters (such as "`$`") get replaced with "`_`".  The upper portion of
+ISO-8859-1 (Latin-1) can be transcoded to UTF-8, as can CP-1252.
+
 More details are contained in the `detox.1` [man page].
 
 ---
 
 # Notice for Package Maintainers
 
-Version 2 adds a new dependency for package builds: `pkg-config` or `pkgconf`.
+Version 2 and up have a new dependency for package builds: `pkg-config` or
+`pkgconf`.
 
 You may also need to add a dependency on `libtool`.  Please let me know if you
 do, by creating an [issue].  I'll update the docs accordingly.
@@ -22,9 +24,12 @@ Please open an [issue] for any build problems encountered.  Thanks!
 
 # Notice for Everyone
 
-I have renamed the `master` branch to `main`.  If you have a copy of detox
-checked out, you can update your code to point at the new branch using
-[these steps].  Alternatively, you can clone a fresh copy of the repo.
+As of version 3, `detox` will no longer try to transliterate all of Unicode
+into the ASCII character space.  The focus will be on truly problematic
+characters.
+
+Older releases and version-specific branches are still available if you need
+that functionality.
 
 ---
 
@@ -162,4 +167,3 @@ For support, to report a defect, or to request a new feature, please use the
 [GitHub Issues system]: https://github.com/dharple/detox/issues/
 [issue]: https://github.com/dharple/detox/issues/
 [man page]: https://raw.githubusercontent.com/dharple/detox/main/man/detox.1.pdf
-[these steps]: https://gist.github.com/dharple/79b51d1c2fc0fea64fb84659581a6dc9
