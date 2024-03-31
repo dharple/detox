@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- The translation table for CP-1252 now transcodes characters to UTF-8. [#112]
+
 ## [2.0.0] - 2024-03-30
 ### Added
 - Look for detoxrc in `$XDG_CONFIG_HOME`. [#101]
@@ -266,6 +270,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#112]: https://github.com/dharple/detox/issues/112
 [#101]: https://github.com/dharple/detox/pull/101
 [#82]: https://github.com/dharple/detox/issues/82
 [#81]: https://github.com/dharple/detox/issues/81

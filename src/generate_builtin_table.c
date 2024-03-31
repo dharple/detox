@@ -36,8 +36,15 @@ static char *escape_string(char *in)
     while (*in != '\0') {
         switch (*in) {
             case '"':
-            case '\\':
                 *work++ = '\\';
+                *work++ = *in++;
+                break;
+
+            case '\\':
+                // leave \u and \U alone
+                if (*(in + 1) != 'u' && *(in + 1) != 'U') {
+                    *work++ = '\\';
+                }
                 *work++ = *in++;
                 break;
 

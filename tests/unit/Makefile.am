@@ -28,6 +28,7 @@ AM_LDFLAGS = \
 
 TESTS = \
 	test_clean_iso8859_1 \
+	test_clean_iso8859_1_cp1252 \
 	test_clean_lower \
 	test_clean_max_length \
 	test_clean_safe \

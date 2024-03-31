@@ -64,14 +64,15 @@ for CHAR in $CHARS ; do
 	CURRENT_HEX=$(printf "0x%04X" "$CURRENT")
 
 	if [ "$CHAR" = "undef" ] ; then
-		echo "# $CURRENT_HEX		undef"
+		echo "$CURRENT_HEX		\"-\"		# undefined, or control character"
 	else
 		CHECK=$(grep -c 0x"$CHAR" "$TABLE1")
 		if [ "$CHECK" -eq "1" ] ; then
-			grep 0x"$CHAR" "$TABLE1" | sed -e"s/^0x[0-9A-F]\{4,\}/$CURRENT_HEX/"
+			echo -n "$CURRENT_HEX		\"\\u$CHAR\"	# "
+			grep 0x"$CHAR" "$TABLE1" | sed -e"s/^.*# //"
 		else
-			echo -n "# "
-			grep 0x"$CHAR" "$TABLE2" | sed -e"s/^0x[0-9A-F]\{4,\}/$CURRENT_HEX/"
+			echo -n "$CURRENT_HEX		\"\\u$CHAR\"	# "
+			grep 0x"$CHAR" "$TABLE2" | sed -e"s/^.*# //"
 		fi
 	fi
 
