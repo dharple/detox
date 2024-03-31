@@ -1,4 +1,5 @@
 # CHANGELOG
+
 All notable changes to this project will be documented in this file.
 
 For releases after 1.3.0, the format is based on
@@ -20,34 +21,44 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Removed `utf_8-legacy` sequence (use `iso8859_1-legacy` instead). [#112]
 
 ## [2.0.0] - 2024-03-30
+
 ### Added
+
 - Look for detoxrc in `$XDG_CONFIG_HOME`. [#101]
 
 ### Changed
+
 - Enabling verbose mode is now done with either `-v` or `--verbose`.
 - Renamed `.ts` files to `.template` so they don't appear as TypeScript files.
 
 ### Merged
+
 - detox v1.4.5
 
 ## [2.0.0-beta2] - 2021-08-14
+
 ### Fixed
+
 - `inline-detox` no longer chokes when a stream doesn't end in a newline. [#74]
 - Compilation works under msys2. [#80]
 
 ### Merged
+
 - detox v1.4.4
 - detox v1.4.3
 - detox v1.4.2
 
 ## [2.0.0-beta1] - 2021-03-05
+
 ### Added
+
 - Added a new transliteration table, `unidecode.tbl`, based on
   [Text:Unidecode].  [#47] [#53]
 - A new config file statement telling `detox` to use a builtin table.  [#28]
   [#50]
 
 ### Changed
+
 - BREAKING CHANGE: Transliteration no longer happens by default.  To emulate
   the old behavior, use `detox -s utf_8`.  [#21]
 - PACKAGE MAINTAINERS: The default config file and translation tables no longer
@@ -68,13 +79,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The UTF-8 filter no longer behaves like the safe filter.  All characters
   between 0x20 and 0x7E are preserved.  [#40]
 
-## Removed
+### Removed
+
 - Removed obsolete BUGS from man pages.  One caveat has been moved to CAVEATS.
   [#37]
 - The deprecated command line option `--remove-trailing` is now removed.  Use
   the sequence `wipeup { remove_trailing; };` instead.  [#24]
 
 ### Fixed
+
 - Numerous internal bugs and inconsistencies.  [#21] [#31] [#41]
 - The `max_length` filter recognizes files with two extensions.  [#46]
 - The `safe` filter converts all ASCII control characters to `_`.  [#21] [#29]
@@ -84,6 +97,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   encountered. [#72]
 
 ### Security
+
 - Added additional compiler protection flags.  [#31]
 - Symlinks that point at directories are no longer followed when `--special`
   and `-r` are specified together. [#23]
@@ -91,55 +105,75 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   them obvious. [#40]
 
 ## [1.4.5] - 2021-08-15
+
 ### Fixed
+
 - Autoconf macros have been updated to support 2.70 changes. [#82]
 
 ## [1.4.4] - 2021-08-14
+
 ### Fixed
+
 - Add explicit large file support via autoconf. [#81]
 
 ## [1.4.3] - 2021-07-24
+
 ### Fixed
+
 - Fixed build when the `stat` struct is missing `st_blocks`. [#77]
 
 ## [1.4.2] - 2021-03-06
+
 ### Fixed
+
 - Replaced instances of `cp -an` with `test` and `install` in the Makefile rule
   that copies `yyz.sample` to `yyz`. [#73]
 - Fixed `make distcheck`. [#73]
 
 ## [1.4.1] - 2021-02-20
+
 ### Fixed
+
 - Fixed a memory overflow bug while reading files from the command line, using
   a patch from David Tardon, which was passed on by UsernameRandomlyGenerated.
   [#56] [#sf-patch-3]
 
 ## [1.4.0] - 2021-02-11
+
 ### Added
+
 - Regression tests for basic functionality, based on old custom scripts.
 - Regression tests confirming fixes for previously fixed issues: [#14], [#19].
 
 ### Changed
+
 - Removed one check for `.` and `..` when traversing a directory tree. [#12]
 - Regenerated config file parser.
 - Updated the safe filter to translate new lines, carriage returns, and tabs
   into underscores. [#9] [#11] [#17]
 
 ### Fixed
+
 - The examples in `detox.1` no longer say `-c` when they mean `-f`. [#30]
 - The command synopsis in `detox.1` and `inline-detox.1` no longer adds a dash
   before the `sequence` and `configfile`. [#30]
 
 ## [1.3.3] - 2021-02-03
+
 ### Fixed
+
 - Fix version identifier in `detox` binary.
 
 ## [1.3.2] - 2021-01-31
+
 ### Fixed
+
 - Table based UTF-8 translation no longer mangles characters. [#14]
 
 ## [1.3.1] - 2021-01-30
+
 ### Fixed
+
 - Merged fix for Debian #861537, written by Vasily Kolobkov, passed on by
   Zenaan Harkness, Quentin Guittard, and Joao Eriberto Mota Filho. This
   addresses an issue with detox generating malformed characters during
