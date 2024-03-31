@@ -126,10 +126,10 @@ START_TEST(test_table_resize)
                 );
 
                 if (values[j].expected != NULL) {
-                    ck_assert_msg(check != NULL, message);
-                    ck_assert_msg(strcmp(check, values[j].expected) == 0, message);
+                    ck_assert_msg(check != NULL, "%s", message);
+                    ck_assert_msg(strcmp(check, values[j].expected) == 0, "%s", message);
                 } else {
-                    ck_assert_msg(check == NULL, message);
+                    ck_assert_msg(check == NULL, "%s", message);
                 }
             }
         }
