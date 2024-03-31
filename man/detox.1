@@ -6,7 +6,7 @@
 .\" For the full copyright and license information, please view the LICENSE
 .\" file that was distributed with this source code.
 .\"
-.Dd February 24, 2021
+.Dd March 31, 2024
 .Dt DETOX 1
 .Os
 .Sh NAME
@@ -32,12 +32,12 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility renames files to make them easier to work with under Unix and Unix-like
-operating systems.
+utility renames files to make them easier to work with under Linux and other
+Unix-like operating systems.
 It replaces characters that make it hard to type out a filename with dashes and
 underscores.
-It also provides transliteration-based filters, converting ISO 8859-1 or UTF-8
-to ASCII, in part or in whole.
+It also provides transcoding-based filters, converting ISO-8859-1 or CP-1252 to
+UTF-8.
 An additional filter unescapes CGI-escaped filenames.
 .Ss Sequences
 .Nm
@@ -55,8 +55,8 @@ filters.
 Other examples of pre-configured sequences are
 .Ar iso8859_1
 and
-.Ar utf_8 ,
-which both provide transliteration to ASCII and then finish with the
+.Ar iso8859_1-legacy ,
+which both provide transcoding to UTF-8, and then finish with the
 .Ar safe
 and
 .Ar wipeup
@@ -125,16 +125,14 @@ unless
 .Fl f
 has been specified, in which case, it is ignored.
 .It Pa /usr/share/detox/cp1252.tbl
-The provided CP-1252 transliteration table.
+The provided CP-1252 transcoding table.
 .It Pa /usr/share/detox/iso8859_1.tbl
-The provided ISO 8859-1 transliteration table.
+The provided ISO-8859-1 transcoding table.
 .It Pa /usr/share/detox/safe.tbl
 The provided safe character translation table.
 .It Pa /usr/share/detox/unicode.tbl
-The provided Unicode transliteration table, used by the UTF-8 filter.
-.It Pa /usr/share/detox/unidecode.tbl
-An additional Unicode tranlsiteration table, based on
-.Xr Text::Unidecode 3pm .
+The provided Unicode control character filtering table, used by the UTF-8
+filter.
 .El
 .Sh EXAMPLES
 .Bl -tag -width Fl
@@ -151,7 +149,6 @@ showing their filters and options.
 .El
 .Sh SEE ALSO
 .Xr inline-detox 1 ,
-.Xr Text::Unidecode 3pm ,
 .Xr detox.tbl 5 ,
 .Xr detoxrc 5 ,
 .Xr ascii 7 ,
@@ -172,7 +169,8 @@ I created
 to clean up these files.
 .Pp
 Version 2.0 stepped back from transliteration out of the box, instead focusing
-on ease of use.
+on ease of use.  Version 3.0 further shifted this, by removing most of the
+transliteration from the tables.
 The primary motivations for this were user-provided feedback, and the fact that
 many modern Unix-like OSs use UTF-8 as their primary character set.
 Transliterating from UTF-8 to ASCII in this scenario is lossy and pointless.

@@ -29,7 +29,8 @@ into the ASCII character space.  The focus will be on truly problematic
 characters.
 
 Older releases and version-specific branches are still available if you need
-that functionality.
+that functionality.  During this transition, the old tables are also available
+in `table/legacy/`
 
 ---
 
