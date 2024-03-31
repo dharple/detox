@@ -67,6 +67,7 @@ grep -ri github tests/legacy/ | sed -e s'/[^0-9 ]//g' -e s'/ \+/ /g' -e s'/^0\+/
 ./configure --enable-debug --with-check
 make clean
 make
+make internals
 make check
 cat tests/unit/*.log
 ```
@@ -79,6 +80,7 @@ cat tests/unit/*.log
 ./configure --with-check
 make clean
 make
+make internals
 make check
 ```
 
@@ -97,6 +99,7 @@ sparse src/*.[ch]
 ./configure --with-coverage --with-check
 make clean
 make
+make internals
 make check
 make coverage
 ```
@@ -118,6 +121,7 @@ chromium coverage/index.html
 ./configure --with-coverage --with-check
 make clean
 make
+make internals
 ( cd tests/unit/ && make check )
 make coverage
 ```
@@ -128,6 +132,7 @@ make coverage
 ./configure --with-coverage --with-check
 make clean
 make
+make internals
 ( cd tests/legacy/ && make check )
 make coverage
 ```
