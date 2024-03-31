@@ -81,8 +81,8 @@ block.
 .It Cm iso8859_1 ;
 .It Cm iso8859_1 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm iso8859_1 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This transliterates ISO 8859-1 characters between 0xA0 and 0xFF into lower
-ASCII equivalents.
+This transcodes ISO-8859-1 characters between 0xA0 and 0xFF into their UTF-8
+equivalents, with a few exceptions.
 The output is not necessarily safe, and should also be run through the
 .Ar safe
 filter.
@@ -95,7 +95,7 @@ Under normal circumstances, the filename syntax is not needed.
 .Cm detox
 looks in several locations for a file called
 .Pa iso8859_1.tbl ,
-which is a set of rules defining how an ISO 8859-1 character should be
+which is a set of rules defining how an ISO-8859-1 character should be
 translated.
 If
 .Cm detox
@@ -118,8 +118,7 @@ filter.
 .It Cm utf_8 ;
 .It Cm utf_8 Bro Cm builtin Qo Ar name Qc ; Brc ;
 .It Cm utf_8 Bro Cm filename Qo Ar /path/to/filename Qc ; Brc ;
-This transliterations Unicode characters, encoded using UTF-8, into lower ASCII
-equivalents.
+This filters Unicode control characters, encoded using UTF-8.
 .Pp
 This operates in a manner similar to
 .Ar iso8859_1 ,
@@ -179,22 +178,23 @@ It only works on ASCII characters.
 .Sh BUILTIN TABLES
 .Bl -tag -width 0.25i
 .It cp1252
-A translation table for transliterating CP-1252 characters to ASCII.
+A translation table for transcoding CP-1252 characters to UTF-8, with a few
+exceptions.
 This is no longer a common use case, and has been moved to a separate table.
 .It iso8859_1
-A translation table for transliterating single-byte characters with the high
-bit set from ISO 8859-1 to ASCII.
+A translation table for transcoding single-byte characters with the high bit
+set from ISO-8859-1 to UTF-8.
 .It safe
 A replacement table for characters that are hard to work with under Unix and
 Unix-like OSs.
 .It unicode
-A translation table for transliterating multi-byte characters encoded in UTF-8
-to ASCII.
+A translation table for converting multi-byte control characters encoded in
+UTF-8 to safe characters.
 .El
 .Sh EXAMPLES
 .Bd -literal
 .\" START SAMPLE
-# transliterate UTF-8 to ASCII (using chained tables), clean up
+# filter UTF-8 control characters to ASCII (using chained tables), clean up
 sequence utf8 {
   utf_8 {
     filename "/usr/local/share/detox/custom.tbl";
@@ -212,7 +212,7 @@ sequence utf8 {
     length 128;
   };
 };
-# decode CGI, transliterate CP-1252 to ASCII, clean up
+# decode CGI, transcode CP-1252 to UTF-8, clean up
 sequence "cgi-cp1252" {
   uncgi;
   iso8859_1 {
