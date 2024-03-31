@@ -108,6 +108,8 @@ table_t *parse_table(char *filename)
                     continue;
                 }
 
+                // check to see if a language specifier has been set
+
                 if (work[offset] == '"') {
                     sscanf(work + offset + 1, "%[^\"]", parsed);
                 } else if (work[offset] == '\'') {
