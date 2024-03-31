@@ -18,7 +18,7 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 19
+#define DATA_COUNT 20
 static struct test_filename data[DATA_COUNT] = {
     // legacy
 
@@ -141,6 +141,15 @@ static struct test_filename data[DATA_COUNT] = {
         .expected_a = "CASE ID : E",
         .expected_b = "CASE ID : E",
     },
+
+    // github issue 106
+
+    {
+        .filename   = "\u2044 fraction slash https:\u2044\u2044www.google.com\u2044whatever\u2044.desktop",
+        .expected_a = "_ fraction slash https:__www.google.com_whatever_.desktop",
+        .expected_b = "_ fraction slash https:__www.google.com_whatever_.desktop",
+    },
+
 };
 
 #test test_clean_utf_8

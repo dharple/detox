@@ -27,7 +27,7 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 19
+#define DATA_COUNT 20
 static struct test_filename data[DATA_COUNT] = {
     // legacy
 
@@ -150,11 +150,20 @@ static struct test_filename data[DATA_COUNT] = {
         .expected_a = "CASE ID : E",
         .expected_b = "CASE ID : E",
     },
+
+    // github issue 106
+
+    {
+        .filename   = "\u2044 fraction slash https:\u2044\u2044www.google.com\u2044whatever\u2044.desktop",
+        .expected_a = "_ fraction slash https:__www.google.com_whatever_.desktop",
+        .expected_b = "_ fraction slash https:__www.google.com_whatever_.desktop",
+    },
+
 };
 
 START_TEST(test_clean_utf_8)
 {
-#line 147
+#line 156
     table_t *table_a;
     table_t *table_b;
     char *output;
@@ -184,7 +193,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_null)
 {
-#line 172
+#line 181
     char *output;
 
     // confirm NULL works
@@ -196,7 +205,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_missing_table)
 {
-#line 179
+#line 188
     clean_utf_8("what", NULL);
 
 }
@@ -204,7 +213,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_invalid)
 {
-#line 182
+#line 191
     table_t *table;
     char *output;
 
@@ -225,7 +234,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_beyond_unicode_max)
 {
-#line 198
+#line 207
     table_t *table;
     char *output;
 

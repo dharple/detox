@@ -220,7 +220,7 @@ table_t *load_builtin_iso8859_1_table(void)
  * Generated from unicode.tbl
  */
 
-static table_row_t builtin_unicode_rows[162] = {
+static table_row_t builtin_unicode_rows[163] = {
     { .key  = 0x0001, .data = "_" },
     { .key  = 0x0002, .data = "_" },
     { .key  = 0x0003, .data = "_" },
@@ -381,13 +381,14 @@ static table_row_t builtin_unicode_rows[162] = {
     { .key  = 0x202d, .data = " " },
     { .key  = 0x202e, .data = " " },
     { .key  = 0x202f, .data = " " },
+    { .key  = 0x2044, .data = "_" },
     { .key  = 0x205f, .data = " " },
     { .key  = 0x2060, .data = "" },
 };
 
 static table_t builtin_unicode_table = {
-    .length              = 162,
-    .used                = 162,
+    .length              = 163,
+    .used                = 163,
     .max_data_length     = 1,
     .max_key             = 0x2060,
     .hits                = 0,

@@ -6,6 +6,12 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Re-added fraction slash (0x2044) to the unicode translation table. [#106]
+
 ## [3.0.0-beta1] - 2024-03-31
 
 ### Changed
