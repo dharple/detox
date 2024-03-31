@@ -12,6 +12,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Re-added fraction slash (0x2044) to the unicode translation table. [#106]
 
+### Fixed
+
+- Fixed an install error due to name collisions on the primary and legacy
+  translation tables.
+
 ## [3.0.0-beta1] - 2024-03-31
 
 ### Changed
