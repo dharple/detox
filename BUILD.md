@@ -137,6 +137,15 @@ make internals
 make coverage
 ```
 
+### Test Installation
+
+```bash
+./configure
+make clean
+make
+make DESTDIR=/tmp/build-check-$$ install
+```
+
 #### Caveats
 
 For some reason, if you pass `-ftest-coverage` to gcc when you're linking
