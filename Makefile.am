@@ -16,7 +16,10 @@ dist_pkgdata_DATA = \
 	table/iso8859_1.tbl \
 	table/safe.tbl \
 	table/unicode.tbl \
-	table/unidecode.tbl
+	table/legacy/cp1252.tbl \
+	table/legacy/iso8859_1.tbl \
+	table/legacy/unicode.tbl \
+	table/legacy/unidecode.tbl
 
 EXTRA_DIST = man/detox.1.pdf man/inline-detox.1.pdf man/detoxrc.5.pdf man/detox.tbl.5.pdf
 

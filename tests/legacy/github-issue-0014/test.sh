@@ -30,7 +30,7 @@ test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"
 
 # Run the same test, based on the default table
 
-OUTPUT="mE AE.txt"
+OUTPUT="mÉ Æ.txt"
 TABLE=$(dirname $(dirname "$TESTBASE"))/table/unicode.tbl
 
 test_single_table "$DETOX" "$INPUT" "$OUTPUT" "$METHOD" "$TABLE"

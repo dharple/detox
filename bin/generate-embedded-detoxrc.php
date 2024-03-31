@@ -1,4 +1,8 @@
+#!/usr/bin/env php
 <?php
+/**
+ * Used in the unit test for src/config_file_spoof.c
+ */
 
 $file = dirname(dirname(__FILE__)) . '/etc/detoxrc';
 

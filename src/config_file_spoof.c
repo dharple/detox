@@ -115,12 +115,6 @@ config_file_t *spoof_config_file(void)
     sequence->filters = filter = generate_builtin_filter(FILTER_UTF_8, "unicode");
     filter->next = safe_wipeup_filter;
 
-    // utf_8-legacy
-    sequence = sequence->next = generate_sequence("utf_8-legacy");
-    sequence->filters = filter = generate_builtin_filter(FILTER_UTF_8, "cp1252");
-    filter = filter->next = generate_builtin_filter(FILTER_UTF_8, "unicode");
-    filter->next = safe_wipeup_filter;
-
     // uncgi
     sequence = sequence->next = generate_sequence("uncgi");
     sequence->filters = filter = generate_filter(FILTER_UNCGI);

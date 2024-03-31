@@ -1,0 +1,57 @@
+# This file is part of the Detox package.
+#
+# Copyright (c) Doug Harple <detox.dharple@gmail.com>
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+#
+# This table contains some rules for transliterating Window CP-1252 characters
+# into ASCII.
+#
+# Thanks to:
+# - https://en.wikipedia.org/wiki/Windows-1252
+#
+
+#
+# "default" is commented out because this is not intended to be run in
+# isolation.  It should be a prefilter in front of the ISO 8859-1 filter, or,
+# in very rare cases, the UTF-8 one.
+#
+
+# default
+
+start
+
+#
+# CP-1252 Translation - 0x0080-0x009F
+#
+
+0x0080		EUR	# EURO SIGN
+0x0082		"'"	# SINGLE LOW-9 QUOTATION MARK
+0x0083		f	# LATIN SMALL LETTER F WITH HOOK
+0x0084		'"'	# DOUBLE LOW-9 QUOTATION MARK
+0x0085		...	# HORIZONTAL ELLIPSIS
+0x0086		+	# DAGGER
+0x0087		++	# DOUBLE DAGGER
+0x0088		^	# MODIFIER LETTER CIRCUMFLEX ACCENT
+0x0089		%	# PER MILLE SIGN
+0x008A		S	# LATIN CAPITAL LETTER S WITH CARON
+0x008C		OE	# LATIN CAPITAL LIGATURE OE
+0x008E		Z	# LATIN CAPITAL LETTER Z WITH CARON
+
+0x0091		"'"	# LEFT SINGLE QUOTATION MARK
+0x0092		"'"	# RIGHT SINGLE QUOTATION MARK
+0x0093		'"'	# LEFT DOUBLE QUOTATION MARK
+0x0094		'"'	# RIGHT DOUBLE QUOTATION MARK
+0x0095		*	# BULLET
+0x0096		-	# EN DASH
+0x0097		-	# EM DASH
+0x0098		~	# SMALL TILDE
+0x0099		_tm_	# TRADE MARK SIGN
+0x009A		s	# LATIN SMALL LETTER S WITH CARON
+0x009C		oe	# LATIN SMALL LIGATURE OE
+0x009E		z	# LATIN SMALL LETTER Z WITH CARON
+0x009F		Y	# LATIN CAPITAL LETTER Y WITH DIAERESIS
+
+end

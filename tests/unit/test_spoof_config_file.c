@@ -33,8 +33,6 @@ static char *detoxrc =
     "sequence \"iso8859_1-legacy\"{iso8859_1{builtin \"cp1252\";};iso8859_1{"
     "builtin \"iso8859_1\";};safe{builtin \"safe\";};wipeup{remove_trailing;"
     "};};sequence \"utf_8\"{utf_8{builtin \"unicode\";};safe{"
-    "builtin \"safe\";};wipeup{remove_trailing;};};sequence \"utf_8-legacy\"{"
-    "utf_8{builtin \"cp1252\";};utf_8{builtin \"unicode\";};safe{"
     "builtin \"safe\";};wipeup{remove_trailing;};};sequence \"uncgi\"{uncgi;"
     "safe{builtin \"safe\";};wipeup{remove_trailing;};};sequence \"lower\"{"
     "safe{builtin \"safe\";};lower;wipeup{remove_trailing;};};"
@@ -66,7 +64,7 @@ void teardown(void)
 
 START_TEST(test_spoof_config_file)
 {
-#line 59
+#line 57
     options_t *main_options;
     config_file_t *parsed;
     config_file_t *spoofed;
@@ -142,7 +140,7 @@ int main(void)
     int nf;
 
     /* User-specified pre-run code */
-#line 124
+#line 122
     tcase_add_checked_fixture(tc1_1, setup, teardown);
 
     suite_add_tcase(s1, tc1_1);

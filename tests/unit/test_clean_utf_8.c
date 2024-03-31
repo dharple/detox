@@ -38,33 +38,33 @@ static struct test_filename data[DATA_COUNT] = {
     },
     {
         .filename   = "\u00AE reg",
-        .expected_a = "_reg_ reg",
-        .expected_b = "_reg_ reg",
+        .expected_a = "_ reg",
+        .expected_b = "\u00AE reg",
     },
     {
         .filename   = "\u00A9 copy",
-        .expected_a = "_copy_ copy",
-        .expected_b = "_copy_ copy",
+        .expected_a = "_ copy",
+        .expected_b = "\u00A9 copy",
     },
     {
         .filename   = "\u00C6 capital AE",
-        .expected_a = "AE capital AE",
-        .expected_b = "AE capital AE",
+        .expected_a = "_ capital AE",
+        .expected_b = "\u00C6 capital AE",
     },
     {
         .filename   = "\u00DE capital thorn",
-        .expected_a = "TH capital thorn",
-        .expected_b = "TH capital thorn",
+        .expected_a = "_ capital thorn",
+        .expected_b = "\u00DE capital thorn",
     },
     {
         .filename   = "\u014A capital ENG",
-        .expected_a = "NG capital ENG",
-        .expected_b = "NG capital ENG",
+        .expected_a = "_ capital ENG",
+        .expected_b = "\u014A capital ENG",
     },
     {
         .filename   = "\u0172 capital U with Ogonek",
-        .expected_a = "U capital U with Ogonek",
-        .expected_b = "U capital U with Ogonek",
+        .expected_a = "_ capital U with Ogonek",
+        .expected_b = "\u0172 capital U with Ogonek",
     },
 
     // github issue 40
@@ -83,7 +83,7 @@ static struct test_filename data[DATA_COUNT] = {
     {
         .filename   = "\x7F delete",
         .expected_a = "_ delete",
-        .expected_b = "\x7F delete",
+        .expected_b = "_ delete",
     },
 
     // 2 byte UTF-8 encoded 0x00 (null)
@@ -118,31 +118,31 @@ static struct test_filename data[DATA_COUNT] = {
     {
         .filename   = "\xC1\xBF delete",
         .expected_a = "_ delete",
-        .expected_b = "\xC1\xBF delete",
+        .expected_b = "_ delete",
     },
 
     // github issue 33
 
     {
         .filename   = "\U00010348 hwair",
-        .expected_a = "hu hwair",
-        .expected_b = "hu hwair",
+        .expected_a = "_ hwair",
+        .expected_b = "\U00010348 hwair",
     },
 
     // confirm invalid single-byte character sequence
 
     {
-        .filename   = "\x80 delete",
-        .expected_a = "_ delete",
-        .expected_b = "_ delete",
+        .filename   = "\x80 invalid",
+        .expected_a = "_ invalid",
+        .expected_b = "_ invalid",
     },
 
     // phishing
 
     {
         .filename   = "\u03A1a\u200E\u200EyPa\u1963\u200E : Y\u200E\u200Eo\u1959r \u200Ea\u1974\u1974o\u200E\u1959\u1952t \u200Eis \u1974\u1959\u200E\u200Err\u1971\u200E\u200E\u1952t\u1963y\u200E \u1963o\u200E\u200E\u1974k\u1971d\u200E\u200E for \u200Es\u1971\u1974\u1959\u200E\u200Erity \u200Er\u1971as\u200E\u200Eo\u1952s. P\u200E\u200E\u1963\u1971a\u200Es\u1971 \u1974\u1963\u200E\u200Ei\u1974k \u200E\u200Eo\u1952 t\u200Eh\u1971 \u1963i\u200E\u200E\u1952k b\u1971\u200E\u200E\u1963ow t\u200Eo \u1959\u1952\u1963\u200E\u200Eo\u1974k \u200Eyo\u200E\u1959r a\u200E\u200E\u1974\u1974o\u200E\u1959\u1952t",
-        .expected_a = "PayPal : Your account is currently locked for security reasons. Please click on the link below to unlock your account",
-        .expected_b = "PayPal : Your account is currently locked for security reasons. Please click on the link below to unlock your account",
+        .expected_a = "_ayPa_ : Yo_r a__o__t is __rr__t_y _o_k_d for s___rity r_aso_s. P__as_ __i_k o_ th_ _i_k b__ow to ___o_k yo_r a__o__t",
+        .expected_b = "\u03A1ayPa\u1963 : Yo\u1959r a\u1974\u1974o\u1959\u1952t is \u1974\u1959rr\u1971\u1952t\u1963y \u1963o\u1974k\u1971d for s\u1971\u1974\u1959rity r\u1971aso\u1952s. P\u1963\u1971as\u1971 \u1974\u1963i\u1974k o\u1952 th\u1971 \u1963i\u1952k b\u1971\u1963ow to \u1959\u1952\u1963o\u1974k yo\u1959r a\u1974\u1974o\u1959\u1952t",
     },
 
     {
@@ -168,7 +168,7 @@ START_TEST(test_clean_utf_8)
 
     // confirm that our a/b test is still valid
     ck_assert(table_get(table_b, 0x4000) == NULL);
-    ck_assert(table_get(table_b, 0x007F) == NULL);
+    ck_assert(table_get(table_b, 0x0080) == NULL);
 
     // legacy tests
     for (i = 0; i < DATA_COUNT; i++) {
