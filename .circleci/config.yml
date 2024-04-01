@@ -18,6 +18,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "install"
+          command: "sudo apt update && sudo apt install -y bison flex"
+      - run:
           name: "autoreconf"
           command: "autoreconf --install"
       - run:
@@ -64,7 +67,7 @@ jobs:
       - checkout
       - run:
           name: "install"
-          command: "sudo apt update && sudo apt install -y check"
+          command: "sudo apt update && sudo apt install -y bison check flex"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
@@ -88,7 +91,7 @@ jobs:
       - checkout
       - run:
           name: "install"
-          command: "sudo apt update && sudo apt install -y flex bison"
+          command: "sudo apt update && sudo apt install -y bison flex"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
