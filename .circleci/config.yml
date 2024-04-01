@@ -79,9 +79,7 @@ jobs:
           command: "make"
       - run:
           name: "check"
-          command: "CK_XML_LOG_FILE_NAME=/tmp/test.xml make check"
-      - store_test_results:
-          path: "/tmp/test.xml"
+          command: "make check"
       - run:
           name: "distcheck"
           command: "make distcheck"
