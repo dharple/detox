@@ -86,6 +86,8 @@ make check
 
 ### Static Analysis
 
+Neither of these work particularly well, but it's what we have.
+
 ```bash
 make clean
 make
@@ -99,7 +101,6 @@ sparse src/*.[ch]
 ./configure --with-coverage --with-check
 make clean
 make
-make internals
 make check
 make coverage
 ```
@@ -121,7 +122,6 @@ chromium coverage/index.html
 ./configure --with-coverage --with-check
 make clean
 make
-make internals
 ( cd tests/unit/ && make check )
 make coverage
 ```
@@ -132,18 +132,8 @@ make coverage
 ./configure --with-coverage --with-check
 make clean
 make
-make internals
 ( cd tests/legacy/ && make check )
 make coverage
-```
-
-### Test Installation
-
-```bash
-./configure
-make clean
-make
-make DESTDIR=/tmp/build-check-$$ install
 ```
 
 #### Caveats
@@ -153,7 +143,35 @@ objects into an executable, whichever object is first on the command line will
 have its `.gcno` file wiped out.  There is a hack in `src/Makefile.am` that
 puts `-ftest-coverage` on the `DEFS` variable.
 
+---
+
 # Release Instructions
+
+## Pre-Release
+
+1. Review the diff.  If any manpages are in the changeset, confirm that the
+date has been updated.
+
+2. Run `make internals`.
+
+Confirm no changes are recorded.
+
+```bash
+./configure
+make clean
+make
+make internals
+git status -s
+```
+
+3. Run `make distcheck`.
+
+```bash
+./configure
+make clean
+make
+make distcheck
+```
 
 ## Release
 
