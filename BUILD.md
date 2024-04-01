@@ -21,8 +21,11 @@ Basic Development:
 Linting:
 
 - astyle
-- cppcheck
 - mandoc
+
+Static Analysis:
+
+- cppcheck
 - sparse
 
 Testing:
@@ -150,27 +153,21 @@ puts `-ftest-coverage` on the `DEFS` variable.
 ## Pre-Release
 
 1. Review the diff.  If any manpages are in the changeset, confirm that the
-date has been updated.
-
-2. Run `make internals`.
-
-Confirm no changes are recorded.
+   date has been updated.
+2. Run the lint checks from earlier in this document, `astyle` and `mandoc`.
+   Note that `astyle` sometimes confuses a multiplication operator with a
+   pointer, and `mandoc` complains about missing references.
+3. Run `make internals`.  Confirm no changes are recorded.
 
 ```bash
-./configure
-make clean
-make
-make internals
+./configure && make clean && make && make internals
 git status -s
 ```
 
-3. Run `make distcheck`.
+4. Run `make distcheck`.
 
 ```bash
-./configure
-make clean
-make
-make distcheck
+./configure && make clean && make && make distcheck
 ```
 
 ## Release

@@ -330,7 +330,7 @@ char *clean_lower(char *filename)
 
     while (*input_walk != '\0') {
         if (isupper((int) *input_walk)) {
-            *output_walk++ = tolower((int) *input_walk++);
+            *output_walk++ = tolower((int) * input_walk++);
         } else {
             *output_walk++ = *input_walk++;
         }
