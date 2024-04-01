@@ -6,7 +6,7 @@ executors:
       - image: cimg/base:stable
   linux: # a Linux VM running Ubuntu 20.04
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
 
 # Define a job to be invoked later in a workflow.
 jobs:
@@ -35,7 +35,7 @@ jobs:
 
   build-macos:
     macos: # macos executor running Xcode
-      xcode: 12.5.1
+      xcode: 15.3.0
     steps:
       - checkout
       - run:
