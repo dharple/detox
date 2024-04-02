@@ -37,6 +37,10 @@ Testing:
 - strace
 - valgrind
 
+Nice to Have:
+
+`draw-title` (from my [bin] repo).
+
 ## Rebuild Internals
 
 ```bash
@@ -56,6 +60,16 @@ Check formatting on man pages:
 
 ```bash
 mandoc -T lint man/*.[15]
+```
+
+Check formatting on translation tables:
+
+```bash
+# if you have draw-title in your path
+find table/ -type f -exec draw-title '{}' ';' -exec src/check-table '{}' ';'
+
+# otherwise
+find table/ -type f -exec echo ';' -exec src/check-table '{}' ';'
 ```
 
 Confirm tests reference correct GitHub issue:
@@ -157,14 +171,17 @@ puts `-ftest-coverage` on the `DEFS` variable.
 2. Run the lint checks from earlier in this document, `astyle` and `mandoc`.
    Note that `astyle` sometimes confuses a multiplication operator with a
    pointer, and `mandoc` complains about missing references.
-3. Run `make internals`.  Confirm no changes are recorded.
+3. Run the translation table lint checker, using `find` and `check-table`, and
+   look for any warnings.  The `draw-title` script is from my [bin] repo, and
+   completely optional.  I just find it easier to read.
+4. Run `make internals`.  Confirm no changes are recorded.
 
 ```bash
 ./configure && make clean && make && make internals
 git status -s
 ```
 
-4. Run `make distcheck`.
+5. Run `make distcheck`.
 
 ```bash
 ./configure && make clean && make && make distcheck
@@ -206,3 +223,4 @@ make dist-zip
 9. Play [A Void Hope].
 
 [A Void Hope]: https://eldenpixels.com/a-void-hope/
+[bin]: https://github/dharple/bin
