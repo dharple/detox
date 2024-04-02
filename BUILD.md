@@ -39,7 +39,7 @@ Testing:
 
 Nice to Have:
 
-`draw-title` (from my [bin] repo).
+- draw-title (from my [bin] repo)
 
 ## Rebuild Internals
 
