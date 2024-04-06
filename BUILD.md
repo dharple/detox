@@ -196,10 +196,9 @@ git status -s
 
 ```bash
 git diff
-git add -A
-git commit -m "Release v1.4.0"
-git tag
+git commit -a -m "Release v1.4.0"
 git tag v1.4.0
+git tag # confirm your tag was created correctly
 git push
 git push --tags
 ```
@@ -214,8 +213,8 @@ make dist-bzip2
 make dist-zip
 ```
 
-6. Create a new release on GitHub, using the rendered contents of the
-   CHANGELOG, and attaching the release files.
+6. Create a new release on GitHub, using the raw contents of the CHANGELOG, and
+   attaching the release files.
 7. Create a new release on Sourceforge, using the same items.  In the project,
    click on Files, then the `detox` folder.  Click on Add Folder, add a version
    folder, then click in to it.  Add files to the folder.
