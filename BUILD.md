@@ -36,6 +36,9 @@ Testing:
 
 ## Rebuild Internals
 
+_Please note that this does not work with distribution tarballs.  If you want
+to do this, please clone the source from GitHub._
+
 ```bash
 make
 make internals
