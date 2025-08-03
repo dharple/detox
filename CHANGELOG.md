@@ -6,6 +6,12 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Misc
+
+- Merged changes from v2.0.1 and v2.0.2.
+
 ## [3.0.0-beta2] - 2024-04-05
 
 ### Added
@@ -40,6 +46,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [2.0.1] - 2025-08-03
 
 ### Fixed
+
 - Updated manifest for distribution tarballs to include files needed to run
   unit tests. [#126]
 
@@ -342,6 +349,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [#128]: https://github.com/dharple/detox/issues/128
 [#126]: https://github.com/dharple/detox/issues/126
 [#112]: https://github.com/dharple/detox/issues/112
+[#106]: https://github.com/dharple/detox/issues/106
 [#101]: https://github.com/dharple/detox/pull/101
 [#82]: https://github.com/dharple/detox/issues/82
 [#81]: https://github.com/dharple/detox/issues/81
