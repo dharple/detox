@@ -6,7 +6,7 @@ executors:
       - image: cimg/base:stable
   linux: # a Linux VM running Ubuntu 20.04
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
 
 # Define a job to be invoked later in a workflow.
 jobs:
@@ -17,6 +17,9 @@ jobs:
     executor: << parameters.os >>
     steps:
       - checkout
+      - run:
+          name: "install"
+          command: "sudo apt update && sudo apt install -y bison flex"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
@@ -35,12 +38,12 @@ jobs:
 
   build-macos:
     macos: # macos executor running Xcode
-      xcode: 12.5.1
+      xcode: 15.3.0
     steps:
       - checkout
       - run:
           name: "install missing packages"
-          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install pkg-config coreutils"
+          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake bison flex gcc make pkg-config"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
@@ -64,7 +67,7 @@ jobs:
       - checkout
       - run:
           name: "install"
-          command: "sudo apt update && sudo apt install -y check"
+          command: "sudo apt update && sudo apt install -y bison check flex"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
@@ -88,7 +91,7 @@ jobs:
       - checkout
       - run:
           name: "install"
-          command: "sudo apt update && sudo apt install -y flex bison"
+          command: "sudo apt update && sudo apt install -y bison flex"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
