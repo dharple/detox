@@ -46,5 +46,9 @@ check_PROGRAMS = $(TESTS)
 
 endif # WITH_CHECK
 
+EXTRA_DIST = \
+	fixtures \
+	unit_struct.h
+
 clean-local:
 	rm -f *.gcov *.gcno *.gcda

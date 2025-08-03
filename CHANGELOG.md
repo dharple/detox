@@ -31,6 +31,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Removed `utf_8-legacy` sequence (use `iso8859_1-legacy` instead). [#112]
 
+## [2.0.2] - 2025-08-03
+
+### Fixed
+
+- Fix `make distcheck`. [#128]
+
+## [2.0.1] - 2025-08-03
+
+### Fixed
+- Updated manifest for distribution tarballs to include files needed to run
+  unit tests. [#126]
+
 ## [2.0.0] - 2024-03-30
 
 ### Added
@@ -309,6 +321,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [Unreleased]: https://github.com/dharple/detox/compare/v3.0.0-beta2...main
 [3.0.0-beta2]: https://github.com/dharple/detox/compare/v3.0.0-beta1...v3.0.0-beta2
 [3.0.0-beta1]: https://github.com/dharple/detox/compare/v2.0.0...v3.0.0-beta1
+[2.0.2]: https://github.com/dharple/detox/compare/v2.0.1...v2.0.2
+[2.0.1]: https://github.com/dharple/detox/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/dharple/detox/compare/v2.0.0-beta2...v2.0.0
 [2.0.0-beta2]: https://github.com/dharple/detox/compare/v2.0.0-beta1...v2.0.0-beta2
 [2.0.0-beta1]: https://github.com/dharple/detox/compare/v1.4.1...v2.0.0-beta1
@@ -325,6 +339,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#128]: https://github.com/dharple/detox/issues/128
+[#126]: https://github.com/dharple/detox/issues/126
 [#112]: https://github.com/dharple/detox/issues/112
 [#101]: https://github.com/dharple/detox/pull/101
 [#82]: https://github.com/dharple/detox/issues/82
