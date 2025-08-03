@@ -218,9 +218,8 @@ make dist-zip
 
 6. Create a new release on GitHub, using the raw contents of the CHANGELOG, and
    attaching the release files.
-7. Create a new release on Sourceforge, using the same items.  In the project,
-   click on Files, then the `detox` folder.  Click on Add Folder, add a version
-   folder, then click in to it.  Add files to the folder.
+7. Confirm that the new release was migrated to Sourceforge.  In the project,
+   click on Files.  The latest release should be there, at the top level.
 8. Update the "latest stable" version in README.md, if appropriate.
 9. Play [A Void Hope].
 
