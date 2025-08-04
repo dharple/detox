@@ -6,6 +6,12 @@ For releases after 1.3.0, the format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Increased timeout on unit tests. [#129]
+
 ## [3.0.0] - 2025-08-03
 
 ### Misc
@@ -347,6 +353,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 [1.2.1]: https://github.com/dharple/detox/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/dharple/detox/releases/tag/v1.2.0
 
+[#129]: https://github.com/dharple/detox/issues/129
 [#128]: https://github.com/dharple/detox/issues/128
 [#126]: https://github.com/dharple/detox/issues/126
 [#112]: https://github.com/dharple/detox/issues/112
