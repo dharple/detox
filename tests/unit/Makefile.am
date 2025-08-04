@@ -1,5 +1,8 @@
 if WITH_CHECK
 
+# adjust the check timeout
+export CK_DEFAULT_TIMEOUT = 10
+
 AM_CFLAGS = \
 	@CHECK_CFLAGS@ \
 	-DYY_NO_INPUT \
