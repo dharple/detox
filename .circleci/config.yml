@@ -84,6 +84,30 @@ jobs:
           name: "distcheck"
           command: "make distcheck"
 
+  unit-test-macos:
+    macos: # macos executor running Xcode
+      xcode: 15.3.0
+    steps:
+      - checkout
+      - run:
+          name: "install missing packages"
+          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake bison check flex gcc make pkg-config"
+      - run:
+          name: "autoreconf"
+          command: "autoreconf --install"
+      - run:
+          name: "configure"
+          command: "./configure --with-check"
+      - run:
+          name: "make"
+          command: "make"
+      - run:
+          name: "check"
+          command: "make check"
+      - run:
+          name: "distcheck"
+          command: "make distcheck"
+
   maintainer-clean:
     docker:
       - image: cimg/base:stable
@@ -126,4 +150,5 @@ workflows:
               os: ["docker", "linux"]
       - build-macos
       - unit-test
+      - unit-test-macos
       - maintainer-clean
