@@ -39,11 +39,13 @@ jobs:
   build-macos:
     macos: # macos executor running Xcode
       xcode: 16.4.0
+    environment:
+      HOMEBREW_NO_AUTO_UPDATE: 1 
     steps:
       - checkout
       - run:
           name: "install missing packages"
-          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake bison flex gcc make pkg-config"
+          command: "brew install autoconf automake bison flex gcc make pkg-config"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
@@ -87,11 +89,13 @@ jobs:
   unit-test-macos:
     macos: # macos executor running Xcode
       xcode: 16.4.0
+    environment:
+      HOMEBREW_NO_AUTO_UPDATE: 1 
     steps:
       - checkout
       - run:
           name: "install missing packages"
-          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake bash bison check flex gcc make pkg-config"
+          command: "brew install autoconf automake bash bison check flex gcc libtool make pkg-config"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
