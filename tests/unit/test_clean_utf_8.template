@@ -18,8 +18,15 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 19
+#define DATA_COUNT 20
 static struct test_filename data[DATA_COUNT] = {
+    //
+    // Note:
+    // - Both tables, `a` and `b` are based on the builtin unicode table.
+    // - `a` has the default translation set to `_`
+    // - `b` has the default translation set to NULL
+    //
+
     // legacy
 
     {
@@ -140,6 +147,14 @@ static struct test_filename data[DATA_COUNT] = {
         .filename   = "C\u200E\u200EAS\u200EE \u200EID :\u200E E",
         .expected_a = "CASE ID : E",
         .expected_b = "CASE ID : E",
+    },
+
+    // github issue 116
+
+    {
+        .filename   = "Screen Recording 2024-04-24 at 12.22.20\u202FPM.mov",
+        .expected_a = "Screen Recording 2024-04-24 at 12.22.20 PM.mov",
+        .expected_b = "Screen Recording 2024-04-24 at 12.22.20 PM.mov",
     },
 };
 
