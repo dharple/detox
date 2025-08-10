@@ -4,9 +4,12 @@ executors:
   docker: # Docker using the Base Convenience Image
     docker:
       - image: cimg/base:stable
-  linux: # a Linux VM running Ubuntu 20.04
+  ubuntu-2204: # a Linux VM running Ubuntu 22.04
     machine:
       image: ubuntu-2204:current
+  ubuntu-2404: # a Linux VM running Ubuntu 24.04
+    machine:
+      image: ubuntu-2404:current
 
 # Define a job to be invoked later in a workflow.
 jobs:
@@ -38,12 +41,14 @@ jobs:
 
   build-macos:
     macos: # macos executor running Xcode
-      xcode: 15.3.0
+      xcode: 16.4.0
+    environment:
+      HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
       - checkout
       - run:
           name: "install missing packages"
-          command: "HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake bison flex gcc make pkg-config"
+          command: "brew install autoconf automake bison flex gcc make pkg-config"
       - run:
           name: "autoreconf"
           command: "autoreconf --install"
@@ -123,7 +128,7 @@ workflows:
       - build:
           matrix:
             parameters:
-              os: ["docker", "linux"]
+              os: ["docker", "ubuntu-2204", "ubuntu-2404"]
       - build-macos
       - unit-test
       - maintainer-clean
