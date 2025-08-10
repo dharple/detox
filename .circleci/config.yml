@@ -6,7 +6,7 @@ executors:
       - image: cimg/base:stable
   linux: # a Linux VM running Ubuntu 20.04
     machine:
-      image: ubuntu-2204:current
+      image: ubuntu-2404:current
 
 # Define a job to be invoked later in a workflow.
 jobs:
@@ -40,7 +40,7 @@ jobs:
     macos: # macos executor running Xcode
       xcode: 16.4.0
     environment:
-      HOMEBREW_NO_AUTO_UPDATE: 1 
+      HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
       - checkout
       - run:
@@ -90,7 +90,7 @@ jobs:
     macos: # macos executor running Xcode
       xcode: 16.4.0
     environment:
-      HOMEBREW_NO_AUTO_UPDATE: 1 
+      HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
       - checkout
       - run:
