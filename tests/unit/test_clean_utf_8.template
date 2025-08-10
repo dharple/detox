@@ -18,8 +18,15 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 20
+#define DATA_COUNT 21
 static struct test_filename data[DATA_COUNT] = {
+    //
+    // Note:
+    // - Both tables, `a` and `b` are based on the builtin unicode table.
+    // - `a` has the default translation set to `_`
+    // - `b` has the default translation set to NULL
+    //
+
     // legacy
 
     {
@@ -150,6 +157,13 @@ static struct test_filename data[DATA_COUNT] = {
         .expected_b = "_ fraction slash https:__www.google.com_whatever_.desktop",
     },
 
+    // github issue 116
+
+    {
+        .filename   = "Screen Recording 2024-04-24 at 12.22.20\u202FPM.mov",
+        .expected_a = "Screen Recording 2024-04-24 at 12.22.20 PM.mov",
+        .expected_b = "Screen Recording 2024-04-24 at 12.22.20 PM.mov",
+    },
 };
 
 #test test_clean_utf_8

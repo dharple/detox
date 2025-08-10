@@ -27,8 +27,15 @@
 
 #include "unit_struct.h"
 
-#define DATA_COUNT 20
+#define DATA_COUNT 21
 static struct test_filename data[DATA_COUNT] = {
+    //
+    // Note:
+    // - Both tables, `a` and `b` are based on the builtin unicode table.
+    // - `a` has the default translation set to `_`
+    // - `b` has the default translation set to NULL
+    //
+
     // legacy
 
     {
@@ -159,11 +166,18 @@ static struct test_filename data[DATA_COUNT] = {
         .expected_b = "_ fraction slash https:__www.google.com_whatever_.desktop",
     },
 
+    // github issue 116
+
+    {
+        .filename   = "Screen Recording 2024-04-24 at 12.22.20\u202FPM.mov",
+        .expected_a = "Screen Recording 2024-04-24 at 12.22.20 PM.mov",
+        .expected_b = "Screen Recording 2024-04-24 at 12.22.20 PM.mov",
+    },
 };
 
 START_TEST(test_clean_utf_8)
 {
-#line 156
+#line 170
     table_t *table_a;
     table_t *table_b;
     char *output;
@@ -193,7 +207,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_null)
 {
-#line 181
+#line 195
     char *output;
 
     // confirm NULL works
@@ -205,7 +219,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_missing_table)
 {
-#line 188
+#line 202
     clean_utf_8("what", NULL);
 
 }
@@ -213,7 +227,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_invalid)
 {
-#line 191
+#line 205
     table_t *table;
     char *output;
 
@@ -234,7 +248,7 @@ END_TEST
 
 START_TEST(test_clean_utf_8_beyond_unicode_max)
 {
-#line 207
+#line 221
     table_t *table;
     char *output;
 
