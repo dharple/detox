@@ -107,9 +107,9 @@ pacman -S --needed base-devel gcc git mingw-w64-x86_64-toolchain
 To build a stable copy of `detox`, run:
 
 ```
-wget https://github.com/dharple/detox/releases/download/v3.0.0/detox-3.0.0.tar.gz
-tar xzvf detox-3.0.0.tar.gz
-cd detox-3.0.0
+wget https://github.com/dharple/detox/releases/download/v3.0.1/detox-3.0.1.tar.gz
+tar xzvf detox-3.0.1.tar.gz
+cd detox-3.0.1
 ./configure
 make
 make install
@@ -129,7 +129,7 @@ To build a stable copy of `detox` from source, install the package `git`, then
 run:
 
 ```
-git clone -b 3.0.0 https://github.com/dharple/detox.git
+git clone -b 3.0.1 https://github.com/dharple/detox.git
 cd detox
 autoreconf --install
 ./configure
