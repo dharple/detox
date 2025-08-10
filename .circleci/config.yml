@@ -4,7 +4,10 @@ executors:
   docker: # Docker using the Base Convenience Image
     docker:
       - image: cimg/base:stable
-  linux: # a Linux VM running Ubuntu 20.04
+  ubuntu-2204: # a Linux VM running Ubuntu 22.04
+    machine:
+      image: ubuntu-2204:current
+  ubuntu-2404: # a Linux VM running Ubuntu 24.04
     machine:
       image: ubuntu-2404:current
 
@@ -151,7 +154,7 @@ workflows:
       - build:
           matrix:
             parameters:
-              os: ["docker", "linux"]
+              os: ["docker", "ubuntu-2204", "ubuntu-2404"]
       - build-macos
       - unit-test
       - unit-test-macos
