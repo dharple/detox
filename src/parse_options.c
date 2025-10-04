@@ -67,6 +67,7 @@ char usage_message[] = {
 
 char help_message[] = {
      "	-f configfile	choose which config file to use\n"
+     "  -F  force, overwrite/replace already existing files\n"
 #ifdef HAVE_GETOPT_LONG
     "	-h --help	this message\n"
 #else
@@ -93,11 +94,12 @@ char help_message[] = {
 };
 
 char usage_message_inline[] = {
-    "usage: inline-detox [-hLvV] [-f configfile] [-s sequence] [file]\n"
+    "usage: inline-detox [-FhLvV] [-f configfile] [-s sequence] [file]\n"
 };
 
 char help_message_inline[] = {
     "	-f configfile	choose which config file to use\n"
+    "   -F      overwrite existing files\n"
 #ifdef HAVE_GETOPT_LONG
     "	-h --help	this message\n"
 #else
@@ -137,9 +139,9 @@ options_t *parse_options_getopt(int argc, char **argv)
                                       (strcmp(binname, INLINE_DETOX_BIN) == 0);
 
 #ifdef HAVE_GETOPT_LONG
-    while ((optcode = getopt_long(argc, argv, "hrvV?Ls:f:n", longopts, NULL)) != -1) {
+    while ((optcode = getopt_long(argc, argv, "FhrvV?Ls:f:n", longopts, NULL)) != -1) {
 #else
-    while ((optcode = getopt(argc, argv, "hrvV?Ls:f:n")) != -1) {
+    while ((optcode = getopt(argc, argv, "FhrvV?Ls:f:n")) != -1) {
 #endif
         switch (optcode) {
             case 'h':
@@ -156,6 +158,10 @@ options_t *parse_options_getopt(int argc, char **argv)
                  */
                 main_options->check_config_file = wrapped_strdup(optarg);
                 break;
+
+            case 'F':
+                    main_options->overwrite = 1;
+                    break;
 
             case 'L':
                 main_options->list_sequences = 1;

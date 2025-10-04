@@ -92,6 +92,7 @@ typedef struct {
     int is_inline_bin;
     int is_inline_mode;
     int list_sequences;
+    int overwrite;
     int recurse;
     int special;
     int verbose;

@@ -128,7 +128,7 @@ char *parse_file(char *filename, options_t *options)
     }
 
     err = lstat(new_filename, &stat_info_new);
-    if (err != -1) { // New file exists
+    if (err != -1 && options->overwrite == 0) { // New file exists
         if (stat_info_old.st_dev != stat_info_new.st_dev || // Different device
                 stat_info_old.st_ino != stat_info_new.st_ino || // Different inode
                 stat_info_old.st_nlink > 1) { // More than one hard link
