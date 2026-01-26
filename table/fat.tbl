@@ -1,0 +1,16 @@
+# file allocation table  file name  limitations  for exfat SD cards in Linux  or windows partitions 
+
+# originally appeared in cpm basic dos windows and now appear in a myriad devices  including cameras, camcorders, digital photo frames , Mobile phones, PCs,  networks
+
+# try to find a similar looking font to preserve book titles in file names for storage on SD card where these letters often appear  
+
+start
+0x22 ^ # "
+0x23 @ # #
+0x2a ^ # *
+0x3a ; # :
+0x3c ( # <
+0x3e ) # >
+0x5c ; # \
+0x7c ; # |
+end
