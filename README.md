@@ -1,3 +1,32 @@
+# NOTE
+
+Due to time constraints, I have decided to put `detox` on hold for the
+foreseeable future.  I don't have the time needed to give `detox` and its users
+the attention they deserve.
+
+From the feedback I've received over the years, it's clear what direction
+`detox` needs to go in.  The days of weighty configuration files are behind us,
+and users looking for help with their files shouldn't need to be well-versed in
+character encoding.  `detox` needs to be easier to work with, using
+command-line options and a config file that lets you pre-select those options.
+
+It needs to *just work*.  Period.
+
+What's equally clear is that I don't want to write another massive app in C.
+
+`detox` was written initially as a quick hack to solve a problem.  Then it
+became a learning exercise, to deepen my understanding of C.  Then, while I was
+paying it absolutely no attention, it was being packaged in all the major
+distros.
+
+I've enjoyed working with you all through the years, as time allowed, but I
+simply can't give you what you need from me.
+
+So, `detox` is paused.  I hope to pick it up again at some point and rebuild
+it from scratch, in a different language, with a friendlier UI.
+
+---
+
 # Overview
 
 `detox` is a program that renames files to make them easier to work with under
