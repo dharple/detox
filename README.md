@@ -129,7 +129,7 @@ To build a stable copy of `detox` from source, install the package `git`, then
 run:
 
 ```
-git clone -b 3.0.1 https://github.com/dharple/detox.git
+git clone -b v3.0.1 https://github.com/dharple/detox.git
 cd detox
 autoreconf --install
 ./configure
